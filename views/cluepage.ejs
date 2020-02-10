@@ -11,26 +11,27 @@
 </head>
 
 <body>
-    <div class="navbar navbar-inverse bg-dark navbar-fixed-top">
+    <div class="navbar navbar-inverse bg-transparent navbar-fixed-top py-md-0">
         <div class="container-fluid">
             <!-- ml auto - puts button on right side -->
             <ul class="nav navbar-nav ml-auto">
-                <form action="/login">
-                    <button class="btn btn-small btn-outline-light" type="button">FAQ</button>
+                <form>
+                    <!-- FAQ button - window.location.href onClick attribute -> FAQ page -->
+                    <button class="btn btn-outline-dark btn-sm m-1" type="button" onclick="window.location.href = '/faq'">FAQ</button>
                 </form>
             </ul>
         </div>
 
     </div>
-
-
-
-    <!-- map -->
-    <div class="container p-1" style="height: 40vh;">
+    
+    <!-- map container -->
+    <div class="container-fluid p-0 m-0" style="height: 100vh; width: 100vw;">
         <div id="map" class="border border-dark"></div>
     </div>
-
-    
+<!-- 
+    <div class="container d-flex justify-content-center">
+        <button class="btn btn-outline-dark">Verify Location</button>
+    </div> -->
 
 <script>
 

@@ -2,12 +2,16 @@ const express  = require("express"),
     app        = express(),
     bodyParser = require("body-parser")
     ejs        = require('ejs')
-    path       = require('path');
+    path       = require('path')
+    device     = require('express-device');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
+
+// getting req device
+app.use(device.capture());
 
 // so we dont need to type .ejs at the end of references ejs files
 app.set('view engine', 'ejs');
@@ -17,15 +21,27 @@ app.use(express.static(__dirname + "/public"));
 
 // clue page gallery
 app.get('/cluepage', function(req, res) {
-    res.render('cluepage');
+    if (!req.device.type == "desktop") {
+        res.render('DepartmentPage');
+    } else {
+        res.render('LoginPage');
+    }
 });
 
 app.get('/login', function(req, res) {
-    res.render('LoginPage');
+    if (req.device.type == "desktop") {
+        res.render('LoginPage');
+    } else {
+        res.render('DepartmentPage');
+    }
 });
 
 app.get('/modify', function(req, res) {
-    res.render('ModifyDataPage');
+    if (req.device.type == "desktop") {
+        res.render('ModifyDataPage');
+    } else {
+        res.render('DepartmentPage');
+    }
 });
 
 app.get('/faq', function(req, res) {
@@ -33,7 +49,11 @@ app.get('/faq', function(req, res) {
 });
 
 app.get('/', function(req, res) {
-    res.render('DepartmentPage');
+    if (!req.device.type == "phone") {
+        res.render('DepartmentPage');
+    } else {
+        res.render('LoginPage');
+    }
 });
 
 // user get redirected to home page (department page)
