@@ -8,7 +8,11 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href='/stylesheets/login.css'>
+    <link rel="stylesheet" type="text/css" href='/public/stylesheets/departmentpage.css'>
+    <script
+    src="https://use.fontawesome.com/releases/v5.12.1/js/all.js"
+    data-search-pseudo-elements
+  ></script>
 <!------ Include the above in your HEAD tag ---------->
 </head>
 <body>
@@ -26,28 +30,57 @@
 
     <div class="container list-group pt-4">
 
-            <a href="#" class="list-group-item list-group-item-action list-group-item-light">
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-dark ml-auto"  type="submit">Search</button>
-                  </form>
+            <a href="#" class="list-group-item list-group-item-light">
+                <form class="form-inline md-form form-sm mt-0">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                    <input class="form-control form-control-sm ml-3 w-75" id="myInput" onkeyup="myFunction()" type="text" placeholder="Search"
+                      aria-label="Search">
+                </form>
             </a>
 
-            <ul class="list-group list-group-flush list-group-item ">
-                <li class="list-group-item list-group-item-action">Computer Science and Mathematics</li>
-                <li class="list-group-item list-group-item-action">Biology</li>
-                <li class="list-group-item list-group-item-action">Law</li>
-                <li class="list-group-item list-group-item-action">Engineering</li>
-                <li class="list-group-item list-group-item-action">Sports Psychology</li>
-              </ul>
-
+            <ul class="list-group list-group-flush list-group-item text-center" id="myUL">
+                <li class="list-group-item list-group-item-action"><a href="#" class="btn btn-outline-dark">Computer Science and Mathematics</a></li>
+                <li class="list-group-item list-group-item-action"><a href="#" class="btn btn-outline-dark" >Law</a></li>
+                <li class="list-group-item list-group-item-action"><a href="#" class="btn btn-outline-dark">Engineering</a></li>
+                <li class="list-group-item list-group-item-action"><a href="#" class="btn btn-outline-dark">Biology</a></li>
+                <li class="list-group-item list-group-item-action"><a href="#" class="btn btn-outline-dark">Physics and Applied Sciences</a></li>
+            </ul>
     </div>
+
+</script>
+
+<script>
+
+function myFunction() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  // get input field   
+  input = document.getElementById('myInput');
+  // get input value
+  filter = input.value.toUpperCase();
+  // get ul (unordered list)
+  ul = document.getElementById("myUL");
+  // get all li elements
+  li = ul.getElementsByTagName('li');
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+
 
 </script>
 
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 
-    </body>
+</body>
 </html>
 
