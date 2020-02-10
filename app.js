@@ -15,12 +15,16 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + "/public"));
 
 // clue page gallery
-app.get('/', function(req, res) {
+app.get('/cluepage', function(req, res) {
     res.render('cluepage');
 });
 
 app.get('/login', function(req, res) {
     res.render('LoginPage');
+});
+
+app.get('/', function(req, res) {
+    res.render('DepartmentPage');
 });
 
 app.get('*', function(req, res){
