@@ -1,0 +1,26 @@
+{
+  "name": "treasuretrailwebapp",
+  "version": "1.0.0",
+  "description": "Treasure Hunt Game Web Application",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WilliamWallitt/TreasureTrailApp.git"
+  },
+  "author": "William, Justin, Ed, Olly, Sefan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WilliamWallitt/TreasureTrailApp/issues"
+  },
+  "homepage": "https://github.com/WilliamWallitt/TreasureTrailApp#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2",
+    "path": "^0.12.7"
+  }
+}
