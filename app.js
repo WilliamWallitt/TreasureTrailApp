@@ -27,11 +27,12 @@ app.get('/', function(req, res) {
     res.render('DepartmentPage');
 });
 
+// user get redirected to home page (department page)
 app.get('*', function(req, res){
     res.redirect('/');
 });
 
-// process.env.PORT, process.env.IP also port 3000 for local setup
+// process.env.PORT, process.env.IP also port 8080 for local setup
 app.listen(process.env.PORT || 8080, process.env.IP, function(){
     console.log('The Server Has Started!');
 });
