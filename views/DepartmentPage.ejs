@@ -8,44 +8,51 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href='/public/stylesheets/departmentpage.css'>
     <script
     src="https://use.fontawesome.com/releases/v5.12.1/js/all.js"
-    data-search-pseudo-elements
-  ></script>
+    data-search-pseudo-elements></script>
+    <link rel="stylesheet" type="text/css" href='/public/stylesheets/departmentpage.css'>
 <!------ Include the above in your HEAD tag ---------->
 </head>
-<body>
+<body style="background: url('../img/departmentBackground.jpg') no-repeat center center fixed;">
+    
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
+    <div class="container">
+      <a class="navbar-brand" href="#">Department Page</a>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">FAQ
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-    <div class="navbar navbar-inverse bg-dark navbar-fixed-top">
-        <div class="container-fluid">
-            <!-- ml auto - puts button on right side -->
-            <ul class="nav navbar-nav ml-auto">
-                <form action="/login">
-                    <button class="btn btn-small btn-outline-light" type="button">FAQ</button>
-                </form>
-            </ul>
+<div class="container">
+    <div class="card border-0 shadow my-5">
+
+        <div class="container list-group pt-4">
+
+                <a href="#" class="list-group-item list-group-item-light">
+                    <form class="form-inline md-form form-sm mt-0">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                        <input class="form-control form-control-sm ml-3 w-75" id="myInput" onkeyup="myFunction()" type="text" placeholder="Search"
+                        aria-label="Search">
+                    </form>
+                </a>
+
+                <ul class="list-group list-group-flush list-group-item text-center" id="myUL">
+                    <li class="list-group-item list-group-item-action"><a href="#" class="btn btn-outline-dark">Computer Science and Mathematics</a></li>
+                    <li class="list-group-item list-group-item-action"><a href="#" class="btn btn-outline-dark" >Law</a></li>
+                    <li class="list-group-item list-group-item-action"><a href="#" class="btn btn-outline-dark">Engineering</a></li>
+                    <li class="list-group-item list-group-item-action"><a href="#" class="btn btn-outline-dark">Biology</a></li>
+                    <li class="list-group-item list-group-item-action"><a href="#" class="btn btn-outline-dark">Physics and Applied Sciences</a></li>
+                </ul>
         </div>
     </div>
-
-    <div class="container list-group pt-4">
-
-            <a href="#" class="list-group-item list-group-item-light">
-                <form class="form-inline md-form form-sm mt-0">
-                    <i class="fas fa-search" aria-hidden="true"></i>
-                    <input class="form-control form-control-sm ml-3 w-75" id="myInput" onkeyup="myFunction()" type="text" placeholder="Search"
-                      aria-label="Search">
-                </form>
-            </a>
-
-            <ul class="list-group list-group-flush list-group-item text-center" id="myUL">
-                <li class="list-group-item list-group-item-action"><a href="#" class="btn btn-outline-dark">Computer Science and Mathematics</a></li>
-                <li class="list-group-item list-group-item-action"><a href="#" class="btn btn-outline-dark" >Law</a></li>
-                <li class="list-group-item list-group-item-action"><a href="#" class="btn btn-outline-dark">Engineering</a></li>
-                <li class="list-group-item list-group-item-action"><a href="#" class="btn btn-outline-dark">Biology</a></li>
-                <li class="list-group-item list-group-item-action"><a href="#" class="btn btn-outline-dark">Physics and Applied Sciences</a></li>
-            </ul>
-    </div>
+</div>
 
 </script>
 
@@ -65,11 +72,14 @@ function myFunction() {
 
   // Loop through all list items, and hide those who don't match the search query
   for (i = 0; i < li.length; i++) {
+    // get first tag's contents  
     a = li[i].getElementsByTagName("a")[0];
     txtValue = a.textContent || a.innerText;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        // display that li
       li[i].style.display = "";
     } else {
+        // dont display that li
       li[i].style.display = "none";
     }
   }
@@ -79,6 +89,7 @@ function myFunction() {
 </script>
 
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script scr="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 
 </body>
