@@ -23,6 +23,10 @@ app.get('/login', function(req, res) {
     res.render('LoginPage');
 });
 
+app.get('/modify', function(req, res) {
+    res.render('ModifyDataPage');
+});
+
 app.get('/', function(req, res) {
     res.render('DepartmentPage');
 });
