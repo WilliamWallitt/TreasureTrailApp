@@ -12,8 +12,8 @@ app.use(bodyParser.json())
 // so we dont need to type .ejs at the end of references ejs files
 app.set('view engine', 'ejs');
 // need to tell express to look for our css stuff in /public
-app.use(express.static(__dirname + "/"));
-// /public
+app.use(express.static(__dirname + "/public"));
+
 
 // clue page gallery
 app.get('/cluepage', function(req, res) {
