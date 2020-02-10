@@ -13,6 +13,7 @@ app.use(bodyParser.json())
 app.set('view engine', 'ejs');
 // need to tell express to look for our css stuff in /public
 app.use(express.static(__dirname + "/public"));
+// /public
 
 // clue page gallery
 app.get('/cluepage', function(req, res) {
