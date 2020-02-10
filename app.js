@@ -28,6 +28,10 @@ app.get('/modify', function(req, res) {
     res.render('ModifyDataPage');
 });
 
+app.get('/faq', function(req, res) {
+    res.render('faqPage');
+});
+
 app.get('/', function(req, res) {
     res.render('DepartmentPage');
 });

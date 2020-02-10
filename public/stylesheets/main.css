@@ -1,3 +1,7 @@
+body {
+    animation-name: test;
+    animation-duration: 2s;
+}
 
 #map {
     height: 100%;
@@ -6,18 +10,16 @@
 }
 
 
-/* keyframe animations */
-@keyframes fadeIn {
+/* keyframe animations for entire body */
+@keyframes test {
+
+    0% {
+        opacity: 0;
+    }
     100% {
         opacity: 1;
     }
 }
 
-@keyframes mainText {
-    100% {
-        opacity: 1;
-        transform: translateY(-100px);
-    }
-}
 /* breakpoints */
 
