@@ -19,6 +19,10 @@ app.get('/', function(req, res) {
     res.render('cluepage');
 });
 
+app.get('/login', function(req, res) {
+    res.render('LoginPage');
+});
+
 app.get('*', function(req, res){
     res.redirect('/');
 });

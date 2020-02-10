@@ -1,13 +1,10 @@
 
 #map {
     height: 100%;
+    width: 100%;
+
 }
-/* Optional: Makes the sample page fill the window. */
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
+
 
 /* keyframe animations */
 @keyframes fadeIn {
@@ -24,22 +21,3 @@ html, body {
 }
 /* breakpoints */
 
-@media screen and (max-width: 1100px) {
-    img {
-        width: 45vw;
-    }
-    .row {
-        justify-content: space-around;
-    }
-}
-
-@media screen and (max-width: 850px) {
-    .row {
-        display: flex;
-        flex-direction: column;
-        flex-flow: wrap;
-    }
-    img {
-        width: 70vw;
-    }
-}
