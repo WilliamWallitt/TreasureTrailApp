@@ -21,27 +21,32 @@ app.use(express.static(__dirname + "/public"));
 
 // clue page gallery
 app.get('/cluepage', function(req, res) {
-    if (!req.device.type == "desktop") {
-        res.render('DepartmentPage');
-    } else {
-        res.render('LoginPage');
-    }
+    // if (!req.device.type == "desktop") {
+    //     res.render('DepartmentPage');
+    // } else {
+    //     res.render('LoginPage');
+    // }
+    res.render('cluepage')
 });
 
 app.get('/login', function(req, res) {
-    if (req.device.type == "desktop") {
-        res.render('LoginPage');
-    } else {
-        res.render('DepartmentPage');
-    }
+    // if (req.device.type == "desktop") {
+    //     res.render('LoginPage');
+    // } else {
+    //     res.render('DepartmentPage');
+    // }
+    res.render('LoginPage')
+
 });
 
 app.get('/modify', function(req, res) {
-    if (req.device.type == "desktop") {
-        res.render('ModifyDataPage');
-    } else {
-        res.render('DepartmentPage');
-    }
+    // if (req.device.type == "desktop") {
+    //     res.render('ModifyDataPage');
+    // } else {
+    //     res.render('DepartmentPage');
+    // }
+    res.render('ModifyDataPage')
+
 });
 
 app.get('/faq', function(req, res) {
@@ -49,11 +54,13 @@ app.get('/faq', function(req, res) {
 });
 
 app.get('/', function(req, res) {
-    if (!req.device.type == "phone") {
-        res.render('DepartmentPage');
-    } else {
-        res.render('LoginPage');
-    }
+    // if (!req.device.type == "phone") {
+    //     res.render('DepartmentPage');
+    // } else {
+    //     res.render('LoginPage');
+    // }
+    res.render('DepartmentPage')
+
 });
 
 // user get redirected to home page (department page)
