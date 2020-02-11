@@ -26,12 +26,14 @@ body {
     display: block;
     position: relative;
     background: #ffffff;
-    font-size: 16px;
+    /* font-size: 16px; */
+    font-size: 0.5em;
     font-weight: 300px;
     color: black;
     text-transform: uppercase;
     letter-spacing: 2px;
     padding: 25px 80px;
+    /* might need to remove some padding */
     margin: 0 auto;
     border-radius: 20px;
     box-shadow: 0 6px #000000;
@@ -47,18 +49,12 @@ body {
     top: 6px;
 }
 
-h1 {
+/* h1 {
     text-align: center;
     font-weight: 300;
     padding: 0 20px;
     color: white;
-}
-
-
-
-
-
-
+} */
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:700');
 
@@ -66,7 +62,7 @@ h1 {
 #container {
   color:#999;
   text-transform: uppercase;
-  font-size:36px;
+  /* font-size:36px; */
   font-weight:bold;
   width:100%;
   bottom:45%;
@@ -74,7 +70,7 @@ h1 {
 }
 
 #flip {
-  height:50px;
+  height:30px;
   overflow:hidden;
 }
 
@@ -118,4 +114,21 @@ p {
   font-size:12px;
   color:#999;
   margin-top:200px;
+}
+
+
+@media all and (max-width: 1200px) { /* screen size until 1200px */
+body {
+    font-size: 1.5em; /* 1.5x default size */
+  }
+}
+@media all and (max-width: 1000px) { /* screen size until 1000px */
+body {
+    font-size: 1.2em; /* 1.2x default size */
+  }
+}
+@media all and (max-width: 500px) { /* screen size until 500px */
+  body {
+      font-size: 0.8em; /* 0.8x default size */
+    }
 }
