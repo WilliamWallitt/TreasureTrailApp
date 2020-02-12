@@ -25,8 +25,8 @@
         <!-- Login Form -->
         <!-- need to get this form and validate it before next page -->
         <form>
-            <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-            <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+            <input type="text" id="login" class="fadeIn second" name="login" placeholder="username">
+            <input type="password" id="password" class="fadeIn third" name="login" placeholder="password">
             <input type="submit" class="fadeIn fourth" value="Log In" href="/modify">
         </form>
 
@@ -37,6 +37,27 @@
 
     </div>
     </div>
+
+<script>
+
+$("#login").focus(function(){
+   $(this).removeAttr('placeholder');
+});
+
+
+$("#login").focusout(function(){
+   $(this).attr('placeholder', 'username');
+});
+
+$("#password").focus(function(){
+   $(this).removeAttr('placeholder');
+});
+
+
+$("#password").focusout(function(){
+   $(this).attr('placeholder', 'password');
+});
+
 </script>
 
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
@@ -44,6 +65,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtnGySF8OE4Pa2VKOlkCMYvAnX8Ziza0A&callback=initMap"
 async defer></script>
+
 
     </body>
 </html>

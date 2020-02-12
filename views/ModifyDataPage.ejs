@@ -5,53 +5,68 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">    <script
     src="https://use.fontawesome.com/releases/v5.12.1/js/all.js"
     data-search-pseudo-elements></script>
-    <!-- <link rel="stylesheet" type="text/css" href='/stylesheets/departmentPage.css'> -->
+  <link rel="stylesheet" type="text/css" href='/stylesheets/modifyPage.css'>
 <!------ Include the above in your HEAD tag ---------->
 </head>
 <body>
     
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top mb-5 shadow">
-    <div class="container">
-      <a class="navbar-brand" href="#">Back</a>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Log out
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top mb-5 shadow">
+      <div class="container">
+        <a class="navbar-brand" href="#">Back</a>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Log out
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
 
+  <ul class="nav nav-pills nav-fill p-3" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Department</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Clue</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Information</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-xs-12">
-        <div class="table-responsive">
-          <table summary="This table shows how to create responsive tables using Bootstrap's default functionality" class="table table-bordered table-hover">
-            <caption class="text-center">Department table</caption>
-            <thead>
-              <tr>
-                <th>Department</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Computer Science and Mathematics</td>
-              </tr>
-            </tbody>
-          </table>
-        </div><!--end of .table-responsive-->
+      <div class="container p-5">
+        <div class="row justify-content-center">
+          <div class="col-xs-12">
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover">
+                <caption class="text-center">Department table</caption>
+                <thead>
+                  <tr>
+                    <th>Department</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Computer Science and Mathematics</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="row justify-content-center p-5">
         <div class="col-xs-12">
           <div class="table-responsive">
             <table summary="This table shows how to create responsive tables using Bootstrap's default functionality" class="table table-bordered table-hover">
@@ -77,57 +92,49 @@
                 </tr>
               </tbody>
             </table>
-          </div><!--end of .table-responsive-->
+          </div>
         </div>
       </div>
-      <div class="row justify-content-center">
+    </div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      <div class="row justify-content-center p-5">
         <div class="col-xs-12">
           <div class="table-responsive">
             <table summary="This table shows how to create responsive tables using Bootstrap's default functionality" class="table table-bordered table-hover">
               <caption class="text-center">Extra info table</caption>
               <thead>
                 <tr>
-                  <th>Country</th>
-                  <th>Languages</th>
-                  <th>Population</th>
-                  <th>Median Age</th>
-                  <th>Area (Km²)</th>
+                  <th>#1</th>
+                  <th>Extra Information</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Argentina</td>
-                  <td>Spanish (official), English, Italian, German, French</td>
-                  <td>41,803,125</td>
-                  <td>31.3</td>
-                  <td>2,780,387</td>
+                  <td>1</td>
+                  <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui blanditiis delectus libero voluptatum voluptatibus, repellat reprehenderit commodi laborum tempora consequuntur iusto distinctio cupiditate aspernatur ducimus, nemo quo maiores quaerat. Quam.
+                  </td>
+
                 </tr>
                 <tr>
-                  <td>Australia</td>
-                  <td>English 79%, native and other languages</td>
-                  <td>23,630,169</td>
-                  <td>37.3</td>
-                  <td>7,739,983</td>
+                  <td>2</td>
+                  <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga illum molestiae ullam culpa temporibus architecto pariatur sint corrupti, maxime enim esse ducimus quo, quam debitis nam delectus rem reprehenderit. Porro!</td>
+
                 </tr>
                 <tr>
-                  <td>Greece</td>
-                  <td>Greek 99% (official), English, French</td>
-                  <td>11,128,404</td>
-                  <td>43.2</td>
-                  <td>131,956</td>
+                  <td>3</td>
+                  <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet iusto dolor, repellat dignissimos accusamus itaque possimus debitis magni. Unde, perspiciatis neque praesentium soluta veniam nihil amet dignissimos ipsa odio quaerat?</td>
                 </tr>
               </tbody>
             </table>
-          </div><!--end of .table-responsive-->
+          </div>
         </div>
       </div>
+    </div>
   </div>
-    
 
-
-<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-<script scr="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 </body>
 </html>
