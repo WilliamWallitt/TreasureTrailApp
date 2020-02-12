@@ -1,3 +1,19 @@
-body {
-    background-image: url(/public/img/testImage.jpg);
+.nav-pills .nav-link.active {
+
+    background-color: black;
+    color: white;
+
+}
+
+a {
+
+    color: black;
+    background-color: transparent;
+
+}
+
+a:hover {
+
+    color: black;
+
 }
