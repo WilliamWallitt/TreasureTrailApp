@@ -10,39 +10,57 @@
   <link rel="stylesheet" type="text/css" href='/stylesheets/main.css'>
 </head>
 
+<!-- style="background: url('../img/clue1.jpg') no-repeat center fixed; background-size: cover;" -->
 <body>
-    <div class="navbar navbar-fixed-top py-md-0">
+    <div class="navbar navbar-fixed-top py-md-0 bg-transparent">
         <div class="container-fluid">
             <!-- ml auto - puts button on right side -->
-            <ul class="nav navbar-nav ml-auto">
-                <form>
+            <button class="btn btn-outline-dark btn-sm m-1" type="button" onclick="window.location.href = '/faq'">FAQ</button>
+            <button class="btn btn-outline-dark btn-sm mr-auto" type="button">Department Page</button>
+            <button class="btn btn-outline-dark btn-sm" onclick="calcRoute()">Verify Location</button>
                     <!-- FAQ button - window.location.href onClick attribute -> FAQ page -->
-                    <button class="btn btn-outline-dark btn-sm m-1" type="button" onclick="window.location.href = '/faq'">FAQ</button>
-                    <button class="btn btn-outline-dark btn-sm m-1" type="button">Department Page</button>
-                </form>
-            </ul>
+                    <!-- <div class="container d-flex justify-content-center"> -->
+                    <!-- </div> -->
         </div>
 
     </div>
     
     <!-- map container -->
     <div class="container-fluid p-0 m-0">
-        <div id="map" class="border border-dark" style="width:100vw; height:100vh"></div>
+        <div id="map" class="border border-dark" style="width:100vw; height:100vh;"></div>
+        <!-- <button class="btn btn-outline-dark" style="z-index: 1;" onclick="calcRoute()">Verify Location</button> -->
     </div>
 
     <div class="container d-flex justify-content-center">
-        <button class="btn btn-outline-dark" onclick="calcRoute()">Verify Location</button>
-    </div>
-
-    <div class="container d-flex justify-content-center" style="width:100vw; height:100vh">
         <div id="directionsPanel"></div>
     </div>
+
         
 
 <script>
 
+    // coordinates for the forum exeter
+    var myLatLng = {lat: 50.735371, lng: -3.533782};
+    // we have to declare these globally -> so we can call them during the onClick event + the calc route function
+    var map;
+    var directionsRenderer;
+    var directionsService;
 
-    // directionsDisplay.setPanel(document.getElementById('right-panel'));
+    var indexStart = 0;
+    var indexEnd = 1;
+    // populate array with route! this will be a DB call later on!
+    // stores current location, and 3 locations around exeter as a test
+    var array = [{
+        lat: 50.733220,
+        lng: -3.536394
+    }, {
+        lat: 50.737873,
+        lng: -3.532218
+    }, {
+        lat: 50.739177,
+        lng: -3.544887
+    }]
+
 
     // converting current location to a location - reverse geocoding
     // im using js new fetch methods - to get my api data
@@ -105,26 +123,6 @@
             infoWindow.open(map);
     }
 
-    // coordinates for the forum
-    var myLatLng = {lat: 50.735371, lng: -3.533782};
-    // we have to declare these globally -> so we can call them during the onClick event + the calc route function
-    var map;
-    var directionsRenderer;
-    var directionsService;
-
-    var indexStart = 0;
-    var indexEnd = 1;
-    // populate array with route! this will be a DB call
-    var array = [{
-        lat: 50.733220,
-        lng: -3.536394
-    }, {
-        lat: 50.737873,
-        lng: -3.532218
-    }, {
-        lat: 50.739177,
-        lng: -3.544887
-    }]
 
     // simple map application - all this does is get our current location and finds the path to the forum
     function initMap() {
@@ -169,8 +167,10 @@
             travelMode: 'WALKING'
         };
         // directionservice is just allowing use to use google to calc route
+        // when we make our request -> If it succeeds then we wanna update our index values + update our locations + find directions
         directionsService.route(request, function(result, status) {
             if (status == 'OK') {
+                // setting new directions based on the request
                 directionsRenderer.setDirections(result);
                 // basically we want every click to update the directions loaded - so we go through the list of coords
                 indexStart += 1;
@@ -180,6 +180,8 @@
     }
 
 </script>
+
+
 
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

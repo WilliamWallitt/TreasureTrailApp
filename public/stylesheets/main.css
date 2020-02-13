@@ -9,6 +9,8 @@ body {
 }
 
 
+
+
 /* keyframe animations for entire body */
 @keyframes test {
 
@@ -32,6 +34,14 @@ td {
     text-align: center;
 }
 
+/* two classes same style (.class1, .class2) */
+.adp-directions, .adp-summary {
+    text-align: center;
+    margin: auto;
+    width: 50%;
+    border: 1px solid black;
+    padding: 10px;
+    
+}
 
-/* breakpoints */
 
