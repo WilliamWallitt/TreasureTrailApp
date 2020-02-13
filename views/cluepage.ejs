@@ -17,7 +17,7 @@
             <!-- ml auto - puts button on right side -->
             <button class="btn btn-outline-dark btn-sm m-1" type="button" onclick="window.location.href = '/faq'">FAQ</button>
             <button class="btn btn-outline-dark btn-sm mr-auto" type="button">Department Page</button>
-            <button class="btn btn-outline-dark btn-sm" onclick="calcRoute()">Verify Location</button>
+            <button class="btn btn-outline-dark btn-sm" onclick="calcRoute()" id="verify">Verify Location</button>
                     <!-- FAQ button - window.location.href onClick attribute -> FAQ page -->
                     <!-- <div class="container d-flex justify-content-center"> -->
                     <!-- </div> -->
@@ -34,6 +34,12 @@
     <div class="container d-flex justify-content-center">
         <div id="directionsPanel"></div>
     </div>
+
+
+    <section id="section06" class="demo">
+        <a href="#section07"><span></span>Directions</a>
+    </section>
+
 
         
 
@@ -170,6 +176,8 @@
         // when we make our request -> If it succeeds then we wanna update our index values + update our locations + find directions
         directionsService.route(request, function(result, status) {
             if (status == 'OK') {
+                // we can just track the amount of times the user clicks - to show/hide the directions div (havnt dont that yet)
+                onHide();
                 // setting new directions based on the request
                 directionsRenderer.setDirections(result);
                 // basically we want every click to update the directions loaded - so we go through the list of coords
@@ -179,7 +187,20 @@
         });
     }
 
+    // hinding directions
+    function onHide() {
+        $("section").hide();
+        $("a").hide();
+    }
+
+    function onShow() {
+        $("section").show();
+        $("a").show();
+    }
+
+
 </script>
+
 
 
 
