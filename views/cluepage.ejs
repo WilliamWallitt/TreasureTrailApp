@@ -34,15 +34,6 @@
     <div class="container d-flex justify-content-center">
         <div id="directionsPanel"></div>
     </div>
-
-
-    <section id="section06" class="demo">
-        <a href="#section07"><span></span>Directions</a>
-    </section>
-
-
-        
-
 <script>
 
     // coordinates for the forum exeter
@@ -176,8 +167,6 @@
         // when we make our request -> If it succeeds then we wanna update our index values + update our locations + find directions
         directionsService.route(request, function(result, status) {
             if (status == 'OK') {
-                // we can just track the amount of times the user clicks - to show/hide the directions div (havnt dont that yet)
-                onHide();
                 // setting new directions based on the request
                 directionsRenderer.setDirections(result);
                 // basically we want every click to update the directions loaded - so we go through the list of coords
@@ -187,16 +176,6 @@
         });
     }
 
-    // hinding directions
-    function onHide() {
-        $("section").hide();
-        $("a").hide();
-    }
-
-    function onShow() {
-        $("section").show();
-        $("a").show();
-    }
 
 
 </script>
