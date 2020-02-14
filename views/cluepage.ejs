@@ -27,11 +27,17 @@
     
     <!-- map container -->
     <div class="container-fluid p-0 m-0">
-        <div id="map" class="border border-dark" style="width:100vw; height:100vh;"></div>
+        <div id="map" class="border border-dark" style="width:100vw; height:90vh;"></div>
         <!-- <button class="btn btn-outline-dark" style="z-index: 1;" onclick="calcRoute()">Verify Location</button> -->
     </div>
 
-    <div class="container d-flex justify-content-center">
+    <a class="arrow-wrap" href="#content">
+        <span class="arrow"></span>
+        <!--<span class="hint">scroll</span>-->
+    </a>
+          
+
+    <div class="container d-flex justify-content-center" id="content">
         <div id="directionsPanel"></div>
     </div>
 <script>
@@ -175,8 +181,6 @@
             }
         });
     }
-
-
 
 </script>
 
