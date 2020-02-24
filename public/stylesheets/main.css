@@ -1,3 +1,10 @@
+@import "bourbon";
+
+@import url('//fonts.googleapis.com/css?family=Raleway:400,800');
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
+
+
+
 body {
     animation-name: test;
     animation-duration: 2s;
@@ -87,17 +94,17 @@ td {
     border-color: #111 transparent transparent transparent;
     -webkit-transform:rotate(360deg)
 }
-
+/* moz support */
 @-webkit-keyframes arrows {
     0% { top:0; }
     10% { top:15%; }
     20% { top:0; }
     30% { top:15%; }
-    40% { top:-15%; }
+    40% { top:0%; }
     50% { top:15%; }
     60% { top:0; }
     70% { top:15%; }
-    80% { top:-15%; }
+    80% { top:0%; }
     90% { top:15%; }
     100% { top:0; }
 }
@@ -106,7 +113,55 @@ td {
     -webkit-animation: arrows 2.8s 0.4s infinite;
     -webkit-animation-delay: 2s;
 }
+
+
+/* for the clue tab */
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 3px solid rgba(0, 0, 0, 0.5);
+}
+
+.person {
+    margin: 10px;
+    display: inline-block;
+    border: 1px solid black;
+    width: 200px;
+    padding: 10px;
+    box-shadow: 4px 4px grey;
     
+}
+  
+.person:hover {
+    transform: translateY(5px);
+    box-shadow: 2px 2px grey;
+}
 
 
+#loadingMessage {
+    text-align: center;
+    padding: 40px;
+    background-color: #eee;
+}
 
+#canvas {
+    width: 100%;
+}
+
+#output {
+    margin-top: 20px;
+    background: #eee;
+    padding: 10px;
+    padding-bottom: 0;
+}
+
+#output div {
+    padding-bottom: 10px;
+    word-wrap: break-word;
+}
+
+#noQRFound {
+    text-align: center;
+}
