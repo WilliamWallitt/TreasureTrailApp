@@ -184,10 +184,25 @@ class database {
         return $buildings;
     }
 
+    private function get_last_order_id($department_id) {
+        global $connection;
+
+        $department_id_param = $connection->escape_string($department_id);
+        $sql = "SELECT * FROM routes WHERE department_id='$department_id_param'";
+
+        $result = $this->query($sql);
+
+        usort($result, function($x, $y) {
+            return $x['order_id'] < $y['order_id'] ? -1 : 1;
+        });
+
+        return end($result)['route_id'];
+    }
+
     public function create_route($route) {
         global $connection;
 
-        $order_id_param = $connection->escape_string($route->order_id);
+        $order_id_param = $this->get_last_order_id($route->department_id) + 1;
         $department_id_param = $connection->escape_string($route->department_id);
         $building_id_param = $connection->escape_string($route->building_id);
         $sql = "INSERT INTO routes (order_id, department_id, building_id) VALUES ('$order_id_param', '$department_id_param', '$building_id_param')";

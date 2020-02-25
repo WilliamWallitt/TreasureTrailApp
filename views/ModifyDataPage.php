@@ -177,7 +177,7 @@
             </div>
 
             <div class="container mt-3">
-              <button type="submit" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;" onclick="addDepartment()">Submit</button>
+              <button type="submit" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;" onclick="addBuilding()">Submit</button>
             </div>
           </div>
         </form>
@@ -208,17 +208,17 @@
           </div>
           <div class="row m-3">
             <div class="col">
-              <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+              <select class="custom-select my-1 mr-sm-2" id="departmentdropdown">
                 <option selected>Department</option>         
               </select>
             </div>
             <div class="col">
-              <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+              <select class="custom-select my-1 mr-sm-2" id="buildingdropdown">
                 <option selected>Building</option>
               </select>
             </div>
             <div class="col my-auto">
-              <button type="submit" class="btn btn-sm btn-outline-dark">Add Route</button>
+              <button type="submit" class="btn btn-sm btn-outline-dark" onclick="addRoute()">Add Route</button>
             </div>
           </div>
         </form>
@@ -360,37 +360,85 @@ function deleteDepartment(department_id) {
 
 function addBuilding() {
 
-  let departmentName = document.getElementById("departmentName").value;
+  let buildingName = document.getElementById("buildingname").value;
+  let lat = document.getElementById("latcoord").value;
+  let lng = document.getElementById("lngcoord").value;
+  let extraInfo = document.getElementById("extrainfo").value;
 
-  if (departmentName.length == 0) {
-    alert("Please fill in the required fields");
+
+  if (buildingName.length == 0 || lat.length == 0 || lng.length == 0 || extraInfo.length == 0) {
+    alert("Please fill in the required fields - ");
     return;
   } 
 
-  // Create a new user
   fetch('../app/create_building.php', {
       headers: { "Content-Type": "application/json; charset=utf-8" },
       method: 'POST',
       body: JSON.stringify({
-        department_name: departmentName,
+        building_name: buildingName,
+        latitude: lat,
+        longitude: lng,
+        extra_info: extraInfo,
+        // sort clues out
+        clues: []
       })
     }).then(response => {
       return response.json();
     }).then(data => {
-      document.getElementById("departmentName").value = ""; 
-      fetchDepartments();
+      document.getElementById("buildingname").value = ""; 
+      document.getElementById("latcoord").value = ""; 
+      document.getElementById("lngcoord").value = ""; 
+      document.getElementById("extrainfo").value = ""; 
+
+      fetchBuildings();
+
     });
 }
 
 
-function deleteBuilding(building_id) {
+  function deleteBuilding(building_id) {
 
-  fetch("../app/remove_department.php?department_id=" + department_id).then(response => {
+    fetch("../app/remove_building.php?building_id=" + building_id).then(response => {
+        return response.json();
+    }).then(data => {
+      fetchBuildings();
+    });
+  }
+
+  function addRoute() {
+
+    let departments = document.getElementById("departmentdropdown");
+    let department_id = departments.options[departments.selectedIndex].id;
+    
+    let buildings = document.getElementById("buildingdropdown");
+    let building_id = buildings.options[buildings.selectedIndex].id;
+
+    fetch('../app/create_route.php', {
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      method: 'POST',
+      body: JSON.stringify({
+        department_id: department_id,
+        building_id: building_id
+      })
+    }).then(response => {
       return response.json();
-  }).then(data => {
-    fetchDepartments();
-  });
-}
+    }).then(data => {
+      departments.selectedIndex = 0;
+      buildings.selectedIndex = 0;
+      fetchRoute();
+    });
+  }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -465,7 +513,7 @@ function deleteBuilding(building_id) {
         const lat = data[index].latitude;
         const lng = data[index].longitude;
         const extraInfo = data[index].extra_info;
-        departmentTableHTML += "<tr><td>" + buildingName + "</td><td>" + lat + "</td><td>" + lng + "</td><td>" + extraInfo + "</td><td>Clue</td><td><button class=\"btn btn-sm btn-outline-danger\">Delete</button></td></tr>";
+        departmentTableHTML += "<tr><td>" + buildingName + "</td><td>" + lat + "</td><td>" + lng + "</td><td>" + extraInfo + "</td><td>Clue</td><td><button class=\"btn btn-sm btn-outline-danger\" onclick=\"deleteBuilding("+ data[index].building_id + ")\">Delete</button></td></tr>";
         
       }
 
@@ -485,14 +533,27 @@ function deleteBuilding(building_id) {
     fetch("../app/get_all_routes.php").then(response => {
         return response.json();
     }).then(data => {
+      // array for department names
+      // array for building names
+      const departmentNamesArr = [];
+      const buildingNamesArr = [];
+
       const departmentTable = document.getElementById("routes");
       let departmentTableHTML = "";
       for (let index = 0; index < data.length; index++) {
         const department = data[index].department_name;
         //data[index].buildings
 
+        // add department to array
+        departmentNamesArr.push(data[index]);
+
         for (let index2 = 0; index2 < data[index].buildings.length; index2++) {
           const building = data[index].buildings[index2].building_name;
+          // add building to array
+
+          buildingNamesArr.push(data[index].buildings[index2]);
+
+
           // \"\"
           var dep = "<tr><td>" + department + "</td><td>"+ building + "</td><td><button class=\"btn btn-sm btn-outline-danger\"><i class=\"fas fa-minus\"></i></button></td></tr>";
           var build = "<tr><td></td><td>"+ building + "</td><td><button class=\"btn btn-sm btn-outline-danger\"><i class=\"fas fa-minus\"></i></button></td></tr>";
@@ -507,6 +568,28 @@ function deleteBuilding(building_id) {
       }
 
       departmentTable.innerHTML = departmentTableHTML;
+
+      // populate drop downs
+      const departmentDropDown = document.getElementById("departmentdropdown");
+      const buildingDropDown = document.getElementById("buildingdropdown");
+
+    
+      var html1 = "";
+      for (let index = 0; index < departmentNamesArr.length; index++) {
+        let department = departmentNamesArr[index];
+        html1 += "<option id=\"" + department.department_id + "\">" + department.department_name + "</option>"
+        
+      }
+
+      departmentDropDown.innerHTML = html1;
+
+      var html = "";
+      for (let index = 0; index < buildingNamesArr.length; index++) {
+        let building = buildingNamesArr[index];
+        html += "<option id=\"" + building.building_id + "\">" + building.building_name + "</option>"
+      }
+      buildingDropDown.innerHTML = html;
+
         //alert(data);
     }).catch(err => {
         // catch err
