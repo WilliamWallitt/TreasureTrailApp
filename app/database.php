@@ -1,9 +1,3 @@
-<!-- ;==========================================
-; Title:  Back-end database (this is controller class that handles queries to the database)
-; Author: Justin van Daalen, Edward Soutar
-; Date:   25 Feb 2020
-;==========================================  -->
-
 <?php
 class database {
     private $connection;

@@ -1,8 +1,3 @@
-<!-- ;==========================================
-; Title:  Back-end get_all_deparments request
-; Author: Justin van Daalen, William Wallitt
-; Date:   25 Feb 2020
-;==========================================  -->
 <?php
 require 'database.php';
 header('Content-type: text/javascript');
