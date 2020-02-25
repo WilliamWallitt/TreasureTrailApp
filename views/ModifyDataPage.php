@@ -42,6 +42,14 @@
   <div class="container-fluid mt-2" id="page-content-wrapper">
     <div class="tab-content col-md-10">
       <div class="tab-pane active" id="Departments">
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control" id="departmentName" aria-describedby="test" placeholder="Add Department Name">
+            <div class="container mt-3">
+              <button type="submit" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;">Submit</button>
+            </div>
+          </div>
+        </form>
         <div class="table-responsive">
           <table class="table table-striped table-sm">
             <thead>
@@ -50,20 +58,68 @@
               </tr>
             </thead>
             <tbody id="departments">
-              <tr>
-                <td>Harrison</td>
-              </tr>
-              <tr>
-                <td>Lava Building</td>
-              </tr>
-              <tr>
-                <td>The Forum</td>
-              </tr>
             </tbody>
           </table>
         </div>        
       </div>
       <div class="tab-pane" id="Clues">
+
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control" id="clueName" aria-describedby="test" placeholder="Enter Clue/Question Name">
+          </div>
+
+
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="question1" aria-describedby="test" placeholder="Enter Answer 1 Here">
+                </div>
+              </div>
+              <div class="col">
+                  <label class="radio-inline"><input type="radio" name="true1">True</label>
+                  <label class="radio-inline"><input type="radio" name="true1" checked>False</label>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="question2" aria-describedby="test" placeholder="Enter Answer 2 Here">
+                </div>
+              </div>
+              <div class="col">
+                  <label class="radio-inline"><input type="radio" name="true2">True</label>
+                  <label class="radio-inline"><input type="radio" name="true2">False</label>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="question3" aria-describedby="test" placeholder="Enter Answer 3 Here">
+                </div>
+              </div>
+              <div class="col">
+                  <label class="radio-inline"><input type="radio" name="true3">True</label>
+                  <label class="radio-inline"><input type="radio" name="false3">False</label>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="container">
+            <button type="submit" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;">Submit</button>
+          </div>
+        </form>
+
           <div class="table-responsive">
             <table class="table table-sm">
               <thead>
@@ -85,7 +141,7 @@
                             <th>Correct</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <!-- <tbody>
                           <tr>
                             <th scope="row">1</th>
                             <td>Q1</td>
@@ -96,7 +152,7 @@
                             <td>Q2</td>
                             <td>A2</td>
                           </tr>
-                        </tbody>
+                        </tbody> -->
                       </table>
                     </td>
                   </tr>
@@ -106,6 +162,26 @@
           </div>
       </div>
       <div class="tab-pane" id="Buildings">
+        <form>
+          <div class="form-group">
+            <div class="container m-1">
+              <input type="text" class="form-control" id="departmentName" aria-describedby="test" placeholder="Add Building Name">
+            </div>
+            <div class="container m-1">
+              <input type="text" class="form-control" id="departmentName" aria-describedby="test" placeholder="Add Latitude Coordinates">
+            </div>
+            <div class="container m-1">
+              <input type="text" class="form-control" id="departmentName" aria-describedby="test" placeholder="Add Longitude Coordiates">
+            </div>
+            <div class="container m-1">
+              <input type="text" class="form-control" id="departmentName" aria-describedby="test" placeholder="Add Extra Info">
+            </div>
+
+            <div class="container mt-3">
+              <button type="submit" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;">Submit</button>
+            </div>
+          </div>
+        </form>
         <div class="table-responsive">
           <table class="table table-striped table-sm">
             <thead>
@@ -124,6 +200,34 @@
         </div>        
       </div>
       <div class="tab-pane" id="Routes">
+
+        <form>
+          <div class="row m-1">
+            <div class="container text-center">
+              <h1 class="lead">Add a route to a department!</h1>
+            </div>
+          </div>
+          <div class="row m-3">
+            <div class="col">
+              <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                <option selected>Department</option>         
+              </select>
+            </div>
+            <div class="col">
+              <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                <option selected>Building</option>
+              </select>
+            </div>
+            <div class="col my-auto">
+              <button type="submit" class="btn btn-sm btn-outline-dark">Add Route</button>
+            </div>
+          </div>
+        </form>
+
+
+
+
+
         <div class="table-responsive">
           <table class="table table-striped table-sm">
             <thead>
@@ -139,6 +243,24 @@
         </div> 
       </div>
       <div class="tab-pane" id="FAQ">
+
+        <form>
+          <div class="form-group">
+            <div class="container text-center">
+              <h1 class="lead">Add a new FAQ</h1>
+            </div>
+            <div class="container m-1">
+              <input type="text" class="form-control" id="question" aria-describedby="test" placeholder="Add question">
+            </div>
+            <div class="container m-1">
+              <input type="text" class="form-control" id="answer" aria-describedby="test" placeholder="Add answer">
+            </div>
+            <div class="container mt-3">
+              <button type="submit" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;">Submit</button>
+            </div>
+          </div>
+        </form>
+
         <div class="table-responsive">
           <table class="table table-striped table-sm">
             <thead>
@@ -168,9 +290,27 @@
     </script>
 
 
-    <script>
+<script>
 
-function fetchDepartments() {
+
+  function addFAQ() {
+
+    // Create a new user
+    fetch('https://jsonplaceholder.typicode.com/users', {
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      method: 'POST',
+      body: JSON.stringify({
+        username: 'Elon Musk',
+        email: 'elonmusk@gmail.com',
+      })
+    })
+
+  }
+
+
+
+
+  function fetchDepartments() {
 
     fetch("../app/get_departments.php").then(response => {
         return response.json();
@@ -181,7 +321,7 @@ function fetchDepartments() {
 
       for (let index = 0; index < data.length; index++) {
         const department = data[index].department_name;
-        departmentTable.innerHTML += "<tr><td>" + department + "<button class=\"btn btn-danger mr-5\">Delete</button></td></tr>";
+        departmentTable.innerHTML += "<tr><td>" + department + "</td><td><button class=\"btn btn-sm btn-outline-danger\">Delete</button></td></tr>";
         
       }
         //alert(data);
@@ -207,9 +347,9 @@ function fetchDepartments() {
           const answer = data[index].answers[index2].answer;
           const correct = data[index].answers[index2].correct;
 
-          html += "<tr> <th scope=\"row\">" + (index2 + 1) + "</th> <td>" + answer + "</td><td>" + correct + "</td></tr>";
+          html += "<tr> <th scope=\"row\">" + (index2 + 1) + "</th> <td>" + answer + "</td><td>" + correct + "</td><td><button class=\"btn btn-sm btn-outline-danger\"><i class=\"fas fa-minus\"></i></button></td></tr>";
         }
-        html += "</tbody> </table> </td></tr>";     
+        html += "</tbody> </table> </td><td class=\"text-center\"><button class=\"btn btn-sm btn-outline-danger mt-5\">Delete</button></td></tr>";     
       }
 
       cluesTable.innerHTML = html;
@@ -238,7 +378,7 @@ function fetchDepartments() {
         const lat = data[index].latitude;
         const lng = data[index].longitude;
         const extraInfo = data[index].extra_info;
-        departmentTableHTML += "<tr><td>" + buildingName + "</td><td>" + lat + "</td><td>" + lng + "</td><td>" + extraInfo + "</td><td>Clue</td></tr>";
+        departmentTableHTML += "<tr><td>" + buildingName + "</td><td>" + lat + "</td><td>" + lng + "</td><td>" + extraInfo + "</td><td>Clue</td><td><button class=\"btn btn-sm btn-outline-danger\">Delete</button></td></tr>";
         
       }
 
@@ -267,8 +407,8 @@ function fetchDepartments() {
         for (let index2 = 0; index2 < data[index].buildings.length; index2++) {
           const building = data[index].buildings[index2].building_name;
           // \"\"
-          var dep = "<tr><td>" + department + "</td><td>"+ building + "</td></tr>";
-          var build = "<tr><td></td><td>"+ building + "</td></tr>";
+          var dep = "<tr><td>" + department + "</td><td>"+ building + "</td><td><button class=\"btn btn-sm btn-outline-danger\"><i class=\"fas fa-minus\"></i></button></td></tr>";
+          var build = "<tr><td></td><td>"+ building + "</td><td><button class=\"btn btn-sm btn-outline-danger\"><i class=\"fas fa-minus\"></i></button></td></tr>";
 
           if (index2 == 0) {
             departmentTableHTML += dep;
@@ -301,7 +441,7 @@ function fetchDepartments() {
       for (let index = 0; index < data.length; index++) {
         const question = data[index].question;
         const answer = data[index].answer;
-        faqTableHTML += "<tr><td>" + question + "</td><td>"+ answer + "</td></tr>";
+        faqTableHTML += "<tr><td>" + question + "</td><td>"+ answer + "</td><td><button class=\"btn btn-sm btn-outline-danger\">Delete</button></td></tr>";
         
       }
 
@@ -322,7 +462,7 @@ function fetchDepartments() {
       
   fetchDepartments();
 
-    </script>
+</script>
 </body>
 
 
