@@ -11,6 +11,12 @@
 </head>
 <body>
 
+<!-- ;==========================================
+; Title:  Front end Login Page - HTML
+; Author: William Wallitt, Justin Van Daalen
+; Date:   25 Feb 2020
+;========================================== -->
+
     <div class="wrapper fadeInDown">
     <div id="formContent">
         <!-- Tabs Titles -->
@@ -57,6 +63,31 @@ $("#password").focus(function(){
 $("#password").focusout(function(){
    $(this).attr('placeholder', 'password');
 });
+
+function checkLoginCredentials() {
+
+    let username = document.getElementById("login").value;
+    let password = document.getElementById("password").value;
+
+    if (username.length == 0 || password.length == 0) {
+    alert("Please fill in the required fileds");
+    return;
+    } 
+    // Create a new user
+    fetch('../app/verify_account.php', {
+    headers: { "Content-Type": "application/json; charset=utf-8" },
+    method: 'POST',
+    body: JSON.stringify({
+        username: username,
+        password: password,
+    })
+    }).then(response => {
+    return response.json();
+    }).then(data => {
+        // maybe do something
+    });
+}
+
 
 </script>
 

@@ -10,6 +10,13 @@
   <link rel="stylesheet" type="text/css" href="../public/stylesheets/faq.css">
 </head>
 
+<!-- ;==========================================
+; Title:  Front end FAQ Page - HTML
+; Author: William Wallitt, Justin Van Daalen
+; Date:   25 Feb 2020
+;========================================== -->
+
+
 <!-- setting the background -->
 <body style="background: url('../public/img/faqBackground.jpg') no-repeat center fixed; background-size: cover;">
 <h2>Frequently Asked Questions</h2>

@@ -16,6 +16,13 @@
 </head>
 
 <body style="background: url('../public/img/departmentBackground.jpg') no-repeat center fixed; background-size: cover;">
+
+
+<!-- ;==========================================
+; Title:  Front end Department Page - HTML
+; Author: William Wallitt, Justin Van Daalen
+; Date:   25 Feb 2020
+;========================================== -->
     
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">

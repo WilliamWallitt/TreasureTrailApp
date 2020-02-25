@@ -14,6 +14,12 @@
 
 </head>
 
+<!-- ;==========================================
+; Title:  Front end Clue Page - HTML
+; Author: William Wallitt, Justin Van Daalen
+; Date:   25 Feb 2020
+;========================================== -->
+
 <!-- style="background: url('../img/clue1.jpg') no-repeat center fixed; background-size: cover;" -->
 <body>
     <div class="navbar navbar-fixed-top py-md-0 bg-transparent">

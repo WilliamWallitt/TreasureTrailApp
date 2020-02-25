@@ -8,8 +8,13 @@
     src="https://use.fontawesome.com/releases/v5.12.1/js/all.js"
     data-search-pseudo-elements></script>
   <link rel="stylesheet" type="text/css" href='../public/stylesheets/modifyPage.css'>
-<!------ Include the above in your HEAD tag ---------->
 </head>
+
+<!-- ;==========================================
+; Title:  Front end Modify Data Page - HTML
+; Author: William Wallitt, Justin Van Daalen
+; Date:   25 Feb 2020
+;========================================== -->
 
 <style>
 .menu a {
@@ -304,11 +309,14 @@
 
 <script>
 
-  // ------------------------------------------------------
-  // all the fetch requests to populate our modify data page
-  // ------------------------------------------------------
 
- 
+  // ;==========================================
+  // ; Title:  Front end Javascript request's (get requests)
+  // ; Author: William Wallitt, Justin Van Daalen
+  // ; Date:   25 Feb 2020
+  // ;==========================================
+  
+  ;
   function addFAQ() {
 
     let question = document.getElementById("question").value;
@@ -462,9 +470,11 @@ function addBuilding() {
   } 
 
 
-  // ------------------------------------------------------
-  // all the fetch requests to populate our modify data page
-  // ------------------------------------------------------
+  // ;==========================================
+  // ; Title:  Front end Javascript request's (add/delete requests)
+  // ; Author: William Wallitt, Justin Van Daalen
+  // ; Date:   25 Feb 2020
+  // ;==========================================
 
   function fetchDepartments() {
 
@@ -659,13 +669,8 @@ function addBuilding() {
     });
 
 
-  }
+  } 
 
-
-
-
-
-      
   fetchDepartments();
 
 </script>
