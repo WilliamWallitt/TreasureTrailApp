@@ -245,6 +245,27 @@ function fetchDepartments() {
         console.log(err);
     });
   }
+
+  function fetchAllClues() {
+
+    fetch("../app/get_all_clues.php").then(response => {
+        return response.json();
+    }).then(data => {
+
+      console.log(data);
+      const departmentTable = document.getElementById("departments");
+
+      for (let index = 0; index < data.length; index++) {
+        const department = data[index].department_name;
+        departmentTable.innerHTML += "<tr><td>" + department + "</td></tr>";
+        
+      }
+        //alert(data);
+    }).catch(err => {
+        // catch err
+        console.log(err);
+    });
+  }
       
   fetchDepartments();
 
