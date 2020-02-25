@@ -30,10 +30,10 @@
 
         <!-- Login Form -->
         <!-- need to get this form and validate it before next page -->
-        <form>
+        <form action="../app/verify_account.php" method="post">
             <input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
             <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
-            <input type="button" class="fadeIn fourth" value="Log In" onclick="checkLoginCredentials()">
+            <input type="submit" class="fadeIn fourth" value="Log In">
         </form>
 
         <!-- Remind Passowrd -->
