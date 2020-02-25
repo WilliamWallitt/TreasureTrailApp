@@ -13,5 +13,5 @@ $database = new database();
 $response = $database->create_faq($faq);
 $database->close();
 
-echo json_encode($response, JSON_PRETTY_PRINT);
+echo json_encode(true);
 ?>

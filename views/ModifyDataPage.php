@@ -46,7 +46,7 @@
           <div class="form-group">
             <input type="text" class="form-control" id="departmentName" aria-describedby="test" placeholder="Add Department Name">
             <div class="container mt-3">
-              <button type="submit" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;">Submit</button>
+              <button type="submit" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;" onclick="addDepartment()">Submit</button>
             </div>
           </div>
         </form>
@@ -165,20 +165,20 @@
         <form>
           <div class="form-group">
             <div class="container m-1">
-              <input type="text" class="form-control" id="departmentName" aria-describedby="test" placeholder="Add Building Name">
+              <input type="text" class="form-control" id="buildingname" aria-describedby="test" placeholder="Add Building Name">
             </div>
             <div class="container m-1">
-              <input type="text" class="form-control" id="departmentName" aria-describedby="test" placeholder="Add Latitude Coordinates">
+              <input type="text" class="form-control" id="latcoord" aria-describedby="test" placeholder="Add Latitude Coordinates">
             </div>
             <div class="container m-1">
-              <input type="text" class="form-control" id="departmentName" aria-describedby="test" placeholder="Add Longitude Coordiates">
+              <input type="text" class="form-control" id="lngcoord" aria-describedby="test" placeholder="Add Longitude Coordiates">
             </div>
             <div class="container m-1">
-              <input type="text" class="form-control" id="departmentName" aria-describedby="test" placeholder="Add Extra Info">
+              <input type="text" class="form-control" id="extrainfo" aria-describedby="test" placeholder="Add Extra Info">
             </div>
 
             <div class="container mt-3">
-              <button type="submit" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;">Submit</button>
+              <button type="submit" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;" onclick="addDepartment()">Submit</button>
             </div>
           </div>
         </form>
@@ -223,11 +223,6 @@
             </div>
           </div>
         </form>
-
-
-
-
-
         <div class="table-responsive">
           <table class="table table-striped table-sm">
             <thead>
@@ -256,7 +251,7 @@
               <input type="text" class="form-control" id="answer" aria-describedby="test" placeholder="Add answer">
             </div>
             <div class="container mt-3">
-              <button type="submit" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;">Submit</button>
+              <button type="submit" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;" onclick="addFAQ()">Submit</button>
             </div>
           </div>
         </form>
@@ -295,17 +290,109 @@
 
   function addFAQ() {
 
+    let question = document.getElementById("question").value;
+    let answer = document.getElementById("answer").value;
+
+    if (question.length == 0 || answer.length == 0) {
+      alert("Please fill in the required fileds");
+      return;
+    } 
     // Create a new user
-    fetch('https://jsonplaceholder.typicode.com/users', {
+    fetch('../app/create_faq.php', {
       headers: { "Content-Type": "application/json; charset=utf-8" },
       method: 'POST',
       body: JSON.stringify({
-        username: 'Elon Musk',
-        email: 'elonmusk@gmail.com',
+        question: question,
+        answer: answer,
       })
-    })
+    }).then(response => {
+      return response.json();
+    }).then(data => {
+      document.getElementById("question").value = ""; 
+      document.getElementById("answer").value = "";
+      fetchFAQs();
+    });
+  }
+
+  function deleteFAQ(faq_id) {
+
+    fetch("../app/remove_faq.php?faq_id=" + faq_id).then(response => {
+        return response.json();
+    }).then(data => {
+      fetchFAQs();
+    });
 
   }
+
+function addDepartment() {
+
+  let departmentName = document.getElementById("departmentName").value;
+
+  if (departmentName.length == 0) {
+    alert("Please fill in the required fileds");
+    return;
+  } 
+
+  // Create a new user
+  fetch('../app/create_department.php', {
+    headers: { "Content-Type": "application/json; charset=utf-8" },
+    method: 'POST',
+    body: JSON.stringify({
+      department_name: departmentName,
+    })
+  }).then(response => {
+    return response.json();
+  }).then(data => {
+    document.getElementById("departmentName").value = ""; 
+    fetchDepartments();
+  });
+}
+
+
+function deleteDepartment(department_id) {
+
+  fetch("../app/remove_department.php?department_id=" + department_id).then(response => {
+      return response.json();
+  }).then(data => {
+    fetchDepartments();
+  });
+}
+
+
+function addBuilding() {
+
+  let departmentName = document.getElementById("departmentName").value;
+
+  if (departmentName.length == 0) {
+    alert("Please fill in the required fields");
+    return;
+  } 
+
+  // Create a new user
+  fetch('../app/create_building.php', {
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      method: 'POST',
+      body: JSON.stringify({
+        department_name: departmentName,
+      })
+    }).then(response => {
+      return response.json();
+    }).then(data => {
+      document.getElementById("departmentName").value = ""; 
+      fetchDepartments();
+    });
+}
+
+
+function deleteBuilding(building_id) {
+
+  fetch("../app/remove_department.php?department_id=" + department_id).then(response => {
+      return response.json();
+  }).then(data => {
+    fetchDepartments();
+  });
+}
+
 
 
 
@@ -318,12 +405,13 @@
 
       console.log(data);
       const departmentTable = document.getElementById("departments");
-
+      var html = "";
       for (let index = 0; index < data.length; index++) {
         const department = data[index].department_name;
-        departmentTable.innerHTML += "<tr><td>" + department + "</td><td><button class=\"btn btn-sm btn-outline-danger\">Delete</button></td></tr>";
+        html += "<tr><td>" + department + "</td><td><button class=\"btn btn-sm btn-outline-danger\" onclick=\"deleteDepartment("+ data[index].department_id + ")\">Delete</button></td></tr>";
         
       }
+      departmentTable.innerHTML = html;
         //alert(data);
     }).catch(err => {
         // catch err
@@ -441,9 +529,9 @@
       for (let index = 0; index < data.length; index++) {
         const question = data[index].question;
         const answer = data[index].answer;
-        faqTableHTML += "<tr><td>" + question + "</td><td>"+ answer + "</td><td><button class=\"btn btn-sm btn-outline-danger\">Delete</button></td></tr>";
+        faqTableHTML += "<tr><td>" + question + "</td><td>"+ answer + "</td><td><button class=\"btn btn-sm btn-outline-danger\" onclick=\"deleteFAQ("+ data[index].faq_id + ")\">Delete</button></td></tr>";
         
-      }
+      } 
 
       faqTable.innerHTML = faqTableHTML;
         //alert(data);
