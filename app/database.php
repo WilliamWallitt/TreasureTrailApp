@@ -209,6 +209,25 @@ class database {
         return $result; 
     }
 
+    private function get_answers_correct($clue_id) {
+        global $connection;
+
+        $clue_id_param = $connection->escape_string($clue_id);
+        $sql = "SELECT * FROM answers WHERE clue_id='$clue_id_param'";
+
+        $result = $this->query($sql);
+
+        $answers = array();
+        foreach ($result as $answer) {
+            $answer_object = new stdClass();
+            $answer_object->answer_id = $answer['answer_id'];
+            $answer_object->answer = $answer['answer'];
+            $answer_object->answer = $answer['correct'];
+            $answers[] = $answer_object;
+        }
+        return $answers;
+    }
+
     public function get_answers($clue_id) {
         global $connection;
 
@@ -261,7 +280,7 @@ class database {
             $clue_object = new stdClass();
             $clue_object->clue_id = $clue['clue_id'];
             $clue_object->clue = $clue['clue'];
-            $clue_object->answers = $this->get_answers($clue['clue_id']);
+            $clue_object->answers = $this->get_answers_correct($clue['clue_id']);
 
             $clues[] = $clue_object;
         }
