@@ -128,7 +128,7 @@
                 <th>Clue</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="buildings">
               <tr>
                 <td>1,001</td>
                 <td>Lorem</td>
@@ -163,7 +163,7 @@
                 <th>Building Name</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="routes">
               <tr>
                 <td>1,001</td>
                 <td>Lorem</td>
@@ -246,18 +246,18 @@ function fetchDepartments() {
     });
   }
 
-  function fetchAllClues() {
+  function fetchBuildings() {
 
-    fetch("../app/get_all_clues.php").then(response => {
+    fetch("../app/get_buildings.php").then(response => {
         return response.json();
     }).then(data => {
 
       console.log(data);
-      const departmentTable = document.getElementById("departments");
+      const departmentTable = document.getElementById("buildings");
 
       for (let index = 0; index < data.length; index++) {
         const department = data[index].department_name;
-        departmentTable.innerHTML += "<tr><td>" + department + "</td></tr>";
+        departmentTable.innerHTML += "<tr><td>" + department + "</td><td>" + department + "</td><td>" + department + "</td><td>" + department + "</td><td>" + department + "</td></tr>";
         
       }
         //alert(data);
@@ -265,7 +265,36 @@ function fetchDepartments() {
         // catch err
         console.log(err);
     });
+
+
   }
+
+  function fetchRoute() {
+
+    fetch("../app/get_all_routes.php").then(response => {
+        return response.json();
+    }).then(data => {
+      const departmentTable = document.getElementById("routes");
+
+      for (let index = 0; index < data.length; index++) {
+        const department = data[index].department_name;
+        const building = data[index].building_name;
+        departmentTable.innerHTML += "<tr><td>" + department + "</td><td>"+ building + "</td></tr>";
+        
+      }
+        //alert(data);
+    }).catch(err => {
+        // catch err
+        console.log(err);
+    });
+
+
+  }
+
+
+
+
+
       
   fetchDepartments();
 
