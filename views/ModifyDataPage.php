@@ -40,9 +40,9 @@
 <div class="menu">
   <ul class="nav nav-pills flex-column" style="list-style: none; margin: 0; padding: 0;">
     <li class="active nav-item"><a data-toggle="pill" href="#Departments"><button class="btn btn-outline-light text-dark mb-2 border-bottom">Departments</button></a></li>
-    <li class="nav-item"><a data-toggle="pill" href="#Clues" data-toggle="pill"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%">Clues</button></a></li>
+    <li class="nav-item"><a data-toggle="pill" href="#Clues" data-toggle="pill"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%" onclick="fetchClues()">Clues</button></a></li>
     <li class="nav-item"><a data-toggle="pill" href="#Buildings"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%" onclick="fetchBuildings()">Buildings</button></a></li>
-    <li class="nav-item"><a data-toggle="pill" href="#Routes"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%">Routes</button></a></li>
+    <li class="nav-item"><a data-toggle="pill" href="#Routes"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%" onclick="fetchRoute()">Routes</button></a></li>
     <li class="nav-item"><a data-toggle="pill" href="#FAQ"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%" onclick="fetchFAQs()">FAQ</button></a></li>
   </ul>
 </div>
@@ -84,7 +84,7 @@
                 </tr>
               </thead>
 
-              <tbody>
+              <tbody id="clues">
                 <tr>
                   <td>Clue Name</td>
                     <td>
@@ -202,6 +202,39 @@ function fetchDepartments() {
     });
   }
 
+  function fetchClues() {
+
+    fetch("../app/get_all_clues.php").then(response => {
+        return response.json();
+    }).then(data => {
+      const cluesTable = document.getElementById("clues");
+
+      let html = "";
+      for (let index = 0; index < data.length; index++) {
+        const clue = data[index].clue;
+        html += "<tr> <td>" + clue + "</td><td> <table class=\"table table-hover table-dark table-sm\"> <thead> <tr> <th>#</th> <th>Answer</th> <th>Correct</th> </tr></thead> <tbody>";
+        
+        for (let index2 = 0; index2 < data[index].answers.length; index2++) {
+          const answer = data[index].answers[index2].answer;
+          const correct = data[index].answers[index2].correct;
+
+          html += "<tr> <th scope=\"row\">" + (index2 + 1) + "</th> <td>" + answer + "</td><td>" + correct + "</td></tr>";
+        }
+        html += "</tbody> </table> </td></tr>";     
+      }
+
+      cluesTable.innerHTML = html;
+        //alert(data);
+    }).catch(err => {
+        // catch err
+        console.log(err);
+    });
+
+
+  }
+
+
+
   function fetchBuildings() {
 
     fetch("../app/get_all_buildings.php").then(response => {
@@ -240,10 +273,23 @@ function fetchDepartments() {
       let departmentTableHTML = "";
       for (let index = 0; index < data.length; index++) {
         const department = data[index].department_name;
-        const building = data[index].building_name;
-        departmentTableHTML += "<tr><td>" + department + "</td><td>"+ building + "</td></tr>";
-        
+        //data[index].buildings
+
+        for (let index2 = 0; index2 < data[index].buildings.length; index2++) {
+          const building = data[index].buildings[index2].building_name;
+          // \"\"
+          var dep = "<tr><td>" + department + "</td><td>"+ building + "</td></tr>";
+          var build = "<tr><td></td><td>"+ building + "</td></tr>";
+
+          if (index2 == 0) {
+            departmentTableHTML += dep;
+          } else {
+            departmentTableHTML += build;
+          }
+        }
+                
       }
+
       departmentTable.innerHTML = departmentTableHTML;
         //alert(data);
     }).catch(err => {
