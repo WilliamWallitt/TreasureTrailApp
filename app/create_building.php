@@ -1,5 +1,4 @@
 <?php
-//test
 require 'database.php';
 header('Content-type: text/javascript');
 

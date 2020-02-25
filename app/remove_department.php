@@ -1,6 +1,5 @@
 <?php
 require 'database.php';
-header('Content-type: text/javascript');
 
 if (!isset($_GET['department_id'])) {
     die();
@@ -9,7 +8,7 @@ if (!isset($_GET['department_id'])) {
 $department_id = $_GET['department_id'];
 
 $database = new database();
-$route = $database->get_route($department_id);
+$response = $database->remove_department($department_id);
 
-echo json_encode($route, JSON_PRETTY_PRINT);
+echo json_encode(true);
 ?>
