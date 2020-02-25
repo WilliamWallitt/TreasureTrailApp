@@ -1,5 +1,4 @@
 <?php
-//test
 require 'database.php';
 header('Content-type: text/javascript');
 
@@ -9,7 +8,6 @@ if (!isset($json)) {
 }
 
 $building = json_decode($json);
-
 $database = new database();
 $response = $database->create_building($building);
 $database->close();

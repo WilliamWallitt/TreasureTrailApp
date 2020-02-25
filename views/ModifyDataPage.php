@@ -53,161 +53,164 @@
   <div class="container-fluid mt-2" id="page-content-wrapper">
     <div class="tab-content col-md-10">
       <div class="tab-pane active" id="Departments">
-        <h4>Pane A</h4>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>Department Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Harrison</td>
+              </tr>
+              <tr>
+                <td>Lava Building</td>
+              </tr>
+              <tr>
+                <td>The Forum</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>        
       </div>
       <div class="tab-pane" id="Clues">
-          <h4>Pane B</h4>
+          <div class="table-responsive">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th>Clue</th>
+                  <th>Questions</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>Clue Name</td>
+                    <td>
+                      <table class="table table-hover table-dark table-sm">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Answer</th>
+                            <th>Correct</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Q1</td>
+                            <td>A1</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Q2</td>
+                            <td>A2</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </div>
       </div>
       <div class="tab-pane" id="Buildings">
-          <h4>Pane C</h4>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>Building Name</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Extra Info</th>
+                <th>Clue</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1,001</td>
+                <td>Lorem</td>
+                <td>ipsum</td>
+                <td>dolor</td>
+                <td>sit</td>
+              </tr>
+              <tr>
+                <td>1,002</td>
+                <td>amet</td>
+                <td>consectetur</td>
+                <td>adipiscing</td>
+                <td>elit</td>
+              </tr>
+              <tr>
+                <td>1,003</td>
+                <td>Integer</td>
+                <td>nec</td>
+                <td>odio</td>
+                <td>Praesent</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>        
       </div>
       <div class="tab-pane" id="Routes">
-          <h4>Pane D</h4>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>Department Name</th>
+                <th>Building Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1,001</td>
+                <td>Lorem</td>
+              </tr>
+              <tr>
+                <td>1,002</td>
+                <td>amet</td>
+              </tr>
+              <tr>
+                <td>1,003</td>
+                <td>Integer</td>
+              </tr>
+            </tbody>
+          </table>
+        </div> 
       </div>
       <div class="tab-pane" id="FAQ">
-          <h4>Pane D</h4>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>Question</th>
+                <th>Answer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Q1</td>
+                <td>A1</td>
+              </tr>
+              <tr>
+                <td>Q2</td>
+                <td>A2</td>
+              </tr>
+              <tr>
+                <td>Q3</td>
+                <td>A3</td>
+              </tr>
+            </tbody>
+          </table>
+        </div> 
       </div>
     </div><!-- tab content -->
 
-    <div class="table-responsive">
-      <table class="table table-striped table-sm">
-        <thead>
-          <tr>
-            <th>Building Name</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
-            <th>Extra Info</th>
-            <th>Clue</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1,001</td>
-            <td>Lorem</td>
-            <td>ipsum</td>
-            <td>dolor</td>
-            <td>sit</td>
-          </tr>
-          <tr>
-            <td>1,002</td>
-            <td>amet</td>
-            <td>consectetur</td>
-            <td>adipiscing</td>
-            <td>elit</td>
-          </tr>
-          <tr>
-            <td>1,003</td>
-            <td>Integer</td>
-            <td>nec</td>
-            <td>odio</td>
-            <td>Praesent</td>
-          </tr>
-          <tr>
-            <td>1,003</td>
-            <td>libero</td>
-            <td>Sed</td>
-            <td>cursus</td>
-            <td>ante</td>
-          </tr>
-          <tr>
-            <td>1,004</td>
-            <td>dapibus</td>
-            <td>diam</td>
-            <td>Sed</td>
-            <td>nisi</td>
-          </tr>
-          <tr>
-            <td>1,005</td>
-            <td>Nulla</td>
-            <td>quis</td>
-            <td>sem</td>
-            <td>at</td>
-          </tr>
-          <tr>
-            <td>1,006</td>
-            <td>nibh</td>
-            <td>elementum</td>
-            <td>imperdiet</td>
-            <td>Duis</td>
-          </tr>
-          <tr>
-            <td>1,007</td>
-            <td>sagittis</td>
-            <td>ipsum</td>
-            <td>Praesent</td>
-            <td>mauris</td>
-          </tr>
-          <tr>
-            <td>1,008</td>
-            <td>Fusce</td>
-            <td>nec</td>
-            <td>tellus</td>
-            <td>sed</td>
-          </tr>
-          <tr>
-            <td>1,009</td>
-            <td>augue</td>
-            <td>semper</td>
-            <td>porta</td>
-            <td>Mauris</td>
-          </tr>
-          <tr>
-            <td>1,010</td>
-            <td>massa</td>
-            <td>Vestibulum</td>
-            <td>lacinia</td>
-            <td>arcu</td>
-          </tr>
-          <tr>
-            <td>1,011</td>
-            <td>eget</td>
-            <td>nulla</td>
-            <td>Class</td>
-            <td>aptent</td>
-          </tr>
-          <tr>
-            <td>1,012</td>
-            <td>taciti</td>
-            <td>sociosqu</td>
-            <td>ad</td>
-            <td>litora</td>
-          </tr>
-          <tr>
-            <td>1,013</td>
-            <td>torquent</td>
-            <td>per</td>
-            <td>conubia</td>
-            <td>nostra</td>
-          </tr>
-          <tr>
-            <td>1,014</td>
-            <td>per</td>
-            <td>inceptos</td>
-            <td>himenaeos</td>
-            <td>Curabitur</td>
-          </tr>
-          <tr>
-            <td>1,015</td>
-            <td>sodales</td>
-            <td>ligula</td>
-            <td>in</td>
-            <td>libero</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-
-  </div>
-    <!-- /#page-content-wrapper -->
-
   </div>
 
-        
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+  </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="../../assets/js/vendor/popper.min.js"></script>
@@ -220,14 +223,11 @@
     </script>
 
     <script>
+      var getDepartments;
+      getDepartments = () => {}
 
-      function onClick(target) {
-
-      }
 
     </script>
-  
-
 </body>
 
 
