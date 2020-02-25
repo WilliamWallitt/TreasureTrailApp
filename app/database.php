@@ -219,6 +219,25 @@ class database {
         return $result;  
     }
 
+    public function get_all_clues() {
+        global $connection;
+
+        $sql = "SELECT * FROM clues";
+
+        $result = $this->query($sql);
+
+        $clues = array();
+        foreach ($result as $clue) {
+            $clue_object = new stdClass();
+            $clue_object->clue_id = $clue['clue_id'];
+            $clue_object->clue = $clue['clue'];
+            $clue_object->answers = $this->get_answers($clue['clue_id']);
+
+            $clues[] = $clue_object;
+        }
+        return $clues; 
+    }
+
     public function get_clues($building_id) {
         global $connection;
 
