@@ -60,7 +60,7 @@
                 <th>Department Name</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="departments">
               <tr>
                 <td>Harrison</td>
               </tr>
@@ -222,10 +222,31 @@
       feather.replace()
     </script>
 
-    <script>
-      var getDepartments;
-      getDepartments = () => {}
 
+    <script>
+
+function fetchDepartments() {
+
+    fetch("../app/get_departments.php").then(response => {
+        return response.json();
+    }).then(data => {
+
+      console.log(data);
+      const departmentTable = document.getElementById("departments");
+
+      for (let index = 0; index < data.length; index++) {
+        const department = data[index].department_name;
+        departmentTable.innerHTML += "<tr><td>" + department + "</td></tr>";
+        
+      }
+        //alert(data);
+    }).catch(err => {
+        // catch err
+        console.log(err);
+    });
+  }
+      
+  fetchDepartments();
 
     </script>
 </body>
