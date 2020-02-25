@@ -26,9 +26,6 @@
   </svg>
 </div>
 
-<!-- We can loop over each FAQ Q, we store each Q and A in the DB -->
-
-
 <div class="container-fluid" id="faq"></div>
 
 
