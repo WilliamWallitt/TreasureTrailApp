@@ -395,6 +395,17 @@ class database {
         return $result; 
     }
 
+    public function verify_account($account) {
+        global $connection;
+
+        $username_param = $connection->escape_string($account->username);
+        $password_param = $connection->escape_string($account->password);
+        $sql = "SELECT * FROM game_keepers WHERE username='$username_param' AND `password`='$password_param' LIMIT 1";
+
+        $result = $this->query($sql);
+        return count($result) == 1;
+    }
+
     private function query($sql) {
         global $connection;
 
