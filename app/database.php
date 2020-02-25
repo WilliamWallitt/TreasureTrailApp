@@ -15,16 +15,6 @@ class database {
         }
     }
 
-    public function get_department_by_id($department_id) {
-        global $connection;
-
-        $department_id_param = $connection->escape_string($department_id);
-        $sql = "SELECT * FROM departments WHERE department_id='$department_id_param' LIMIT 1";
-
-        $result = $this->query($sql);
-        return $result[0];
-    }
-
     public function get_departments() {
         global $connection;
 
@@ -32,6 +22,26 @@ class database {
 
         $result = $this->query($sql);
         return $result;
+    }
+
+    public function create_department($department) {
+        global $connection;
+
+        $department_name_param = $connection->escape_string($department->department_name);
+        $sql = "INSERT INTO departments (department_name) VALUES ('$department_name_param')";
+
+        $result = $this->query($sql);
+        return $result;
+    }
+
+    public function remove_department($department_id) {
+        global $connection;
+
+        $department_id_param = $connection->escape_string($department_id);
+        $sql = "DELETE FROM departments WHERE department_id='$department_id_param'";
+
+        $result = $this->query($sql);
+        return $result; 
     }
 
     public function get_building($building_id) {
@@ -44,10 +54,30 @@ class database {
         return $result[0];
     }
 
+    public function create_building($building) {
+        global $connection;
+
+        $building_name_param = $connection->escape_string($building->building_name);
+        $latitude_param = $connection->escape_string($building->latitude);
+        $longitude_param = $connection->escape_string($building->longitude);
+        $extra_info_param = $connection->escape_string($building->extra_info);
+        $sql = "INSERT INTO buildings (building_name, latitude, longitude, extra_info) VALUES ('$building_name_param', '$latitude_param', '$longitude_param', '$extra_info_param')";
+
+        $result = $this->query($sql);
+
+        $building_id = $connection->insert_id;
+        foreach ($building->clues as $clue) {
+            $this->create_clue($building_id, $clue);
+        }
+
+        return $result;  
+    }
+
     public function get_route($department_id) {
         global $connection;
 
-        $sql = "SELECT * FROM routes WHERE department_id='$department_id'";
+        $department_id_param = $connection->escape_string($department_id);
+        $sql = "SELECT * FROM routes WHERE department_id='$department_id_param'";
 
         $result = $this->query($sql);
 
@@ -66,8 +96,29 @@ class database {
 
             $buildings[] = $building;
         }
-
         return $buildings;
+    }
+
+    public function create_route($route) {
+        global $connection;
+
+        $order_id_param = $connection->escape_string($route->order_id);
+        $department_id_param = $connection->escape_string($route->department_id);
+        $building_id_param = $connection->escape_string($route->building_id);
+        $sql = "INSERT INTO routes (order_id, department_id, building_id) VALUES ('$order_id_param', '$department_id_param', '$building_id_param')";
+
+        $result = $this->query($sql);
+        return $result;
+    }
+
+    public function remove_route($route_id) {
+        global $connection;
+
+        $route_id_param = $connection->escape_string($route_id);
+        $sql = "DELETE FROM routes WHERE route_id='$route_id_param'";
+
+        $result = $this->query($sql);
+        return $result; 
     }
 
     public function get_answers($clue_id) {
@@ -88,6 +139,28 @@ class database {
         return $answers;
     }
 
+    public function create_answer($clue_id, $answer) {
+        global $connection;
+
+        $clue_id_param = $connection->escape_string($clue_id);
+        $answer_param = $connection->escape_string($answer->answer);
+        $correct_param = $connection->escape_string($answer->correct);
+        $sql = "INSERT INTO answers (clue_id, answer, correct) VALUES ('$clue_id_param', '$answer_param', '$correct_param')";
+
+        $result = $this->query($sql);
+        return $result;
+    }
+
+    public function remove_answer($answer_id) {
+        global $connection;
+
+        $answer_id_param = $connection->escape_string($answer_id);
+        $sql = "DELETE FROM answers WHERE answer_id='$answer_id_param'";
+
+        $result = $this->query($sql);
+        return $result;  
+    }
+
     public function get_clues($building_id) {
         global $connection;
 
@@ -106,6 +179,33 @@ class database {
             $clues[] = $clue_object;
         }
         return $clues;
+    }
+
+    public function create_clue($building_id, $clue) {
+        global $connection;
+
+        $building_id_param = $connection->escape_string($building_id);
+        $clue_param = $connection->escape_string($clue->clue);
+        $sql = "INSERT INTO clues (building_id, clue) VALUES ('$building_id_param', '$clue_param')";
+
+        $result = $this->query($sql);
+
+        $clue_id = $connection->insert_id;
+        foreach ($clue->answers as $answer) {
+            $this->create_answer($clue_id, $answer);
+        }
+
+        return $result;
+    }
+
+    public function remove_clue($clue_id) {
+        global $connection;
+
+        $clue_id_param = $connection->escape_string($clue_id);
+        $sql = "DELETE FROM clues WHERE clue_id='$clue_id_param'";
+
+        $result = $this->query($sql);
+        return $result; 
     }
 
     public function verify_answer($answer_id) {
@@ -134,6 +234,27 @@ class database {
             $faqs[] = $faq_object;
         }
         return $faqs;
+    }
+
+    public function create_faq($faq) {
+        global $connection;
+
+        $question_param = $connection->escape_string($faq->question);
+        $answer_param = $connection->escape_string($faq->answer);
+        $sql = "INSERT INTO faq (question, answer) VALUES ('$question_param', '$answer_param')";
+
+        $result = $this->query($sql);
+        return $result;
+    }
+
+    public function remove_faq($faq_id) {
+        global $connection;
+
+        $faq_id_param = $connection->escape_string($faq_id);
+        $sql = "DELETE FROM faq WHERE faq_id='$faq_id_param'";
+
+        $result = $this->query($sql);
+        return $result; 
     }
 
     private function query($sql) {
