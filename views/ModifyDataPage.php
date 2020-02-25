@@ -114,7 +114,7 @@
               </div>
               <div class="col">
                   <label class="radio-inline"><input type="radio" name="true3">True</label>
-                  <label class="radio-inline"><input type="radio" name="false3">False</label>
+                  <label class="radio-inline"><input type="radio" name="true3">False</label>
               </div>
             </div>
           </div>
