@@ -1,6 +1,5 @@
 <?php
 require 'database.php';
-header('Content-type: text/javascript');
 
 if (!isset($_GET['building_id'])) {
     die();
@@ -9,7 +8,7 @@ if (!isset($_GET['building_id'])) {
 $building_id = $_GET['building_id'];
 
 $database = new database();
-$clues = $database->get_clues($building_id);
+$response = $database->remove_building($building_id);
 
-echo json_encode($clues, JSON_PRETTY_PRINT);
+echo json_encode(true);
 ?>
