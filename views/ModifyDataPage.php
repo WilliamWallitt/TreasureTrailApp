@@ -181,7 +181,7 @@ function fetchDepartments() {
 
       for (let index = 0; index < data.length; index++) {
         const department = data[index].department_name;
-        departmentTable.innerHTML += "<tr><td>" + department + "<button class=\"btn bnt-danger\">Delete</button></td></tr>";
+        departmentTable.innerHTML += "<tr><td>" + department + "<button class=\"btn btn-danger mr-5\">Delete</button></td></tr>";
         
       }
         //alert(data);
