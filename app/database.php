@@ -48,6 +48,20 @@ class database {
         return $result;
     }
 
+    public function get_all_buildings() {
+        global $connection;
+
+        $sql = "SELECT * FROM buildings";
+
+        $result = $this->query($sql);
+
+        $buildings = array();
+        foreach ($result as $building) {
+            $routes[] = $building;
+        }
+        return $routes; 
+    }
+
     public function get_building($building_id) {
         global $connection;
 
