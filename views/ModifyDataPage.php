@@ -1,7 +1,5 @@
-<!-- rthdrthdrth -->
 
 <!DOCTYPE html>
-<!-- justins a ho -->
 <html>
 <head>
   <meta charset="utf-8">
@@ -17,7 +15,7 @@
 .menu a {
   display: block;
   text-decoration: none;
-}
+}  
 
 </style>
 
