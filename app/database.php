@@ -222,7 +222,7 @@ class database {
             $answer_object = new stdClass();
             $answer_object->answer_id = $answer['answer_id'];
             $answer_object->answer = $answer['answer'];
-            $answer_object->answer = $answer['correct'];
+            $answer_object->correct = $answer['correct'] == "0" ? false : true;
             $answers[] = $answer_object;
         }
         return $answers;

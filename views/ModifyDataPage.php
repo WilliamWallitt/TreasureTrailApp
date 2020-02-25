@@ -24,17 +24,6 @@
 
 <div class="d-flex" id="wrapper">
 
-<!-- Sidebar -->
-  <!-- <div class="bg-light border-right" id="sidebar-wrapper">
-    <div class="list-group list-group-flush">
-      <a href="#" class="list-group-item list-group-item-action active">Departments</a>
-      <a href="#" class="list-group-item list-group-item-action bg-light">Clues</a>
-      <a href="#" class="list-group-item list-group-item-action bg-light">Buildings</a>
-      <a href="#" class="list-group-item list-group-item-action bg-light">Routes</a>
-      <a href="#" class="list-group-item list-group-item-action bg-light">FAQ</a>
-    </div>
-  </div> -->
-
 <div class="border-right" id="sidebar-wrapper">
 
 <div class="menu">
@@ -192,7 +181,7 @@ function fetchDepartments() {
 
       for (let index = 0; index < data.length; index++) {
         const department = data[index].department_name;
-        departmentTable.innerHTML += "<tr><td>" + department + "</td></tr>";
+        departmentTable.innerHTML += "<tr><td>" + department + "<button class=\"btn bnt-danger\">Delete</button></td></tr>";
         
       }
         //alert(data);
@@ -212,7 +201,7 @@ function fetchDepartments() {
       let html = "";
       for (let index = 0; index < data.length; index++) {
         const clue = data[index].clue;
-        html += "<tr> <td>" + clue + "</td><td> <table class=\"table table-hover table-dark table-sm\"> <thead> <tr> <th>#</th> <th>Answer</th> <th>Correct</th> </tr></thead> <tbody>";
+        html += "<tr> <td>" + clue + "</td><td> <table class=\"table table-hover table-light bg-light table-sm\"> <thead> <tr> <th>#</th> <th>Answer</th> <th>Correct</th> </tr></thead> <tbody>";
         
         for (let index2 = 0; index2 < data[index].answers.length; index2++) {
           const answer = data[index].answers[index2].answer;
