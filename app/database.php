@@ -145,6 +145,19 @@ class database {
         return $routes;
     }
 
+    public function get_all_routes() {
+        $routes = array();
+        foreach ($this->get_departments() as $department) {
+            $department_object = new stdClass();
+            $department_object->department_id = $department['department_id'];
+            $department_object->department_name = $department['department_name'];
+            $department_object->buildings = $this->get_route($department['department_id']);
+
+            $routes[] = $department_object;
+        }
+        return $routes;
+    }
+
     public function get_route($department_id) {
         global $connection;
 
@@ -161,12 +174,15 @@ class database {
         foreach ($result as $route) {
             $building = $this->get_building($route['building_id']);
 
-            //$object = new stdClass();
-            //$object->name = $building['building_name'];
-            //$object->latitude = $building['latitude'];
-            //$object->longitude = $building['longitude'];
+            $route_object = new stdClass();
+            $route_object->route_id = $route['route_id'];
+            $route_object->building_id = $building['building_id'];
+            $route_object->building_name = $building['building_name'];
+            $route_object->latitude = $building['latitude'];
+            $route_object->longitude = $building['longitude'];
+            $route_object->extra_info = $building['extra_info'];
 
-            $buildings[] = $building;
+            $buildings[] = $route_object;
         }
         return $buildings;
     }
