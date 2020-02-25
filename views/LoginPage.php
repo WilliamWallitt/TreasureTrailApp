@@ -70,16 +70,16 @@ function checkLoginCredentials() {
     let password = document.getElementById("password").value;
 
     if (username.length == 0 || password.length == 0) {
-    alert("Please fill in the required fileds");
+    alert("Please fill in the required fields");
     return;
     } 
-    // Create a new user
-    fetch('../app/verify_account.php', {
+    // Create a new user,
+    fetch("../app/verify_account.php", {
     headers: { "Content-Type": "application/json; charset=utf-8" },
     method: 'POST',
     body: JSON.stringify({
         username: username,
-        password: password,
+        password: password
     })
     }).then(response => {
     return response.json();
@@ -94,7 +94,6 @@ function checkLoginCredentials() {
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtnGySF8OE4Pa2VKOlkCMYvAnX8Ziza0A&callback=initMap"
 async defer></script>
 
 

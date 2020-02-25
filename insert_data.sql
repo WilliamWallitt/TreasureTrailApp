@@ -1,9 +1,3 @@
--- ;==========================================
--- ; Title:  Back-end insert_data SQL code
--- ; Author: Justin van Daalen, Edward Soutar, Stephan Kubal, William Wallitt
--- ; Date:   25 Feb 2020
--- ;========================================== 
-
 INSERT INTO `departments`(`department_name`)
 VALUES
 ('The Business School'),

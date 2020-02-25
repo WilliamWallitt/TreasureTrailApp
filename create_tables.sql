@@ -1,9 +1,3 @@
--- ;==========================================
--- ; Title:  Back-end create_tables SQL code
--- ; Author: Justin van Daalen, Edward Soutar, Stephan Kubal, William Wallitt
--- ; Date:   25 Feb 2020
--- ;========================================== 
-
 CREATE TABLE `departments` (
   `department_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `department_name` varchar(255) NOT NULL
