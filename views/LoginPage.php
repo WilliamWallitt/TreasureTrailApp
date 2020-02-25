@@ -30,7 +30,7 @@
 
         <!-- Login Form -->
         <!-- need to get this form and validate it before next page -->
-        <form action="../app/verify_account.php" method="post">
+        <form onsubmit="return checkLoginCredentials()">
             <input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
             <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
             <input type="submit" class="fadeIn fourth" value="Log In">
@@ -84,8 +84,15 @@ function checkLoginCredentials() {
     }).then(response => {
     return response.json();
     }).then(data => {
-        // maybe do something
+
+        if (data == false) {
+            document.getElementById("login").value = "";
+            document.getElementById("password").value = "";
+            return;
+        }
+        window.location.href = "../views/ModifyDataPage.php";
     });
+    return false;
 }
 
 
