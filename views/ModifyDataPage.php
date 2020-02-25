@@ -41,11 +41,14 @@
   <div class="container-fluid mt-2" id="page-content-wrapper">
     <div class="tab-content col-md-10">
       <div class="tab-pane active" id="Departments">
+        <div class="container text-center">
+          <h1 class="lead">Add a new department!</h1>
+        </div>
         <form>
           <div class="form-group">
             <input type="text" class="form-control" id="departmentName" aria-describedby="test" placeholder="Add Department Name">
             <div class="container mt-3">
-              <button type="submit" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;" onclick="addDepartment()">Submit</button>
+              <button type="button" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;" onclick="addDepartment()">Submit</button>
             </div>
           </div>
         </form>
@@ -63,8 +66,13 @@
       </div>
       <div class="tab-pane" id="Clues">
 
+        <div class="container text-center">
+          <h1 class="lead">Add a new clue!</h1>
+        </div>
+
         <form>
-          <div class="col">
+          <div class="form-group">
+            <h1>
             <select class="custom-select my-1 mr-sm-2" id="cluebuildingdropdown">
               <option selected>Building</option>
             </select>
@@ -121,7 +129,7 @@
 
 
           <div class="container">
-            <button type="submit" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;">Submit</button>
+            <button type="button" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;">Submit</button>
           </div>
         </form>
 
@@ -167,6 +175,10 @@
           </div>
       </div>
       <div class="tab-pane" id="Buildings">
+
+        <div class="container text-center">
+          <h1 class="lead">Add a new building!</h1>
+        </div>
         <form>
           <div class="form-group">
             <div class="container m-1">
@@ -183,7 +195,7 @@
             </div>
 
             <div class="container mt-3">
-              <button type="submit" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;" onclick="addBuilding()">Submit</button>
+              <button type="button" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;" onclick="addBuilding()">Submit</button>
             </div>
           </div>
         </form>
@@ -224,7 +236,7 @@
               </select>
             </div>
             <div class="col my-auto">
-              <button type="submit" class="btn btn-sm btn-outline-dark" onclick="addRoute()">Add Route</button>
+              <button type="button" class="btn btn-sm btn-outline-dark" onclick="addRoute()">Add Route</button>
             </div>
           </div>
         </form>
@@ -256,7 +268,7 @@
               <input type="text" class="form-control" id="answer" aria-describedby="test" placeholder="Add answer">
             </div>
             <div class="container mt-3">
-              <button type="submit" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;" onclick="addFAQ()">Submit</button>
+              <button type="button" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;" onclick="addFAQ()">Submit</button>
             </div>
           </div>
         </form>
@@ -292,7 +304,11 @@
 
 <script>
 
+  // ------------------------------------------------------
+  // all the fetch requests to populate our modify data page
+  // ------------------------------------------------------
 
+ 
   function addFAQ() {
 
     let question = document.getElementById("question").value;
@@ -446,19 +462,9 @@ function addBuilding() {
   } 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // ------------------------------------------------------
+  // all the fetch requests to populate our modify data page
+  // ------------------------------------------------------
 
   function fetchDepartments() {
 
@@ -504,7 +510,6 @@ function addBuilding() {
       }
 
       cluesTable.innerHTML = html;
-        //alert(data);
 
       populateClueBuildings();
     }).catch(err => {

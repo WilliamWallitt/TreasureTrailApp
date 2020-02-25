@@ -28,38 +28,8 @@
 
 <!-- We can loop over each FAQ Q, we store each Q and A in the DB -->
 
-<details>
-  <summary open>
-    Do we have a score board?
-    <svg class="control-icon control-icon-expand" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expand-more" /></svg>
-    <svg class="control-icon control-icon-close" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" /></svg>
-  </summary>
-  <p>Coming soon!</p>
-</details>
 
-<details>
-
-  <summary>
-    Can I use it all the time?
-    <svg class="control-icon control-icon-expand" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expand-more" /></svg>
-    <svg class="control-icon control-icon-close" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" /></svg>
-  </summary>
-  <p>Of course you can, we won't stop you.</p>
-</details>
-
-<details>
-  <summary>
-    I need help, where's your chatbot!   
-    <svg class="control-icon control-icon-expand" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expand-more" /></svg>
-    <svg class="control-icon control-icon-close" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" /></svg>
-  </summary>
-  <p>Working on it</p>
-</details>
-
-
-
-
-
+<div class="container-fluid" id="faq"></div>
 
 
 </body>
@@ -70,18 +40,27 @@
   fetch("../app/get_faqs.php").then(response => {
       return response.json();
   }).then(data => {
+
+    let details = document.getElementById("faq");
+    let html = "";
     for (i = 0; i < data.length; i++) {
 
       let question = data[i].question;
       let answer = data[i].answer;
 
-      // justin do something here!!
-      // $("#myUL").append("<li class=\"list-group-item\"><a href=\"../views/cluePage.php?id=" + data[i].department_id + "\" id=\"btn\">" + data[i].department_name + "<i class=\"fas fa-arrow-right\"></i></a></li>");
-    }
+      html += "<details><summary open>"+ question +"<svg class=\"control-icon control-icon-expand\" width=\"24\" height=\"24\" role=\"presentation\"><use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#expand-more\" /></svg><svg class=\"control-icon control-icon-close\" width=\"24\" height=\"24\" role=\"presentation\"><use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#close\" /></svg></summary><p>"+ answer +"</p></details>"
+
+  }
+
+  details.innerHTML = html;
+
+
   }).catch(err => {
       // catch err
       console.log(err);
   });
+
+
 </script>
 
 
