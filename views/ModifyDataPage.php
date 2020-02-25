@@ -1,8 +1,13 @@
 <?php
-if (session_status() == PHP_SESSION_NONE || !isset($_SESSION['username'])) {
+session_start();
+
+if (!isset($_SESSION['username'])) {
   header('Location: ../views/LoginPage.php');
+  //echo "false";
   exit();
 }
+
+session_destroy();
 ?>
 <!DOCTYPE html>
 <html>
