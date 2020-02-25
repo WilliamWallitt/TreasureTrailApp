@@ -1,20 +1,18 @@
 <?php
 require 'database.php';
 
-if (!isset($_POST['username'], $_POST['password'])) {
+$json = file_get_contents('php://input');
+if (!isset($json)) {
     die();
 }
 
-$account = new stdClass();
-$account->username = $_POST['username'];
-$account->password = $_POST['password'];
+$account = json_decode($json);
 
 $database = new database();
 $response = $database->verify_account($account);
 $database->close();
 
 if ($response === FALSE) {
-    header('Location: ../views/LoginPage.php');
     die();
 }
 

@@ -30,10 +30,10 @@
 
         <!-- Login Form -->
         <!-- need to get this form and validate it before next page -->
-        <form action="../app/verify_account.php" method="post">
+        <form>
             <input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
             <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
-            <input type="submit" class="fadeIn fourth" value="Log In" href="/ModifyDataPage.php">
+            <input type="button" class="fadeIn fourth" value="Log In" onclick="checkLoginCredentials()">
         </form>
 
         <!-- Remind Passowrd -->
@@ -55,7 +55,7 @@ $("#login").focusout(function(){
    $(this).attr('placeholder', 'username');
 });
 
-$("#password").focus(function(){
+$("#password").focus(function(){ 
    $(this).removeAttr('placeholder');
 });
 
