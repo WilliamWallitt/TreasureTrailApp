@@ -1,3 +1,8 @@
+<!-- ;==========================================
+; Title:  Back-end remove_answer request
+; Author: Justin van Daalen, William Wallitt
+; Date:   25 Feb 2020
+;==========================================  -->
 <?php
 require 'database.php';
 

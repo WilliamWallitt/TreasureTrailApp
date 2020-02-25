@@ -1,4 +1,11 @@
-/* BASIC */
+
+/* ;==========================================
+; Title:  Front end Login Page - CSS
+; Author: William Wallitt
+; Date:   25 Feb 2020
+;==========================================  */
+
+
 
 html {
   background-color: #56baed;
@@ -175,11 +182,6 @@ input[type=password], input[type=submit], input[type=reset]  {
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-
-/* input[type=password]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-  background-color: #39ace7;
-} */
-
 
 input[type=password] {
   text-transform: lowercase;

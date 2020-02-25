@@ -131,9 +131,13 @@ hr {
     width: 200px;
     padding: 10px;
     box-shadow: 4px 4px grey;
-    
-}
-  
+
+/* ;==========================================
+; Title:  Front end Main Page (clue page) - CSS
+; Author: William Wallitt
+; Date:   25 Feb 2020
+;==========================================  */
+
 .person:hover {
     transform: translateY(5px);
     box-shadow: 2px 2px grey;

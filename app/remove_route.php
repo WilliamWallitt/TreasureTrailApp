@@ -1,3 +1,8 @@
+<!-- ;==========================================
+; Title:  Back-end remove_route request
+; Author: Justin van Daalen
+; Date:   25 Feb 2020
+;==========================================  -->
 <?php
 require 'database.php';
 
