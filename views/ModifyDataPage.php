@@ -11,132 +11,225 @@
   <link rel="stylesheet" type="text/css" href='../public/stylesheets/modifyPage.css'>
 <!------ Include the above in your HEAD tag ---------->
 </head>
-<body style="background: url('../public/img/testImage.jpg') no-repeat center fixed; background-size: cover;">
 
-    
-<!-- Navigation -->
-<div class="container p-4">
-  <nav class="navbar navbar-expand-lg static-top mb-5 shadow">
-      <div class="container">
-        <a class="navbar-link text-dark" href="/">Back</a>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link text-dark" href="/login">Log out
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </div>
+<style>
+.menu a {
+  display: block;
+  text-decoration: none;
+}
 
-  <ul class="nav nav-pills nav-fill p-3" id="myTab" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Department Table</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Clue Table</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Extra Information Table</a>
-    </li>
+</style>
+
+<body data-gr-c-s-loaded="true">
+
+<div class="d-flex" id="wrapper">
+
+<!-- Sidebar -->
+  <!-- <div class="bg-light border-right" id="sidebar-wrapper">
+    <div class="list-group list-group-flush">
+      <a href="#" class="list-group-item list-group-item-action active">Departments</a>
+      <a href="#" class="list-group-item list-group-item-action bg-light">Clues</a>
+      <a href="#" class="list-group-item list-group-item-action bg-light">Buildings</a>
+      <a href="#" class="list-group-item list-group-item-action bg-light">Routes</a>
+      <a href="#" class="list-group-item list-group-item-action bg-light">FAQ</a>
+    </div>
+  </div> -->
+
+<div class="border-right" id="sidebar-wrapper">
+
+<div class="menu">
+  <ul class="nav nav-pills flex-column" style="list-style: none; margin: 0; padding: 0;">
+    <li class="active nav-item"><a data-toggle="pill" href="#Departments"><button class="btn btn-outline-light text-dark mb-2 border-bottom">Departments</button></a></li>
+    <li class="nav-item"><a data-toggle="pill" href="#Clues" data-toggle="pill"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%">Clues</button></a></li>
+    <li class="nav-item"><a data-toggle="pill" href="#Buildings"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%">Buildings</button></a></li>
+    <li class="nav-item"><a data-toggle="pill" href="#Routes"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%">Routes</button></a></li>
+    <li class="nav-item"><a data-toggle="pill" href="#FAQ"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%">FAQ</button></a></li>
   </ul>
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+</div>
 
-      <div class="container p-5">
-        <div class="row justify-content-center">
-          <div class="col-xs-12">
-            <div class="table-responsive">
-              <table class="table table-bordered table-hover">
-                <caption class="text-center">Department table</caption>
-                <thead>
-                  <tr>
-                    <th>Department</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Computer Science and Mathematics</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+</div>
+
+<!-- Page Content -->
+  <div class="container-fluid mt-2" id="page-content-wrapper">
+    <div class="tab-content col-md-10">
+      <div class="tab-pane active" id="Departments">
+        <h4>Pane A</h4>
       </div>
-    </div>
-    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-      <div class="row justify-content-center p-5">
-        <div class="col-xs-12">
-          <div class="table-responsive">
-            <table class="table table-bordered table-hover">
-                <caption class="text-center">Clue table</caption>
-              <thead>
-                <tr>
-                  <th>Clue</th>
-                  <th>Information</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo ab magni quo nisi ad eum, harum accusantium obcaecati commodi autem, beatae non dolorum! Fugit soluta iusto obcaecati, enim quia vero.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa eum veniam earum minima impedit dolore laudantium est ducimus, maxime esse reiciendis corporis. Necessitatibus beatae autem similique, assumenda veritatis ipsam explicabo.</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate labore dolores deleniti quam modi autem, perspiciatis nulla aliquid, nisi illum voluptatibus accusamus odio maxime consequatur qui, provident architecto! Distinctio, laudantium?</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <div class="tab-pane" id="Clues">
+          <h4>Pane B</h4>
       </div>
-    </div>
-    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-      <div class="row justify-content-center p-5">
-        <div class="col-xs-12">
-          <div class="table-responsive">
-            <table class="table table-bordered table-hover">
-              <caption class="text-center">Extra info table</caption>
-              <thead>
-                <tr>
-                  <th>Number</th>
-                  <th>Extra Information</th>
-                  <th>Delete</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui blanditiis delectus libero voluptatum voluptatibus, repellat reprehenderit commodi laborum tempora consequuntur iusto distinctio cupiditate aspernatur ducimus, nemo quo maiores quaerat. Quam.
-                  </td>
-                  <td><i class="fas fa-minus-circle"></i></td>
-
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga illum molestiae ullam culpa temporibus architecto pariatur sint corrupti, maxime enim esse ducimus quo, quam debitis nam delectus rem reprehenderit. Porro!</td>
-                  <td><i class="fas fa-minus-circle"></i></td>
-
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet iusto dolor, repellat dignissimos accusamus itaque possimus debitis magni. Unde, perspiciatis neque praesentium soluta veniam nihil amet dignissimos ipsa odio quaerat?</td>
-                  <td class><i class="fas fa-minus-circle"></i></td>
-
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <div class="tab-pane" id="Buildings">
+          <h4>Pane C</h4>
       </div>
+      <div class="tab-pane" id="Routes">
+          <h4>Pane D</h4>
+      </div>
+      <div class="tab-pane" id="FAQ">
+          <h4>Pane D</h4>
+      </div>
+    </div><!-- tab content -->
+
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th>Building Name</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Extra Info</th>
+            <th>Clue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1,001</td>
+            <td>Lorem</td>
+            <td>ipsum</td>
+            <td>dolor</td>
+            <td>sit</td>
+          </tr>
+          <tr>
+            <td>1,002</td>
+            <td>amet</td>
+            <td>consectetur</td>
+            <td>adipiscing</td>
+            <td>elit</td>
+          </tr>
+          <tr>
+            <td>1,003</td>
+            <td>Integer</td>
+            <td>nec</td>
+            <td>odio</td>
+            <td>Praesent</td>
+          </tr>
+          <tr>
+            <td>1,003</td>
+            <td>libero</td>
+            <td>Sed</td>
+            <td>cursus</td>
+            <td>ante</td>
+          </tr>
+          <tr>
+            <td>1,004</td>
+            <td>dapibus</td>
+            <td>diam</td>
+            <td>Sed</td>
+            <td>nisi</td>
+          </tr>
+          <tr>
+            <td>1,005</td>
+            <td>Nulla</td>
+            <td>quis</td>
+            <td>sem</td>
+            <td>at</td>
+          </tr>
+          <tr>
+            <td>1,006</td>
+            <td>nibh</td>
+            <td>elementum</td>
+            <td>imperdiet</td>
+            <td>Duis</td>
+          </tr>
+          <tr>
+            <td>1,007</td>
+            <td>sagittis</td>
+            <td>ipsum</td>
+            <td>Praesent</td>
+            <td>mauris</td>
+          </tr>
+          <tr>
+            <td>1,008</td>
+            <td>Fusce</td>
+            <td>nec</td>
+            <td>tellus</td>
+            <td>sed</td>
+          </tr>
+          <tr>
+            <td>1,009</td>
+            <td>augue</td>
+            <td>semper</td>
+            <td>porta</td>
+            <td>Mauris</td>
+          </tr>
+          <tr>
+            <td>1,010</td>
+            <td>massa</td>
+            <td>Vestibulum</td>
+            <td>lacinia</td>
+            <td>arcu</td>
+          </tr>
+          <tr>
+            <td>1,011</td>
+            <td>eget</td>
+            <td>nulla</td>
+            <td>Class</td>
+            <td>aptent</td>
+          </tr>
+          <tr>
+            <td>1,012</td>
+            <td>taciti</td>
+            <td>sociosqu</td>
+            <td>ad</td>
+            <td>litora</td>
+          </tr>
+          <tr>
+            <td>1,013</td>
+            <td>torquent</td>
+            <td>per</td>
+            <td>conubia</td>
+            <td>nostra</td>
+          </tr>
+          <tr>
+            <td>1,014</td>
+            <td>per</td>
+            <td>inceptos</td>
+            <td>himenaeos</td>
+            <td>Curabitur</td>
+          </tr>
+          <tr>
+            <td>1,015</td>
+            <td>sodales</td>
+            <td>ligula</td>
+            <td>in</td>
+            <td>libero</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+
+
   </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+
+        
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace()
+    </script>
+
+    <script>
+
+      function onClick(target) {
+
+      }
+
+    </script>
+  
+
+</body>
+
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
