@@ -430,6 +430,16 @@ function addBuilding() {
   }
 
 
+  function deleteRoute(route_id) {
+
+    fetch("../app/remove_route.php?route_id=" + route_id).then(response => {
+        return response.json();
+    }).then(data => {
+      fetchRoute();
+    }); 
+  } 
+
+
 
 
 
@@ -554,9 +564,9 @@ function addBuilding() {
           buildingNamesArr.push(data[index].buildings[index2]);
 
 
-          // \"\"
-          var dep = "<tr><td>" + department + "</td><td>"+ building + "</td><td><button class=\"btn btn-sm btn-outline-danger\"><i class=\"fas fa-minus\"></i></button></td></tr>";
-          var build = "<tr><td></td><td>"+ building + "</td><td><button class=\"btn btn-sm btn-outline-danger\"><i class=\"fas fa-minus\"></i></button></td></tr>";
+          // \"\"onclick=\"deleteBuilding("+ data[index].building_id + ")\
+          var dep = "<tr><td>" + department + "</td><td>"+ building + "</td><td><button class=\"btn btn-sm btn-outline-danger\" onclick=\"deleteRoute("+ data[index].buildings[index2].route_id + ")\"><i class=\"fas fa-minus\"></i></button></td></tr>";
+          var build = "<tr><td></td><td>"+ building + "</td><td><button class=\"btn btn-sm btn-outline-danger\" onclick=\"deleteRoute("+ data[index].buildings[index2].route_id + ")\"><i class=\"fas fa-minus\"></i></button></td></tr>";
 
           if (index2 == 0) {
             departmentTableHTML += dep;
