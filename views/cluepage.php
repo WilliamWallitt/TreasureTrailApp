@@ -1,3 +1,9 @@
+<?php
+if (!isset($_GET['id'])){
+    header('Location: ../views/DepartmentPage.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
