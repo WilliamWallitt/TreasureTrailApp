@@ -41,9 +41,9 @@
   <ul class="nav nav-pills flex-column" style="list-style: none; margin: 0; padding: 0;">
     <li class="active nav-item"><a data-toggle="pill" href="#Departments"><button class="btn btn-outline-light text-dark mb-2 border-bottom">Departments</button></a></li>
     <li class="nav-item"><a data-toggle="pill" href="#Clues" data-toggle="pill"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%">Clues</button></a></li>
-    <li class="nav-item"><a data-toggle="pill" href="#Buildings"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%">Buildings</button></a></li>
+    <li class="nav-item"><a data-toggle="pill" href="#Buildings"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%" onclick="fetchBuildings()">Buildings</button></a></li>
     <li class="nav-item"><a data-toggle="pill" href="#Routes"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%">Routes</button></a></li>
-    <li class="nav-item"><a data-toggle="pill" href="#FAQ"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%">FAQ</button></a></li>
+    <li class="nav-item"><a data-toggle="pill" href="#FAQ"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%" onclick="fetchFAQs()">FAQ</button></a></li>
   </ul>
 </div>
 
@@ -129,27 +129,7 @@
               </tr>
             </thead>
             <tbody id="buildings">
-              <tr>
-                <td>1,001</td>
-                <td>Lorem</td>
-                <td>ipsum</td>
-                <td>dolor</td>
-                <td>sit</td>
-              </tr>
-              <tr>
-                <td>1,002</td>
-                <td>amet</td>
-                <td>consectetur</td>
-                <td>adipiscing</td>
-                <td>elit</td>
-              </tr>
-              <tr>
-                <td>1,003</td>
-                <td>Integer</td>
-                <td>nec</td>
-                <td>odio</td>
-                <td>Praesent</td>
-              </tr>
+              
             </tbody>
           </table>
         </div>        
@@ -164,18 +144,7 @@
               </tr>
             </thead>
             <tbody id="routes">
-              <tr>
-                <td>1,001</td>
-                <td>Lorem</td>
-              </tr>
-              <tr>
-                <td>1,002</td>
-                <td>amet</td>
-              </tr>
-              <tr>
-                <td>1,003</td>
-                <td>Integer</td>
-              </tr>
+
             </tbody>
           </table>
         </div> 
@@ -189,19 +158,8 @@
                 <th>Answer</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>Q1</td>
-                <td>A1</td>
-              </tr>
-              <tr>
-                <td>Q2</td>
-                <td>A2</td>
-              </tr>
-              <tr>
-                <td>Q3</td>
-                <td>A3</td>
-              </tr>
+            <tbody id="faq">
+
             </tbody>
           </table>
         </div> 
@@ -212,9 +170,7 @@
 
   </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
+
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
@@ -248,18 +204,23 @@ function fetchDepartments() {
 
   function fetchBuildings() {
 
-    fetch("../app/get_buildings.php").then(response => {
+    fetch("../app/get_all_buildings.php").then(response => {
         return response.json();
     }).then(data => {
 
       console.log(data);
       const departmentTable = document.getElementById("buildings");
-
+      let departmentTableHTML = "";
       for (let index = 0; index < data.length; index++) {
-        const department = data[index].department_name;
-        departmentTable.innerHTML += "<tr><td>" + department + "</td><td>" + department + "</td><td>" + department + "</td><td>" + department + "</td><td>" + department + "</td></tr>";
+        const buildingName = data[index].building_name;
+        const lat = data[index].latitude;
+        const lng = data[index].longitude;
+        const extraInfo = data[index].extra_info;
+        departmentTableHTML += "<tr><td>" + buildingName + "</td><td>" + lat + "</td><td>" + lng + "</td><td>" + extraInfo + "</td><td>Clue</td></tr>";
         
       }
+
+      departmentTable.innerHTML = departmentTableHTML;
         //alert(data);
     }).catch(err => {
         // catch err
@@ -269,19 +230,47 @@ function fetchDepartments() {
 
   }
 
+
   function fetchRoute() {
 
     fetch("../app/get_all_routes.php").then(response => {
         return response.json();
     }).then(data => {
       const departmentTable = document.getElementById("routes");
-
+      let departmentTableHTML = "";
       for (let index = 0; index < data.length; index++) {
         const department = data[index].department_name;
         const building = data[index].building_name;
-        departmentTable.innerHTML += "<tr><td>" + department + "</td><td>"+ building + "</td></tr>";
+        departmentTableHTML += "<tr><td>" + department + "</td><td>"+ building + "</td></tr>";
         
       }
+      departmentTable.innerHTML = departmentTableHTML;
+        //alert(data);
+    }).catch(err => {
+        // catch err
+        console.log(err);
+    });
+
+
+  }
+
+
+  function fetchFAQs() {
+
+
+    fetch("../app/get_faqs.php").then(response => {
+        return response.json();
+    }).then(data => {
+      const faqTable = document.getElementById("faq");
+      let faqTableHTML = "";
+      for (let index = 0; index < data.length; index++) {
+        const question = data[index].question;
+        const answer = data[index].answer;
+        faqTableHTML += "<tr><td>" + question + "</td><td>"+ answer + "</td></tr>";
+        
+      }
+
+      faqTable.innerHTML = faqTableHTML;
         //alert(data);
     }).catch(err => {
         // catch err
