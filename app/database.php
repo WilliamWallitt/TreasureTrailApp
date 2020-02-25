@@ -37,11 +37,15 @@ class database {
     public function remove_department($department_id) {
         global $connection;
 
+        foreach ($this->get_routes_by_department($department_id) as $route) {
+            $this->remove_route($route->route_id);
+        }
+
         $department_id_param = $connection->escape_string($department_id);
         $sql = "DELETE FROM departments WHERE department_id='$department_id_param'";
 
-        $result = $this->query($sql);
-        return $result; 
+        $result = $this->delete_query($sql);
+        return $result;
     }
 
     public function get_building($building_id) {
@@ -71,6 +75,60 @@ class database {
         }
 
         return $result;  
+    }
+
+    public function remove_building($building_id) {
+        global $connection;
+
+        foreach ($this->get_routes_by_building($building_id) as $route) {
+            $this->remove_route($route->route_id);
+        }
+
+        foreach ($this->get_clues($building_id) as $clue) {
+            $this->remove_clue($clue->clue_id);
+        }
+
+        $building_id_param = $connection->escape_string($building_id);
+        $sql = "DELETE FROM buildings WHERE building_id='$building_id_param'";
+
+        $result = $this->delete_query($sql);
+        return $result;     
+    }
+
+    private function get_routes_by_department($department_id) {
+        global $connection;
+
+        $department_id_param = $connection->escape_string($department_id);
+        $sql = "SELECT * FROM routes WHERE department_id='$department_id_param'";
+
+        $result = $this->query($sql);
+
+        $routes = array();
+        foreach ($result as $route) {
+            $route_object = new stdClass();
+            $route_object->route_id = $route['route_id'];
+
+            $routes[] = $route_object;
+        }
+        return $routes;
+    }
+
+    private function get_routes_by_building($building_id) {
+        global $connection;
+
+        $building_id_param = $connection->escape_string($building_id);
+        $sql = "SELECT * FROM routes WHERE building_id='$building_id_param'";
+
+        $result = $this->query($sql);
+
+        $routes = array();
+        foreach ($result as $route) {
+            $route_object = new stdClass();
+            $route_object->route_id = $route['route_id'];
+
+            $routes[] = $route_object;
+        }
+        return $routes;
     }
 
     public function get_route($department_id) {
@@ -117,7 +175,7 @@ class database {
         $route_id_param = $connection->escape_string($route_id);
         $sql = "DELETE FROM routes WHERE route_id='$route_id_param'";
 
-        $result = $this->query($sql);
+        $result = $this->delete_query($sql);
         return $result; 
     }
 
@@ -157,7 +215,7 @@ class database {
         $answer_id_param = $connection->escape_string($answer_id);
         $sql = "DELETE FROM answers WHERE answer_id='$answer_id_param'";
 
-        $result = $this->query($sql);
+        $result = $this->delete_query($sql);
         return $result;  
     }
 
@@ -201,10 +259,14 @@ class database {
     public function remove_clue($clue_id) {
         global $connection;
 
+        foreach ($this->get_answers($clue_id) as $answer) {
+            $this->remove_answer($answer->answer_id);
+        }
+
         $clue_id_param = $connection->escape_string($clue_id);
         $sql = "DELETE FROM clues WHERE clue_id='$clue_id_param'";
 
-        $result = $this->query($sql);
+        $result = $this->delete_query($sql);
         return $result; 
     }
 
@@ -253,7 +315,7 @@ class database {
         $faq_id_param = $connection->escape_string($faq_id);
         $sql = "DELETE FROM faq WHERE faq_id='$faq_id_param'";
 
-        $result = $this->query($sql);
+        $result = $this->delete_query($sql);
         return $result; 
     }
 
@@ -262,7 +324,7 @@ class database {
 
         $result = $connection->query($sql);
         if (!$result) {
-            die();
+            die($connection->error);
         }
 
         $rows = array();
@@ -270,6 +332,17 @@ class database {
             $rows[] = $row;
         }
         return $rows;
+    }
+
+    private function delete_query($sql) {
+        global $connection;
+
+        $result = $connection->query($sql);
+        if (!$result) {
+            die($connection->error);
+        }
+
+        return $result;
     }
 
     public function close() {
