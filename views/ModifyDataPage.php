@@ -513,6 +513,11 @@ function addBuilding() {
     let answer3 = document.getElementById("question3").value;
     let answer3correct = document.getElementsByName("true3")[0].checked;
 
+    if (clueName.length == 0 || (!answer1correct && !answer2correct && !answer3correct)) {
+      alert("Please fill in the required fields - ");
+      return;
+    } 
+
     fetch('../app/create_clue.php', {
       headers: { "Content-Type": "application/json; charset=utf-8" },
       method: 'POST',
