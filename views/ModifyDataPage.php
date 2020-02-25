@@ -64,6 +64,12 @@
       <div class="tab-pane" id="Clues">
 
         <form>
+          <div class="col">
+            <select class="custom-select my-1 mr-sm-2" id="cluebuildingdropdown">
+              <option selected>Building</option>
+            </select>
+          </div>
+
           <div class="form-group">
             <input type="text" class="form-control" id="clueName" aria-describedby="test" placeholder="Enter Clue/Question Name">
           </div>
@@ -499,15 +505,30 @@ function addBuilding() {
 
       cluesTable.innerHTML = html;
         //alert(data);
+
+      populateClueBuildings();
     }).catch(err => {
         // catch err
         console.log(err);
     });
-
-
   }
 
-
+  function populateClueBuildings() {
+    fetch("../app/get_all_buildings.php").then(response => {
+        return response.json();
+    }).then(data => {
+      const buildingDropDown = document.getElementById("cluebuildingdropdown");
+      var html = "";
+      for (let index = 0; index < data.length; index++) {
+        let building = data[index];
+        html += "<option id=\"" + building.building_id + "\">" + building.building_name + "</option>"
+      }
+      buildingDropDown.innerHTML = html;
+    }).catch(err => {
+        // catch err
+        console.log(err);
+    });
+  }
 
   function fetchBuildings() {
 
