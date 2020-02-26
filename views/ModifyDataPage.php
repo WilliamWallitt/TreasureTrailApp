@@ -6,7 +6,7 @@ if (!isset($_SESSION['username'])) {
   exit();
 }
 
-session_destroy();
+//session_destroy();
 ?>
 <!DOCTYPE html>
 <html>
@@ -221,7 +221,7 @@ session_destroy();
                 <th>Latitude</th>
                 <th>Longitude</th>
                 <th>Extra Info</th>
-                <th>Clue</th>
+                <th>QR Code</th>
               </tr>
             </thead>
             <tbody id="buildings">
@@ -641,11 +641,12 @@ function addBuilding() {
       const departmentTable = document.getElementById("buildings");
       let departmentTableHTML = "";
       for (let index = 0; index < data.length; index++) {
+        const building_id = data[index].building_id;
         const buildingName = data[index].building_name;
         const lat = data[index].latitude;
         const lng = data[index].longitude;
         const extraInfo = data[index].extra_info;
-        departmentTableHTML += "<tr><td>" + buildingName + "</td><td>" + lat + "</td><td>" + lng + "</td><td>" + extraInfo + "</td><td>Clue</td><td><button class=\"btn btn-sm btn-outline-danger\" onclick=\"deleteBuilding("+ data[index].building_id + ")\">Delete</button></td></tr>";
+        departmentTableHTML += "<tr><td>" + buildingName + "</td><td>" + lat + "</td><td>" + lng + "</td><td>" + extraInfo + "</td><td><img src=\"https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=" +  building_id + "\"></img></td><td><button class=\"btn btn-sm btn-outline-danger\" onclick=\"deleteBuilding("+ data[index].building_id + ")\">Delete</button></td></tr>";
         
       }
 

@@ -268,7 +268,7 @@ if (!isset($_GET['id'])){
 
     function getClueData(){
 
-        fetch("../app/get_clues.php?building_id=" + building_ids[indexEnd]).then(response => {
+        fetch("../app/get_clues.php?building_id=" + building_ids[indexStart-1]).then(response => {
             return response.json();
         }).then(data => {
 
