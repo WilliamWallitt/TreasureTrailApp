@@ -15,6 +15,7 @@ $department_id = $_GET['department_id'];
 
 $database = new database();
 $route = $database->get_route($department_id);
+$database->close();
 
 echo json_encode($route, JSON_PRETTY_PRINT);
 ?>

@@ -9,6 +9,7 @@ header('Content-type: text/javascript');
 
 $database = new database();
 $clues = $database->get_all_clues();
+$database->close();
 
 echo json_encode($clues, JSON_PRETTY_PRINT);
 ?>

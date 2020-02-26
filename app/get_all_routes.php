@@ -9,6 +9,7 @@ header('Content-type: text/javascript');
 
 $database = new database();
 $response = $database->get_all_routes();
+$database->close();
 
 echo json_encode($response, JSON_PRETTY_PRINT);
 ?>
