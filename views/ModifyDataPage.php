@@ -39,6 +39,8 @@ if (!isset($_SESSION['username'])) {
 
 <div class="border-right" id="sidebar-wrapper">
 
+<!-- sidebar menu items -->
+
 <div class="menu">
   <ul class="nav nav-pills flex-column" style="list-style: none; margin: 0; padding: 0;">
     <li class="active nav-item"><a data-toggle="pill" href="#Departments"><button class="btn btn-outline-light text-dark mb-2 border-bottom">Departments</button></a></li>
@@ -54,6 +56,7 @@ if (!isset($_SESSION['username'])) {
 <!-- Page Content -->
   <div class="container-fluid mt-2" id="page-content-wrapper">
     <div class="tab-content col-md-10">
+      <!-- Department content -->
       <div class="tab-pane active" id="Departments">
         <div class="container text-center">
           <h1 class="lead">Add a new department!</h1>
@@ -80,7 +83,7 @@ if (!isset($_SESSION['username'])) {
         </div>        
       </div>
       <div class="tab-pane" id="Clues">
-
+        <!-- clue content -->
         <div class="container text-center">
           <h1 class="lead">Add a new clue!</h1>
         
@@ -191,6 +194,9 @@ if (!isset($_SESSION['username'])) {
             </td>
           </div>
       </div>
+
+      <!-- Buildings content -->
+
       <div class="tab-pane" id="Buildings">
 
         <div class="container text-center">
@@ -234,6 +240,9 @@ if (!isset($_SESSION['username'])) {
           </table>
         </div>        
       </div>
+
+      <!-- Routes content -->
+
       <div class="tab-pane" id="Routes">
 
         <form>
@@ -273,6 +282,9 @@ if (!isset($_SESSION['username'])) {
           </table>
         </div> 
       </div>
+
+      <!-- FAQ content -->
+
       <div class="tab-pane" id="FAQ">
 
         <form>
@@ -313,14 +325,11 @@ if (!isset($_SESSION['username'])) {
 
   </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-
-
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
       feather.replace()
     </script>
-
 
 <script>
 
@@ -330,8 +339,7 @@ if (!isset($_SESSION['username'])) {
   // ; Author: William Wallitt, Justin Van Daalen
   // ; Date:   25 Feb 2020
   // ;==========================================
-  
-  ;
+
   function addFAQ() {
 
     let question = document.getElementById("question").value;

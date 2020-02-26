@@ -95,23 +95,20 @@ if (!isset($_GET['id'])){
         <div class="col-xs-12">
           <div class="table-responsive text-align-center">
 
-            <!-- add clue code here -->
+            <!-- alert incorrect -->
             <div class="alert alert-danger" role="alert" id="incorrect" style="display: none">
                 <strong>Incorrect!</strong>
             </div>
 
-            <!-- alert-dismissible -->
+            <!-- alert correct -->
 
             <div class="alert alert-success" role="alert" id="correct" style="display: none">
                 <strong>Correct!</strong>
             </div>
 
-
-
-
+            <!-- Clue multiple choice questions -->
 
             <h1 class="question h3 bg-light text-center h2 p-2" id="clue">How many stairs does the Harrison Bulding have?</h1>
-            <!-- <form class="justify-content-center"> -->
 
             <div class="container text-align-center h4">
                 <hr/>
@@ -131,15 +128,14 @@ if (!isset($_GET['id'])){
                     <button type="submit" class="btn btn-success mt-3" onclick="checkIfCorrect()">Submit</button>
                 </div>
             </div>
-            <!-- </form> -->
             <hr/>
+
+            <!-- Extra info -->
 
             <div class="jumbotron vertical-center text-center bg-dark text-light">
                 <h1 class="h2" id="departmentName">Harrison Building</h1>
                 <p class="lead" id="extraInfo">Did you know it was founded in 1932, before WW2!</p>
             </div>
-
-
 
           </div>
         </div>
@@ -147,12 +143,10 @@ if (!isset($_GET['id'])){
     </div>
   </div>
 
-
-
-
-
-
 <script> 
+
+
+    // QR code scanner code - creating the video stream + decoding the image
 
     var video = document.createElement("video");
     var canvasElement = document.getElementById("canvas");
@@ -187,9 +181,6 @@ if (!isset($_GET['id'])){
         loadingMessage.hidden = true;
         canvasElement.hidden = false;
         outputContainer.hidden = false;
-
-        // canvasElement.height = video.videoHeight;
-        // canvasElement.width = video.videoWidth;
         canvasElement.height = window.innerHeight / 2.2;
         canvasElement.width = window.innerWidth;
         canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
@@ -203,34 +194,20 @@ if (!isset($_GET['id'])){
           drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
           drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
 
-          // do something with the decoded data here!
+          // logging code decoded data + current building id
           console.log("code: " + code.data);
           console.log("building id: " + building_ids[indexStart-1])
 
+          // if the QR code is corret, make the clue tab clickable and move user to it
           if (code.data == building_ids[indexStart-1]) {
             var element = document.getElementById("clue-tab");
             element.classList.remove("disabled");
-
             document.getElementById("clue-tab").click();
           }
-        //   outputMessage.hidden = true;
-        //   outputData.parentElement.hidden = false;
-        //   outputData.innerText = code.data;
         }
       }
       requestAnimationFrame(tick);
     }
-
-
-
-
-
-
-
-
-
-
-
 
     // coordinates for the forum exeter
     var myLatLng = {lat: 50.735371, lng: -3.533782};
@@ -239,14 +216,19 @@ if (!isset($_GET['id'])){
     var directionsRenderer;
     var directionsService;
 
+    // current location and next location index's
     var indexStart = 0;
     var indexEnd = 1;
-    // populate array with route! this will be a DB call later on!
-    // stores current location, and 3 locations around exeter as a test
+
+    // storing coordindates, building_id's, routeExtraInfo and building names in arrays.
     var array = [];
     var building_ids = [];
     var routeExtraInfo = [];
     var buildingNames = [];
+
+
+    // fetching the route from the database based on what department id the user has clicked on
+    // in the department page
 
     function getRoute(){
         var department_id = "<?php echo $_GET['id']; ?>";
@@ -258,6 +240,7 @@ if (!isset($_GET['id'])){
                     lat: data[i].latitude,
                     lng: data[i].longitude
                 }
+                // populating our arrays
                 array.push(latlng);
                 building_ids.push(data[i].building_id);
                 routeExtraInfo.push(data[i].extra_info);
@@ -269,17 +252,17 @@ if (!isset($_GET['id'])){
         });
     }
 
+    // getting our clue data from our current building id
     function getClueData(){
 
         fetch("../app/get_clues.php?building_id=" + building_ids[indexStart-1]).then(response => {
             return response.json();
         }).then(data => {
 
-
+            // populating our HTML tags with found data
             
             document.getElementById("departmentName").innerHTML = buildingNames[indexStart-1];
             document.getElementById("extraInfo").innerHTML = routeExtraInfo[indexStart-1];
-
             document.getElementById("clue").innerHTML = data[0].clue;
 
             let question1 = document.getElementById("question1");
@@ -302,11 +285,11 @@ if (!isset($_GET['id'])){
 
     }
 
+    // checking if the selected answer is the correct one
     function checkIfCorrect() {
 
         let element;
         let answer_id;
-
 
         let questions = document.getElementsByName("choice");
 
@@ -343,6 +326,7 @@ if (!isset($_GET['id'])){
 
     }
 
+    // we send the answer_id to the database to check if the answer is correct or not
     function isAnswerTrue(answer_id) {
 
         fetch("../app/verify_answer.php?answer_id=" + answer_id).then(response => {
@@ -353,6 +337,7 @@ if (!isset($_GET['id'])){
             var incorrect = document.getElementById("incorrect");
             var success = document.getElementById("correct");
 
+            // display our alert success if answer is correct
             if (data == true){
                 if (success.style.display === "none") {
                     incorrect.style.display = "none";
@@ -361,13 +346,17 @@ if (!isset($_GET['id'])){
                     incorrect.style.display = "none";
                     success.style.display = "none";
                 } 
-
+                
+                // disable the clue tab and move the user back to the Map page
                 var element = document.getElementById("clue-tab");
                 element.classList.add("disabled");
-
+                
                 document.getElementById("home-tab").click();
 
+                // calculate the next route in the treasure trail
                 calcRoute();
+
+            // display our alert fail if answer is incorrect
 
             } else if (data == false) {
                 if (incorrect.style.display === "none") {
@@ -385,25 +374,12 @@ if (!isset($_GET['id'])){
 
     }
 
-    
-
-
-
-
-
-
-        
-
-
-
-
-
+    // option function: converts our coordinates to an address (not used yet)
     function coordsToAddress(lat, long) {
         // get api call for places containing that lat long
         fetch("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + ","+ long + "&key=AIzaSyAtnGySF8OE4Pa2VKOlkCMYvAnX8Ziza0A").then(response => {
             return response.json();
         }).then(data => {
-            // do something to the data, not sure we need this...
             console.log(data);
         }).catch(err => {
             // catch err
@@ -411,11 +387,14 @@ if (!isset($_GET['id'])){
         });
     }
 
+    // this initalises our map, populates our arrays and finds the users current location
+    // navigating them to the first department in the treasure trail
     function init_route(){
         var department_id = "<?php echo $_GET['id']; ?>";
         fetch("../app/get_route.php?department_id=" + department_id).then(response => {
             return response.json();
         }).then(data => {
+            // creating an array of coordinate objects - each is the coordinates for a building
             for (i = 0; i < data.length; i++) {
                 let latlng = {
                     lat: data[i].latitude,
@@ -450,7 +429,9 @@ if (!isset($_GET['id'])){
                 }
                 // all this does is add our current position at the front of the array
                 array.unshift(pos);
-
+                
+                // now as we have the users current location and the building locations coordinates
+                // we can now display the map and directions the user can take to the first location
                 initMap();
         }, function(){
                     // handling any errors
@@ -478,14 +459,10 @@ if (!isset($_GET['id'])){
 
     // simple map application - all this does is get our current location and finds the path to the forum
     function initMap() {
-        // THIS RUNS AS SOON AS WE OPEN OUR CLUE PAGE! So we want to initialise everything we are going to use later
         // such as loading the google map and the direction service/renderer
 
         // service to get generate the map with the route and the directions (renderer)
         // initialising the direction service and "how to get there" service
-        //geolocation();
-
-    
 
         directionsService = new google.maps.DirectionsService();
         directionsRenderer = new google.maps.DirectionsRenderer();
@@ -501,23 +478,20 @@ if (!isset($_GET['id'])){
         directionsRenderer.setMap(map);
         // this is loading the directions (list of instructions how to get there)
         directionsRenderer.setPanel(document.getElementById('directionsPanel'));
-
+        // calculate our route (first time its the users current location and the first building's location)
         calcRoute();
     }
 
     function calcRoute() {
 
+        // if we are at the last location - loop
         if (indexEnd > array.length - 1) {
-            indexStart = 0;
-            indexEnd = 1;
+
+            window.location.href = "../views/finishedPage.php";
+
         }
 
-
         var request = {
-            // we can also use new google.maps.LatLng(lat, lng) for our results;
-            // harrison building 50.737873, 3.532218
-            // origin: startAddress+","+startCountry,
-            // destination: endAddress+","+endCountry,
             origin: new google.maps.LatLng(array[indexStart].lat, array[indexStart].lng),
             destination: new google.maps.LatLng(array[indexEnd].lat, array[indexEnd].lng),
             travelMode: 'WALKING'

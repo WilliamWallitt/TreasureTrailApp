@@ -1,0 +1,48 @@
+$dark-blue: #2c3e50;
+$ligh-grey: #ecf0f1;
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  background-color: #ffffff;
+  color: $ligh-grey;
+  font-family: sans-serif;
+  line-height: 1.4;
+  
+  a {
+    display: inline-block;
+    color: $ligh-grey;
+  }
+}
+
+.button {
+  margin: 0 auto 20px;
+  width: 200px;
+  border-radius: 3px;
+  text-align: center;
+  clear: both;
+  padding: 10px;
+  background-color: rgba($ligh-grey, .3);
+  cursor: pointer;
+}
+
+.screen {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.screen-intro {
+  opacity: 1;
+  visibility: visible;
+}
