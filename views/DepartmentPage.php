@@ -68,7 +68,7 @@ fetch("../app/get_departments.php").then(response => {
     return response.json();
 }).then(data => {
   for (i = 0; i < data.length; i++) {
-    $("#myUL").append("<li class=\"list-group-item\"><a href=\"../views/cluePage.php?id=" + data[i].department_id + "\" id=\"btn\">" + data[i].department_name + "<i class=\"fas fa-arrow-right\"></i></a></li>");
+    $("#myUL").append("<li class=\"list-group-item\"><a href=\"../views/cluepage.php?id=" + data[i].department_id + "\" id=\"btn\">" + data[i].department_name + "<i class=\"fas fa-arrow-right\"></i></a></li>");
   }
 }).catch(err => {
     // catch err
