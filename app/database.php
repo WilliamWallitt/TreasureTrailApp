@@ -18,7 +18,8 @@ class database {
         global $connection;
 
         // database connection information
-        $connection = new mysqli("localhost", "root", "root", "project");
+        $connection = new mysqli("localhost", "treayiaz_admin", "TY4KM1997", "treayiaz_admin");
+        //$connection = new mysqli("localhost", "root", "root", "project");
         if ($connection->connect_error) {
             die("Failed to create database connection: $connection->connect_error");
         }
