@@ -6,11 +6,11 @@
   </head>
   <body>
     <script type="text/javascript">
-      if (window.innerWidth < 960) {
+      if (window.innerWidth < 1024) {
         window.location.href = "views/DepartmentPage.php";
       }
 
-      if (window.innerWidth >= 960) {
+      if (window.innerWidth >= 1024) {
         window.location.href = "views/LoginPage.php";
       }
     </script>
