@@ -54,6 +54,8 @@
             aria-label="Search">
         </form>
     </a>
+
+    <!-- list of our departments -->
     <ul class="list-group text-center" id="myUL">
 
     
@@ -63,6 +65,9 @@
 </script>
 
 <script>
+
+
+// getting the departments from the DB -> setting them as <Li></Li> elements
 
 fetch("../app/get_departments.php").then(response => {
     return response.json();

@@ -1,7 +1,7 @@
 <?php
 //;==========================================
 //; Title:  Back end database call that handles all database SQL queries
-//; Author: Justin Van Daalen, Edward Soutar, William Wallitt
+//; Author: Justin Van Daalen, Edward Soutar, William Wallitt, Oliver Fawcett, Stephan Kubal
 //; Date:   25 Feb 2020
 //;==========================================
 class database {

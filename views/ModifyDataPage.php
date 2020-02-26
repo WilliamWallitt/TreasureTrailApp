@@ -174,18 +174,6 @@ if (!isset($_SESSION['username'])) {
                             <th>Correct</th>
                           </tr>
                         </thead>
-                        <!-- <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Q1</td>
-                            <td>A1</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>Q2</td>
-                            <td>A2</td>
-                          </tr>
-                        </tbody> -->
                       </table>
                     </td>
                   </tr>
@@ -335,10 +323,11 @@ if (!isset($_SESSION['username'])) {
 
 
   // ;==========================================
-  // ; Title:  Front end Javascript request's (get requests)
-  // ; Author: William Wallitt, Justin Van Daalen
+  // ; Title:  Front end Javascript request's (get/posts requests)
+  // ; Author: William Wallitt, Justin Van Daalen, Stephan Kubal, Oliver Fawcett
   // ; Date:   25 Feb 2020
   // ;==========================================
+
 
   function addFAQ() {
 
@@ -349,7 +338,6 @@ if (!isset($_SESSION['username'])) {
       alert("Please fill in the required fileds");
       return;
     } 
-    // Create a new user
     fetch('../app/create_faq.php', {
       headers: { "Content-Type": "application/json; charset=utf-8" },
       method: 'POST',
@@ -384,8 +372,6 @@ function addDepartment() {
     alert("Please fill in the required fileds");
     return;
   } 
-
-  // Create a new user
   fetch('../app/create_department.php', {
     headers: { "Content-Type": "application/json; charset=utf-8" },
     method: 'POST',
@@ -432,7 +418,6 @@ function addBuilding() {
         latitude: lat,
         longitude: lng,
         extra_info: extraInfo,
-        // sort clues out
         clues: []
       })
     }).then(response => {
@@ -504,24 +489,25 @@ function addBuilding() {
     fetch("../app/get_departments.php").then(response => {
         return response.json();
     }).then(data => {
-
-      console.log(data);
       const departmentTable = document.getElementById("departments");
       var html = "";
+
       for (let index = 0; index < data.length; index++) {
+
         const department = data[index].department_name;
         html += "<tr><td>" + department + "</td><td><button class=\"btn btn-sm btn-outline-danger\" onclick=\"deleteDepartment("+ data[index].department_id + ")\">Delete</button></td></tr>";
-        
+      
       }
+
       departmentTable.innerHTML = html;
-        //alert(data);
+
     }).catch(err => {
-        // catch err
         console.log(err);
     });
   }
 
   function addClue() {
+
     let buildings = document.getElementById("cluebuildingdropdown");
     let building_id = buildings.options[buildings.selectedIndex].id;
 
@@ -623,7 +609,6 @@ function addBuilding() {
 
       populateClueBuildings();
     }).catch(err => {
-        // catch err
         console.log(err);
     });
   }
@@ -665,9 +650,7 @@ function addBuilding() {
       }
 
       departmentTable.innerHTML = departmentTableHTML;
-        //alert(data);
     }).catch(err => {
-        // catch err
         console.log(err);
     });
 
@@ -689,19 +672,16 @@ function addBuilding() {
       let departmentTableHTML = "";
       for (let index = 0; index < data.length; index++) {
         const department = data[index].department_name;
-        //data[index].buildings
 
         // add department to array
         departmentNamesArr.push(data[index]);
 
         for (let index2 = 0; index2 < data[index].buildings.length; index2++) {
           const building = data[index].buildings[index2].building_name;
-          // add building to array
 
+          // add building to array
           buildingNamesArr.push(data[index].buildings[index2]);
 
-
-          // \"\"onclick=\"deleteBuilding("+ data[index].building_id + ")\
           var dep = "<tr><td>" + department + "</td><td>"+ building + "</td><td><button class=\"btn btn-sm btn-outline-danger\" onclick=\"deleteRoute("+ data[index].buildings[index2].route_id + ")\">Delete</button></td></tr>";
           var build = "<tr><td></td><td>"+ building + "</td><td><button class=\"btn btn-sm btn-outline-danger\" onclick=\"deleteRoute("+ data[index].buildings[index2].route_id + ")\">Delete</button></td></tr>";
 
@@ -714,6 +694,7 @@ function addBuilding() {
                 
       }
 
+      // set our element's innerHTML to our variable
       departmentTable.innerHTML = departmentTableHTML;
 
       // populate drop downs
@@ -737,19 +718,14 @@ function addBuilding() {
       }
       buildingDropDown.innerHTML = html;
 
-        //alert(data);
     }).catch(err => {
-        // catch err
         console.log(err);
     });
 
 
   }
 
-
   function fetchFAQs() {
-
-
     fetch("../app/get_faqs.php").then(response => {
         return response.json();
     }).then(data => {
@@ -761,17 +737,15 @@ function addBuilding() {
         faqTableHTML += "<tr><td>" + question + "</td><td>"+ answer + "</td><td><button class=\"btn btn-sm btn-outline-danger\" onclick=\"deleteFAQ("+ data[index].faq_id + ")\">Delete</button></td></tr>";
         
       } 
-
       faqTable.innerHTML = faqTableHTML;
-        //alert(data);
     }).catch(err => {
-        // catch err
         console.log(err);
     });
 
 
   } 
 
+  // getting departments -> as its the first page
   fetchDepartments();
 
 </script>

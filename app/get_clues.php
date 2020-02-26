@@ -1,7 +1,8 @@
 <?php
 //;==========================================
 //; Title:  Back end get_clues requst
-//; Author: Justin Van Daalen
+//; Author: Justin Van Daalen, Stephan Kubal
+
 //; Date:   25 Feb 2020
 //;==========================================
 require 'database.php';

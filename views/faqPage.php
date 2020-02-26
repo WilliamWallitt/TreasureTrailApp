@@ -42,7 +42,7 @@
         <div class="col-12 col-md-5">
           <h3 class="text-mono f5 text-normal text-gray mb-2">Ask a human</h3>
           <h4 class="h2-mktg mb-3">Can't find what you're looking for?</h4>
-                    <!-- gamekeeper email? -->
+          <!-- gamekeeper email? -->
           <a class="btn btn-outline-dark m-2" href="mailto:willcdswallitt@gmail.com?Subject=User%20Help%20Request">Contact a GameKeeper :)</a>
         </div>
         <div class="col-12 col-md-3 ml-md-6 ml-lg-0 position-relative">
