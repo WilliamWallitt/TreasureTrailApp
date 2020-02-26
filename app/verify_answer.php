@@ -14,6 +14,7 @@ $answer_id = $_GET['answer_id'];
 
 $database = new database();
 $answer = $database->verify_answer($answer_id);
+$database->close();
 
 echo json_encode($answer);
 ?>

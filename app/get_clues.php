@@ -15,6 +15,7 @@ $building_id = $_GET['building_id'];
 
 $database = new database();
 $clues = $database->get_clues($building_id);
+$database->close();
 
 echo json_encode($clues, JSON_PRETTY_PRINT);
 ?>

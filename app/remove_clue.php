@@ -14,6 +14,7 @@ $clue_id = $_GET['clue_id'];
 
 $database = new database();
 $response = $database->remove_clue($clue_id);
+$database->close();
 
 echo json_encode(true);
 ?>

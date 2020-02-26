@@ -14,6 +14,7 @@ $faq_id = $_GET['faq_id'];
 
 $database = new database();
 $response = $database->remove_faq($faq_id);
+$database->close();
 
 echo json_encode(true);
 ?>
