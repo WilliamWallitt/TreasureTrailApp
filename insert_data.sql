@@ -1,6 +1,6 @@
 -- ;==========================================
--- Title:  Front end Login Page - HTML
--- Author: Justin Van Daalen, Edward Soutar Stephan Kubal
+-- Title:  Insert Data - MySQL
+-- Author: Justin Van Daalen, Edward Soutar, Stefan Kubal
 -- Date:   25 Feb 2020
 -- ========================================== -->
 
