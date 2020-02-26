@@ -1,7 +1,7 @@
 
 -- ;==========================================
--- Title:  Front end Login Page - HTML
--- Author: William Wallitt, Justin Van Daalen, Stephan Kubal
+-- Title:  Create Tables - MySQL
+-- Author: William Wallitt, Justin Van Daalen, Edward Soutar
 -- Date:   25 Feb 2020
 -- ========================================== -->
 
@@ -18,7 +18,7 @@ CREATE TABLE `buildings` (
   `extra_info` varchar(255) NOT NULL
 );
 
-CREATE TABLE `routes` (	
+CREATE TABLE `routes` (
   `route_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `order_id` int NOT NULL,
   `department_id` int NOT NULL,
