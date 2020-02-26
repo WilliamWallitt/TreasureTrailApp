@@ -15,8 +15,8 @@ VALUES
 
 INSERT INTO `buildings`(`building_name`, `latitude`, `longitude`, `extra_info`)
 VALUES
-('The Forum', 50.735398, -3.533774, 'The Forum is a stunning £48 million centrepiece at the heart of the Streatham Campus'),
-('Student Health centre', 50.735916, -3.537931, 'If you get a boo boo come here.'),
+('The Forum', 50.735398, -3.533774, 'The Forum is a stunning 48 million pound centrepiece at the heart of the Streatham Campus'),
+('Student Health Centre', 50.735916, -3.537931, 'The Student health centre accepts patients who are students of Exeter University, living on or adjacent to the main campus.'),
 ('Streatham Court', 50.735691, -3.530889, 'Streatham Court is in close proximity to Building:One and Xfi, making the ideal collection of venues for a larger event.'),
 ('Xfi Building', 50.735905, -3.530047, 'All the rooms are equipped with advanced audio visual systems, and telephone and video conferencing facilities are also available'),
 ('Building: One', 50.735657, -3.538181, 'Building one contains two lecture theatres, three teaching rooms and three syndicate rooms.'),
@@ -24,7 +24,7 @@ VALUES
 ('Physics Building', 50.737002, -3.537931, 'Research ranging from quantum behaviour in nanomaterials to the age of stars takes place within.'),
 ('Newman Building', 50.736486, -3.5359, 'In 2019, a group of students occupied the Peter Chalk and Newman buildings in support of the UCU strike and barricaded themselves in.'),
 ('Amory', 50.736638, -3.531624, 'A Moot Courtroom is in the heart of the space, allowing students to take part in simulated court proceeding'),
-('Queens', 50.734209, -3.535064, 'The Queen’s Building is built around an attractive lawned garden and can be accessed from three sides.'),
+('Queens', 50.734209, -3.535064, 'The Queens Building is built around an attractive lawned garden and can be accessed from three sides.'),
 ('Living systems institute', 50.737002, -3.534977, 'Work inside the building looks at generating new tools for improving health and treating disease.'),
 ('Geoffrey Pope building', 50.736676, -3.535036, 'It is a world-class Aquatic Resources Centre, which incorporates 14 aquaria rooms, preparative and analytical labs and a dedicated Wolfson Foundation-funded imaging unit.'),
 ('Hatherly', 50.73408, -3.533089, 'Inside Hatherly, team are working on how memories and emotions are formed in the brain.'),
@@ -108,7 +108,7 @@ VALUES
 (9,'Octopus',1),
 (9,'Elephant',0),
 (9,'Dolphin',0),
-(10'1959',1),
+(10,'1959',1),
 (10,'1976',0),
 (10,'1988',0),
 (11,'Vice chancellor',1),
