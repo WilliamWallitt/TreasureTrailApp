@@ -14,6 +14,7 @@ $route_id = $_GET['route_id'];
 
 $database = new database();
 $response = $database->remove_route($route_id);
+$database->close();
 
 echo json_encode(true);
 ?>
