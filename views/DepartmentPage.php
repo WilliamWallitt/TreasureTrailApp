@@ -20,7 +20,7 @@
 
 <!-- ;==========================================
 ; Title:  Front end Department Page - HTML
-; Author: William Wallitt, Justin Van Daalen
+; Author: William Wallitt, Edward Soutar, Bevan Roberts
 ; Date:   25 Feb 2020
 ;========================================== -->
     

@@ -23,7 +23,7 @@ if (!isset($_GET['id'])){
 
 <!-- ;==========================================
 ; Title:  Front end Clue Page - HTML
-; Author: William Wallitt, Justin Van Daalen
+; Author: William Wallitt, Stephen Kubal, Bevan Roberts
 ; Date:   25 Feb 2020
 ;========================================== -->
 
@@ -273,9 +273,9 @@ if (!isset($_GET['id'])){
             question2.innerHTML = data[0].answers[1].answer;
             question2.setAttribute("answer_id", data[0].answers[1].answer_id);
 
-            //let question3 = document.getElementById("question3");
-            //question3.innerHTML = data[0].answers[2].answer;
-            //question3.setAttribute("answer_id", data[0].answers[2].answer_id);
+            let question3 = document.getElementById("question3");
+            question3.innerHTML = data[0].answers[2].answer;
+            question3.setAttribute("answer_id", data[0].answers[2].answer_id);
 
             
         }).catch(err => {
@@ -412,6 +412,13 @@ if (!isset($_GET['id'])){
             console.log(err);
         });
     }
+
+
+    // ;==========================================
+    // ; Title:  Front end Javascript request's (add/delete requests)
+    // ; Author: William Wallitt, Edward Soutar, Stephen Kubal
+    // ; Date:   25 Feb 2020
+    // ;==========================================
 
 
     // getting current location coordinates

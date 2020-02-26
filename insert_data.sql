@@ -1,3 +1,9 @@
+-- ;==========================================
+-- Title:  Front end Login Page - HTML
+-- Author: Justin Van Daalen, Edward Soutar Stephan Kubal
+-- Date:   25 Feb 2020
+-- ========================================== -->
+
 INSERT INTO `departments`(`department_name`)
 VALUES
 ('The Business School'),

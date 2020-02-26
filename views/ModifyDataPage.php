@@ -480,7 +480,7 @@ function addBuilding() {
 
   // ;==========================================
   // ; Title:  Front end Javascript request's (add/delete requests)
-  // ; Author: William Wallitt, Justin Van Daalen
+  // ; Author: William Wallitt, Justin Van Daalen, Oliver Fawcett
   // ; Date:   25 Feb 2020
   // ;==========================================
 

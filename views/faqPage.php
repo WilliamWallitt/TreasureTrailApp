@@ -12,7 +12,7 @@
 
 <!-- ;==========================================
 ; Title:  Front end FAQ Page - HTML
-; Author: William Wallitt, Justin Van Daalen
+; Author: William Wallitt, Justin Van Daalen, Oliver Fawcett
 ; Date:   25 Feb 2020
 ;========================================== -->
 

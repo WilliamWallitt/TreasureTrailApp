@@ -13,7 +13,7 @@
 
 <!-- ;==========================================
 ; Title:  Front end Login Page - HTML
-; Author: William Wallitt, Justin Van Daalen
+; Author: William Wallitt, Oliver Fawcett, Stephen Kubal
 ; Date:   25 Feb 2020
 ;========================================== -->
 

@@ -1,7 +1,7 @@
 <?php
 //;==========================================
 //; Title:  Back end verify_account request
-//; Author: Justin Van Daalen
+//; Author: Justin Van Daalen, Stephen Kubal
 //; Date:   25 Feb 2020
 //;==========================================
 require 'database.php';

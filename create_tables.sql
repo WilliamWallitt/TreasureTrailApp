@@ -1,3 +1,10 @@
+
+-- ;==========================================
+-- Title:  Front end Login Page - HTML
+-- Author: William Wallitt, Justin Van Daalen, Stephan Kubal
+-- Date:   25 Feb 2020
+-- ========================================== -->
+
 CREATE TABLE `departments` (
   `department_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `department_name` varchar(255) NOT NULL
