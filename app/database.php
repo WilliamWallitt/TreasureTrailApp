@@ -452,7 +452,8 @@ class database {
             $clue_object = new stdClass();
             $clue_object->clue_id = $clue['clue_id'];
             $clue_object->clue = $clue['clue'];
-            $clue_object->answers = shuffle($this->get_answers($clue['clue_id']));
+            $clue_object->answers = $this->get_answers($clue['clue_id']);
+            shuffle($clue_object->answers);
 
             $clues[] = $clue_object;
         }
