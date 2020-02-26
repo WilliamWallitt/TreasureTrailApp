@@ -1,4 +1,9 @@
 <?php
+//;==========================================
+//; Title:  Back end remove_clue request
+//; Author: Justin Van Daalen
+//; Date:   25 Feb 2020
+//;==========================================
 require 'database.php';
 
 if (!isset($_GET['clue_id'])) {

@@ -45,7 +45,7 @@ if (!isset($_SESSION['username'])) {
     <li class="nav-item"><a data-toggle="pill" href="#Clues" data-toggle="pill"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%" onclick="fetchClues()">Clues</button></a></li>
     <li class="nav-item"><a data-toggle="pill" href="#Buildings"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%" onclick="fetchBuildings()">Buildings</button></a></li>
     <li class="nav-item"><a data-toggle="pill" href="#Routes"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%" onclick="fetchRoute()">Routes</button></a></li>
-    <li class="nav-item"><a data-toggle="pill" href="#FAQ"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%" onclick="fetchFAQs()">FAQ</button></a></li>
+    <li class="nav-item"><a data-toggle="pill" href="#FAQ"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%" onclick="fetchFAQs()">FAQ's</button></a></li>
   </ul>
 </div>
 
@@ -71,6 +71,7 @@ if (!isset($_SESSION['username'])) {
             <thead>
               <tr>
                 <th>Department Name</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody id="departments">
@@ -82,6 +83,7 @@ if (!isset($_SESSION['username'])) {
 
         <div class="container text-center">
           <h1 class="lead">Add a new clue!</h1>
+        
         </div>
 
         <form>
@@ -153,6 +155,7 @@ if (!isset($_SESSION['username'])) {
                 <tr>
                   <th>Clue</th>
                   <th>Questions</th>
+                  <th>Delete</th>
                 </tr>
               </thead>
 
@@ -222,6 +225,7 @@ if (!isset($_SESSION['username'])) {
                 <th>Longitude</th>
                 <th>Extra Info</th>
                 <th>QR Code</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody id="buildings">
@@ -260,6 +264,7 @@ if (!isset($_SESSION['username'])) {
               <tr>
                 <th>Department Name</th>
                 <th>Building Name</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody id="routes">
@@ -293,6 +298,7 @@ if (!isset($_SESSION['username'])) {
               <tr>
                 <th>Question</th>
                 <th>Answer</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody id="faq">
@@ -688,8 +694,8 @@ function addBuilding() {
 
 
           // \"\"onclick=\"deleteBuilding("+ data[index].building_id + ")\
-          var dep = "<tr><td>" + department + "</td><td>"+ building + "</td><td><button class=\"btn btn-sm btn-outline-danger\" onclick=\"deleteRoute("+ data[index].buildings[index2].route_id + ")\"><i class=\"fas fa-minus\"></i></button></td></tr>";
-          var build = "<tr><td></td><td>"+ building + "</td><td><button class=\"btn btn-sm btn-outline-danger\" onclick=\"deleteRoute("+ data[index].buildings[index2].route_id + ")\"><i class=\"fas fa-minus\"></i></button></td></tr>";
+          var dep = "<tr><td>" + department + "</td><td>"+ building + "</td><td><button class=\"btn btn-sm btn-outline-danger\" onclick=\"deleteRoute("+ data[index].buildings[index2].route_id + ")\">Delete</button></td></tr>";
+          var build = "<tr><td></td><td>"+ building + "</td><td><button class=\"btn btn-sm btn-outline-danger\" onclick=\"deleteRoute("+ data[index].buildings[index2].route_id + ")\">Delete</button></td></tr>";
 
           if (index2 == 0) {
             departmentTableHTML += dep;

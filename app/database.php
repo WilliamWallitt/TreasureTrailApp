@@ -1,4 +1,9 @@
 <?php
+//;==========================================
+//; Title:  Back end database call that handles all database SQL queries
+//; Author: Justin Van Daalen, Edward Soutar, William Wallitt
+//; Date:   25 Feb 2020
+//;==========================================
 class database {
     private $connection;
 

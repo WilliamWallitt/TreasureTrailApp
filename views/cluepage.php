@@ -4,6 +4,7 @@ if (!isset($_GET['id'])){
     exit();
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,18 +27,15 @@ if (!isset($_GET['id'])){
 ; Date:   25 Feb 2020
 ;========================================== -->
 
-<!-- style="background: url('../img/clue1.jpg') no-repeat center fixed; background-size: cover;" -->
 <body>
-    <div class="navbar navbar-fixed-top py-md-0 bg-transparent">
-        <div class="container-fluid">
-            <button class="btn btn-outline-dark btn-sm m-1" type="button" onclick="window.location.href = '../views/faqPage.php'">FAQ</button>
-        </div>
 
-    </div>
+    <!-- floating FAQ button to FAQ page -->
+    <a style="position:fixed;bottom:5px;right:5px;margin:0;padding:5px 3px;" href="#">
+        <button class="btn btn-outline-dark btn-sm m-1" type="button" onclick="window.location.href = '../views/faqPage.php'">FAQ's</button>
+    </a>
 
-
-
-    <ul class="nav nav-pills nav-fill p-3" id="myTab" role="tablist">
+    <!-- Map/Verify Location/ Clue tabs -->
+    <ul class="nav nav-pills nav-fill pt-3" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Map</a>
         </li>
@@ -47,17 +45,19 @@ if (!isset($_GET['id'])){
         <li class="nav-item">
             <a class="nav-link disabled" id="clue-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" onclick="getClueData()">Clue</a>
         </li>
-  </ul>
+    </ul>
+    <!-- Tab content -->
   <div class="tab-content" id="myTabContent">
+      <!-- Map tab content -->
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-      <div class="container p-5">
+      <div class="container p-2">
         <div class="row justify-content-center">
           <div class="col-xs-12">
                 <div class="table-responsive">
-                            <!-- map container -->
+                <!-- map container -->
                 <div class="container-fluid p-0 m-0">
-                    <div id="map" class="border border-dark" style="width:100vw; height:90vh;"></div>
+                    <div id="map" class="border border-dark" style="width:100vw; height:80vh;"></div>
                 </div>
 
                 <!-- arrow container -->
@@ -74,6 +74,9 @@ if (!isset($_GET['id'])){
         </div>
       </div>
     </div>
+
+    <!-- Verify Location tab content -->
+
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
         <h1 class="d-flex justify-content-center lead">Scan QR Code</h1>
@@ -85,12 +88,12 @@ if (!isset($_GET['id'])){
 
 
     </div>
+
+    <!-- Clue tab content -->
     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
       <div class="row justify-content-center p-5">
         <div class="col-xs-12">
           <div class="table-responsive text-align-center">
-
-
 
             <!-- add clue code here -->
             <div class="alert alert-danger" role="alert" id="incorrect" style="display: none">

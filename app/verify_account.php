@@ -1,4 +1,9 @@
 <?php
+//;==========================================
+//; Title:  Back end verify_account request
+//; Author: Justin Van Daalen
+//; Date:   25 Feb 2020
+//;==========================================
 require 'database.php';
 
 $json = file_get_contents('php://input');

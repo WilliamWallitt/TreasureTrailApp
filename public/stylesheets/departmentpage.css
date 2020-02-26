@@ -9,6 +9,7 @@ body {
     animation-duration: 1.5s;
 }
 
+/* animation - that on page load, makes the page look like its dropping down */
 
 @keyframes fadeInDown {
     0% {
@@ -32,14 +33,11 @@ body {
     display: block;
     position: relative;
     background: #ffffff;
-    /* font-size: 16px; */
-    /* font-size: 0.5em; */
     font-weight: 300px;
     color: black;
     text-transform: uppercase;
     letter-spacing: 2px;
     padding: 25px 80px;
-    /* might need to remove some padding */
     margin: 0 auto;
     border-radius: 20px;
     box-shadow: 0 6px #000000;
@@ -54,13 +52,6 @@ body {
     box-shadow: none;
     top: 6px;
 }
-
-/* h1 {
-    text-align: center;
-    font-weight: 300;
-    padding: 0 20px;
-    color: white;
-} */
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:700');
 
@@ -133,10 +124,5 @@ body {
     font-size: 1.2em; /* 1.2x default size */
   }
 }
-/* might need this */
-/* @media all and (max-width: 500px) {
-  body {
-      font-size: 0.8em;
-    }
-} */
+
 

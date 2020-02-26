@@ -1,7 +1,7 @@
 <?php
 //;==========================================
-//; Title:  Front end Modify Data Page - HTML
-//; Author: William Wallitt, Justin Van Daalen
+//; Title:  Back end get_departments requst
+//; Author: Justin Van Daalen
 //; Date:   25 Feb 2020
 //;==========================================
 require 'database.php';
