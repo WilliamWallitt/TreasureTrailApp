@@ -30,8 +30,8 @@ if (!isset($_GET['id'])){
 <body>
 
     <!-- floating FAQ button to FAQ page -->
-    <a style="position:fixed;bottom:5px;right:50vw;margin:0;padding:5px 3px;" href="#">
-        <button class="btn btn-outline-dark btn-sm m-1" type="button" onclick="window.location.href = '../views/faqPage.php'">FAQ's</button>
+    <a style="position:fixed;bottom:5px;right:5px;margin:0;padding:5px 3px;" href="#">
+        <button class="btn btn-dark btn-sm m-1" type="button" onclick="window.location.href = '../views/faqPage.php'">FAQ's</button>
     </a>
 
     <!-- Map/Verify Location/ Clue tabs -->
