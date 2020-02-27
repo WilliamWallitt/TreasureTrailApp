@@ -6,7 +6,7 @@
 //;==========================================
 class database {
     private $connection;
-
+    
     function __construct() {
         $this->open();
     }

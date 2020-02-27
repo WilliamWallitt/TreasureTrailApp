@@ -584,6 +584,7 @@ function addBuilding() {
 
   function fetchClues() {
 
+
     fetch("../app/get_all_clues.php").then(response => {
         return response.json();
     }).then(data => {
@@ -660,13 +661,49 @@ function addBuilding() {
 
   function fetchRoute() {
 
+    fetch("../app/get_departments.php").then(response => {
+        return response.json();
+    }).then(data => {
+
+      const departmentDropDown = document.getElementById("departmentdropdown");
+ 
+      var html1 = "";
+      for (let index = 0; index < data.length; index++) {
+        let department = data[index];
+        html1 += "<option id=\"" + department.department_id + "\">" + department.department_name + "</option>"
+        
+      }
+
+      departmentDropDown.innerHTML = html1;
+
+    }).catch(err => {
+        console.log(err);
+    });
+
+    fetch("../app/get_all_buildings.php").then(response => {
+        return response.json();
+    }).then(data => {
+
+      const buildingDropDown = document.getElementById("buildingdropdown");
+
+      var html = "";
+      for (let index = 0; index < data.length; index++) {
+        let building = data[index];
+        html += "<option id=\"" + building.building_id + "\">" + building.building_name + "</option>"
+      }
+
+      buildingDropDown.innerHTML = html;
+    }).catch(err => {
+        console.log(err);
+    });
+
     fetch("../app/get_all_routes.php").then(response => {
         return response.json();
     }).then(data => {
       // array for department names
       // array for building names
-      const departmentNamesArr = [];
-      const buildingNamesArr = [];
+      // const departmentNamesArr = [];
+      //const buildingNamesArr = [];
 
       const departmentTable = document.getElementById("routes");
       let departmentTableHTML = "";
@@ -674,13 +711,14 @@ function addBuilding() {
         const department = data[index].department_name;
 
         // add department to array
-        departmentNamesArr.push(data[index]);
+
+        // departmentNamesArr.push(data[index]);
 
         for (let index2 = 0; index2 < data[index].buildings.length; index2++) {
           const building = data[index].buildings[index2].building_name;
 
           // add building to array
-          buildingNamesArr.push(data[index].buildings[index2]);
+          //buildingNamesArr.push(data[index].buildings[index2]);
 
           var dep = "<tr><td>" + department + "</td><td>"+ building + "</td><td><button class=\"btn btn-sm btn-outline-danger\" onclick=\"deleteRoute("+ data[index].buildings[index2].route_id + ")\">Delete</button></td></tr>";
           var build = "<tr><td></td><td>"+ building + "</td><td><button class=\"btn btn-sm btn-outline-danger\" onclick=\"deleteRoute("+ data[index].buildings[index2].route_id + ")\">Delete</button></td></tr>";
@@ -696,27 +734,6 @@ function addBuilding() {
 
       // set our element's innerHTML to our variable
       departmentTable.innerHTML = departmentTableHTML;
-
-      // populate drop downs
-      const departmentDropDown = document.getElementById("departmentdropdown");
-      const buildingDropDown = document.getElementById("buildingdropdown");
-
-    
-      var html1 = "";
-      for (let index = 0; index < departmentNamesArr.length; index++) {
-        let department = departmentNamesArr[index];
-        html1 += "<option id=\"" + department.department_id + "\">" + department.department_name + "</option>"
-        
-      }
-
-      departmentDropDown.innerHTML = html1;
-
-      var html = "";
-      for (let index = 0; index < buildingNamesArr.length; index++) {
-        let building = buildingNamesArr[index];
-        html += "<option id=\"" + building.building_id + "\">" + building.building_name + "</option>"
-      }
-      buildingDropDown.innerHTML = html;
 
     }).catch(err => {
         console.log(err);

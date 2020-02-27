@@ -203,6 +203,7 @@ if (!isset($_GET['id'])){
             var element = document.getElementById("clue-tab");
             element.classList.remove("disabled");
             document.getElementById("clue-tab").click();
+            return;
           }
         }
       }
@@ -254,6 +255,16 @@ if (!isset($_GET['id'])){
 
     // getting our clue data from our current building id
     function getClueData(){
+
+        var incorrect = document.getElementById("incorrect");
+        var success = document.getElementById("correct");
+        incorrect.style.display = "none";
+        success.style.display = "none";
+
+        let questions = document.getElementsByName("choice");
+        questions[0].checked = false;
+        questions[1].checked = false;
+        questions[2].checked = false;
 
         fetch("../app/get_clues.php?building_id=" + building_ids[indexStart-1]).then(response => {
             return response.json();
@@ -346,7 +357,7 @@ if (!isset($_GET['id'])){
                     incorrect.style.display = "none";
                     success.style.display = "none";
                 } 
-                
+
                 // disable the clue tab and move the user back to the Map page
                 var element = document.getElementById("clue-tab");
                 element.classList.add("disabled");
@@ -355,6 +366,8 @@ if (!isset($_GET['id'])){
 
                 // calculate the next route in the treasure trail
                 calcRoute();
+
+                requestAnimationFrame(tick);
 
             // display our alert fail if answer is incorrect
 
@@ -528,5 +541,3 @@ async defer></script>
 
     </body>
 </html>
-
-
