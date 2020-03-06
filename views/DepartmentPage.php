@@ -12,6 +12,22 @@
     src="https://use.fontawesome.com/releases/v5.12.1/js/all.js"
     data-search-pseudo-elements>
   </script>
+  <script src = "../audio/howler.js"></script>
+  <script>
+    var waves = new Howl({
+      src: ['../audio/waves.mp3'],
+      loop: true,
+      volume: 0.05,
+    });
+    var click_sound = new Howl({
+      src: ['../audio/button-click.mp3']
+    });
+
+    function button_click()
+    {
+        click_sound.play();
+    }
+  </script>
   <link rel="stylesheet" type="text/css" href='../public/stylesheets/departmentpage.css'>
 </head>
 
@@ -23,7 +39,7 @@
 ; Author: William Wallitt, Edward Soutar, Bevan Roberts
 ; Date:   25 Feb 2020
 ;========================================== -->
-    
+
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
     <div class="container justify-content-center">
@@ -36,7 +52,7 @@
             <div><div>Choose A Department</h1></div></div>
             <div><div>Choose A Department</h1></div></div>
           </div>
-        </div> 
+        </div>
       </div>
       </div>
     </div>
@@ -58,7 +74,7 @@
     <!-- list of our departments -->
     <ul class="list-group text-center" id="myUL">
 
-    
+
     </ul>
   </div>
 
@@ -73,7 +89,7 @@ fetch("../app/get_departments.php").then(response => {
     return response.json();
 }).then(data => {
   for (i = 0; i < data.length; i++) {
-    $("#myUL").append("<li class=\"list-group-item\"><a href=\"../views/cluepage.php?id=" + data[i].department_id + "\" id=\"btn\">" + data[i].department_name + "<i class=\"fas fa-arrow-right\"></i></a></li>");
+    $("#myUL").append("<li class=\"list-group-item\"><a href=\"javascript:delay('../views/cluepage.php?id=" + data[i].department_id + "')\" id=\"btn\" onclick=button_click()>" + data[i].department_name + "<i class=\"fas fa-arrow-right\"></i></a></li>");
   }
 }).catch(err => {
     // catch err
@@ -83,7 +99,7 @@ fetch("../app/get_departments.php").then(response => {
 function myFunction() {
   // Declare variables
   var input, filter, ul, li, a, i, txtValue;
-  // get input field   
+  // get input field
   input = document.getElementById('myInput');
   // get input value
   filter = input.value.toUpperCase();
@@ -94,7 +110,7 @@ function myFunction() {
 
   // Loop through all list items, and hide those who don't match the search query
   for (i = 0; i < li.length; i++) {
-    // get first tag's contents  
+    // get first tag's contents
     a = li[i].getElementsByTagName("a")[0];
     txtValue = a.textContent || a.innerText;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -106,7 +122,9 @@ function myFunction() {
     }
   }
 }
-
+function delay (URL) {
+    setTimeout( function() { window.location = URL }, 100 );
+}
 
 </script>
 
@@ -116,4 +134,3 @@ function myFunction() {
 
 </body>
 </html>
-

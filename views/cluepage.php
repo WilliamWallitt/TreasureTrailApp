@@ -17,6 +17,106 @@ if (!isset($_GET['id'])){
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="../public/stylesheets/main.css">
   <script src="../jsQR.js"></script>
+  <script src = "../audio/howler.js"></script>
+  <script>
+    var waves = new Howl({
+      src: ['../audio/waves.mp3'],
+      loop: true,
+      volume: 0.05
+    }).play();
+
+    var click_sound = new Howl({
+      src: ['../audio/button-click.mp3']
+    });
+
+    var right = new Howl({
+      src: ['../audio/treasure-chest.mp3'],
+      volume: 0.3
+    });
+
+    var voice = new Howl({
+      src: ['../audio/pirate.mp3'],
+      sprite: {
+        start: [0, 4000],
+        map_1: [4000, 4000],
+        map_2: [8000, 4000],
+        map_3: [12000, 4000],
+        right_1: [16000, 4000],
+        right_2: [20000, 4000],
+        right_3: [24000, 4000],
+        scan_1: [28000, 4000],
+        scan_2: [32000, 4000],
+        scan_3: [36000, 4000],
+        wrong_1: [40000, 4000],
+        wrong_2: [44000, 4000],
+        wrong_3: [48000, 4000]
+      }
+    });
+
+    voice.play('start');
+
+    function button_click()
+    {
+        click_sound.play();
+    }
+
+    function map_voice()
+    {
+      var rand = Math.floor(Math.random() * 3) + 1;
+      if(rand == 1) {
+        voice.play('map_1');
+      }
+      else if(rand == 2) {
+        voice.play('map_2');
+      }
+      else {
+        voice.play('map_3');
+      }
+    }
+
+    function scan_voice()
+    {
+      var rand = Math.floor(Math.random() * 3) + 1;
+      if(rand == 1) {
+        voice.play('scan_1');
+      }
+      else if(rand == 2) {
+        voice.play('scan_2');
+      }
+      else {
+        voice.play('scan_3');
+      }
+    }
+
+    function right_voice()
+    {
+      var rand = Math.floor(Math.random() * 3) + 1;
+      if(rand == 1) {
+        voice.play('right_1');
+      }
+      else if(rand == 2) {
+        voice.play('right_2');
+      }
+      else {
+        voice.play('right_3');
+      }
+      right.play();
+    }
+
+    function wrong_voice()
+    {
+      var rand = Math.floor(Math.random() * 3) + 1;
+      if(rand == 1) {
+        voice.play('wrong_1');
+      }
+      else if(rand == 2) {
+        voice.play('wrong_2');
+      }
+      else {
+        voice.play('wrong_3');
+      }
+    }
+  </script>
 
 
 </head>
@@ -37,13 +137,13 @@ if (!isset($_GET['id'])){
     <!-- Map/Verify Location/ Clue tabs -->
     <ul class="nav nav-pills nav-fill pt-3" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Map</a>
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" onclick=button_click();map_voice()>Map</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Verify location</a>
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" onclick=button_click();scan_voice()>Verify location</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link disabled" id="clue-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" onclick="getClueData()">Clue</a>
+            <a class="nav-link disabled" id="clue-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" onclick=button_click();"getClueData()">Clue</a>
         </li>
     </ul>
     <!-- Tab content -->
@@ -61,10 +161,10 @@ if (!isset($_GET['id'])){
                 </div>
 
                 <!-- arrow container -->
-                <a class="arrow-wrap" href="#content">
+                <a class="arrow-wrap" href="#content" onclick=button_click()>
                     <span class="arrow"></span>
                 </a>
-                    
+
                 <!-- directions container -->
                 <div class="container d-flex justify-content-center" id="content">
                     <div id="directionsPanel"></div>
@@ -113,19 +213,19 @@ if (!isset($_GET['id'])){
             <div class="container text-align-center h4">
                 <hr/>
                 <div class="custom-control custom-radio d-flex justify-content-center">
-                    <input id="q1" name="choice" type="radio" class="custom-control-input">
+                    <input id="q1" name="choice" type="radio" class="custom-control-input" onclick=button_click()>
                     <label class="custom-control-label" for="q1"><div class="person" id="question1">3 sets of stairs</div></label>
                 </div>
                 <div class="custom-control custom-radio d-flex justify-content-center">
-                    <input id="q2" name="choice" type="radio" class="custom-control-input">
+                    <input id="q2" name="choice" type="radio" class="custom-control-input" onclick=button_click()>
                     <label class="custom-control-label" for="q2"><div class="person" id="question2">1 sets of stairs</div></label>
                 </div>
                 <div class="custom-control custom-radio d-flex justify-content-center">
-                    <input id="q3" name="choice" type="radio" class="custom-control-input">
+                    <input id="q3" name="choice" type="radio" class="custom-control-input" onclick=button_click()>
                     <label class="custom-control-label" for="q3"><div class="person" id="question3">5 sets of stairs</div></label>
                 </div>
-                <div class="d-flex justify-content-center text-center"> 
-                    <button type="submit" class="btn btn-success mt-3" onclick="checkIfCorrect()">Submit</button>
+                <div class="d-flex justify-content-center text-center">
+                    <button type="submit" class="btn btn-success mt-3" onclick="button_click();checkIfCorrect();">Submit</button>
                 </div>
             </div>
             <hr/>
@@ -143,7 +243,7 @@ if (!isset($_GET['id'])){
     </div>
   </div>
 
-<script> 
+<script>
 
 
     // QR code scanner code - creating the video stream + decoding the image
@@ -271,7 +371,7 @@ if (!isset($_GET['id'])){
         }).then(data => {
 
             // populating our HTML tags with found data
-            
+
             document.getElementById("departmentName").innerHTML = buildingNames[indexStart-1];
             document.getElementById("extraInfo").innerHTML = routeExtraInfo[indexStart-1];
             document.getElementById("clue").innerHTML = data[0].clue;
@@ -288,7 +388,7 @@ if (!isset($_GET['id'])){
             question3.innerHTML = data[0].answers[2].answer;
             question3.setAttribute("answer_id", data[0].answers[2].answer_id);
 
-            
+
         }).catch(err => {
             // catch err
             console.log(err);
@@ -312,7 +412,7 @@ if (!isset($_GET['id'])){
             isAnswerTrue(answer_id)
 
 
-    
+
         } else if (questions[1].checked) {
 
             element = document.getElementById("question2");
@@ -356,12 +456,12 @@ if (!isset($_GET['id'])){
                 } else {
                     incorrect.style.display = "none";
                     success.style.display = "none";
-                } 
-
+                }
+                right_voice();
                 // disable the clue tab and move the user back to the Map page
                 var element = document.getElementById("clue-tab");
                 element.classList.add("disabled");
-                
+
                 document.getElementById("home-tab").click();
 
                 // calculate the next route in the treasure trail
@@ -378,7 +478,8 @@ if (!isset($_GET['id'])){
                 } else {
                     success.style.display = "none";
                     incorrect.style.display = "none";
-                } 
+                }
+                wrong_voice();
             }
         }).catch(err => {
             // catch err
@@ -449,7 +550,7 @@ if (!isset($_GET['id'])){
                 }
                 // all this does is add our current position at the front of the array
                 array.unshift(pos);
-                
+
                 // now as we have the users current location and the building locations coordinates
                 // we can now display the map and directions the user can take to the first location
                 initMap();
