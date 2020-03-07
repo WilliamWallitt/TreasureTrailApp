@@ -594,6 +594,82 @@ class database {
         return count($result) == 1;
     }
 
+    public function exists_user($user) {
+        global $connection;
+
+        $team_name_param = $connection->escape_string($user->team_name);
+        $sql = "SELECT * FROM users WHERE team_name='$team_name_param' LIMIT 1";
+
+        $result = $this->query($sql);
+        return count($result) == 1;
+    }
+
+    public function create_user($user) {
+        global $connection;
+
+        if ($this->exists_user($user)) {
+            return FALSE;
+        }
+
+        $team_name_param = $connection->escape_string($user->team_name);
+        $department_id_param = $connection->escape_string($user->department_id);
+        $building_id = $this->get_route($user->department_id)[0]->building_id;
+        $sql = "INSERT INTO users (team_name, department_id, current_building_id) VALUES ('$team_name_param', '$department_id_param', '$building_id')";
+
+        $result = $this->general_query($sql);
+
+        $user_object = new stdClass();
+        $user_object->user_id = $connection->insert_id;
+        return $user_object;
+    }
+
+    public function update_tracking($tracking) {
+        global $connection;
+
+        $user_id_param = $connection->escape_string($tracking->user_id);
+        $building_id_param = $connection->escape_string($tracking->building_id);
+        $sql = "UPDATE `users` SET `current_building_id`='$building_id_param' WHERE `user_id`='$user_id_param'";
+
+        $result = $this->general_query($sql);
+    }
+
+    public function update_score($user) {
+        global $connection;
+
+        $score = 60000/($user->seconds + 60);
+        if ($user->attempts == 0) {
+            $score += 1000;
+        } else {
+            $score += 1000/(1.25 * $user->attempts);
+        }
+
+        $user_id_param = $connection->escape_string($user->user_id);
+        $score_param = $connection->escape_string($score);
+        $sql = "UPDATE `users` SET `score`=score+$score_param WHERE `user_id`='$user_id_param'";
+
+        $result = $this->general_query($sql);
+        return $result;
+    }
+
+    public function get_leaderboard($department_id) {
+        global $connection;
+
+        $department_id_param = $connection->escape_string($department_id);
+        $sql = "SELECT * FROM `users` WHERE `department_id`='$department_id_param' ORDER BY score DESC LIMIT 25";
+ 
+        $result = $this->query($sql);
+
+        $users = array();
+        foreach ($result as $user) {
+            $user_object = new stdClass();
+            $user_object->team_name = $user['team_name'];
+            $user_object->score = $user['score'];
+
+            $users[] = $user_object;
+        }
+        return $users;
+    }
+
     /**
      * Executes a query from an SQL statement which requires rows to be returned,
      * e.g. SELECT
