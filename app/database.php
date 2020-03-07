@@ -623,6 +623,26 @@ class database {
         return $user_object;
     }
 
+    public function get_all_tracking() {
+        global $connection;
+
+        $sql = "SELECT * FROM `users` WHERE `completed`=0";
+
+        $result = $this->query($sql);
+        $users = array();
+        foreach ($result as $user) {
+            $user_object = new stdClass();
+            $user_object->user_id = $user['user_id'];
+            $user_object->team_name = $user['team_name'];
+            $user_object->department_id = $user['department_id'];
+            $user_object->current_building_id = $user['current_building_id'];
+            $user_object->score = $user['score'];
+
+            $users[] = $user_object;
+        }
+        return $users;
+    }
+
     public function update_tracking($tracking) {
         global $connection;
 
@@ -668,6 +688,25 @@ class database {
             $users[] = $user_object;
         }
         return $users;
+    }
+
+    public function get_leaderboard_position($user_id, $department_id) {
+        global $connection;
+
+        $user_id_param = $connection->escape_string($user_id);
+        $department_id_param = $connection->escape_string($department_id);
+        $sql = "SELECT ROW_NUMBER() OVER(ORDER BY score DESC) AS rowNum, `user_id`, `score` FROM `users` WHERE `department_id`='$department_id_param' AND `completed`=1";
+ 
+        $result = $this->query($sql);
+
+        $user_object = new stdClass();
+        foreach ($result as $user) {
+            if ($user['user_id'] == $user_id) {
+                $user_object->position = (int)($user['rowNum']);
+                return $user_object;
+            }
+        }
+        return false;
     }
 
     /**
