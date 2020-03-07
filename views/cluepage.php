@@ -35,7 +35,7 @@ if (!isset($_GET['id'])){
     </a>
 
     <!-- Map/Verify Location/ Clue tabs -->
-    <ul class="nav nav-pills nav-fill pt-3" id="myTab" role="tablist">
+    <ul class="nav nav-pills nav-fill mt-1" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Map</a>
         </li>
@@ -79,7 +79,7 @@ if (!isset($_GET['id'])){
 
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
-        <h1 class="d-flex justify-content-center lead">Scan QR Code</h1>
+        <h1 class="d-flex justify-content-center lead m-5" style="font-family: 'pirate'">Scan QR Code</h1>
         <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
         <canvas id="canvas" hidden></canvas>
         <div id="output" hidden>
@@ -181,8 +181,10 @@ if (!isset($_GET['id'])){
         loadingMessage.hidden = true;
         canvasElement.hidden = false;
         outputContainer.hidden = false;
+
         canvasElement.height = window.innerHeight / 2.2;
         canvasElement.width = window.innerWidth;
+
         canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
         var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
         var code = jsQR(imageData.data, imageData.width, imageData.height, {

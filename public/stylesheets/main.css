@@ -3,7 +3,13 @@
 @import url('//fonts.googleapis.com/css?family=Raleway:400,800');
 @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
 
-
+@font-face {
+    font-family: 'pirate';
+    src: url('/treasuremapdeadhand-yla3-webfont.woff2') format('woff2'),
+            url('/treasuremapdeadhand-yla3-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 body {
     animation-name: test;
@@ -14,9 +20,6 @@ body {
     height: 100vh;
     width: 100vw;
 }
-
-
-
 
 /* keyframe animations for entire body */
 @keyframes test {
@@ -61,8 +64,8 @@ td {
     margin-left:-5em;
     background:#111;
     /* size of the circle */
-    width:10em;
-    height:10em;
+    width:8em;
+    height:8em;
     padding:4em 2em;
     border-radius:50%;
     /* scaling font size (of the actual arrow) */
@@ -173,4 +176,9 @@ hr {
 
 #float {
     position: fixed; bottom: 20px; right: 20px;
+}
+
+
+/* button css */
+
 }
