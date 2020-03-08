@@ -1,8 +1,14 @@
 <?php
+require '../app/database.php';
+
 session_start();
 if (!isset($_SESSION['user_id'], $_SESSION['department_id'])) {
 	header("Location: ../views/gamePage.php");
 }
+
+$database = new database();
+$response = $database->reset_score($_SESSION['user_id']);
+$database->close();
 ?>
 
 <!DOCTYPE html>
