@@ -675,7 +675,7 @@ class database {
         global $connection;
 
         $department_id_param = $connection->escape_string($department_id);
-        $sql = "SELECT * FROM `users` WHERE `department_id`='$department_id_param' ORDER BY score DESC LIMIT 25";
+        $sql = "SELECT * FROM `users` WHERE `department_id`='$department_id_param' AND `completed`=1 ORDER BY score DESC LIMIT 25";
  
         $result = $this->query($sql);
 
