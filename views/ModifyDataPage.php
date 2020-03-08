@@ -365,7 +365,7 @@ if (!isset($_SESSION['username'])) {
     let answer = document.getElementById("answer").value;
 
     if (question.length == 0 || answer.length == 0) {
-      alert("Please fill in the required fileds");
+      alert("Please fill in the required fields");
       return;
     } 
     fetch('../app/create_faq.php', {
