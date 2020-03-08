@@ -1,7 +1,7 @@
 <?php
-if (!isset($_GET['department_id'])) {
-    header("Location: ../views/gamePage.php");
-    return;
+session_start();
+if (!isset($_SESSION['department_id'])) {
+	header("Location: ../views/gamePage.php");
 }
 ?>
 
