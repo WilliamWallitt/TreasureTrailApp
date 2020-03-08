@@ -9,7 +9,9 @@ html, body {
 
 canvas {
   display: block;
-  position: relative;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
 }
 
 body {
@@ -31,7 +33,7 @@ body {
   margin: 0 auto 20px;
   width: 80vw;
   border-radius: 3px;
-  background-color: rgb(215, 202, 161);
+  background-color: transparent;
   font-size: larger;
   text-align: center;
   clear: both;

@@ -34,16 +34,20 @@ if (!isset($_SESSION['user_id'], $_SESSION['department_id'])) {
         <button class="btn btn-dark btn-sm m-1" type="button" onclick="window.location.href = '../views/faqPage.php'">FAQ's</button>
     </a>
 
+    <a style="position:fixed;bottom:5px;right:90%;margin:0;padding:5px 3px;" href="#">
+        <button class="btn btn-dark btn-sm m-1" type="button" id="score">Score : 0</button>
+    </a>
+
     <!-- Map/Verify Location/ Clue tabs -->
     <ul class="nav nav-pills nav-fill mt-1" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Map</a>
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" style="font-family: 'pirate'">Map</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Verify location</a>
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" style="font-family: 'pirate'">Verify location</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link disabled" id="clue-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" onclick="getClueData()">Clue</a>
+            <a class="nav-link disabled" id="clue-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" onclick="getClueData()" style="font-family: 'pirate'">Clue</a>
         </li>
     </ul>
     <!-- Tab content -->
@@ -144,6 +148,30 @@ if (!isset($_SESSION['user_id'], $_SESSION['department_id'])) {
   </div>
 
 <script> 
+
+
+
+
+    function getScore() {
+
+        var userid = "<?php echo $_SESSION['user_id']; ?>";
+
+        fetch("../app/get_score.php?user_id=" + userid).then(response => {
+            return response.json();
+        }).then(data => {
+            
+            let score = data.score;
+
+            document.getElementById("score").innerText = "Score: " + score + "";
+            
+        }).catch(err => {
+            // catch err
+            console.log(err);
+        });
+
+
+
+    }
 
     var timerEnabled = false;
     var time = 0;
@@ -391,7 +419,7 @@ if (!isset($_SESSION['user_id'], $_SESSION['department_id'])) {
                 // disable the clue tab and move the user back to the Map page
                 var element = document.getElementById("clue-tab");
                 element.classList.add("disabled");
-                
+
                 document.getElementById("home-tab").click();
 
                 // calculate the next route in the treasure trail
@@ -400,7 +428,6 @@ if (!isset($_SESSION['user_id'], $_SESSION['department_id'])) {
                 requestAnimationFrame(tick);
 
                 timerEnabled = false;
-                alert(time);
 
                 fetch('../app/update_score.php', {
                     headers: { "Content-Type": "application/json; charset=utf-8" },
@@ -413,6 +440,7 @@ if (!isset($_SESSION['user_id'], $_SESSION['department_id'])) {
                     }).then(response => {
                         return response.json();
                     }).then(data => {
+                        getScore();
                     });           
 
                 attempts = 0;

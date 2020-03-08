@@ -100,8 +100,9 @@ fetch("../app/get_departments.php").then(response => {
     return response.json();
 }).then(data => {
   for (i = 0; i < data.length; i++) {
-    $("#myUL").append("<li class=\"list-group-item\"><a id=\"btn\" onclick=\"onDepartmentClick(" + data[i].department_id + ")\">" + data[i].department_name + "</a></li>");
+    $("#myUL").append("<li class=\"list-group-item\"><a style=\"font-family: 'pirate' \" id=\"btn\" onclick=\"onDepartmentClick(" + data[i].department_id + ")\">" + data[i].department_name + "</a></li>");
   }
+
 }).catch(err => {
     // catch err
     console.log(err);

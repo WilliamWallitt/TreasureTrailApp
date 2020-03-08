@@ -48,6 +48,8 @@ if (!isset($_SESSION['username'])) {
     <li class="nav-item"><a data-toggle="pill" href="#Buildings"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%" onclick="fetchBuildings()">Buildings</button></a></li>
     <li class="nav-item"><a data-toggle="pill" href="#Routes"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%" onclick="fetchRoute()">Routes</button></a></li>
     <li class="nav-item"><a data-toggle="pill" href="#FAQ"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%" onclick="fetchFAQs()">FAQ's</button></a></li>
+    <li class="nav-item"><a data-toggle="pill" href="#GroupTracking"><button class="btn btn-outline-light text-dark mb-2 border-bottom" style="width: 100%" onclick="fetchGroupTracking()">Group Tracking</button></a></li>
+
   </ul>
 </div>
 
@@ -307,6 +309,34 @@ if (!isset($_SESSION['username'])) {
           </table>
         </div> 
       </div>
+
+
+      <div class="tab-pane" id="GroupTracking">
+        <div class="container text-center">
+          <h1 class="lead">Group Tracking</h1>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>Solo/Group Name</th>
+                <th>Department Name</th>
+                <th>Current Building</th>
+                <th>Current Score</th>
+              </tr>
+            </thead>
+            <tbody id="grouptracking">
+            </tbody>
+          </table>
+        </div>        
+      </div>
+
+
+
+
+
+
+
     </div><!-- tab content -->
 
   </div>
@@ -483,6 +513,40 @@ function addBuilding() {
   // ; Author: William Wallitt, Justin Van Daalen, Oliver Fawcett
   // ; Date:   25 Feb 2020
   // ;==========================================
+
+
+function fetchGroupTracking() {
+
+  fetch("../app/get_all_tracking.php").then(response => {
+      return response.json();
+  }).then(data => {
+
+    const groupTracking = document.getElementById("grouptracking");
+    let groupTrackingHTML = "";
+    for (let index = 0; index < data.length; index++) {
+      const team_name = data[index].team_name;
+      const department = data[index].department.department_name;
+      const currentBuilding = data[index].current_building.building_name;
+      const score = data[index].score;
+      groupTrackingHTML += "<tr><td>" + team_name + "</td><td>" + department + "</td><td>" + currentBuilding + "</td><td>" + score + "</td></tr>";
+      
+    }
+    groupTracking.innerHTML = groupTrackingHTML;
+  }).catch(err => {
+      console.log(err);
+  });
+
+}
+
+
+
+
+
+
+
+
+
+
 
   function fetchDepartments() {
 

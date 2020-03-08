@@ -16,18 +16,18 @@ if (!isset($_SESSION['department_id'])) {
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="../public/stylesheets/leaderboard.css">
 </head>
-<body style="background: url('../public/img/treasure1.jpg') no-repeat center fixed; background-size: cover;">
-<!-- <body> -->
+<!-- <body style="background: url('../public/img/treasure1.jpg') no-repeat center fixed; background-size: cover;"> -->
+<body>
+
 
     <section class="game">
 
-            <section id="leaderboard" class="screen screen-intro active-screen"> 
+        <canvas id="canvas"></canvas>
 
-                <!-- <canvas id="canvas"></canvas> -->
 
-                
+        <section id="leaderboard" class="screen screen-intro active-screen">
 
-            </section>
+        </section>
     </section>
 
 
@@ -47,7 +47,7 @@ fetch("../app/get_leaderboard.php?department_id=" + <?php echo $_SESSION['depart
     return response.json();
 }).then(data => {
   for (i = 0; i < data.length; i++) {
-    $("#leaderboard").append("<div class=\"button button-credits\"><h1 class=\"lead\">" + data[i].team_name + ": " + data[i].score + "</h1></div>");
+    $("#leaderboard").append("<div class=\"button button-credits\"><h1 class=\"lead\" style=\"font-family: 'pirate' \">" + data[i].team_name + ": " + data[i].score + "</h1></div>");
   }
 
   test();
