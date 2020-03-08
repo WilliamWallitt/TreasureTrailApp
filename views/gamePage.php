@@ -49,7 +49,7 @@
                 <a class="list-group-item">
                     <form class="form-inline md-form form-sm mt-4">
                       <!-- <i class="fas fa-search text-light" aria-hidden="true"></i> -->
-                      <input class="form-control form-control-sm w-100" id="myInput" style="background: rgba(000, 000, 000, 0.2);" onkeyup="myFunction()" type="text" placeholder="Search for department"
+                      <input class="form-control form-control-sm w-100" id="myInput" style="background: rgba(999, 999, 999, 1);" onkeyup="myFunction()" type="text" placeholder="Search for department"
                       aria-label="Search">
                     </form>
                 </a>
