@@ -29,14 +29,14 @@ body {
 
 .button {
   margin: 0 auto 20px;
-  width: 200px;
+  width: 80vw;
   border-radius: 3px;
-  background-color: whitesmoke;
+  background-color: rgb(215, 202, 161);
   font-size: larger;
   text-align: center;
   clear: both;
-  color: black;
-  border: 2px solid white;
+  color: white;
+  /* border: 2px solid white; */
   border-radius: 20px;
   padding: 10px;
   /* background-color: rgba($ligh-grey, .3); */
