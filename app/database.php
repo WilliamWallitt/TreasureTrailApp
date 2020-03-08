@@ -6,7 +6,7 @@
 //;==========================================
 class database {
     private $connection;
-    
+
     function __construct() {
         $this->open();
     }
@@ -27,7 +27,7 @@ class database {
 
     /**
      * Gets all deparmtents from the database
-     * 
+     *
      * @return  array
      */
     public function get_departments() {
@@ -39,9 +39,19 @@ class database {
         return $result;
     }
 
+    public function get_department($department_id) {
+        global $connection;
+
+        $department_id_param = $connection->escape_string($department_id);
+        $sql = "SELECT * FROM departments WHERE department_id='$department_id_param' LIMIT 1";
+
+        $result = $this->query($sql);
+        return $result[0];
+    }
+
     /**
      * Creates a department and adds it to the database
-     * 
+     *
      * @param   object  $department An object, represents a json object with department_name properties
      * @return  bool
      */
@@ -57,7 +67,7 @@ class database {
 
     /**
      * Removes a department given its id
-     * 
+     *
      * @param   string  department_id   An id that represents a department
      * @return  bool
      */
@@ -79,7 +89,7 @@ class database {
 
     /**
      * Fetches all buildings from the database
-     * 
+     *
      * @return array
      */
     public function get_all_buildings() {
@@ -93,12 +103,12 @@ class database {
         foreach ($result as $building) {
             $buildings[] = $building;
         }
-        return $buildings; 
+        return $buildings;
     }
 
     /**
      * Fetches a building's information given its building id
-     * 
+     *
      * @param   string  building_id An id that represents a building
      * @return  object
      */
@@ -114,7 +124,7 @@ class database {
 
     /**
      * Creates a building and adds it to the database
-     * 
+     *
      * @param   object  $building An object representing a json object with building_name, latitude,
      *                            longitude, extra_info and clues as properties
      * @param   bool
@@ -135,13 +145,13 @@ class database {
         $building_id = $connection->insert_id;
         foreach ($building->clues as $clue) {
             $this->create_clue($building_id, $clue);
-        } 
+        }
         return $result;
     }
 
     /**
      * Removes a building given a building id
-     * 
+     *
      * @param   string  $building_id An id that represents a building
      * @return  bool
      */
@@ -163,12 +173,12 @@ class database {
         $sql = "DELETE FROM buildings WHERE building_id='$building_id_param'";
 
         $result = $this->general_query($sql);
-        return $result;     
+        return $result;
     }
 
     /**
      * Fetches all routes pertaining to a department id
-     * 
+     *
      * @param   string  $department_id An id that represents a department
      * @return  array
      */
@@ -192,7 +202,7 @@ class database {
 
     /**
      * Fetches all routes pertaining to a building id
-     * 
+     *
      * @param   string  $building_id An id that represents a building
      * @return  array
      */
@@ -216,7 +226,7 @@ class database {
 
     /**
      * Fetches all routes in the database
-     * 
+     *
      * @return  array
      */
     public function get_all_routes() {
@@ -234,7 +244,7 @@ class database {
 
     /**
      * Fetches all routes pertaining to a department id, as well as all building information
-     * 
+     *
      * @param   string  $department_id An id that represents a department
      * @return  array
      */
@@ -270,7 +280,7 @@ class database {
 
     /**
      * Given a department id, fetches the route and returns the last order id value
-     * 
+     *
      * @param   string  $department_id An id that represents a department
      * @return  string
      */
@@ -293,7 +303,7 @@ class database {
 
     /**
      * Creates a route
-     * 
+     *
      * @param   object  $route  A class that represents a json object with fields department_id, building_id
      * @return  string  $result;
      */
@@ -311,7 +321,7 @@ class database {
 
     /**
      * Removes a route given its route id
-     * 
+     *
      * @param   string  route_id    An id that represents a route
      * @return  bool
      */
@@ -322,12 +332,12 @@ class database {
         $sql = "DELETE FROM routes WHERE route_id='$route_id_param'";
 
         $result = $this->general_query($sql);
-        return $result; 
+        return $result;
     }
 
     /**
      * Get all answers (including the correct field), given a clue id
-     * 
+     *
      * @param   string  $clue_id An id that represents a clue
      * @return  array
      */
@@ -352,7 +362,7 @@ class database {
 
     /**
      * Fetches all answers pertaining to a clue
-     * 
+     *
      * @param   string  $clue_id    An id that represents a clue
      * @return  array
      */
@@ -376,7 +386,7 @@ class database {
 
     /**
      * Creates an answer and adds it to the database
-     * 
+     *
      * @param   string  $clue_id  The id that represents a clue
      * @param   object  $answer Represents a json object with answer & correct fields
      * @return  bool
@@ -395,7 +405,7 @@ class database {
 
     /**
      * Given an answer id, removes an answer from the database
-     * 
+     *
      * @param   string  $answer_id  The id that represents an answer
      * @return  bool
      */
@@ -406,12 +416,12 @@ class database {
         $sql = "DELETE FROM answers WHERE answer_id='$answer_id_param'";
 
         $result = $this->general_query($sql);
-        return $result;  
+        return $result;
     }
 
     /**
      * Fetches all clues from the database, for all buildings
-     * 
+     *
      * @return  object
      */
     public function get_all_clues() {
@@ -430,12 +440,12 @@ class database {
 
             $clues[] = $clue_object;
         }
-        return $clues; 
+        return $clues;
     }
 
     /**
      * Fetches all clues from the database linked to a building id
-     * 
+     *
      * @param   string  $building_id    The id that represents a building in the clues table
      * @return  object
      */
@@ -462,7 +472,7 @@ class database {
 
     /**
      * Creates a clue given a building id and a clue object
-     * 
+     *
      * @param   object  $clue   A class representing a json object with building_id, clue, answers as its fields
      * @return  bool
      */
@@ -484,7 +494,7 @@ class database {
 
     /**
      * Given a clue id, removes a clue from the database, as well as any answers attached to it
-     * 
+     *
      * @param   string  $clue_id Represents the id of a clue
      * @return  bool
      */
@@ -501,12 +511,12 @@ class database {
         $sql = "DELETE FROM clues WHERE clue_id='$clue_id_param'";
 
         $result = $this->general_query($sql);
-        return $result; 
+        return $result;
     }
 
     /**
      * Given an answer's id, checks to see whether the value of the 'correct' column is true or false
-     * 
+     *
      * @param   string  $answer_id   Represents the answer_id column for a row in the 'answers' table
      * @return  bool
      */
@@ -522,7 +532,7 @@ class database {
 
     /**
      * Fetches all FAQs from the database
-     * 
+     *
      * @return object
      */
     public function get_faqs() {
@@ -546,7 +556,7 @@ class database {
 
     /**
      * Creates a FAQ
-     * 
+     *
      * @param   object  $faq A class representing a json object with question & answer properties
      * @return  bool
      */
@@ -563,7 +573,7 @@ class database {
 
     /**
      * Removes a FAQ from the database, given its id
-     * 
+     *
      * @param   string  $faq_id An id which represents a row in the FAQ table
      * @return  bool
      */
@@ -579,7 +589,7 @@ class database {
 
     /**
      * Checks to see if an account exists in the database
-     * 
+     *
      * @param   object  $account A class representing a json object with username & password properties
      * @return  bool
      */
@@ -594,10 +604,151 @@ class database {
         return count($result) == 1;
     }
 
+    public function exists_user($user) {
+        global $connection;
+
+        $team_name_param = $connection->escape_string($user->team_name);
+        $sql = "SELECT * FROM users WHERE team_name='$team_name_param' LIMIT 1";
+
+        $result = $this->query($sql);
+        return count($result) == 1;
+    }
+
+    public function create_user($user) {
+        global $connection;
+
+        if ($this->exists_user($user)) {
+            return FALSE;
+        }
+
+        $team_name_param = $connection->escape_string($user->team_name);
+        $department_id_param = $connection->escape_string($user->department_id);
+        $building_id = $this->get_route($user->department_id)[0]->building_id;
+        $sql = "INSERT INTO users (team_name, department_id, current_building_id) VALUES ('$team_name_param', '$department_id_param', '$building_id')";
+
+        $result = $this->general_query($sql);
+
+        $user_object = new stdClass();
+        $user_object->user_id = $connection->insert_id;
+        return $user_object;
+    }
+
+    public function get_all_tracking() {
+        global $connection;
+
+        $sql = "SELECT * FROM `users` WHERE `completed`=0";
+
+        $result = $this->query($sql);
+        $users = array();
+        foreach ($result as $user) {
+            $user_object = new stdClass();
+            $user_object->user_id = $user['user_id'];
+            $user_object->team_name = $user['team_name'];
+            $user_object->department = $this->get_department($user['department_id']);
+            $user_object->current_building = $this->get_building($user['current_building_id']);
+            $user_object->score = $user['score'];
+
+            $users[] = $user_object;
+        }
+        return $users;
+    }
+
+    public function update_tracking($tracking) {
+        global $connection;
+
+        $user_id_param = $connection->escape_string($tracking->user_id);
+        $building_id_param = $connection->escape_string($tracking->building_id);
+        $sql = "UPDATE `users` SET `current_building_id`='$building_id_param' WHERE `user_id`='$user_id_param'";
+
+        $result = $this->general_query($sql);
+    }
+
+    public function get_score($user_id) {
+        global $connection;
+
+        $user_id_param = $connection->escape_string($user_id);
+        $sql = "SELECT * FROM `users` WHERE `user_id`='$user_id_param'";
+
+        $result = $this->query($sql);
+
+        foreach ($result as $user) {
+            $user_object = new stdClass();
+            $user_object->score = (int)($user['score']);
+            return $user_object;
+        }
+        return FALSE;
+    }
+
+    public function update_score($user) {
+        global $connection;
+
+        $score = 60000/($user->seconds + 60);
+        if ($user->attempts == 0) {
+            $score += 1000;
+        } else {
+            $score += 1000/(1.25 * $user->attempts);
+        }
+
+        $user_id_param = $connection->escape_string($user->user_id);
+        $score_param = $connection->escape_string($score);
+        $sql = "UPDATE `users` SET `score`=score+$score_param WHERE `user_id`='$user_id_param'";
+
+        $result = $this->general_query($sql);
+        return $result;
+    }
+
+    public function reset_score($user_id) {
+        global $connection;
+
+        $user_id_param = $connection->escape_string($user_id);
+        $sql = "UPDATE `users` SET `score`=0 WHERE `user_id`='$user_id_param'";
+
+        $result = $this->general_query($sql);
+        return $result;
+    }
+
+    public function get_leaderboard($department_id) {
+        global $connection;
+
+        $department_id_param = $connection->escape_string($department_id);
+        $sql = "SELECT * FROM `users` WHERE `department_id`='$department_id_param' AND `completed`=1 ORDER BY score DESC LIMIT 25";
+
+        $result = $this->query($sql);
+
+        $users = array();
+        foreach ($result as $user) {
+            $user_object = new stdClass();
+            $user_object->team_name = $user['team_name'];
+            $user_object->score = $user['score'];
+
+            $users[] = $user_object;
+        }
+        return $users;
+    }
+
+    public function get_leaderboard_position($user_id, $department_id) {
+        global $connection;
+
+        $user_id_param = $connection->escape_string($user_id);
+        $department_id_param = $connection->escape_string($department_id);
+        $sql = "SELECT ROW_NUMBER() OVER(ORDER BY score DESC) AS rowNum, `user_id`, `score` FROM `users` WHERE `department_id`='$department_id_param' AND `completed`=1";
+
+        $result = $this->query($sql);
+
+        $user_object = new stdClass();
+        foreach ($result as $user) {
+            if ($user['user_id'] == $user_id) {
+                $user_object->position = (int)($user['rowNum']);
+                return $user_object;
+            }
+        }
+        return false;
+    }
+
     /**
      * Executes a query from an SQL statement which requires rows to be returned,
      * e.g. SELECT
-     * 
+     *
      * @param   string  $sql The SQL statement to execute
      * @return  array
      */
@@ -621,7 +772,7 @@ class database {
      * Executes a query from an SQL statement that requires no rows to be returned,
      * e.g. INSERT, DELETE, etc.
      *
-     * @param   string  $sql The SQL statement to execute 
+     * @param   string  $sql The SQL statement to execute
      * @return  bool
      *
      */
