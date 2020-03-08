@@ -35,12 +35,33 @@ if (!isset($_SESSION['department_id'])) {
   </section>
 
   <!-- Leader board and Credit onlick content -->
-  <section class="screen screen-game">
-    <section id="leaderboard">
+  <section class="screen screen-game" style="width: 75vw">
+    <section>
+
+    <!-- id="leaderboard" -->
+
+      <div class="tab-pane" id="GroupTracking">
+        <div class="container text-center">
+          <h1 class="lead">Leaderboard</h1>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>Position</th>
+                <th>Solo/Group Name</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard">
+            </tbody>
+          </table>
+        </div>        
+      </div>
     </section>
-
-    <a href="../views/finishedPage.php"><h1 class="btn btn-outline-dark" id="menubutton">Go to Game Menu</h1></a>
-
+    <div class="text-center">
+      <a href="../views/finishedPage.php"><h1 class="btn btn-outline-dark" id="menubutton">Go to Game Menu</h1></a>
+    </div>
   </section>
 
 
@@ -58,15 +79,22 @@ if (!isset($_SESSION['department_id'])) {
   fetch("../app/get_leaderboard.php?department_id=" + <?php echo $_SESSION['department_id']; ?>).then(response => {
       return response.json();
   }).then(data => {
+    const leaderBoard = document.getElementById("leaderboard");
+    let leaderBoardHTML = "";
     for (i = 0; i < data.length; i++) {
-      $("#leaderboard").append("<h1 class=\"lead\" id=\"teamscore\">" + data[i].team_name + ": " + data[i].score + "</h1>");
+      const team_name = data[i].team_name;
+      const score = data[i].score;
+      leaderBoardHTML += "<tr><td>" + (i + 1) + "</td><td>" + team_name + "</td><td>" + score + "</td></tr>";
+
     }
 
+    leaderBoard.innerHTML = leaderBoardHTML;
     test();
   }).catch(err => {
       // catch err
       console.log(err);
   });
+
 
     // animations
 (function() {
