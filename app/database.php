@@ -39,6 +39,16 @@ class database {
         return $result;
     }
 
+    public function get_department($department_id) {
+        global $connection;
+
+        $department_id_param = $connection->escape_string($department_id);
+        $sql = "SELECT * FROM departments WHERE department_id='$department_id_param' LIMIT 1";
+
+        $result = $this->query($sql);
+        return $result[0];  
+    }
+
     /**
      * Creates a department and adds it to the database
      * 
@@ -634,8 +644,8 @@ class database {
             $user_object = new stdClass();
             $user_object->user_id = $user['user_id'];
             $user_object->team_name = $user['team_name'];
-            $user_object->department_id = $user['department_id'];
-            $user_object->current_building_id = $user['current_building_id'];
+            $user_object->department = $this->get_department($user['department_id']);
+            $user_object->current_building = $this->get_building($user['current_building_id']);
             $user_object->score = $user['score'];
 
             $users[] = $user_object;
@@ -682,6 +692,16 @@ class database {
         $user_id_param = $connection->escape_string($user->user_id);
         $score_param = $connection->escape_string($score);
         $sql = "UPDATE `users` SET `score`=score+$score_param WHERE `user_id`='$user_id_param'";
+
+        $result = $this->general_query($sql);
+        return $result;
+    }
+
+    public function reset_score($user_id) {
+        global $connection;
+
+        $user_id_param = $connection->escape_string($user_id);
+        $sql = "UPDATE `users` SET `score`=0 WHERE `user_id`='$user_id_param'";
 
         $result = $this->general_query($sql);
         return $result;
