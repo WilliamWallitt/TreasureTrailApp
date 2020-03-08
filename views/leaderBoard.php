@@ -1,3 +1,10 @@
+<?php
+if (!isset($_GET['department_id'])) {
+    header("Location: ../views/gamePage.php");
+    return;
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,27 +21,10 @@
 
     <section class="game">
 
-            <section class="screen screen-intro active-screen"> 
+            <section id="leaderboard" class="screen screen-intro active-screen"> 
 
                 <!-- <canvas id="canvas"></canvas> -->
 
-
-                <div class="button button-credits"><h1 class="lead">Comp Sci: time: 116:59: Score: 1</h1></div>
-                <div class="button button-credits"><h1 class="lead">Comp Sci: time: 116:59: Score: 12991</h1></div>
-                <div class="button button-credits"><h1 class="lead">Comp Sci: time: 116:59: Score: 12991</h1></div>
-                <div class="button button-credits"><h1 class="lead">Comp Sci: time: 116:59: Score: 12991</h1></div>
-                <div class="button button-credits"><h1 class="lead">Comp Sci: time: 116:59: Score: 12991</h1></div>
-                <div class="button button-credits"><h1 class="lead">Comp Sci: time: 116:59: Score: 12991</h1></div>
-                <div class="button button-credits"><h1 class="lead">Comp Sci: time: 116:59: Score: 12991</h1></div>
-                <div class="button button-credits"><h1 class="lead">Comp Sci: time: 116:59: Score: 12991</h1></div>
-                <div class="button button-credits"><h1 class="lead">Comp Sci: time: 116:59: Score: 12991</h1></div>
-                <div class="button button-credits"><h1 class="lead">Comp Sci: time: 116:59: Score: 12991</h1></div>
-                <div class="button button-credits"><h1 class="lead">Comp Sci: time: 116:59: Score: 12991</h1></div>
-                <div class="button button-credits"><h1 class="lead">Comp Sci: time: 116:59: Score: 12991</h1></div>
-                <div class="button button-credits"><h1 class="lead">Comp Sci: time: 116:59: Score: 12991</h1></div>
-                <div class="button button-credits"><h1 class="lead">Comp Sci: time: 116:59: Score: 12991</h1></div>
-                <div class="button button-credits"><h1 class="lead">Comp Sci: time: 116:59: Score: 12991</h1></div>
-                <div class="button button-credits"><h1 class="lead">Comp Sci: time: 116:59: Score: 1</h1></div>
                 
 
             </section>
@@ -53,9 +43,17 @@
 
 <script>
 
-
-
 (function() {
+    fetch("../app/get_leaderboard.php?department_id=" + <?php echo $_GET['department_id']; ?>).then(response => {
+    return response.json();
+}).then(data => {
+  for (i = 0; i < data.length; i++) {
+    $("#leaderboard").append("<div class=\"button button-credits\"><h1 class=\"lead\">" + data[i].team_name + ": " + data[i].score + "</h1></div>");
+  }
+}).catch(err => {
+    // catch err
+    console.log(err);
+});
   var SELECTOR_REPLAY_INTRO_BUTTONS = '#button-replay';
   var SELECTOR_BUTTON_NEWGAME = '.button-newgame';
   var SELECTOR_BUTTON_GAME_MENU = '.button-game-menu';
