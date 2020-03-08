@@ -90,7 +90,7 @@ $database->close();
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
         <h1 class="d-flex justify-content-center lead m-5" style="font-family: 'pirate'">Scan QR Code</h1>
-        <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
+        <div id="loadingMessage" style="font-family: 'pirate'">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
         <canvas id="canvas" hidden></canvas>
         <div id="output" hidden>
             <div hidden><b>Data:</b> <span id="outputData"></span></div>
@@ -118,24 +118,25 @@ $database->close();
 
             <!-- Clue multiple choice questions -->
 
-            <h1 class="question h3 bg-light text-center h2 p-2" id="clue">How many stairs does the Harrison Bulding have?</h1>
+            <h1 class="question h3 bg-light text-center h2 p-2" id="clue" style="font-family: 'pirate'">How many stairs does the Harrison Bulding have?</h1>
 
             <div class="container text-align-center h4">
                 <hr/>
                 <div class="custom-control custom-radio d-flex justify-content-center">
                     <input id="q1" name="choice" type="radio" class="custom-control-input">
-                    <label class="custom-control-label" for="q1"><div class="person" id="question1">3 sets of stairs</div></label>
+                    <label class="custom-control-label" for="q1"><div class="person" id="question1" style="font-family: 'pirate'">3 sets of stairs</div></label>
                 </div>
                 <div class="custom-control custom-radio d-flex justify-content-center">
                     <input id="q2" name="choice" type="radio" class="custom-control-input">
-                    <label class="custom-control-label" for="q2"><div class="person" id="question2">1 sets of stairs</div></label>
+                    <label class="custom-control-label" for="q2"><div class="person" id="question2" style="font-family: 'pirate'">1 sets of stairs</div></label>
                 </div>
                 <div class="custom-control custom-radio d-flex justify-content-center">
                     <input id="q3" name="choice" type="radio" class="custom-control-input">
-                    <label class="custom-control-label" for="q3"><div class="person" id="question3">5 sets of stairs</div></label>
+                    <label class="custom-control-label" for="q3"><div class="person" id="question3" style="font-family: 'pirate'">5 sets of stairs</div></label>
                 </div>
                 <div class="d-flex justify-content-center text-center"> 
-                    <button type="submit" class="btn btn-success mt-3" onclick="checkIfCorrect()">Submit</button>
+                    <button type="submit" id="submitbtn" class="btn btn-success mt-3" onclick="checkIfCorrect()" style="display: none; font-family: 'pirate'" >Submit</button>
+                    <button type="submit" class="btn btn-danger mt-3" id="countdown" style="font-family: 'pirate'">Wait 30's</button>
                 </div>
             </div>
             <hr/>
@@ -143,8 +144,8 @@ $database->close();
             <!-- Extra info -->
 
             <div class="jumbotron vertical-center text-center bg-dark text-light">
-                <h1 class="h2" id="departmentName">Harrison Building</h1>
-                <p class="lead" id="extraInfo">Did you know it was founded in 1932, before WW2!</p>
+                <h1 class="h2" id="departmentName" style="font-family: 'pirate'">Harrison Building</h1>
+                <p class="lead" id="extraInfo" style="font-family: 'pirate'">Did you know it was founded in 1932, before WW2!</p>
             </div>
 
           </div>
@@ -156,6 +157,13 @@ $database->close();
 <script> 
 
 
+
+    // function delaySubmit() {
+
+    //     $('#countdown').delay(30000).hide(0);
+    //     $('#submitbtn').delay(30000).show(0);  
+ 
+    // }
 
 
     function getScore() {
@@ -237,10 +245,29 @@ $database->close();
           console.log("code: " + code.data);
           console.log("building id: " + building_ids[indexStart-1])
 
-          // if the QR code is corret, make the clue tab clickable and move user to it
+          // if the QR code is correct, make the clue tab clickable and move user to it
           if (code.data == building_ids[indexStart-1]) {
             var element = document.getElementById("clue-tab");
             element.classList.remove("disabled");
+            // delaySubmit();
+            var count = 29;
+            // Function to update counters on all elements with class counter
+            var doUpdate = function() {
+                $('#countdown').each(function() {
+                if (count !== 0) {
+                    let countString = "Wait " + count + "'s"
+                    $(this).html(countString);
+                    count = count - 1;
+                } else {
+                    $('#countdown').hide();
+                    $('#submitbtn').show(); 
+                }
+                });
+            };
+
+            // Schedule the update to happen once every second
+            setInterval(doUpdate, 1000);
+
             document.getElementById("clue-tab").click();
             return;
           }
