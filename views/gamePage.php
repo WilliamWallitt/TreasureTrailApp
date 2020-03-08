@@ -94,6 +94,7 @@ function onDepartmentClick(department_id) {
     });
 }
 
+
       // getting the departments from the DB -> setting them as <Li></Li> elements
 fetch("../app/get_departments.php").then(response => {
     return response.json();
@@ -225,17 +226,34 @@ function myFunction() {
                 return;
             }
 
-            event.preventDefault();
-            reverseIntroButtons();
-            timelineIntroScreen.eventCallback('onReverseComplete', function() {
-            fadeToScreen('screen-game');
-            $("body").css({"background-image": 'url(' + "../public/img/treasure1.jpg" + ')', "background-position": "center", "background-repeat" : "no-repeat", "background-size" : "cover", "position" : "relative"});
-            // $("body").css("background-color", "black");
-            $("#canvas").hide();
-            
+            fetch('../app/exists_user.php', {
+              headers: { "Content-Type": "application/json; charset=utf-8" },
+              method: 'POST',
+              body: JSON.stringify({
+                team_name: $("#teamname").val(),
+              })
+            }).then(response => {
+              return response.json();
+            }).then(data => {
+              if (data == true) {
+
+                $("#teamname").val("");
+                $("#teamname").attr("placeholder", "name taken");
+
+                return;
+              }
+
+              e.preventDefault();
+              reverseIntroButtons();
+              timelineIntroScreen.eventCallback('onReverseComplete', function() {
+                fadeToScreen('screen-game');
+                $("body").css({"background-image": 'url(' + "../public/img/treasure1.jpg" + ')', "background-position": "center", "background-repeat" : "no-repeat", "background-size" : "cover", "position" : "relative"});
+                // $("body").css("background-color", "black");
+                $("#canvas").hide();
+              });
             });
         }
-    });
+  });
 
   $(document).on('click', SELECTOR_BUTTON_NEWGAME, function(event) {
 
@@ -245,15 +263,34 @@ function myFunction() {
         return;
     }
 
-    event.preventDefault();
-    reverseIntroButtons();
-    timelineIntroScreen.eventCallback('onReverseComplete', function() {
+    fetch('../app/exists_user.php', {
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      method: 'POST',
+      body: JSON.stringify({
+        team_name: $("#teamname").val(),
+      })
+    }).then(response => {
+      return response.json();
+    }).then(data => {
+      if (data == true) {
+
+        $("#teamname").val("");
+        $("#teamname").attr("placeholder", "name taken");
+
+
+        return;
+      }
+
+      event.preventDefault();
+      reverseIntroButtons();
+      timelineIntroScreen.eventCallback('onReverseComplete', function() {
       fadeToScreen('screen-game');
       $(".layer").css({"background-color": "transparent"});
-    //   $('body').css('background-image', 'url(' + "../public/img/treasure1.jpg" + ')');
+      //   $('body').css('background-image', 'url(' + "../public/img/treasure1.jpg" + ')');
       $("body").css({"background-image": 'url(' + "../public/img/treasure1.jpg" + ')', "background-position": "center", "background-repeat" : "no-repeat", "background-size" : "cover", "position" : "relative"});
       // $("body").css("background-color", "black");
       $("#canvas").hide();
+    });
 
     });
   });

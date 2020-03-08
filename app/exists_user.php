@@ -13,5 +13,5 @@ $database = new database();
 $response = $database->exists_user($user);
 $database->close();
 
-echo json_encode(TRUE);
+echo json_encode($response);
 ?>
