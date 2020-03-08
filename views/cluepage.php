@@ -1,6 +1,6 @@
 <?php
-if (!isset($_GET['id'])){
-    header('Location: ../views/DepartmentPage.php');
+if (!isset($_GET['user_id'], $_GET['department_id'])){
+    header('Location: ../views/gamePage.php');
     exit();
 }
 ?>
@@ -145,6 +145,9 @@ if (!isset($_GET['id'])){
 
 <script> 
 
+    var timerEnabled = false;
+    var time = 0;
+    var attempts = 0;
 
     // QR code scanner code - creating the video stream + decoding the image
 
@@ -234,7 +237,7 @@ if (!isset($_GET['id'])){
     // in the department page
 
     function getRoute(){
-        var department_id = "<?php echo $_GET['id']; ?>";
+        var department_id = "<?php echo $_GET['department_id']; ?>";
         fetch("../app/get_route.php?department_id=" + department_id).then(response => {
             return response.json();
         }).then(data => {
@@ -296,10 +299,35 @@ if (!isset($_GET['id'])){
             console.log(err);
         });
 
+        fetch('../app/update_tracking.php', {
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+        method: 'POST',
+        body: JSON.stringify({
+            user_id: "<?php echo $_GET['user_id']; ?>",
+            building_id: building_ids[indexStart]
+        })
+        }).then(response => {
+            return response.json();
+        }).then(data => {
+        });
+
+        timerEnabled = true;
+        time = 0;
+        setTimeout(timer, 1000);
+    }
+
+    function timer() {
+        if (!timerEnabled) {
+            return;
+        }
+        time++;
+        setTimeout(timer, 1000);
     }
 
     // checking if the selected answer is the correct one
     function checkIfCorrect() {
+
+        attempts++;
 
         let element;
         let answer_id;
@@ -371,6 +399,23 @@ if (!isset($_GET['id'])){
 
                 requestAnimationFrame(tick);
 
+                timerEnabled = false;
+                alert(time);
+
+                fetch('../app/update_score.php', {
+                    headers: { "Content-Type": "application/json; charset=utf-8" },
+                    method: 'POST',
+                    body: JSON.stringify({
+                        user_id: "<?php echo $_GET['user_id']; ?>",
+                        seconds: time,
+                        attempts: attempts - 1,
+                    })
+                    }).then(response => {
+                        return response.json();
+                    }).then(data => {
+                    });           
+
+                attempts = 0;
             // display our alert fail if answer is incorrect
 
             } else if (data == false) {
@@ -405,7 +450,7 @@ if (!isset($_GET['id'])){
     // this initalises our map, populates our arrays and finds the users current location
     // navigating them to the first department in the treasure trail
     function init_route(){
-        var department_id = "<?php echo $_GET['id']; ?>";
+        var department_id = "<?php echo $_GET['department_id']; ?>";
         fetch("../app/get_route.php?department_id=" + department_id).then(response => {
             return response.json();
         }).then(data => {

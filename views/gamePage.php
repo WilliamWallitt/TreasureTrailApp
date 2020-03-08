@@ -72,14 +72,34 @@
 
 <script>
 
+var teamname;
 
+function onDepartmentClick(department_id) {
+
+  fetch('../app/create_user.php', {
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      method: 'POST',
+      body: JSON.stringify({
+        team_name: $("#teamname").val(),
+        department_id: department_id
+      })
+    }).then(response => {
+      return response.json();
+    }).then(data => {
+      if (data == false) {
+        // display message that name already exists
+        return;
+      }
+      window.location.href = "../views/cluepage.php?user_id=" + data.user_id + "&department_id=" + department_id;
+    });
+}
 
       // getting the departments from the DB -> setting them as <Li></Li> elements
 fetch("../app/get_departments.php").then(response => {
     return response.json();
 }).then(data => {
   for (i = 0; i < data.length; i++) {
-    $("#myUL").append("<li class=\"list-group-item\"><a href=\"../views/cluepage.php?id=" + data[i].department_id + "\" id=\"btn\">" + data[i].department_name + "</a></li>");
+    $("#myUL").append("<li class=\"list-group-item\"><a id=\"btn\" onclick=\"onDepartmentClick(" + data[i].department_id + ")\">" + data[i].department_name + "</a></li>");
   }
 }).catch(err => {
     // catch err
@@ -199,9 +219,9 @@ function myFunction() {
 
   $(document).on('keypress',function(e) {
         if(e.which == 13) {
-            var groupname = $("#teamname").val();
+            teamname = $("#teamname").val();
 
-            if (groupname.length < 1) {
+            if (teamname.length < 1) {
                 return;
             }
 
@@ -209,6 +229,7 @@ function myFunction() {
             reverseIntroButtons();
             timelineIntroScreen.eventCallback('onReverseComplete', function() {
             fadeToScreen('screen-game');
+            $("body").css({"background-image": 'url(' + "../public/img/treasure1.jpg" + ')', "background-position": "center", "background-repeat" : "no-repeat", "background-size" : "cover", "position" : "relative"});
             $("body").css("background-color", "black");
             $("#canvas").hide();
             

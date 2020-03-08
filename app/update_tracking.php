@@ -13,5 +13,5 @@ $database = new database();
 $response = $database->update_tracking($tracking);
 $database->close();
 
-echo json_encode($response, JSON_PRETTY_PRINT);
+echo json_encode(TRUE);
 ?>
