@@ -29,7 +29,7 @@ if (!isset($_SESSION['department_id'])) {
 
   <section class="game">
   <section class="screen screen-intro active-screen"> 
-    <div class="button button-leaderboard"><h1 class="display-5">Whooooo You Finished!</h1></div>
+    <div class="button button-leaderboard"><h1 class="display-5" id="finishedPosition">Whooooo You Finished </h1></div>
     <div class="button button-newgame"><h1 class="lead" id="backtodep" onclick="backtoDepartments()">New Game</h1></div>
     <div class="button button-newgame"><h1 class="lead">Leader Board</h1></div>
   </section>
@@ -88,12 +88,50 @@ if (!isset($_SESSION['department_id'])) {
 
     }
 
+    getPosition();
+
     leaderBoard.innerHTML = leaderBoardHTML;
     test();
   }).catch(err => {
       // catch err
       console.log(err);
   });
+
+
+  function getPlaceSuperscript(number) {
+    let numString = number + "";
+    let lenString = numString.length;
+
+    if ((numString).charAt(lenString - 1) == "1") {
+      return "st";
+    } else if ((numString).charAt(lenString - 1) == "2") {
+      return "nd";
+    } else if ((numString).charAt(lenString - 1) == "3"){
+      return "rd";
+    } else {
+      return "th";
+    }
+  }
+
+
+  function getPosition() {
+
+    fetch("../app/get_leaderboard_position.php?user_id=" + <?php echo $_SESSION['user_id']; ?> +"&department_id=" + <?php echo $_SESSION['department_id']; ?>).then(response => {
+        return response.json();
+    }).then(data => {
+        const position = data.position;
+        if (data == false) {
+          $("#finishedPosition").text("Whoooo You Finished!");
+          return;
+        }
+        $("#finishedPosition").text("You Finished in " + position + getPlaceSuperscript(position) + " place!");
+
+    }).catch(err => {
+        // catch err
+        console.log(err);
+    });
+
+  }
 
 
     // animations
@@ -196,7 +234,7 @@ if (!isset($_SESSION['department_id'])) {
 // redirect user back to department page when clicked
 function backtoDepartments() {
 
-    window.location.href = "../views/DepartmentPage.php";
+    window.location.href = "../views/gamePage.php";
 
 }
 </script>

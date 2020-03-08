@@ -87,7 +87,6 @@ function onDepartmentClick(department_id) {
       return response.json();
     }).then(data => {
       if (data == false) {
-        // display message that name already exists
         return;
       }
       window.location.href = "../views/cluepage.php";
