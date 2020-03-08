@@ -11,12 +11,28 @@ body {
 }
 
 #map {
-    height: 100vh;
-    width: 100vw;
+  position: relative;
+  width:100vw;
+  height:80vh;
 }
-
-
-
+#map-overlay {
+  position: absolute;
+  top: 70px;
+  right: 5px;
+  z-index: 1;
+}
+#map-overlay-image {
+  height: 50px;
+  width: 50px;
+}
+#content {
+  background-image: url("../img/parchment.png");
+  background-position: top center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  position: absolute;
+  top:585px;
+}
 
 /* keyframe animations for entire body */
 @keyframes test {
@@ -42,58 +58,41 @@ td {
 }
 
 /* two classes same style (.class1, .class2) */
-.adp-directions, .adp-summary {
+.adp-directions{
     text-align: center;
     margin: auto;
-    border: 1px solid black;
     padding: 10px;
-    
 }
 
+.adp-placemark {
+   display:none;
+}
 
-.arrow-wrap {
+.adp-summary, .adp-stepicon, .adp-maneuver, .adp-distance, .adp-geocoded_waypoints {
+      display: none;
+}
+
+.warnbox-content,.adp-warnbox {
+visibility:hidden;
+}
+
+.wax-seal {
+  width: 100px;
+  height: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.wax-seal-wrap {
     position: relative;
-    z-index:1;
+    z-index:2;
     /* horizontal centering */
-    left:50%;
+    left: 50%;
+    transform: translateX(-50%);
     /* so its not fully in the first div */
-    top:-5em;
-    margin-left:-5em;
-    background:#111;
-    /* size of the circle */
-    width:10em;
-    height:10em;
-    padding:4em 2em;
-    border-radius:50%;
-    /* scaling font size (of the actual arrow) */
-    font-size:0.5em;
-    display:block;
+    top:-50px;
 }
 
-.arrow {
-
-    float:left;
-    position:relative;
-    width: 0px;
-    height: 0px;
-    border-style: solid;
-    border-width: 3em 3em 0 3em;
-    border-color: #ffffff transparent transparent transparent;
-    -webkit-transform:rotate(360deg)
-}
-
-.arrow:after {
-    content:'';
-    position:absolute;
-    top:-3.2em;
-    left:-3em;
-    width: 0px;
-    height: 0px;
-    border-style: solid;
-    border-width: 3em 3em 0 3em;
-    border-color: #111 transparent transparent transparent;
-    -webkit-transform:rotate(360deg)
-}
 /* moz support */
 @-webkit-keyframes arrows {
     0% { top:0; }
@@ -108,12 +107,6 @@ td {
     90% { top:15%; }
     100% { top:0; }
 }
-
-.arrow-wrap .arrow {
-    -webkit-animation: arrows 2.8s 0.4s infinite;
-    -webkit-animation-delay: 2s;
-}
-
 
 /* for the clue tab */
 
