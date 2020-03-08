@@ -1,6 +1,10 @@
 <?php
 session_start();
+if (!isset($_SESSION['department_id'])) {
+	header("Location: ../views/gamePage.php");
+}
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,15 +32,15 @@ session_start();
     <div class="button button-leaderboard"><h1 class="display-5">Whooooo You Finished!</h1></div>
     <div class="button button-newgame"><h1 class="lead" id="backtodep" onclick="backtoDepartments()">New Game</h1></div>
     <div class="button button-newgame"><h1 class="lead">Leader Board</h1></div>
-    <div class="button button-newgame"><h1 class="lead">Credits</h1></div>
   </section>
 
   <!-- Leader board and Credit onlick content -->
   <section class="screen screen-game">
-    <h3>
-      Leader Board and Credits coming soon!
-    </h3>
-    <a href="../views/finishedPage.php"><h1 class=lead>Go to Game Menu</h1></a>
+    <section id="leaderboard">
+    </section>
+
+    <a href="../views/finishedPage.php"><h1 class="btn btn-outline-dark" id="menubutton">Go to Game Menu</h1></a>
+
   </section>
 
 
@@ -50,6 +54,19 @@ session_start();
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 <script>
+
+  fetch("../app/get_leaderboard.php?department_id=" + <?php echo $_SESSION['department_id']; ?>).then(response => {
+      return response.json();
+  }).then(data => {
+    for (i = 0; i < data.length; i++) {
+      $("#leaderboard").append("<h1 class=\"lead\" id=\"teamscore\">" + data[i].team_name + ": " + data[i].score + "</h1>");
+    }
+
+    test();
+  }).catch(err => {
+      // catch err
+      console.log(err);
+  });
 
     // animations
 (function() {

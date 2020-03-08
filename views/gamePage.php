@@ -13,7 +13,7 @@
   </script>
   <link rel="stylesheet" type="text/css" href='../public/stylesheets/gamepage.css'>
 </head>
-<body id="background">
+<body id="background" style="height:100vh">
 
 <!-- ;==========================================
 ; Title:  Front end Department Page - HTML
@@ -49,7 +49,7 @@
                 <a class="list-group-item">
                     <form class="form-inline md-form form-sm mt-4">
                       <!-- <i class="fas fa-search text-light" aria-hidden="true"></i> -->
-                      <input class="form-control form-control-sm w-90" id="myInput" onkeyup="myFunction()" type="text" placeholder="Search for department"
+                      <input class="form-control form-control-sm w-100" id="myInput" style="background: rgba(000, 000, 000, 0.2);" onkeyup="myFunction()" type="text" placeholder="Search for department"
                       aria-label="Search">
                     </form>
                 </a>
@@ -102,7 +102,6 @@ fetch("../app/get_departments.php").then(response => {
   for (i = 0; i < data.length; i++) {
     $("#myUL").append("<li class=\"list-group-item\"><a style=\"font-family: 'pirate' \" id=\"btn\" onclick=\"onDepartmentClick(" + data[i].department_id + ")\">" + data[i].department_name + "</a></li>");
   }
-
 }).catch(err => {
     // catch err
     console.log(err);
@@ -232,7 +231,7 @@ function myFunction() {
             timelineIntroScreen.eventCallback('onReverseComplete', function() {
             fadeToScreen('screen-game');
             $("body").css({"background-image": 'url(' + "../public/img/treasure1.jpg" + ')', "background-position": "center", "background-repeat" : "no-repeat", "background-size" : "cover", "position" : "relative"});
-            $("body").css("background-color", "black");
+            // $("body").css("background-color", "black");
             $("#canvas").hide();
             
             });
@@ -251,10 +250,10 @@ function myFunction() {
     reverseIntroButtons();
     timelineIntroScreen.eventCallback('onReverseComplete', function() {
       fadeToScreen('screen-game');
+      $(".layer").css({"background-color": "transparent"});
     //   $('body').css('background-image', 'url(' + "../public/img/treasure1.jpg" + ')');
       $("body").css({"background-image": 'url(' + "../public/img/treasure1.jpg" + ')', "background-position": "center", "background-repeat" : "no-repeat", "background-size" : "cover", "position" : "relative"});
-
-      $("body").css("background-color", "black");
+      // $("body").css("background-color", "black");
       $("#canvas").hide();
 
     });
@@ -443,7 +442,6 @@ window.onresize = function () {
     dimH = Math.ceil(height / settings.size);
     initLogs();
 };
-
 
 
 

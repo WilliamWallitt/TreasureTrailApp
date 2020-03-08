@@ -1,16 +1,15 @@
-@font-face {
-  font-family: 'pirate';
-  src: url('/treasuremapdeadhand-yla3-webfont.woff2') format('woff2'),
-          url('/treasuremapdeadhand-yla3-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-
-
 $dark-blue: #2c3e50;
 $ligh-grey: #ecf0f1;
 
+
+
+@font-face {
+  font-family: 'pirate';
+  src: url('/treasuremapdeadhand-yla3-webfont.woff2') format('woff2'),
+       url('/treasuremapdeadhand-yla3-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
 
 html {
@@ -24,6 +23,7 @@ html {
   background-attachment: fixed; */
 
   /* background-image: url("#"); */
+  
   background-color: black no-repeat center fixed; 
   background-size: cover;
 }
@@ -69,8 +69,6 @@ ul {
 }
 
 
-
-
 #btn {
     outline: none;
     border: none;
@@ -78,6 +76,7 @@ ul {
     display: block;
     position: relative;
     /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: 'pirate';
     /* background: #ffffff; */
     background: transparent;
     font-weight: 300px;

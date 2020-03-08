@@ -682,7 +682,10 @@ class database {
     public function update_score($user) {
         global $connection;
 
-        $score = 60000/($user->seconds + 60);
+        $score = 60000/($user->seconds);
+        if ($score > 1000) {
+            $score = 1000;
+        }
         if ($user->attempts == 0) {
             $score += 1000;
         } else {
