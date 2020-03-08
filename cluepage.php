@@ -12,6 +12,7 @@ if (!isset($_GET['id'])){
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Treasure Trail App</title>
   <link href="https://fonts.googleapis.com/css?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Pirata+One&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
   <!-- bootstrap cdn -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -146,21 +147,25 @@ if (!isset($_GET['id'])){
 ;========================================== -->
 
 <body>
+  <body style="background: url('../public/img/backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
+    <div id="coins">
+      <h1 style= "font-family: 'Pirata One', cursive;"><img id="coin-image"src="../public/img/Coins.png" height= 60px><span id = "score">0</span></h1>
+    </div>
 
     <!-- floating FAQ button to FAQ page -->
-    <a style="position:fixed;bottom:5px;right:5px;margin:0;padding:5px 3px;" href="#">
-        <button class="btn btn-dark btn-sm m-1" type="button" onclick="window.location.href = '../views/faqPage.php'">FAQ's</button>
+    <a id="faq" href="#">
+        <button id="faq-button" class="button btn-sm m-1" type="button" onclick="window.location.href = '../views/faqPage.php'">FAQ</button>
     </a>
 
     <!-- Map/Verify Location/ Clue tabs -->
-    <ul class="nav nav-pills nav-fill pt-3" id="myTab" role="tablist">
-        <li class="nav-item">
+    <ul class="nav nav-pills nav-fill navbar-static-top mt-1" id="myTab" role="tablist">
+        <li class="nav-item border border-dark"  styles="background: black;">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" onclick=button_click_paper();map_voice()>Map</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item border border-dark">
             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" onclick=button_click_paper();scan_voice()>Verify location</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item border border-dark">
             <a class="nav-link disabled" id="clue-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" onclick=button_click_paper();"getClueData()">Clue</a>
         </li>
     </ul>
@@ -175,16 +180,18 @@ if (!isset($_GET['id'])){
                 <div class="table-responsive">
                 <!-- map container -->
                 <div class="container-fluid p-0 m-0">
-                    <div id="map" class="border border-dark"></div>
-                    <div id="map-overlay"><img src="https://img.icons8.com/officel/80/000000/wind-rose.png" id="map-overlay-image"></div>
+                  <div id="map" class="border border-dark" style="width:100vw; height:80vh;"></div>
+                  <div id="map-overlay"><img src="../public/img/compass.png" id="map-overlay-image"></div>
                 </div>
 
                 <!-- arrow container -->
                 <a class="wax-seal-wrap" href="#content" onclick=button_click_directions()>
                     <img class="wax-seal" src="../public/img/wax-seal.png">
                 </a>
+
                 <!-- directions container -->
                 <div class="container d-flex justify-content-center" id="content">
+                    <h1 id="directions-title">Directions</h1>
                     <div id="directionsPanel"></div>
                 </div>
               </div>
@@ -197,7 +204,7 @@ if (!isset($_GET['id'])){
 
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
-        <h1 class="d-flex justify-content-center lead">Scan QR Code</h1>
+        <h1 class="d-flex justify-content-center lead m-5" style="font-family: 'pirate'">Scan QR Code</h1>
         <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
         <canvas id="canvas" hidden></canvas>
         <div id="output" hidden>
@@ -226,31 +233,31 @@ if (!isset($_GET['id'])){
 
             <!-- Clue multiple choice questions -->
 
-            <h1 class="question h3 bg-light text-center h2 p-2" id="clue">How many stairs does the Harrison Bulding have?</h1>
+            <h1 class="question h3 text-center h2 p-2" id="clue">How many stairs does the Harrison Bulding have?</h1>
 
-            <div class="container text-align-center h4">
+            <div id:"answers" class="container text-align-center h4">
                 <hr/>
                 <div class="custom-control custom-radio d-flex justify-content-center">
-                    <input id="q1" name="choice" type="radio" class="custom-control-input" onclick=button_click()>
+                    <input id="q1" name="choice" type="radio" class="custom-control-input">
                     <label class="custom-control-label" for="q1"><div class="person" id="question1">3 sets of stairs</div></label>
                 </div>
                 <div class="custom-control custom-radio d-flex justify-content-center">
-                    <input id="q2" name="choice" type="radio" class="custom-control-input" onclick=button_click()>
+                    <input id="q2" name="choice" type="radio" class="custom-control-input">
                     <label class="custom-control-label" for="q2"><div class="person" id="question2">1 sets of stairs</div></label>
                 </div>
                 <div class="custom-control custom-radio d-flex justify-content-center">
-                    <input id="q3" name="choice" type="radio" class="custom-control-input" onclick=button_click()>
+                    <input id="q3" name="choice" type="radio" class="custom-control-input">
                     <label class="custom-control-label" for="q3"><div class="person" id="question3">5 sets of stairs</div></label>
                 </div>
-                <div class="d-flex justify-content-center text-center">
-                    <button type="submit" class="btn btn-success mt-3" onclick="button_click();checkIfCorrect();">Submit</button>
+                <div class="custom-control justify-content-center">
+                    <button id="submit" type="submit" class="button wood" onclick="checkIfCorrect()">Submit</button>
                 </div>
             </div>
             <hr/>
 
             <!-- Extra info -->
 
-            <div class="jumbotron vertical-center text-center bg-dark text-light">
+            <div id="extra-info" class="vertical-center text-center text-dark">
                 <h1 class="h2" id="departmentName">Harrison Building</h1>
                 <p class="lead" id="extraInfo">Did you know it was founded in 1932, before WW2!</p>
             </div>
@@ -338,13 +345,14 @@ if (!isset($_GET['id'])){
     // current location and next location index's
     var indexStart = 0;
     var indexEnd = 1;
+    var score = 500;
 
     // storing coordindates, building_id's, routeExtraInfo and building names in arrays.
     var array = [];
     var building_ids = [];
     var routeExtraInfo = [];
     var buildingNames = [];
-
+    var markers = [];
 
     // fetching the route from the database based on what department id the user has clicked on
     // in the department page
@@ -471,6 +479,7 @@ if (!isset($_GET['id'])){
                 if (success.style.display === "none") {
                     incorrect.style.display = "none";
                     success.style.display = "block";
+                    add_to_score(score);
                 } else {
                     incorrect.style.display = "none";
                     success.style.display = "none";
@@ -482,8 +491,10 @@ if (!isset($_GET['id'])){
 
                 document.getElementById("home-tab").click();
 
+                document.getElementById('coin-image').src='../public/img/Coins4.png';
                 // calculate the next route in the treasure trail
                 calcRoute();
+                updateMarkers();
 
                 requestAnimationFrame(tick);
 
@@ -493,6 +504,7 @@ if (!isset($_GET['id'])){
                 if (incorrect.style.display === "none") {
                     success.style.display = "none";
                     incorrect.style.display = "block";
+                    score = score-100;
                 } else {
                     success.style.display = "none";
                     incorrect.style.display = "none";
@@ -504,6 +516,12 @@ if (!isset($_GET['id'])){
             console.log(err);
         });
 
+    }
+
+    function add_to_score(score){
+      var new_score = document.getElementById('score').innerHTML;
+      new_score = parseInt(new_score)+parseInt(score);
+      document.getElementById('score').innerHTML = new_score;
     }
 
     // option function: converts our coordinates to an address (not used yet)
@@ -568,7 +586,6 @@ if (!isset($_GET['id'])){
                 }
                 // all this does is add our current position at the front of the array
                 array.unshift(pos);
-
                 // now as we have the users current location and the building locations coordinates
                 // we can now display the map and directions the user can take to the first location
                 initMap();
@@ -598,36 +615,187 @@ if (!isset($_GET['id'])){
 
     // simple map application - all this does is get our current location and finds the path to the forum
     function initMap() {
-        // such as loading the google map and the direction service/renderer
-
-        // service to get generate the map with the route and the directions (renderer)
-        // initialising the direction service and "how to get there" service
-
         directionsService = new google.maps.DirectionsService();
-        directionsRenderer = new google.maps.DirectionsRenderer({
-          suppressMarkers: true
-        });
+        directionsRenderer = new google.maps.DirectionsRenderer();
         var forum = new google.maps.LatLng(myLatLng.lat, myLatLng.lng);
-        // setting how much we zoom into the map, and the initial centering of the map
-        var mapOptions = {
-            zoom:15,
-            center: forum,
-            mapTypeControl: false,
-            fullscreenControl: false,
-            streetViewControl: false,
-            zoomControl: false
-        }
-        // create new map object
-        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        //styling the map
+        var styledMapType = new google.maps.StyledMapType(
+            [
+
+              {elementType: 'geometry', stylers: [{color: '#ebe3cd'}]},
+              {elementType: 'labels.text.fill', stylers: [{color: '#523735'}]},
+              {elementType: 'labels.text.stroke', stylers: [{color: '#f5f1e6'}]},
+              {
+                featureType: 'administrative',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#c9b2a6'}]
+              },
+              {
+                featureType: 'administrative.land_parcel',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#dcd2be'}]
+              },
+              {
+                featureType: 'administrative.land_parcel',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#ae9e90'}]
+              },
+              {
+                featureType: 'landscape.natural',
+                elementType: 'geometry',
+                stylers: [{color: '#dfd2ae'}]
+              },
+              {
+                featureType: 'poi',
+                elementType: 'geometry',
+                stylers: [{color: '#dfd2ae'}]
+              },
+              {
+                featureType: 'poi',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#93817c'}]
+              },
+              {
+                featureType: 'poi.park',
+                elementType: 'geometry.fill',
+                stylers: [{color: '#a5b076'}]
+              },
+              {
+                featureType: 'poi.park',
+                elementType: 'labels.text.fill',
+                stylers: [{
+                  color: '#447530',
+                }]
+              },
+              {
+                featureType: 'road',
+                elementType: 'geometry',
+                stylers: [{color: '#f5f1e6'}]
+              },
+
+              {
+                featureType: 'road.arterial',
+                elementType: 'geometry',
+                stylers: [{color: '#fdfcf8'}]
+              },
+              {
+                featureType: 'road.highway',
+                elementType: 'geometry',
+                stylers: [{color: '#f8c967'}]
+              },
+              {
+                featureType: 'road.highway',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#e9bc62'}]
+              },
+              {
+                featureType: 'road.highway.controlled_access',
+                elementType: 'geometry',
+                stylers: [{color: '#e98d58'}]
+              },
+              {
+                featureType: 'road.highway.controlled_access',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#db8555'}]
+              },
+              {
+                featureType: 'road.local',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#806b63'}]
+              },
+              {
+                featureType: 'transit.line',
+                elementType: 'geometry',
+                stylers: [{color: '#dfd2ae'}]
+              },
+              {
+                featureType: 'transit.line',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#8f7d77'}]
+              },
+              {
+                featureType: 'transit.line',
+                elementType: 'labels.text.stroke',
+                stylers: [{color: '#ebe3cd'}]
+              },
+              {
+                featureType: 'transit.station',
+                elementType: 'geometry',
+                stylers: [{color: '#dfd2ae'}]
+              },
+              {
+                featureType: 'water',
+                elementType: 'geometry.fill',
+                stylers: [{color: '#b9d3c2'}]
+              },
+              {
+                  featureType: 'water',
+                  elementType: 'labels.text.fill',
+                  stylers: [{color: '#92998d'}]
+                },
+
+              ],
+              {name: 'Styled Map'});
+
+        // Create a map object, and include the MapTypeId to add
+        // to the map type control.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: forum,
+          zoom: 15,
+          mapTypeControlOptions: {
+            mapTypeIds: [
+                    'styled_map']
+          },
+          mapTypeControl: false,
+          fullscreenControl: false,
+          streetViewControl: false,
+          zoomControl: false
+        });
+
+
+        //Associate the styled map with the MapTypeId and set it to display.
+        map.mapTypes.set('styled_map', styledMapType);
+        map.setMapTypeId('styled_map');
         // set the map object -> load the map
         directionsRenderer.setMap(map);
         // this is loading the directions (list of instructions how to get there)
         directionsRenderer.setPanel(document.getElementById('directionsPanel'));
         // calculate our route (first time its the users current location and the first building's location)
+
+        //Creating icon for treasure chest
+        var treasurechest = {
+          url: '../public/img/treasurechest.png', // url
+          scaledSize: new google.maps.Size(60, 50), // scaled size
+          origin: new google.maps.Point(0,0), // origin
+          anchor: new google.maps.Point(0, 0) // anchor
+        };
+        //setting all the buildings to treasure chestsf
+        for (var i = indexStart+1; i < array.length; i++) {
+          var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(array[i].lat, array[i].lng),
+            map: map,
+            icon: treasurechest,
+            title: buildingNames[i-1]
+          });
+          markers.push(marker);
+        }
         calcRoute();
     }
 
+    //Sets the last visited location to an open treasure chest
+    function updateMarkers(){
+      var open_treasurechest = {
+        url: '../public/img/open_treasurechest.png',
+        scaledSize: new google.maps.Size(60, 50),
+        origin: new google.maps.Point(0,0),
+        anchor: new google.maps.Point(0, 0)
+      };
+      markers[indexStart-1].setIcon(open_treasurechest);
+    }
+
     function calcRoute() {
+      //resetting max score
+      score = 500;
 
         // if we are at the last location - loop
         if (indexEnd > array.length - 1) {
@@ -639,7 +807,8 @@ if (!isset($_GET['id'])){
         var request = {
             origin: new google.maps.LatLng(array[indexStart].lat, array[indexStart].lng),
             destination: new google.maps.LatLng(array[indexEnd].lat, array[indexEnd].lng),
-            travelMode: 'WALKING'
+            travelMode: 'WALKING',
+
         };
         // directionservice is just allowing use to use google to calc route
         // when we make our request -> If it succeeds then we wanna update our index values + update our locations + find directions
@@ -652,6 +821,26 @@ if (!isset($_GET['id'])){
                 indexEnd += 1;
             }
         });
+        var lineSymbol = {
+          path: 'M 0,-1 0,1',
+          strokeOpacity: 1,
+          scale: 4
+        };
+
+        directionsRenderer.setOptions({
+          suppressMarkers: true,
+          polylineOptions: {
+            strokeColor: 'black',
+            strokeOpacity:0,
+            icons: [{
+              icon: lineSymbol,
+              offset: '0',
+              repeat: '20px'
+            }]
+          }
+
+        });
+
     }
 
 
