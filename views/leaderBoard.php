@@ -43,50 +43,55 @@ if (!isset($_GET['department_id'])) {
 
 <script>
 
-(function() {
-    fetch("../app/get_leaderboard.php?department_id=" + <?php echo $_GET['department_id']; ?>).then(response => {
+fetch("../app/get_leaderboard.php?department_id=" + <?php echo $_GET['department_id']; ?>).then(response => {
     return response.json();
 }).then(data => {
   for (i = 0; i < data.length; i++) {
     $("#leaderboard").append("<div class=\"button button-credits\"><h1 class=\"lead\">" + data[i].team_name + ": " + data[i].score + "</h1></div>");
   }
+
+  test();
 }).catch(err => {
     // catch err
     console.log(err);
 });
-  var SELECTOR_REPLAY_INTRO_BUTTONS = '#button-replay';
-  var SELECTOR_BUTTON_NEWGAME = '.button-newgame';
-  var SELECTOR_BUTTON_GAME_MENU = '.button-game-menu';
 
-  var timelineIntroScreen;
 
-  function buildTimelines() {
+function test () {
+
+var SELECTOR_REPLAY_INTRO_BUTTONS = '#button-replay';
+var SELECTOR_BUTTON_NEWGAME = '.button-newgame';
+var SELECTOR_BUTTON_GAME_MENU = '.button-game-menu';
+
+var timelineIntroScreen;
+
+function buildTimelines() {
     timelineIntroScreen = new TimelineMax({
-      paused: false
+    paused: false
     });
 
     timelineIntroScreen.staggerFrom('.screen-intro .button', 2, {
-      css: {
+    css: {
         scale: 0
-      },
-      autoAlpha: 0,
-      ease: Elastic.easeOut
+    },
+    autoAlpha: 0,
+    ease: Elastic.easeOut
     }, .1);
-  }
+}
 
-  function playIntroButtons() {
+function playIntroButtons() {
     timelineIntroScreen.restart();
-  }
+}
 
-  function reverseIntroButtons() {
+function reverseIntroButtons() {
     timelineIntroScreen.reverse();
-  }
+}
 
-  function fadeToScreen(targetScreenClassName) {
+function fadeToScreen(targetScreenClassName) {
     var _nameScreen;
 
     if (!targetScreenClassName) {
-      _nameScreen = 'screen-intro';
+    _nameScreen = 'screen-intro';
     }
 
     _nameScreen = targetScreenClassName;
@@ -99,55 +104,58 @@ if (!isset($_GET['department_id'])) {
     console.log('$elementActiveScreen: ', $elementActiveScreen);    
     
     return TweenMax.to($elementActiveScreen, .4, {
-      autoAlpha: 0,
-      y: '+=10',
-      onComplete: function() {
+    autoAlpha: 0,
+    y: '+=10',
+    onComplete: function() {
         console.log('onComplete: ', $elementTarget);
         
         $elementActiveScreen.removeClass('active-screen');
         
         TweenMax
         .to($elementTarget, .4, {
-          y: '-=10',
-          autoAlpha: 1,
-          className: '+=active-screen'
+        y: '-=10',
+        autoAlpha: 1,
+        className: '+=active-screen'
         });
-      }
+    }
     });
 
-  }
+}
 
-  // Initialize
-  $(document).ready(buildTimelines);
+// Initialize
+$(document).ready(buildTimelines);
 
-  // Bindings
-  $(document).on('click', SELECTOR_REPLAY_INTRO_BUTTONS, function(event) {
+// Bindings
+$(document).on('click', SELECTOR_REPLAY_INTRO_BUTTONS, function(event) {
     event.preventDefault();
 
     if (!$('.screen-intro').hasClass('active-screen')) {
-      return;
+    return;
     }
 
     playIntroButtons();
-  });
+});
 
-  $(document).on('click', SELECTOR_BUTTON_NEWGAME, function(event) {
+$(document).on('click', SELECTOR_BUTTON_NEWGAME, function(event) {
     event.preventDefault();
     reverseIntroButtons();
 
     timelineIntroScreen.eventCallback('onReverseComplete', function() {
-      fadeToScreen('screen-game');
+    fadeToScreen('screen-game');
     });
-  });
+});
 
-  $(document).on('click', SELECTOR_BUTTON_GAME_MENU, function(event) {
+$(document).on('click', SELECTOR_BUTTON_GAME_MENU, function(event) {
     event.preventDefault();
     var tween = fadeToScreen('screen-intro');
     tween.eventCallback('onComplete', function() {
-      playIntroButtons();
+    playIntroButtons();
     });
-  });
-})();
+});
+};
+
+
+
 
 
 
