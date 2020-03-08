@@ -60,6 +60,7 @@ CREATE TABLE `users` (
   `department_id` int NOT NULL,
   `current_building_id` int NOT NULL,
   `score` int NOT NULL DEFAULT 0,
+  `completed` bit NOT NULL DEFAULT 0,
   FOREIGN KEY (`department_id`) REFERENCES `departments`(`department_id`),
   FOREIGN KEY (`current_building_id`) REFERENCES `buildings`(`building_id`)
 );
