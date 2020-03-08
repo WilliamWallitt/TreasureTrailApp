@@ -653,6 +653,22 @@ class database {
         $result = $this->general_query($sql);
     }
 
+    public function get_score($user_id) {
+        global $connection;
+
+        $user_id_param = $connection->escape_string($user_id);
+        $sql = "SELECT * FROM `users` WHERE `user_id`='$user_id_param'";
+
+        $result = $this->query($sql);
+
+        foreach ($result as $user) {
+            $user_object = new stdClass();
+            $user_object->score = (int)($user['score']);
+            return $user_object;
+        }
+        return FALSE;
+    }
+
     public function update_score($user) {
         global $connection;
 
