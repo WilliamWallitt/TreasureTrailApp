@@ -90,7 +90,8 @@ function onDepartmentClick(department_id) {
         // display message that name already exists
         return;
       }
-      window.location.href = "../views/cluepage.php?user_id=" + data.user_id + "&department_id=" + department_id;
+      window.location.href = "../views/cluepage.php";
+      //window.location.href = "../views/cluepage.php?user_id=" + data.user_id + "&department_id=" + department_id;
     });
 }
 

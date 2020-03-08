@@ -1,7 +1,7 @@
 <?php
-if (!isset($_GET['department_id'])) {
-    header("Location: ../views/gamePage.php");
-    return;
+session_start();
+if (!isset($_SESSION['department_id'])) {
+	header("Location: ../views/gamePage.php");
 }
 ?>
 
@@ -44,7 +44,7 @@ if (!isset($_GET['department_id'])) {
 <script>
 
 (function() {
-    fetch("../app/get_leaderboard.php?department_id=" + <?php echo $_GET['department_id']; ?>).then(response => {
+    fetch("../app/get_leaderboard.php?department_id=" + <?php echo $_SESSION['department_id']; ?>).then(response => {
     return response.json();
 }).then(data => {
   for (i = 0; i < data.length; i++) {
