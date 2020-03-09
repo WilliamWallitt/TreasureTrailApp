@@ -125,12 +125,6 @@ button {
 
   transform: translateY(-10vh);
 
-<<<<<<< HEAD
-  background-image: url("../img/parchment.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-=======
   /* background-image: url("../img/parchment.png");
   background-position: top center;
   background-repeat: no-repeat;
@@ -149,7 +143,6 @@ button {
   background-image: url("../img/parchment.png");
   background-size: 100% 100%;
   display: inline-block;
->>>>>>> a3bf94061f77a1771e4bf9d11adcbd5c531c6780
 }
 
 
