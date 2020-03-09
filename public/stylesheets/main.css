@@ -1,13 +1,21 @@
 @import "bourbon";
 
-@import url('http://allfont.net/allfont.css?fonts=treasure-map-deadhand');
 @import url('//fonts.googleapis.com/css?family=Raleway:400,800');
 @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
 
 @font-face {
-    font-family: carved;
-    src: url("../img/stormblade.otf") format("opentype");
+    font-family: 'pirate';
+    src: url('/treasuremapdeadhand-yla3-webfont.woff2') format('woff2'),
+            url('/treasuremapdeadhand-yla3-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
+
+@font-face {
+    font-family: carved;
+    src: url("/stormblade.otf") format("opentype");
+}
+
 
 body {
     animation-name: test;
@@ -22,7 +30,7 @@ body {
 .nav-link{
   color:black;
   background-color: rgba(255, 255, 255, 0.3);
-  font-family: 'Treasure Map Deadhand',Fallback, sans-serif;
+  font-family: 'pirate',Fallback, sans-serif;
   font-size: 20px;
 }
 
@@ -34,7 +42,7 @@ body {
 }
 
 #faq-button {
-  font-family: 'Treasure Map Deadhand',Fallback, sans-serif;
+  font-family: 'pirate',Fallback, sans-serif;
   border: 1px solid black;
   color: black;
   text-shadow: none;
@@ -46,12 +54,12 @@ body {
 #map {
   position: relative;
   width:100vw;
-  height:80vh;
+  height:70vh;
 }
 #map-overlay {
   position: absolute;
-  top: 20%;
-  right: 5%;
+  top:125px;
+  right:0;
   z-index: 1;
 }
 #map-overlay-image {
@@ -113,16 +121,21 @@ button {
   background-image: url("../img/parchment.png");
   background-position: top center;
   background-repeat: no-repeat;
+  background-size:120vw;
+  width: 100vw;
   z-index: 1;
   position: absolute;
-  top:95%;
+  top: 90vh;
 }
 
 #directions-title {
   position: absolute;
-  font-family: 'Treasure Map Deadhand',Fallback, sans-serif;
-  top:15%;
+  font-family: 'pirate',Fallback, sans-serif;
+  font-size: 40px;
+  top:125px;
+  width: 300px;
 }
+
 
 /* keyframe animations for entire body */
 @keyframes test {
@@ -137,7 +150,7 @@ button {
 
 tbody {
     text-align: center;
-    font-family: 'Treasure Map Deadhand',Fallback, sans-serif;
+    font-family: 'pirate',Fallback, sans-serif;
     font-size: 25px;
 }
 
@@ -156,7 +169,7 @@ td {
   padding: 10px;
 }
 
-.adp-summary, .adp-stepicon, .adp-maneuver, .adp-distance,.adp-placemark {
+.adp-summary, .adp-stepicon, .adp-maneuver, .adp-distance, .adp-placemark{
   display: none;
 }
 
@@ -165,11 +178,11 @@ td {
 }
 
 .wax-seal {
-  width: 100px;
-  height: 100px;
+  height: 10vh;
   left: 50%;
   transform: translateX(-50%);
   z-index:3;
+  margin:0;
 }
 
 .wax-seal-wrap {
@@ -179,7 +192,8 @@ td {
     left: 50%;
     transform: translateX(-50%);
     /* so its not fully in the first div */
-    top:-50px;
+    top:-5vh;
+    margin:0;
 }
 
 /* moz support */
