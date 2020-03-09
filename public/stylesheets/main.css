@@ -23,8 +23,13 @@ body {
 
 .nav-item > .active {
   color: Black!important;
-  background-color: rgba(255, 255, 255, 0.3)!important;
+  background-color: rgba(42, 48, 48, 0.3)!important;
 }
+
+/* made sure blue color not shown on hover */
+.nav-item > :hover {
+  color: black!important;
+} 
 
 .nav-link{
   color:black;
@@ -117,15 +122,21 @@ button {
 }
 
 #content {
-  background-image: url("../img/parchment.png");
+  /* background-image: url("../img/parchment.png");
   background-position: top center;
   background-repeat: no-repeat;
   background-size:120vw;
   width: 100vw;
   z-index: 1;
   position: absolute;
-  top: 85vh;
+  top: 85vh; */
+
+  background-image: url("../img/parchment.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 
 #directions-title {
   position: absolute;

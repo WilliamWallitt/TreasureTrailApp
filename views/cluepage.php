@@ -153,20 +153,20 @@ $database->close();
 <body>
 	<body style="background: url('../public/img/backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
     <div id="coins">
-      <h1 style= "font-family: 'Pirata One', cursive;"><img id="coin-image"src="../public/img/Coins.png" height= 60px><span id = "score">0</span></h1>
+      <h1 style= "font-family: 'Pirata One', cursive;"><img id="coin-image"src="../public/img/Coins.png" height= 60px><span id = "score" class="ml-3" style="color: white">0</span></h1>
     </div>
     <!-- floating FAQ button to FAQ page -->
-    <a id="faq" href="#">
+    <!-- <a id="faq" href="#">
         <button id="faq-button" class="button btn-sm m-1" type="button" onclick="window.location.href = '../views/faqPage.php'">FAQ</button>
-    </a>
+    </a> -->
 
-    <a style="position:fixed;bottom:5px;right:90%;margin:0;padding:5px 3px;" href="#">
+    <!-- <a style="position:fixed;bottom:5px;right:90%;margin:0;padding:5px 3px;" href="#">
         <button class="btn btn-dark btn-sm m-1" type="button" id="score">Score : 0</button>
     </a>
 
     <a style="position:fixed;bottom:5px;right:90%;margin:0;padding:5px 3px;" href="#">
         <button class="btn btn-dark btn-sm m-1" type="button" id="score">Score : 0</button>
-    </a>
+    </a> -->
 
     <!-- Map/Verify Location/ Clue tabs -->
 
@@ -195,7 +195,7 @@ $database->close();
 	                <div class="container-fluid p-0 m-0">
 	                  <div id="map" class="border border-dark"></div>
 	                  <div id="map-overlay"><img src="../public/img/compass.png" id="map-overlay-image"></div>
-	                  <div class="wood" id="destination-overlay"><p id="directions-title">Destination</p></div>
+	                  <div class="wood" id="destination-overlay"><p id="directions-title"></p></div>
 	                </div>
 
 	                <!-- arrow container -->
@@ -264,8 +264,8 @@ $database->close();
                 </div>
 
                 <div class="d-flex justify-content-center text-center">
-                   	<button type="submit" id="submitbtn" class="btn btn-success mt-3" onclick="checkIfCorrect()" style="display: none; font-family: 'pirate'" >Submit</button>
-			<button type="submit" class="btn btn-danger mt-3" id="countdown" style="font-family: 'pirate'">Wait 30's</button>
+                   	<button type="submit" id="submitbtn" class="btn btn-dark mt-3" onclick="checkIfCorrect()" style="display: none; font-family: 'pirate'" >Submit</button>
+			    <button type="submit" class="btn btn-dark mt-3" id="countdown" style="font-family: 'pirate'">Wait 30's</button>
                 </div>
             </div>
             <hr/>
@@ -273,7 +273,7 @@ $database->close();
             <!-- Extra info -->
 
 
-            <div id ="extra-info" class="jumbotron vertical-center text-center bg-dark text-light">
+            <div id ="extra-info" class="jumbotron vertical-center text-center bg-transparent text-dark">
                 <h1 class="h2" id="departmentName" style="font-family: 'pirate'">Harrison Building</h1>
                 <p class="lead" id="extraInfo" style="font-family: 'pirate'">Did you know it was founded in 1932, before WW2!</p>
 
@@ -297,26 +297,6 @@ $database->close();
     // }
 
 
-    function getScore() {
-
-        var userid = "<?php echo $_SESSION['user_id']; ?>";
-
-        fetch("../app/get_score.php?user_id=" + userid).then(response => {
-            return response.json();
-        }).then(data => {
-
-            let score = data.score;
-
-            document.getElementById("score").innerText = "Score: " + score + "";
-
-        }).catch(err => {
-            // catch err
-            console.log(err);
-        });
-
-
-
-    }
 
     var timerEnabled = false;
     var time = 0;
@@ -341,7 +321,7 @@ $database->close();
             
             let score = data.score;
 
-            document.getElementById("score").innerText = "Score: " + score + "";
+            document.getElementById("score").innerText =  score + "";
             
         }).catch(err => {
             // catch err
