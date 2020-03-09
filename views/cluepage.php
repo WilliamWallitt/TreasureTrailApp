@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'], $_SESSION['department_id'])) {
 }
 
 $database = new database();
-$response = $database->reset_score($_SESSION['user_id']);
+$response = $database->reset_user($_SESSION['user_id']);
 $database->close();
 ?>
 
@@ -960,21 +960,31 @@ $database->close();
             map: map,
             icon: treasurechest,
             title: buildingNames[i-1]
-          });
-          markers.push(marker);
-        }
-        calcRoute();
-    }
+            });
+            marker.setVisible(false);
+            markers.push(marker);
+          }
+          markers[0].setVisible(true);
+          calcRoute();
+       }
 
     //Sets the last visited location to an open treasure chest
     function updateMarkers(){
+      var treasurechest = {
+        url: '../public/img/treasurechest.pn', // url
+        scaledSize: new google.maps.Size(60, 50), // scaled size
+        origin: new google.maps.Point(0,0), // origin
+        anchor: new google.maps.Point(25, 30) // anchor
+      };
       var open_treasurechest = {
         url: '../public/img/open_treasurechest.png',
         scaledSize: new google.maps.Size(60, 50),
         origin: new google.maps.Point(0,0),
-        anchor: new google.maps.Point(0, 0)
+        anchor: new google.maps.Point(25, 30)
       };
       markers[indexStart-1].setIcon(open_treasurechest);
+      markers[indexStart].setVisible(true);
+      markers[indexStart].setIcon(treasurechest);
     }
 
     function calcRoute() {
@@ -983,7 +993,11 @@ $database->close();
 
         // if we are at the last location - loop
         if (indexEnd > array.length - 1) {
-
+            <?php
+            $database = new database();
+            $response = $database->set_completed_user($_SESSION['user_id']);
+            $database->close();
+            ?>
             window.location.href = "../views/finishedPage.php";
 
         }
