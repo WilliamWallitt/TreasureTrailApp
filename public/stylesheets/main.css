@@ -13,7 +13,7 @@
 
 @font-face {
     font-family: carved;
-    src: url("/stormblade.otf") format("opentype");
+    src: url("../../stormblade.otf") format("opentype");
 }
 
 body {
