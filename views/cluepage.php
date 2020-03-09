@@ -156,7 +156,7 @@ $database->close();
       <h1 style= "font-family: 'Pirata One', cursive;"><img id="coin-image"src="../public/img/Coins.png" height= 60px><span id = "score">0</span></h1>
     </div>
     <!-- floating FAQ button to FAQ page -->
-    <<a id="faq" href="#">
+    <a id="faq" href="#">
         <button id="faq-button" class="button btn-sm m-1" type="button" onclick="window.location.href = '../views/faqPage.php'">FAQ</button>
     </a>
 
