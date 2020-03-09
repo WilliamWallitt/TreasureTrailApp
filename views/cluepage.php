@@ -264,8 +264,8 @@ $database->close();
                 </div>
 
                 <div class="d-flex justify-content-center text-center">
-                    <button id="submit" type="submit" class="button wood" onclick="checkIfCorrect()">Submit</button>
-                    <button type="submit" class="btn btn-danger mt-3" id="countdown" style="font-family: 'pirate'">Wait 30's</button>
+                   	<button type="submit" id="submitbtn" class="btn btn-success mt-3" onclick="checkIfCorrect()" style="display: none; font-family: 'pirate'" >Submit</button>
+			<button type="submit" class="btn btn-danger mt-3" id="countdown" style="font-family: 'pirate'">Wait 30's</button>
                 </div>
             </div>
             <hr/>
