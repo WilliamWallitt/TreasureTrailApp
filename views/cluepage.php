@@ -23,7 +23,124 @@ $database->close();
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="../public/stylesheets/main.css">
   <script src="../jsQR.js"></script>
+	<script src = "../audio/howler.js"></script>
+  <script>
+    var waves = new Howl({
+      src: ['../audio/waves.mp3'],
+      loop: true,
+      volume: 0.05
+    }).play();
 
+    var click_sound_wood = new Howl({
+      src: ['../audio/button-click-wood.mp3']
+    });
+
+    var click_sound_paper = new Howl({
+      src: ['../audio/button-click-paper.mp3']
+    });
+
+    var click_sound_directions = new Howl({
+      src: ['../audio/button-click-paper-1.mp3']
+    });
+
+    var right = new Howl({
+      src: ['../audio/treasure-chest.mp3'],
+      volume: 0.3
+    });
+
+    var voice = new Howl({
+      src: ['../audio/pirate.mp3'],
+      sprite: {
+        start: [0, 4000],
+        map_1: [4000, 4000],
+        map_2: [8000, 4000],
+        map_3: [12000, 4000],
+        right_1: [16000, 4000],
+        right_2: [20000, 4000],
+        right_3: [24000, 4000],
+        scan_1: [28000, 4000],
+        scan_2: [32000, 4000],
+        scan_3: [36000, 4000],
+        wrong_1: [40000, 4000],
+        wrong_2: [44000, 4000],
+        wrong_3: [48000, 4000]
+      }
+    });
+
+    voice.play('start');
+
+    function button_click_wood()
+    {
+        click_sound_wood.play();
+    }
+
+    function button_click_directions()
+    {
+        click_sound_directions.play();
+    }
+
+    function button_click_paper()
+    {
+        click_sound_paper.play();
+    }
+
+    function map_voice()
+    {
+      var rand = Math.floor(Math.random() * 3) + 1;
+      if(rand == 1) {
+        voice.play('map_1');
+      }
+      else if(rand == 2) {
+        voice.play('map_2');
+      }
+      else {
+        voice.play('map_3');
+      }
+    }
+
+    function scan_voice()
+    {
+      var rand = Math.floor(Math.random() * 3) + 1;
+      if(rand == 1) {
+        voice.play('scan_1');
+      }
+      else if(rand == 2) {
+        voice.play('scan_2');
+      }
+      else {
+        voice.play('scan_3');
+      }
+    }
+
+    function right_voice()
+    {
+      var rand = Math.floor(Math.random() * 3) + 1;
+      if(rand == 1) {
+        voice.play('right_1');
+      }
+      else if(rand == 2) {
+        voice.play('right_2');
+      }
+      else {
+        voice.play('right_3');
+      }
+      right.play();
+    }
+
+    function wrong_voice()
+    {
+      var rand = Math.floor(Math.random() * 3) + 1;
+      if(rand == 1) {
+        voice.play('wrong_1');
+      }
+      else if(rand == 2) {
+        voice.play('wrong_2');
+      }
+      else {
+        voice.play('wrong_3');
+      }
+    }
+  </script>
 
 </head>
 
@@ -34,10 +151,17 @@ $database->close();
 ;========================================== -->
 
 <body>
-
+	<body style="background: url('../public/img/backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
+    <div id="coins">
+      <h1 style= "font-family: 'Pirata One', cursive;"><img id="coin-image"src="../public/img/Coins.png" height= 60px><span id = "score">0</span></h1>
+    </div>
     <!-- floating FAQ button to FAQ page -->
-    <a style="position:fixed;bottom:5px;right:5px;margin:0;padding:5px 3px;" href="#">
-        <button class="btn btn-dark btn-sm m-1" type="button" onclick="window.location.href = '../views/faqPage.php'">FAQ's</button>
+    <a id="faq" href="#">
+        <button id="faq-button" class="button btn-sm m-1" type="button" onclick="window.location.href = '../views/faqPage.php'">FAQ</button>
+    </a>
+
+    <a style="position:fixed;bottom:5px;right:90%;margin:0;padding:5px 3px;" href="#">
+        <button class="btn btn-dark btn-sm m-1" type="button" id="score">Score : 0</button>
     </a>
 
     <a style="position:fixed;bottom:5px;right:90%;margin:0;padding:5px 3px;" href="#">
@@ -45,45 +169,49 @@ $database->close();
     </a>
 
     <!-- Map/Verify Location/ Clue tabs -->
-    <ul class="nav nav-pills nav-fill mt-1" id="myTab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" style="font-family: 'pirate'">Map</a>
+
+		<ul class="nav nav-pills nav-fill navbar-static-top mt-1" id="myTab" role="tablist">
+        <li class="nav-item border border-dark"  styles="background: black;">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" onclick=button_click_paper();map_voice()>Map</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" style="font-family: 'pirate'">Verify location</a>
+        <li class="nav-item border border-dark">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" onclick=button_click_paper();scan_voice()>Verify location</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" id="clue-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" onclick="getClueData()" style="font-family: 'pirate'">Clue</a>
+        <li class="nav-item border border-dark">
+            <a class="nav-link disabled" id="clue-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" onclick=button_click_paper();getClueData()>Clue</a>
+
         </li>
     </ul>
     <!-- Tab content -->
   <div class="tab-content" id="myTabContent">
       <!-- Map tab content -->
-    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-      <div class="container p-2">
-        <div class="row justify-content-center">
-          <div class="col-xs-12">
-                <div class="table-responsive">
-                <!-- map container -->
-                <div class="container-fluid p-0 m-0">
-                    <div id="map" class="border border-dark" style="width:100vw; height:80vh;"></div>
-                </div>
+	      <div class="container p-2">
+	        <div class="row justify-content-center">
+	          <div class="col-xs-12">
+	                <div class="table-responsive">
+	                <!-- map container -->
+	                <div class="container-fluid p-0 m-0">
+	                  <div id="map" class="border border-dark"></div>
+	                  <div id="map-overlay"><img src="../public/img/compass.png" id="map-overlay-image"></div>
+	                  <div class="wood" id="destination-overlay"><p id="directions-title">Destination</p></div>
+	                </div>
 
-                <!-- arrow container -->
-                <a class="arrow-wrap" href="#content">
-                    <span class="arrow"></span>
-                </a>
-                    
-                <!-- directions container -->
-                <div class="container d-flex justify-content-center" id="content">
-                    <div id="directionsPanel"></div>
-                </div>
-                </div>
-          </div>
-        </div>
-      </div>
-    </div>
+	                <!-- arrow container -->
+	                <a class="wax-seal-wrap" href="#content" onclick=button_click_directions()>
+	                    <img class="wax-seal" src="../public/img/wax-seal.png">
+	                </a>
+
+	                <!-- directions container -->
+	                <div class="container d-flex justify-content-center" id="content">
+	                    <div id="directionsPanel"></div>
+	                </div>
+	              </div>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
 
     <!-- Verify Location tab content -->
 
@@ -134,8 +262,9 @@ $database->close();
                     <input id="q3" name="choice" type="radio" class="custom-control-input">
                     <label class="custom-control-label" for="q3"><div class="person" id="question3" style="font-family: 'pirate'">5 sets of stairs</div></label>
                 </div>
-                <div class="d-flex justify-content-center text-center"> 
-                    <button type="submit" id="submitbtn" class="btn btn-success mt-3" onclick="checkIfCorrect()" style="display: none; font-family: 'pirate'" >Submit</button>
+
+                <div class="d-flex justify-content-center text-center">
+                    <button id="submit" type="submit" class="button wood" onclick="checkIfCorrect()">Submit</button>
                     <button type="submit" class="btn btn-danger mt-3" id="countdown" style="font-family: 'pirate'">Wait 30's</button>
                 </div>
             </div>
@@ -143,9 +272,11 @@ $database->close();
 
             <!-- Extra info -->
 
-            <div class="jumbotron vertical-center text-center bg-dark text-light">
+
+            <div id ="extra-info" class="jumbotron vertical-center text-center bg-dark text-light">
                 <h1 class="h2" id="departmentName" style="font-family: 'pirate'">Harrison Building</h1>
                 <p class="lead" id="extraInfo" style="font-family: 'pirate'">Did you know it was founded in 1932, before WW2!</p>
+
             </div>
 
           </div>
@@ -154,8 +285,42 @@ $database->close();
     </div>
   </div>
 
-<script> 
+<script>
 
+
+
+    // function delaySubmit() {
+
+    //     $('#countdown').delay(30000).hide(0);
+    //     $('#submitbtn').delay(30000).show(0);
+
+    // }
+
+
+    function getScore() {
+
+        var userid = "<?php echo $_SESSION['user_id']; ?>";
+
+        fetch("../app/get_score.php?user_id=" + userid).then(response => {
+            return response.json();
+        }).then(data => {
+
+            let score = data.score;
+
+            document.getElementById("score").innerText = "Score: " + score + "";
+
+        }).catch(err => {
+            // catch err
+            console.log(err);
+        });
+
+
+
+    }
+
+    var timerEnabled = false;
+    var time = 0;
+    var attempts = 0;
 
 
     // function delaySubmit() {
@@ -260,7 +425,9 @@ $database->close();
                     count = count - 1;
                 } else {
                     $('#countdown').hide();
+
                     $('#submitbtn').show(); 
+
                 }
                 });
             };
@@ -277,7 +444,7 @@ $database->close();
     }
 
     // coordinates for the forum exeter
-    var myLatLng = {lat: 50.735371, lng: -3.533782};
+		var myLatLng = {lat: 50.735371, lng: -3.533782};
     // we have to declare these globally -> so we can call them during the onClick event + the calc route function
     var map;
     var directionsRenderer;
@@ -286,13 +453,14 @@ $database->close();
     // current location and next location index's
     var indexStart = 0;
     var indexEnd = 1;
+    var score = 500;
 
     // storing coordindates, building_id's, routeExtraInfo and building names in arrays.
     var array = [];
     var building_ids = [];
     var routeExtraInfo = [];
     var buildingNames = [];
-
+    var markers = [];
 
     // fetching the route from the database based on what department id the user has clicked on
     // in the department page
@@ -337,7 +505,7 @@ $database->close();
         }).then(data => {
 
             // populating our HTML tags with found data
-            
+
             document.getElementById("departmentName").innerHTML = buildingNames[indexStart-1];
             document.getElementById("extraInfo").innerHTML = routeExtraInfo[indexStart-1];
             document.getElementById("clue").innerHTML = data[0].clue;
@@ -354,7 +522,7 @@ $database->close();
             question3.innerHTML = data[0].answers[2].answer;
             question3.setAttribute("answer_id", data[0].answers[2].answer_id);
 
-            
+
         }).catch(err => {
             // catch err
             console.log(err);
@@ -403,7 +571,7 @@ $database->close();
             isAnswerTrue(answer_id)
 
 
-    
+
         } else if (questions[1].checked) {
 
             element = document.getElementById("question2");
@@ -444,19 +612,22 @@ $database->close();
                 if (success.style.display === "none") {
                     incorrect.style.display = "none";
                     success.style.display = "block";
+                    add_to_score(score);
                 } else {
                     incorrect.style.display = "none";
                     success.style.display = "none";
-                } 
-
+                }
+                right_voice();
                 // disable the clue tab and move the user back to the Map page
                 var element = document.getElementById("clue-tab");
                 element.classList.add("disabled");
 
                 document.getElementById("home-tab").click();
 
+                document.getElementById('coin-image').src='../public/img/Coins4.png';
                 // calculate the next route in the treasure trail
                 calcRoute();
+                updateMarkers();
 
                 requestAnimationFrame(tick);
 
@@ -483,16 +654,24 @@ $database->close();
                 if (incorrect.style.display === "none") {
                     success.style.display = "none";
                     incorrect.style.display = "block";
+                    score = score-100;
                 } else {
                     success.style.display = "none";
                     incorrect.style.display = "none";
-                } 
+                }
+                wrong_voice();
             }
         }).catch(err => {
             // catch err
             console.log(err);
         });
 
+    }
+
+    function add_to_score(score){
+      var new_score = document.getElementById('score').innerHTML;
+      new_score = parseInt(new_score)+parseInt(score);
+      document.getElementById('score').innerHTML = new_score;
     }
 
     // option function: converts our coordinates to an address (not used yet)
@@ -557,7 +736,6 @@ $database->close();
                 }
                 // all this does is add our current position at the front of the array
                 array.unshift(pos);
-                
                 // now as we have the users current location and the building locations coordinates
                 // we can now display the map and directions the user can take to the first location
                 initMap();
@@ -587,30 +765,187 @@ $database->close();
 
     // simple map application - all this does is get our current location and finds the path to the forum
     function initMap() {
-        // such as loading the google map and the direction service/renderer
-
-        // service to get generate the map with the route and the directions (renderer)
-        // initialising the direction service and "how to get there" service
-
         directionsService = new google.maps.DirectionsService();
         directionsRenderer = new google.maps.DirectionsRenderer();
         var forum = new google.maps.LatLng(myLatLng.lat, myLatLng.lng);
-        // setting how much we zoom into the map, and the initial centering of the map
-        var mapOptions = {
-            zoom:15,
-            center: forum
-        }
-        // create new map object
-        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        //styling the map
+        var styledMapType = new google.maps.StyledMapType(
+            [
+
+              {elementType: 'geometry', stylers: [{color: '#ebe3cd'}]},
+              {elementType: 'labels.text.fill', stylers: [{color: '#523735'}]},
+              {elementType: 'labels.text.stroke', stylers: [{color: '#f5f1e6'}]},
+              {
+                featureType: 'administrative',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#c9b2a6'}]
+              },
+              {
+                featureType: 'administrative.land_parcel',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#dcd2be'}]
+              },
+              {
+                featureType: 'administrative.land_parcel',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#ae9e90'}]
+              },
+              {
+                featureType: 'landscape.natural',
+                elementType: 'geometry',
+                stylers: [{color: '#dfd2ae'}]
+              },
+              {
+                featureType: 'poi',
+                elementType: 'geometry',
+                stylers: [{color: '#dfd2ae'}]
+              },
+              {
+                featureType: 'poi',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#93817c'}]
+              },
+              {
+                featureType: 'poi.park',
+                elementType: 'geometry.fill',
+                stylers: [{color: '#a5b076'}]
+              },
+              {
+                featureType: 'poi.park',
+                elementType: 'labels.text.fill',
+                stylers: [{
+                  color: '#447530',
+                }]
+              },
+              {
+                featureType: 'road',
+                elementType: 'geometry',
+                stylers: [{color: '#f5f1e6'}]
+              },
+
+              {
+                featureType: 'road.arterial',
+                elementType: 'geometry',
+                stylers: [{color: '#fdfcf8'}]
+              },
+              {
+                featureType: 'road.highway',
+                elementType: 'geometry',
+                stylers: [{color: '#f8c967'}]
+              },
+              {
+                featureType: 'road.highway',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#e9bc62'}]
+              },
+              {
+                featureType: 'road.highway.controlled_access',
+                elementType: 'geometry',
+                stylers: [{color: '#e98d58'}]
+              },
+              {
+                featureType: 'road.highway.controlled_access',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#db8555'}]
+              },
+              {
+                featureType: 'road.local',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#806b63'}]
+              },
+              {
+                featureType: 'transit.line',
+                elementType: 'geometry',
+                stylers: [{color: '#dfd2ae'}]
+              },
+              {
+                featureType: 'transit.line',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#8f7d77'}]
+              },
+              {
+                featureType: 'transit.line',
+                elementType: 'labels.text.stroke',
+                stylers: [{color: '#ebe3cd'}]
+              },
+              {
+                featureType: 'transit.station',
+                elementType: 'geometry',
+                stylers: [{color: '#dfd2ae'}]
+              },
+              {
+                featureType: 'water',
+                elementType: 'geometry.fill',
+                stylers: [{color: '#b9d3c2'}]
+              },
+              {
+                  featureType: 'water',
+                  elementType: 'labels.text.fill',
+                  stylers: [{color: '#92998d'}]
+                },
+
+              ],
+              {name: 'Styled Map'});
+
+        // Create a map object, and include the MapTypeId to add
+        // to the map type control.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: forum,
+          zoom: 15,
+          mapTypeControlOptions: {
+            mapTypeIds: [
+                    'styled_map']
+          },
+          mapTypeControl: false,
+          fullscreenControl: false,
+          streetViewControl: false,
+          zoomControl: false
+        });
+
+
+        //Associate the styled map with the MapTypeId and set it to display.
+        map.mapTypes.set('styled_map', styledMapType);
+        map.setMapTypeId('styled_map');
         // set the map object -> load the map
         directionsRenderer.setMap(map);
         // this is loading the directions (list of instructions how to get there)
         directionsRenderer.setPanel(document.getElementById('directionsPanel'));
         // calculate our route (first time its the users current location and the first building's location)
+
+        //Creating icon for treasure chest
+        var treasurechest = {
+          url: '../public/img/treasurechest.png', // url
+          scaledSize: new google.maps.Size(60, 50), // scaled size
+          origin: new google.maps.Point(0,0), // origin
+          anchor: new google.maps.Point(0, 0) // anchor
+        };
+        //setting all the buildings to treasure chestsf
+        for (var i = indexStart+1; i < array.length; i++) {
+          var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(array[i].lat, array[i].lng),
+            map: map,
+            icon: treasurechest,
+            title: buildingNames[i-1]
+          });
+          markers.push(marker);
+        }
         calcRoute();
     }
 
+    //Sets the last visited location to an open treasure chest
+    function updateMarkers(){
+      var open_treasurechest = {
+        url: '../public/img/open_treasurechest.png',
+        scaledSize: new google.maps.Size(60, 50),
+        origin: new google.maps.Point(0,0),
+        anchor: new google.maps.Point(0, 0)
+      };
+      markers[indexStart-1].setIcon(open_treasurechest);
+    }
+
     function calcRoute() {
+      //resetting max score
+      score = 500;
 
         // if we are at the last location - loop
         if (indexEnd > array.length - 1) {
@@ -618,11 +953,11 @@ $database->close();
             window.location.href = "../views/finishedPage.php";
 
         }
-
         var request = {
             origin: new google.maps.LatLng(array[indexStart].lat, array[indexStart].lng),
             destination: new google.maps.LatLng(array[indexEnd].lat, array[indexEnd].lng),
-            travelMode: 'WALKING'
+            travelMode: 'WALKING',
+
         };
         // directionservice is just allowing use to use google to calc route
         // when we make our request -> If it succeeds then we wanna update our index values + update our locations + find directions
@@ -630,10 +965,29 @@ $database->close();
             if (status == 'OK') {
                 // setting new directions based on the request
                 directionsRenderer.setDirections(result);
+                document.getElementById('directions-title').innerHTML = markers[indexStart].title
                 // basically we want every click to update the directions loaded - so we go through the list of coords
                 indexStart += 1;
                 indexEnd += 1;
             }
+        });
+        var lineSymbol = {
+          path: 'M 0,-1 0,1',
+          strokeOpacity: 1,
+          scale: 4
+        };
+
+        directionsRenderer.setOptions({
+          suppressMarkers: true,
+          polylineOptions: {
+            strokeColor: 'black',
+            strokeOpacity:0,
+            icons: [{
+              icon: lineSymbol,
+              offset: '0',
+              repeat: '20px'
+            }]
+          }
         });
     }
 
