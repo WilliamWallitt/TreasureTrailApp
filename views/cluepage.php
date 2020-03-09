@@ -143,15 +143,15 @@ $database->close();
     }
     function toggle_sound(){
         if(muted == false){
-	    muted = true;
-	    Howler.mute(true);
-	    document.getElementById('audio-image').src = '../public/img/audioAudio.jpeg';
-	}
-	else {
-	    muted = false;
-	    Howler.mute(false);
-	    document.getElementById('audio-image').src = '../public/img/audioBlack.jpeg';
-	}
+            muted = true;
+            Howler.mute(true);
+            document.getElementById('audio-image').src = '../public/img/audio-mute.png';
+	    }
+        else {
+            muted = false;
+            Howler.mute(false);
+            document.getElementById('audio-image').src = '../public/img/audio.png';
+        }
     }
   </script>
 
@@ -166,12 +166,16 @@ $database->close();
 <body>
 	<body style="background: url('../public/img/backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
     <div id="coins">
-      <h1 style= "font-family: 'Pirata One', cursive;"><img id="coin-image"src="../public/img/Coins.png" height= 60px><span id = "score" class="ml-3" style="color: white">0</span></h1>
+        <div class="row">
+            <div class="column">
+                <h1 style= "font-family: 'Pirata One', cursive;" class="ml-3"><img id="coin-image"src="../public/img/Coins.png" height= 60px><span id = "score" class="ml-3" style="color: white">0</span></h1>
+            </div>
+            <div class="column ml-auto">
+                <image src="../public/img/audio.png" id="audio-image" class="mr-3 mt-1" onclick="toggle_sound()" style="width: 60px; height: 60px;">  
+            </div>
+        </div>
     </div>
-	
-    <a id="audio" style="left: 97%">
-        <button id="audio-button" onclick=toggle_sound() style="margin: 0; padding: 0; background: transparent"><image src="../public/img/audioAudio.jpeg" id="audio-image"></button>
-    </a>
+
 		
 
     <!-- Map/Verify Location/ Clue tabs -->
@@ -185,7 +189,6 @@ $database->close();
         </li>
         <li class="nav-item border border-dark">
             <a class="nav-link disabled" id="clue-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" onclick=button_click_paper();getClueData()>Clue</a>
-
         </li>
     </ul>
     <!-- Tab content -->

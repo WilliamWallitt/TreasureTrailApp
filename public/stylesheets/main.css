@@ -38,29 +38,6 @@ body {
   font-size: 20px;
 }
 
-#audio-image {
-  position:absolute;
-  height: 50px;
-  top:5px;
-  right:0px;
-}
-
-#audio{
-  position:absolute;
-  top:5px;
-  right:70px;
-  margin:0;
-}
-
-#audio-button {
-  text-shadow: none;
-  box-shadow: none;
-  background-color: transparent!important;
-  border-radius: 0px;
-  height: 50px;
-  width:50px;
-}
-
 #faq {
   position:absolute;
   top:5px;
