@@ -682,7 +682,10 @@ class database {
     public function update_score($user) {
         global $connection;
 
-        $score = 60000/($user->seconds + 60);
+        $score = 60000/($user->seconds);
+        if ($score > 1000) {
+            $score = 1000;
+        }
         if ($user->attempts == 0) {
             $score += 1000;
         } else {
@@ -731,14 +734,16 @@ class database {
 
         $user_id_param = $connection->escape_string($user_id);
         $department_id_param = $connection->escape_string($department_id);
-        $sql = "SELECT ROW_NUMBER() OVER(ORDER BY score DESC) AS rowNum, `user_id`, `score` FROM `users` WHERE `department_id`='$department_id_param' AND `completed`=1";
+        $sql = "SELECT `user_id`, `score` FROM `users` WHERE `department_id`='$department_id_param' AND `completed`=1 ORDER BY `score` DESC";
 
         $result = $this->query($sql);
 
         $user_object = new stdClass();
+        $i = 0;
         foreach ($result as $user) {
+            $i++;
             if ($user['user_id'] == $user_id) {
-                $user_object->position = (int)($user['rowNum']);
+                $user_object->position = (int)$i;
                 return $user_object;
             }
         }
