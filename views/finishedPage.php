@@ -16,7 +16,7 @@ if (!isset($_SESSION['department_id'])) {
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="../public/stylesheets/finishedpage.css">
 </head>
-<body>
+<body style="background: url('../public/img/pirateShipBackground.jpg') no-repeat center fixed; background-size: cover;">
 
 
 <!-- ;==========================================
@@ -31,7 +31,7 @@ if (!isset($_SESSION['department_id'])) {
   <section class="screen screen-intro active-screen"> 
     <div class="button button-leaderboard"><h1 class="display-5" id="finishedPosition">Whooooo You Finished </h1></div>
     <div class="button button-newgame"><h1 class="lead" id="backtodep" onclick="backtoDepartments()">New Game</h1></div>
-    <div class="button button-newgame"><h1 class="lead">Leader Board</h1></div>
+    <div class="button button-newgame"><h1 class="lead" id="leader">Leader Board</h1></div>
   </section>
 
   <!-- Leader board and Credit onlick content -->
@@ -75,6 +75,13 @@ if (!isset($_SESSION['department_id'])) {
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 <script>
+
+
+  if ($(window).height() <= 900) {
+
+    $("#leader").css("color", "white");
+    // set color to white of leaderboard
+  }
 
   fetch("../app/get_leaderboard.php?department_id=" + <?php echo $_SESSION['department_id']; ?>).then(response => {
       return response.json();
