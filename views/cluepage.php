@@ -25,6 +25,7 @@ $database->close();
   <script src="../jsQR.js"></script>
 	<script src = "../audio/howler.js"></script>
   <script>
+    var muted = false;
     var waves = new Howl({
       src: ['../audio/waves.mp3'],
       loop: true,
@@ -140,6 +141,18 @@ $database->close();
         voice.play('wrong_3');
       }
     }
+    function toggle_sound(){
+        if(muted == false){
+	    muted = true;
+	    Howler.mute(true);
+	    document.getElementById('audio-image').src = '../public/img/audio-mute.png';
+	}
+	else {
+	    muted = false;
+	    Howler.mute(false);
+	    document.getElementById('audio-image').src = '../public/img/audio.png';
+	}
+    }
   </script>
 
 </head>
@@ -159,12 +172,12 @@ $database->close();
     <!-- <a id="faq" href="#">
         <button id="faq-button" class="button btn-sm m-1" type="button" onclick="window.location.href = '../views/faqPage.php'">FAQ</button>
     </a> -->
-
-    <!-- <a style="position:fixed;bottom:5px;right:90%;margin:0;padding:5px 3px;" href="#">
-        <button class="btn btn-dark btn-sm m-1" type="button" id="score">Score : 0</button>
+	
+    <a id="audio">
+        <button id="audio-button" onclick=toggle_sound()><image src="../public/img/audio.png" id="audio-image"></button>
     </a>
-
-    <a style="position:fixed;bottom:5px;right:90%;margin:0;padding:5px 3px;" href="#">
+		
+    <!-- <a style="position:fixed;bottom:5px;right:90%;margin:0;padding:5px 3px;" href="#">
         <button class="btn btn-dark btn-sm m-1" type="button" id="score">Score : 0</button>
     </a> -->
 
