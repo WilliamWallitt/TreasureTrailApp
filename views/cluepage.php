@@ -444,7 +444,7 @@ $database->close();
     }
 
     // coordinates for the forum exeter
-		var myLatLng = {lat: 50.735371, lng: -3.533782};
+	var myLatLng = {lat: 50.735371, lng: -3.533782};
     // we have to declare these globally -> so we can call them during the onClick event + the calc route function
     var map;
     var directionsRenderer;
@@ -453,7 +453,7 @@ $database->close();
     // current location and next location index's
     var indexStart = 0;
     var indexEnd = 1;
-    var score = 500;
+    // var score = 500;
 
     // storing coordindates, building_id's, routeExtraInfo and building names in arrays.
     var array = [];
@@ -612,7 +612,7 @@ $database->close();
                 if (success.style.display === "none") {
                     incorrect.style.display = "none";
                     success.style.display = "block";
-                    add_to_score(score);
+                    // add_to_score(score);
                 } else {
                     incorrect.style.display = "none";
                     success.style.display = "none";
@@ -624,7 +624,7 @@ $database->close();
 
                 document.getElementById("home-tab").click();
 
-                document.getElementById('coin-image').src='../public/img/Coins4.png';
+                // document.getElementById('coin-image').src='../public/img/Coins4.png';
                 // calculate the next route in the treasure trail
                 calcRoute();
                 updateMarkers();
@@ -654,7 +654,7 @@ $database->close();
                 if (incorrect.style.display === "none") {
                     success.style.display = "none";
                     incorrect.style.display = "block";
-                    score = score-100;
+                    // score = score-100;
                 } else {
                     success.style.display = "none";
                     incorrect.style.display = "none";
@@ -668,11 +668,11 @@ $database->close();
 
     }
 
-    function add_to_score(score){
-      var new_score = document.getElementById('score').innerHTML;
-      new_score = parseInt(new_score)+parseInt(score);
-      document.getElementById('score').innerHTML = new_score;
-    }
+    // function add_to_score(score){
+    //   var new_score = document.getElementById('score').innerHTML;
+    //   new_score = parseInt(new_score)+parseInt(score);
+    //   document.getElementById('score').innerHTML = new_score;
+    // }
 
     // option function: converts our coordinates to an address (not used yet)
     function coordsToAddress(lat, long) {
@@ -945,7 +945,7 @@ $database->close();
 
     function calcRoute() {
       //resetting max score
-      score = 500;
+    //   score = 500;
 
         // if we are at the last location - loop
         if (indexEnd > array.length - 1) {
