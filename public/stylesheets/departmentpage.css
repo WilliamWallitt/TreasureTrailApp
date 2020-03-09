@@ -1,126 +1,120 @@
-/* ;==========================================
-; Title:  Front end Department Page - CSS
-; Author: William Wallitt
-; Date:   25 Feb 2020
-;==========================================  */
-
 body {
-  animation-name: fadeInDown;
-  animation-duration: 1.5s;
+  font-family: 'pirate', sans-serif;
+  /* background-color: black; */
 }
 
-/* animation - that on page load, makes the page look like its dropping down */
 
-@keyframes fadeInDown {
-  0% {
-      opacity: 0;
-      -webkit-transform: translate3d(0, -100%, 0);
-      transform: translate3d(0, -100%, 0);
-  }
-  100% {
-      opacity: 1;
-      -webkit-transform: none;
-      transform: none;
-  }
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
 }
 
-/* Will's custom button code */
 
-#btn {
-  outline: none;
-  border: none;
-  cursor: pointer;
-  display: block;
-  position: relative;
-  background: #ffffff;
-  font-weight: 300px;
-  color: black;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  padding: 25px 80px;
+@font-face {
+  font-family: 'pirate';
+  src: url('../../treasuremapdeadhand-yla3-webfont.woff2') format('woff2'),
+          url('../../treasuremapdeadhand-yla3-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+#pirate {
+  height: 70%;
+  width: 70%;
+  padding-left: 20%;
   margin: 0 auto;
-  border-radius: 20px;
-  box-shadow: 0 6px #000000;
-}
-
-#btn:hover {
-  box-shadow: 0 4px #000000;
-  top: 2px;
-}
-
-#btn:active {
-  box-shadow: none;
-  top: 6px;
-}
-
-@import url('https://fonts.googleapis.com/css?family=Roboto:700');
-
-
-#container {
-color:#999;
-text-transform: uppercase;
-/* font-size:36px; */
-font-weight:bold;
-width:100%;
-bottom:45%;
-display:block;
-}
-
-#flip {
-height:30px;
-overflow:hidden;
-}
-
-#flip > div > div {
-color:#fff;
-padding:0px 12px;
-height:45px;
-margin-bottom:45px;
-display:inline-block;
-}
-
-#flip div:first-child {
-animation: show 5s linear infinite;
-}
-
-#flip div div {
-background:#42c58a;
-}
-#flip div:first-child div {
-background:#4ec7f3;
-}
-#flip div:last-child div {
-background:#DC143C;
-}
-
-@keyframes show {
-0% {margin-top:-270px;}
-5% {margin-top:-180px;}
-33% {margin-top:-180px;}
-38% {margin-top:-90px;}
-66% {margin-top:-90px;}
-71% {margin-top:0px;}
-99.99% {margin-top:0px;}
-100% {margin-top:-270px;}
-}
-
-p {
-position:fixed;
-width:100%;
-bottom:30px;
-font-size:12px;
-color:#999;
-margin-top:200px;
 }
 
 
-@media all and (max-width: 1200px) { /* screen size until 1200px */
-body {
-  font-size: 1.5em; /* 1.5x default size */
+.box {
+  width: 40%;
+  margin: 0 auto;
+  background-clip: padding-box;
+  text-align: center;
 }
+
+.button {
+  font-size: 1em;
+  padding: 10px;
+  color: #fff;
+  border: 2px solid black;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
 }
-@media all and (max-width: 1000px) { /* screen size until 1000px */
-body {
-  font-size: 1.2em; /* 1.2x default size */
+.button:hover {
+  background: white;
 }
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* this is the overlay that covers the whole screen */
+  background: rgba(999, 999, 999, 0.3);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  background-color: transparent;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+}
+.popup .close:hover {
+  color: #fff;
+}
+.popup .content {
+  max-height: 50%;
+  overflow: auto;
+
+}
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+}
+
+
+@media screen and (max-height: 630px){
+
+  #textsize {
+    font-size: large;
+  }
 }
