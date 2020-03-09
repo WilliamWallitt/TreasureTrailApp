@@ -701,11 +701,21 @@ class database {
         return $result;
     }
 
-    public function reset_score($user_id) {
+    public function reset_user($user_id) {
         global $connection;
 
         $user_id_param = $connection->escape_string($user_id);
-        $sql = "UPDATE `users` SET `score`=0 WHERE `user_id`='$user_id_param'";
+        $sql = "UPDATE `users` SET `score`=0, `completed`=0 WHERE `user_id`='$user_id_param'";
+
+        $result = $this->general_query($sql);
+        return $result;
+    }
+
+    public function set_completed_user($user_id) {
+        global $connection;
+
+        $user_id_param = $connection->escape_string($user_id);
+        $sql = "UPDATE `users` SET `completed`=1 WHERE `user_id`='$user_id_param'";
 
         $result = $this->general_query($sql);
         return $result;
