@@ -145,12 +145,12 @@ $database->close();
         if(muted == false){
 	    muted = true;
 	    Howler.mute(true);
-	    document.getElementById('audio-image').src = '../public/img/audio-mute.png';
+	    document.getElementById('audio-image').src = '../public/img/audioAudio.jpeg';
 	}
 	else {
 	    muted = false;
 	    Howler.mute(false);
-	    document.getElementById('audio-image').src = '../public/img/audio.png';
+	    document.getElementById('audio-image').src = '../public/img/audioBlack.jpeg';
 	}
     }
   </script>
@@ -168,18 +168,11 @@ $database->close();
     <div id="coins">
       <h1 style= "font-family: 'Pirata One', cursive;"><img id="coin-image"src="../public/img/Coins.png" height= 60px><span id = "score" class="ml-3" style="color: white">0</span></h1>
     </div>
-    <!-- floating FAQ button to FAQ page -->
-    <!-- <a id="faq" href="#">
-        <button id="faq-button" class="button btn-sm m-1" type="button" onclick="window.location.href = '../views/faqPage.php'">FAQ</button>
-    </a> -->
 	
-    <a id="audio">
-        <button id="audio-button" onclick=toggle_sound()><image src="../public/img/audio.png" id="audio-image"></button>
+    <a id="audio" style="left: 97%">
+        <button id="audio-button" onclick=toggle_sound() style="margin: 0; padding: 0; background: transparent"><image src="../public/img/audioAudio.jpeg" id="audio-image"></button>
     </a>
 		
-    <!-- <a style="position:fixed;bottom:5px;right:90%;margin:0;padding:5px 3px;" href="#">
-        <button class="btn btn-dark btn-sm m-1" type="button" id="score">Score : 0</button>
-    </a> -->
 
     <!-- Map/Verify Location/ Clue tabs -->
 
@@ -340,8 +333,6 @@ $database->close();
             // catch err
             console.log(err);
         });
-
-
 
     }
 
