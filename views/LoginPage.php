@@ -93,7 +93,7 @@ function checkLoginCredentials() {
 
             return;
         }
-        // window.location.href = "../views/ModifyDataPage.php";
+        window.location.href = "../views/ModifyDataPage.php";
 
     });
     return false;

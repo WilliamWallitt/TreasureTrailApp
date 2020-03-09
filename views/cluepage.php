@@ -22,6 +22,8 @@ $database->close();
   <!-- bootstrap cdn -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="../public/stylesheets/main.css">
+  <link rel="stylesheet" type="text/css" href="../public/stylesheets/departmentpage.css">
+
   <script src="../jsQR.js"></script>
 	<script src = "../audio/howler.js"></script>
   <script>
@@ -162,8 +164,6 @@ $database->close();
 ; Author: William Wallitt, Stephen Kubal, Bevan Roberts
 ; Date:   25 Feb 2020
 ;========================================== -->
-
-<body>
 	<body style="background: url('../public/img/backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
     <div id="coins">
         <div class="row">
@@ -174,9 +174,36 @@ $database->close();
                 <image src="../public/img/audio.png" id="audio-image" class="mr-3 mt-1" onclick="toggle_sound()" style="width: 60px; height: 60px;">  
             </div>
         </div>
-    </div>
 
-		
+
+
+    <!-- popup code -->
+
+
+  <div class="box" style="display: none;" style="z-index: 12">
+    <a class="button" id="pirategif" href="#popup1">Let me Pop up</a>
+  </div>
+
+  <video autoplay muted loop id="myVideo" style="display:none; z-index: 9">
+        <source src="../public/img/stormySeas.mp4" type="video/mp4">
+    </video>
+
+  <div id="popup1" class="overlay" style="z-index: 12">
+
+    <div class="popup">
+      <h2><img id="pirate"src="../public/img/talking.gif"></h2>
+      <a class="close" href="#" onclick="hidePopUp()">&times;</a>
+      <!-- <div class="content"> -->
+      <div class="content">
+        <h1 class='text-white' id="textsize">
+          “Ay freshers, I need your help! I’ve lost me treasure all around the campus. I’ve got me treasure map marked out, but I need help getting it back. Been spotting scavengers around these parts recently and the longer I take, the more of me treasure they get. I’ve protected me treasure at each location behind some questions, but in me old age I've forgotten them! Help an old pirate out and help me answer these questions. Time is of the essence, let's get started!"
+        </h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- end pop up code -->
+        
 
     <!-- Map/Verify Location/ Clue tabs -->
 
@@ -319,6 +346,24 @@ $database->close();
  
     // }
 
+    function playPopUp() {
+
+
+      $("#myVideo").show();
+      $(".box").show();
+      // $("#home").hide();
+      document.getElementById("pirategif").click();
+    }
+
+    function hidePopUp() {
+      // $("#home").show();
+      $("#myVideo").hide();
+      $(".box").hide();
+      $("#popup1").hide();
+    }
+
+
+    playPopUp();
 
     function getScore() {
 
@@ -402,7 +447,7 @@ $database->close();
             var element = document.getElementById("clue-tab");
             element.classList.remove("disabled");
             // delaySubmit();
-            var count = 29;
+            var count = 2;
             // Function to update counters on all elements with class counter
             var doUpdate = function() {
                 $('#countdown').each(function() {
@@ -602,8 +647,10 @@ $database->close();
                     // add_to_score(score);
                 } else {
                     incorrect.style.display = "none";
-                    success.style.display = "none";
+                    success.style.display = "block";
                 }
+
+
                 right_voice();
                 // disable the clue tab and move the user back to the Map page
                 var element = document.getElementById("clue-tab");
@@ -644,7 +691,7 @@ $database->close();
                     // score = score-100;
                 } else {
                     success.style.display = "none";
-                    incorrect.style.display = "none";
+                    incorrect.style.display = "block";
                 }
                 wrong_voice();
             }
@@ -692,7 +739,6 @@ $database->close();
                 routeExtraInfo.push(data[i].extra_info);
                 buildingNames.push(data[i].building_name);
             }
-
             geolocation();
         }).catch(err => {
             // catch err
@@ -898,13 +944,12 @@ $database->close();
         // this is loading the directions (list of instructions how to get there)
         directionsRenderer.setPanel(document.getElementById('directionsPanel'));
         // calculate our route (first time its the users current location and the first building's location)
-
         //Creating icon for treasure chest
         var treasurechest = {
           url: '../public/img/treasurechest.png', // url
           scaledSize: new google.maps.Size(60, 50), // scaled size
           origin: new google.maps.Point(0,0), // origin
-          anchor: new google.maps.Point(0, 0) // anchor
+          anchor: new google.maps.Point(30, 25) // anchor
         };
         //setting all the buildings to treasure chestsf
         for (var i = indexStart+1; i < array.length; i++) {

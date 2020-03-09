@@ -57,7 +57,7 @@ body {
 
 #map {
   position: relative;
-  width:100vw;
+  width: 100%;
   height:70vh;
 }
 #map-overlay {
@@ -122,19 +122,22 @@ button {
 }
 
 #content {
+
+  transform: translateY(-10vh);
+
   /* background-image: url("../img/parchment.png");
   background-position: top center;
   background-repeat: no-repeat;
   background-size:120vw;
   width: 100vw;
   z-index: 1;
-  position: absolute;
+  position: relative;
   top: 85vh; */
 
   background-image: url("../img/parchment.png");
-  background-position: center;
-  background-repeat: no-repeat;
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
 }
 
 

@@ -21,6 +21,12 @@ body {
   font-style: normal;
 }
 
+#textsize {
+  text-shadow: 0 0 20px black;
+  /* font-size: 1.38rem; */
+  font-size: larger;
+  width: 100%;
+}
 
 #pirate {
   height: 70%;
@@ -28,6 +34,7 @@ body {
   padding-left: 20%;
   margin: 0 auto;
 }
+
 
 
 .box {
@@ -57,7 +64,7 @@ body {
   left: 0;
   right: 0;
   /* this is the overlay that covers the whole screen */
-  background: rgba(999, 999, 999, 0.3);
+  background: rgba(66, 51, 19, 0.66); 
   transition: opacity 500ms;
   visibility: hidden;
   opacity: 0;
@@ -72,7 +79,7 @@ body {
   padding: 20px;
   background: #fff;
   border-radius: 5px;
-  width: 30%;
+  width: 70%;
   position: relative;
   background-color: transparent;
   transition: all 5s ease-in-out;
@@ -97,7 +104,8 @@ body {
   color: #fff;
 }
 .popup .content {
-  max-height: 50%;
+  max-height: 60%;
+  height: 50%;
   overflow: auto;
 
 }
