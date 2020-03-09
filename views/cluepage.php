@@ -206,18 +206,19 @@ $database->close();
         
 
     <!-- Map/Verify Location/ Clue tabs -->
-
-		<ul class="nav nav-pills nav-fill navbar-static-top mt-1" id="myTab" role="tablist">
-        <li class="nav-item border border-dark"  styles="background: black;">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" onclick=button_click_paper();map_voice()>Map</a>
-        </li>
-        <li class="nav-item border border-dark">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" onclick=button_click_paper();scan_voice()>Verify location</a>
-        </li>
-        <li class="nav-item border border-dark">
-            <a class="nav-link disabled" id="clue-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" onclick=button_click_paper();getClueData()>Clue</a>
-        </li>
-    </ul>
+    <div class="container-fluid">
+      <ul class="nav nav-pills nav-fill navbar-static-top mt-1" id="myTab" role="tablist">
+          <li class="nav-item border border-dark"  styles="background: black;">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" onclick=button_click_paper();map_voice()>Map</a>
+          </li>
+          <li class="nav-item border border-dark">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" onclick=button_click_paper();scan_voice()>Verify location</a>
+          </li>
+          <li class="nav-item border border-dark">
+              <a class="nav-link disabled" id="clue-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" onclick=button_click_paper();getClueData()>Clue</a>
+          </li>
+      </ul>
+    </div>
     <!-- Tab content -->
   <div class="tab-content" id="myTabContent">
       <!-- Map tab content -->
@@ -231,7 +232,8 @@ $database->close();
 	                <div class="container-fluid p-0 m-0">
 	                  <div id="map" class="border border-dark"></div>
 	                  <div id="map-overlay"><img src="../public/img/compass.png" id="map-overlay-image"></div>
-	                  <div class="wood" id="destination-overlay"><p id="directions-title"></p></div>
+	                  <div class="wood" id="destination-overlay"><p class="h1" id="directions-title"></p></div>
+
 	                </div>
 
 	                <!-- arrow container -->

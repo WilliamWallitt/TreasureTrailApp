@@ -63,12 +63,12 @@ body {
 #map-overlay {
   position: absolute;
   top:125px;
-  right:0;
+  right:15vw;
   z-index: 1;
 }
 #map-overlay-image {
-  height: 50px;
-  width: 50px;
+  max-width: 14vw;
+  height: auto;
 
 }
 
@@ -125,19 +125,10 @@ button {
 
   transform: translateY(-10vh);
 
-  /* background-image: url("../img/parchment.png");
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-size:120vw;
-  width: 100vw;
-  z-index: 1;
-  position: relative;
-  top: 85vh; */
-
   background-image: url("../img/parchment.png");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: 50% 50%;
+  background-position: center;
 }
 
 
@@ -145,7 +136,7 @@ button {
   position: absolute;
   font-family: 'pirate',Fallback, sans-serif;
   top:125px;
-  font-size: 10vw;
+  /* font-size: 5vw; */
 }
 
 /* keyframe animations for entire body */

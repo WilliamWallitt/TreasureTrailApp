@@ -24,8 +24,9 @@ body {
 #textsize {
   text-shadow: 0 0 20px black;
   /* font-size: 1.38rem; */
-  font-size: larger;
+  font-size: 4vw;
   width: 100%;
+  overflow: scroll;
 }
 
 #pirate {
@@ -120,9 +121,9 @@ body {
 }
 
 
-@media screen and (max-height: 630px){
+/* @media screen and (max-height: 630px){
 
   #textsize {
     font-size: large;
   }
-}
+} */
