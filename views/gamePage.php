@@ -13,7 +13,7 @@
   </script>
   <link rel="stylesheet" type="text/css" href='../public/stylesheets/gamepage.css'>
 </head>
-<body id="background">
+<body id="background" style="height:100vh">
 
 <!-- ;==========================================
 ; Title:  Front end Department Page - HTML
@@ -49,7 +49,7 @@
                 <a class="list-group-item">
                     <form class="form-inline md-form form-sm mt-4">
                       <!-- <i class="fas fa-search text-light" aria-hidden="true"></i> -->
-                      <input class="form-control form-control-sm w-90" id="myInput" onkeyup="myFunction()" type="text" placeholder="Search for department"
+                      <input class="form-control form-control-sm w-100" id="myInput" style="background: rgba(999, 999, 999, 1);" onkeyup="myFunction()" type="text" placeholder="Search for department"
                       aria-label="Search">
                     </form>
                 </a>
@@ -87,13 +87,13 @@ function onDepartmentClick(department_id) {
       return response.json();
     }).then(data => {
       if (data == false) {
-        // display message that name already exists
         return;
       }
       window.location.href = "../views/cluepage.php";
       //window.location.href = "../views/cluepage.php?user_id=" + data.user_id + "&department_id=" + department_id;
     });
 }
+
 
       // getting the departments from the DB -> setting them as <Li></Li> elements
 fetch("../app/get_departments.php").then(response => {
@@ -102,7 +102,6 @@ fetch("../app/get_departments.php").then(response => {
   for (i = 0; i < data.length; i++) {
     $("#myUL").append("<li class=\"list-group-item\"><a style=\"font-family: 'pirate' \" id=\"btn\" onclick=\"onDepartmentClick(" + data[i].department_id + ")\">" + data[i].department_name + "</a></li>");
   }
-
 }).catch(err => {
     // catch err
     console.log(err);
@@ -227,17 +226,34 @@ function myFunction() {
                 return;
             }
 
-            event.preventDefault();
-            reverseIntroButtons();
-            timelineIntroScreen.eventCallback('onReverseComplete', function() {
-            fadeToScreen('screen-game');
-            $("body").css({"background-image": 'url(' + "../public/img/treasure1.jpg" + ')', "background-position": "center", "background-repeat" : "no-repeat", "background-size" : "cover", "position" : "relative"});
-            $("body").css("background-color", "black");
-            $("#canvas").hide();
-            
+            fetch('../app/exists_user.php', {
+              headers: { "Content-Type": "application/json; charset=utf-8" },
+              method: 'POST',
+              body: JSON.stringify({
+                team_name: $("#teamname").val(),
+              })
+            }).then(response => {
+              return response.json();
+            }).then(data => {
+              if (data == true) {
+
+                $("#teamname").val("");
+                $("#teamname").attr("placeholder", "name taken");
+
+                return;
+              }
+
+              e.preventDefault();
+              reverseIntroButtons();
+              timelineIntroScreen.eventCallback('onReverseComplete', function() {
+                fadeToScreen('screen-game');
+                $("body").css({"background-image": 'url(' + "../public/img/treasure1.jpg" + ')', "background-position": "center", "background-repeat" : "no-repeat", "background-size" : "cover", "position" : "relative"});
+                // $("body").css("background-color", "black");
+                $("#canvas").hide();
+              });
             });
         }
-    });
+  });
 
   $(document).on('click', SELECTOR_BUTTON_NEWGAME, function(event) {
 
@@ -247,15 +263,34 @@ function myFunction() {
         return;
     }
 
-    event.preventDefault();
-    reverseIntroButtons();
-    timelineIntroScreen.eventCallback('onReverseComplete', function() {
-      fadeToScreen('screen-game');
-    //   $('body').css('background-image', 'url(' + "../public/img/treasure1.jpg" + ')');
-      $("body").css({"background-image": 'url(' + "../public/img/treasure1.jpg" + ')', "background-position": "center", "background-repeat" : "no-repeat", "background-size" : "cover", "position" : "relative"});
+    fetch('../app/exists_user.php', {
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      method: 'POST',
+      body: JSON.stringify({
+        team_name: $("#teamname").val(),
+      })
+    }).then(response => {
+      return response.json();
+    }).then(data => {
+      if (data == true) {
 
-      $("body").css("background-color", "black");
+        $("#teamname").val("");
+        $("#teamname").attr("placeholder", "name taken");
+
+
+        return;
+      }
+
+      event.preventDefault();
+      reverseIntroButtons();
+      timelineIntroScreen.eventCallback('onReverseComplete', function() {
+      fadeToScreen('screen-game');
+      $(".layer").css({"background-color": "transparent"});
+      //   $('body').css('background-image', 'url(' + "../public/img/treasure1.jpg" + ')');
+      $("body").css({"background-image": 'url(' + "../public/img/treasure1.jpg" + ')', "background-position": "center", "background-repeat" : "no-repeat", "background-size" : "cover", "position" : "relative"});
+      // $("body").css("background-color", "black");
       $("#canvas").hide();
+    });
 
     });
   });
@@ -443,7 +478,6 @@ window.onresize = function () {
     dimH = Math.ceil(height / settings.size);
     initLogs();
 };
-
 
 
 

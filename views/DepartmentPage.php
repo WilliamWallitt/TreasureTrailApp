@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,10 +29,7 @@
   </script>
   <link rel="stylesheet" type="text/css" href='../public/stylesheets/departmentpage.css'>
 </head>
-
 <body style="background: url('../public/img/departmentBackground.jpg') no-repeat center fixed; background-size: cover;">
-
-
 <!-- ;==========================================
 ; Title:  Front end Department Page - HTML
 ; Author: William Wallitt, Edward Soutar, Bevan Roberts
@@ -61,7 +57,6 @@
 
 <!-- adding border to our list and making sure its centered -->
   <div class="container list-group p-0 border border-dark rounded-lg">
-
     <!-- search bar - want it as a form-group -->
     <a class="list-group-item">
         <form class="form-inline md-form form-sm mt-0">
@@ -74,28 +69,21 @@
     <!-- list of our departments -->
     <ul class="list-group text-center" id="myUL">
 
-
     </ul>
   </div>
-
 </script>
-
 <script>
-
-
 // getting the departments from the DB -> setting them as <Li></Li> elements
-
 fetch("../app/get_departments.php").then(response => {
     return response.json();
 }).then(data => {
   for (i = 0; i < data.length; i++) {
-    $("#myUL").append("<li class=\"list-group-item\"><a href=\"javascript:delay('../views/cluepage.php?id=" + data[i].department_id + "')\" id=\"btn\" onclick=button_click()>" + data[i].department_name + "<i class=\"fas fa-arrow-right\"></i></a></li>");
+    $("#myUL").append("<li class=\"list-group-item\"><a href=\"../views/cluepage.php?id=" + data[i].department_id + "\" id=\"btn\" onclick=button_click()>" + data[i].department_name + "<i class=\"fas fa-arrow-right\"></i></a></li>");
   }
 }).catch(err => {
     // catch err
     console.log(err);
 });
-
 function myFunction() {
   // Declare variables
   var input, filter, ul, li, a, i, txtValue;
@@ -107,7 +95,6 @@ function myFunction() {
   ul = document.getElementById("myUL");
   // get all li elements
   li = ul.getElementsByTagName('li');
-
   // Loop through all list items, and hide those who don't match the search query
   for (i = 0; i < li.length; i++) {
     // get first tag's contents
@@ -122,15 +109,9 @@ function myFunction() {
     }
   }
 }
-function delay (URL) {
-    setTimeout( function() { window.location = URL }, 100 );
-}
-
 </script>
-
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
 </body>
 </html>

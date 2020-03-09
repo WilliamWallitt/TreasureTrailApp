@@ -1,8 +1,14 @@
 <?php
-if (!isset($_GET['id'])){
-    header('Location: ../views/DepartmentPage.php');
-    exit();
+require '../app/database.php';
+
+session_start();
+if (!isset($_SESSION['user_id'], $_SESSION['department_id'])) {
+	header("Location: ../views/gamePage.php");
 }
+
+$database = new database();
+$response = $database->reset_score($_SESSION['user_id']);
+$database->close();
 ?>
 
 <!DOCTYPE html>
@@ -12,13 +18,12 @@ if (!isset($_GET['id'])){
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Treasure Trail App</title>
   <link href="https://fonts.googleapis.com/css?family=Patrick+Hand&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Pirata+One&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
   <!-- bootstrap cdn -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="../public/stylesheets/main.css">
   <script src="../jsQR.js"></script>
-  <script src = "../audio/howler.js"></script>
+	<script src = "../audio/howler.js"></script>
   <script>
     var waves = new Howl({
       src: ['../audio/waves.mp3'],
@@ -137,7 +142,6 @@ if (!isset($_GET['id'])){
     }
   </script>
 
-
 </head>
 
 <!-- ;==========================================
@@ -147,18 +151,21 @@ if (!isset($_GET['id'])){
 ;========================================== -->
 
 <body>
-  <body style="background: url('../public/img/backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
+	<body style="background: url('../public/img/backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
     <div id="coins">
       <h1 style= "font-family: 'Pirata One', cursive;"><img id="coin-image"src="../public/img/Coins.png" height= 60px><span id = "score">0</span></h1>
     </div>
-
     <!-- floating FAQ button to FAQ page -->
-    <a id="faq" href="#">
+    <<a id="faq" href="#">
         <button id="faq-button" class="button btn-sm m-1" type="button" onclick="window.location.href = '../views/faqPage.php'">FAQ</button>
     </a>
 
+    <a style="position:fixed;bottom:5px;right:90%;margin:0;padding:5px 3px;" href="#">
+        <button class="btn btn-dark btn-sm m-1" type="button" id="score">Score : 0</button>
+    </a>
+
     <!-- Map/Verify Location/ Clue tabs -->
-    <ul class="nav nav-pills nav-fill navbar-static-top mt-1" id="myTab" role="tablist">
+		<ul class="nav nav-pills nav-fill navbar-static-top mt-1" id="myTab" role="tablist">
         <li class="nav-item border border-dark"  styles="background: black;">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" onclick=button_click_paper();map_voice()>Map</a>
         </li>
@@ -166,46 +173,46 @@ if (!isset($_GET['id'])){
             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" onclick=button_click_paper();scan_voice()>Verify location</a>
         </li>
         <li class="nav-item border border-dark">
-            <a class="nav-link disabled" id="clue-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" onclick=button_click_paper();"getClueData()">Clue</a>
+            <a class="nav-link disabled" id="clue-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" onclick=button_click_paper();getClueData()>Clue</a>
         </li>
     </ul>
     <!-- Tab content -->
   <div class="tab-content" id="myTabContent">
       <!-- Map tab content -->
-    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-      <div class="container p-2">
-        <div class="row justify-content-center">
-          <div class="col-xs-12">
-                <div class="table-responsive">
-                <!-- map container -->
-                <div class="container-fluid p-0 m-0">
-                  <div id="map" class="border border-dark" style="width:100vw; height:80vh;"></div>
-                  <div id="map-overlay"><img src="../public/img/compass.png" id="map-overlay-image"></div>
-                </div>
+	      <div class="container p-2">
+	        <div class="row justify-content-center">
+	          <div class="col-xs-12">
+	                <div class="table-responsive">
+	                <!-- map container -->
+	                <div class="container-fluid p-0 m-0">
+	                  <div id="map" class="border border-dark"></div>
+	                  <div id="map-overlay"><img src="../public/img/compass.png" id="map-overlay-image"></div>
+	                  <div class="wood" id="destination-overlay"><p id="directions-title">Destination</p></div>
+	                </div>
 
-                <!-- arrow container -->
-                <a class="wax-seal-wrap" href="#content" onclick=button_click_directions()>
-                    <img class="wax-seal" src="../public/img/wax-seal.png">
-                </a>
+	                <!-- arrow container -->
+	                <a class="wax-seal-wrap" href="#content" onclick=button_click_directions()>
+	                    <img class="wax-seal" src="../public/img/wax-seal.png">
+	                </a>
 
-                <!-- directions container -->
-                <div class="container d-flex justify-content-center" id="content">
-                    <h1 id="directions-title">Directions</h1>
-                    <div id="directionsPanel"></div>
-                </div>
-              </div>
-          </div>
-        </div>
-      </div>
-    </div>
+	                <!-- directions container -->
+	                <div class="container d-flex justify-content-center" id="content">
+	                    <div id="directionsPanel"></div>
+	                </div>
+	              </div>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
 
     <!-- Verify Location tab content -->
 
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
         <h1 class="d-flex justify-content-center lead m-5" style="font-family: 'pirate'">Scan QR Code</h1>
-        <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
+        <div id="loadingMessage" style="font-family: 'pirate'">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
         <canvas id="canvas" hidden></canvas>
         <div id="output" hidden>
             <div hidden><b>Data:</b> <span id="outputData"></span></div>
@@ -233,31 +240,32 @@ if (!isset($_GET['id'])){
 
             <!-- Clue multiple choice questions -->
 
-            <h1 class="question h3 text-center h2 p-2" id="clue">How many stairs does the Harrison Bulding have?</h1>
+            <h1 class="question h3 bg-light text-center h2 p-2" id="clue" style="font-family: 'pirate'">How many stairs does the Harrison Bulding have?</h1>
 
-            <div id:"answers" class="container text-align-center h4">
+            <div class="container text-align-center h4">
                 <hr/>
                 <div class="custom-control custom-radio d-flex justify-content-center">
                     <input id="q1" name="choice" type="radio" class="custom-control-input">
-                    <label class="custom-control-label" for="q1"><div class="person" id="question1">3 sets of stairs</div></label>
+                    <label class="custom-control-label" for="q1"><div class="person" id="question1" style="font-family: 'pirate'">3 sets of stairs</div></label>
                 </div>
                 <div class="custom-control custom-radio d-flex justify-content-center">
                     <input id="q2" name="choice" type="radio" class="custom-control-input">
-                    <label class="custom-control-label" for="q2"><div class="person" id="question2">1 sets of stairs</div></label>
+                    <label class="custom-control-label" for="q2"><div class="person" id="question2" style="font-family: 'pirate'">1 sets of stairs</div></label>
                 </div>
                 <div class="custom-control custom-radio d-flex justify-content-center">
                     <input id="q3" name="choice" type="radio" class="custom-control-input">
-                    <label class="custom-control-label" for="q3"><div class="person" id="question3">5 sets of stairs</div></label>
+                    <label class="custom-control-label" for="q3"><div class="person" id="question3" style="font-family: 'pirate'">5 sets of stairs</div></label>
                 </div>
-                <div class="custom-control justify-content-center">
+                <div class="d-flex justify-content-center text-center">
                     <button id="submit" type="submit" class="button wood" onclick="checkIfCorrect()">Submit</button>
+                    <button type="submit" class="btn btn-danger mt-3" id="countdown" style="font-family: 'pirate'">Wait 30's</button>
                 </div>
             </div>
             <hr/>
 
             <!-- Extra info -->
 
-            <div id="extra-info" class="vertical-center text-center text-dark">
+						<div id="extra-info" class="vertical-center text-center text-dark">
                 <h1 class="h2" id="departmentName">Harrison Building</h1>
                 <p class="lead" id="extraInfo">Did you know it was founded in 1932, before WW2!</p>
             </div>
@@ -270,6 +278,40 @@ if (!isset($_GET['id'])){
 
 <script>
 
+
+
+    // function delaySubmit() {
+
+    //     $('#countdown').delay(30000).hide(0);
+    //     $('#submitbtn').delay(30000).show(0);
+
+    // }
+
+
+    function getScore() {
+
+        var userid = "<?php echo $_SESSION['user_id']; ?>";
+
+        fetch("../app/get_score.php?user_id=" + userid).then(response => {
+            return response.json();
+        }).then(data => {
+
+            let score = data.score;
+
+            document.getElementById("score").innerText = "Score: " + score + "";
+
+        }).catch(err => {
+            // catch err
+            console.log(err);
+        });
+
+
+
+    }
+
+    var timerEnabled = false;
+    var time = 0;
+    var attempts = 0;
 
     // QR code scanner code - creating the video stream + decoding the image
 
@@ -306,8 +348,10 @@ if (!isset($_GET['id'])){
         loadingMessage.hidden = true;
         canvasElement.hidden = false;
         outputContainer.hidden = false;
+
         canvasElement.height = window.innerHeight / 2.2;
         canvasElement.width = window.innerWidth;
+
         canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
         var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
         var code = jsQR(imageData.data, imageData.width, imageData.height, {
@@ -323,10 +367,29 @@ if (!isset($_GET['id'])){
           console.log("code: " + code.data);
           console.log("building id: " + building_ids[indexStart-1])
 
-          // if the QR code is corret, make the clue tab clickable and move user to it
+          // if the QR code is correct, make the clue tab clickable and move user to it
           if (code.data == building_ids[indexStart-1]) {
             var element = document.getElementById("clue-tab");
             element.classList.remove("disabled");
+            // delaySubmit();
+            var count = 29;
+            // Function to update counters on all elements with class counter
+            var doUpdate = function() {
+                $('#countdown').each(function() {
+                if (count !== 0) {
+                    let countString = "Wait " + count + "'s"
+                    $(this).html(countString);
+                    count = count - 1;
+                } else {
+                    $('#countdown').hide();
+                    $('#submitbtn').show();
+                }
+                });
+            };
+
+            // Schedule the update to happen once every second
+            setInterval(doUpdate, 1000);
+
             document.getElementById("clue-tab").click();
             return;
           }
@@ -336,7 +399,7 @@ if (!isset($_GET['id'])){
     }
 
     // coordinates for the forum exeter
-    var myLatLng = {lat: 50.735371, lng: -3.533782};
+		var myLatLng = {lat: 50.735371, lng: -3.533782};
     // we have to declare these globally -> so we can call them during the onClick event + the calc route function
     var map;
     var directionsRenderer;
@@ -803,7 +866,6 @@ if (!isset($_GET['id'])){
             window.location.href = "../views/finishedPage.php";
 
         }
-
         var request = {
             origin: new google.maps.LatLng(array[indexStart].lat, array[indexStart].lng),
             destination: new google.maps.LatLng(array[indexEnd].lat, array[indexEnd].lng),
@@ -816,6 +878,7 @@ if (!isset($_GET['id'])){
             if (status == 'OK') {
                 // setting new directions based on the request
                 directionsRenderer.setDirections(result);
+                document.getElementById('directions-title').innerHTML = markers[indexStart].title
                 // basically we want every click to update the directions loaded - so we go through the list of coords
                 indexStart += 1;
                 indexEnd += 1;
@@ -838,9 +901,7 @@ if (!isset($_GET['id'])){
               repeat: '20px'
             }]
           }
-
         });
-
     }
 
 
