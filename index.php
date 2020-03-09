@@ -7,7 +7,7 @@
   <body>
     <script type="text/javascript">
       if (window.innerWidth < 1024) {
-        window.location.href = "views/DepartmentPage.php";
+        window.location.href = "views/gamePage.php";
       }
 
       if (window.innerWidth >= 1024) {

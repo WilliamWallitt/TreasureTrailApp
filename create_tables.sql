@@ -53,3 +53,14 @@ CREATE TABLE `game_keepers` (
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 );
+
+CREATE TABLE `users` (
+  `user_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `team_name` varchar(255) NOT NULL,
+  `department_id` int NOT NULL,
+  `current_building_id` int NOT NULL,
+  `score` int NOT NULL DEFAULT 0,
+  `completed` bit NOT NULL DEFAULT 0,
+  FOREIGN KEY (`department_id`) REFERENCES `departments`(`department_id`),
+  FOREIGN KEY (`current_building_id`) REFERENCES `buildings`(`building_id`)
+);

@@ -46,7 +46,8 @@ class database {
         $sql = "SELECT * FROM departments WHERE department_id='$department_id_param' LIMIT 1";
 
         $result = $this->query($sql);
-        return $result[0];
+
+        return $result[0];  
     }
 
     /**

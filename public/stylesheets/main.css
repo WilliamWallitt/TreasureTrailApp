@@ -16,7 +16,6 @@
     src: url("/stormblade.otf") format("opentype");
 }
 
-
 body {
     animation-name: test;
     animation-duration: 2s;
@@ -135,7 +134,6 @@ button {
   top:125px;
   width: 300px;
 }
-
 
 /* keyframe animations for entire body */
 @keyframes test {
@@ -270,3 +268,4 @@ hr {
 #float {
     position: fixed; bottom: 20px; right: 20px;
 }
+

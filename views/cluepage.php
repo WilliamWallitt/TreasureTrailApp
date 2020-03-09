@@ -164,7 +164,12 @@ $database->close();
         <button class="btn btn-dark btn-sm m-1" type="button" id="score">Score : 0</button>
     </a>
 
+    <a style="position:fixed;bottom:5px;right:90%;margin:0;padding:5px 3px;" href="#">
+        <button class="btn btn-dark btn-sm m-1" type="button" id="score">Score : 0</button>
+    </a>
+
     <!-- Map/Verify Location/ Clue tabs -->
+
 		<ul class="nav nav-pills nav-fill navbar-static-top mt-1" id="myTab" role="tablist">
         <li class="nav-item border border-dark"  styles="background: black;">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" onclick=button_click_paper();map_voice()>Map</a>
@@ -174,6 +179,7 @@ $database->close();
         </li>
         <li class="nav-item border border-dark">
             <a class="nav-link disabled" id="clue-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" onclick=button_click_paper();getClueData()>Clue</a>
+
         </li>
     </ul>
     <!-- Tab content -->
@@ -256,6 +262,7 @@ $database->close();
                     <input id="q3" name="choice" type="radio" class="custom-control-input">
                     <label class="custom-control-label" for="q3"><div class="person" id="question3" style="font-family: 'pirate'">5 sets of stairs</div></label>
                 </div>
+
                 <div class="d-flex justify-content-center text-center">
                     <button id="submit" type="submit" class="button wood" onclick="checkIfCorrect()">Submit</button>
                     <button type="submit" class="btn btn-danger mt-3" id="countdown" style="font-family: 'pirate'">Wait 30's</button>
@@ -265,9 +272,11 @@ $database->close();
 
             <!-- Extra info -->
 
-						<div id="extra-info" class="vertical-center text-center text-dark">
-                <h1 class="h2" id="departmentName">Harrison Building</h1>
-                <p class="lead" id="extraInfo">Did you know it was founded in 1932, before WW2!</p>
+
+            <div id ="extra-info" class="jumbotron vertical-center text-center bg-dark text-light">
+                <h1 class="h2" id="departmentName" style="font-family: 'pirate'">Harrison Building</h1>
+                <p class="lead" id="extraInfo" style="font-family: 'pirate'">Did you know it was founded in 1932, before WW2!</p>
+
             </div>
 
           </div>
@@ -300,6 +309,40 @@ $database->close();
 
             document.getElementById("score").innerText = "Score: " + score + "";
 
+        }).catch(err => {
+            // catch err
+            console.log(err);
+        });
+
+
+
+    }
+
+    var timerEnabled = false;
+    var time = 0;
+    var attempts = 0;
+
+
+    // function delaySubmit() {
+
+    //     $('#countdown').delay(30000).hide(0);
+    //     $('#submitbtn').delay(30000).show(0);  
+ 
+    // }
+
+
+    function getScore() {
+
+        var userid = "<?php echo $_SESSION['user_id']; ?>";
+
+        fetch("../app/get_score.php?user_id=" + userid).then(response => {
+            return response.json();
+        }).then(data => {
+            
+            let score = data.score;
+
+            document.getElementById("score").innerText = "Score: " + score + "";
+            
         }).catch(err => {
             // catch err
             console.log(err);
@@ -382,7 +425,9 @@ $database->close();
                     count = count - 1;
                 } else {
                     $('#countdown').hide();
-                    $('#submitbtn').show();
+
+                    $('#submitbtn').show(); 
+
                 }
                 });
             };
@@ -421,7 +466,7 @@ $database->close();
     // in the department page
 
     function getRoute(){
-        var department_id = "<?php echo $_GET['id']; ?>";
+        var department_id = "<?php echo $_SESSION['department_id']; ?>";
         fetch("../app/get_route.php?department_id=" + department_id).then(response => {
             return response.json();
         }).then(data => {
@@ -483,10 +528,35 @@ $database->close();
             console.log(err);
         });
 
+        fetch('../app/update_tracking.php', {
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+        method: 'POST',
+        body: JSON.stringify({
+            user_id: "<?php echo $_SESSION['user_id']; ?>",
+            building_id: building_ids[indexStart]
+        })
+        }).then(response => {
+            return response.json();
+        }).then(data => {
+        });
+
+        timerEnabled = true;
+        time = 0;
+        setTimeout(timer, 1000);
+    }
+
+    function timer() {
+        if (!timerEnabled) {
+            return;
+        }
+        time++;
+        setTimeout(timer, 1000);
     }
 
     // checking if the selected answer is the correct one
     function checkIfCorrect() {
+
+        attempts++;
 
         let element;
         let answer_id;
@@ -561,6 +631,23 @@ $database->close();
 
                 requestAnimationFrame(tick);
 
+                timerEnabled = false;
+
+                fetch('../app/update_score.php', {
+                    headers: { "Content-Type": "application/json; charset=utf-8" },
+                    method: 'POST',
+                    body: JSON.stringify({
+                        user_id: "<?php echo $_SESSION['user_id']; ?>",
+                        seconds: time,
+                        attempts: attempts - 1,
+                    })
+                    }).then(response => {
+                        return response.json();
+                    }).then(data => {
+                        getScore();
+                    });           
+
+                attempts = 0;
             // display our alert fail if answer is incorrect
 
             } else if (data == false) {
@@ -603,7 +690,7 @@ $database->close();
     // this initalises our map, populates our arrays and finds the users current location
     // navigating them to the first department in the treasure trail
     function init_route(){
-        var department_id = "<?php echo $_GET['id']; ?>";
+        var department_id = "<?php echo $_SESSION['department_id']; ?>";
         fetch("../app/get_route.php?department_id=" + department_id).then(response => {
             return response.json();
         }).then(data => {
