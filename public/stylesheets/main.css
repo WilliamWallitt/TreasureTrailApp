@@ -5,8 +5,8 @@
 
 @font-face {
     font-family: 'pirate';
-    src: url('/treasuremapdeadhand-yla3-webfont.woff2') format('woff2'),
-            url('/treasuremapdeadhand-yla3-webfont.woff') format('woff');
+    src: url('../../treasuremapdeadhand-yla3-webfont.woff2') format('woff2'),
+            url('../../treasuremapdeadhand-yla3-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -124,15 +124,14 @@ button {
   width: 100vw;
   z-index: 1;
   position: absolute;
-  top: 90vh;
+  top: 85vh;
 }
 
 #directions-title {
   position: absolute;
   font-family: 'pirate',Fallback, sans-serif;
-  font-size: 40px;
   top:125px;
-  width: 300px;
+  font-size: 10vw;
 }
 
 /* keyframe animations for entire body */
@@ -176,7 +175,7 @@ td {
 }
 
 .wax-seal {
-  height: 10vh;
+  height: 15vh;
   left: 50%;
   transform: translateX(-50%);
   z-index:3;
@@ -190,7 +189,7 @@ td {
     left: 50%;
     transform: translateX(-50%);
     /* so its not fully in the first div */
-    top:-5vh;
+    top:-7.5vh;
     margin:0;
 }
 
