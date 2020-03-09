@@ -133,11 +133,15 @@ button {
   z-index: 1;
   position: relative;
   top: 85vh; */
-
+  /*
   background-image: url("../img/parchment.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
+  */
+  background-image: url("../img/parchment.png");
+  background-size: 100% 100%;
+  display: inline-block;
 }
 
 
