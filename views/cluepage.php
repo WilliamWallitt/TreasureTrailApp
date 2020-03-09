@@ -165,7 +165,7 @@ $database->close();
 ; Date:   25 Feb 2020
 ;========================================== -->
 	<body style="background: url('../public/img/backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
-    <div id="coins">
+    <div id="coins" class="container">
         <div class="row">
             <div class="column">
                 <h1 style= "font-family: 'Pirata One', cursive;" class="ml-3"><img id="coin-image"src="../public/img/Coins.png" height= 60px><span id = "score" class="ml-3" style="color: white">0</span></h1>
@@ -189,13 +189,14 @@ $database->close();
     </video>
 
   <div id="popup1" class="overlay" style="z-index: 12">
-
-    <div class="popup">
-      <h2><img id="pirate"src="../public/img/talking.gif"></h2>
-      <a class="close" href="#" onclick="hidePopUp()">&times;</a>
+    <div class="container-fluid; overflow-y: scroll;">
+      <a class="close" href="#" onclick="hidePopUp()" style="padding-top: 5vh; padding-right: 3vw">&times;</a>
+      <h2 class="container p-0 m-0">
+        <img id="pirate"src="../public/img/talking.gif" style="margin-left: 30%">
+      </h2>
       <!-- <div class="content"> -->
-      <div class="content">
-        <h1 class='h2 text-white'>
+      <div class="container-fluid" style="height: 50vh; overflow-y: scroll; position: absolute;">
+        <h1 class='text-white' style="height: 100%; font-size: 150%">
           “Ay freshers, I need your help! I’ve lost me treasure all around the campus. I’ve got me treasure map marked out, but I need help getting it back. Been spotting scavengers around these parts recently and the longer I take, the more of me treasure they get. I’ve protected me treasure at each location behind some questions, but in me old age I've forgotten them! Help an old pirate out and help me answer these questions. Time is of the essence, let's get started!"
         </h1>
       </div>
@@ -265,56 +266,58 @@ $database->close();
 
     <!-- Clue tab content -->
     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-      <div class="row justify-content-center p-5">
-        <div class="col-xs-12">
-          <div class="table-responsive text-align-center">
+      <div class="container">
+        <div class="row justify-content-center p-5">
+          <div class="col-xs-12">
+            <div class="table-responsive text-align-center">
 
-            <!-- alert incorrect -->
-            <div class="alert alert-danger" role="alert" id="incorrect" style="display: none">
-                <strong>Incorrect!</strong>
+              <!-- alert incorrect -->
+              <div class="alert alert-danger" role="alert" id="incorrect" style="display: none">
+                  <strong>Incorrect!</strong>
+              </div>
+
+              <!-- alert correct -->
+
+              <div class="alert alert-success" role="alert" id="correct" style="display: none">
+                  <strong>Correct!</strong>
+              </div>
+
+              <!-- Clue multiple choice questions -->
+
+              <h1 class="question h3 bg-light text-center h2 p-2" id="clue" style="font-family: 'pirate'">How many stairs does the Harrison Bulding have?</h1>
+
+              <div class="container text-align-center h4">
+                  <hr/>
+                  <div class="custom-control custom-radio d-flex justify-content-center">
+                      <input id="q1" name="choice" type="radio" class="custom-control-input">
+                      <label class="custom-control-label" for="q1"><div class="person" id="question1" style="font-family: 'pirate'">3 sets of stairs</div></label>
+                  </div>
+                  <div class="custom-control custom-radio d-flex justify-content-center">
+                      <input id="q2" name="choice" type="radio" class="custom-control-input">
+                      <label class="custom-control-label" for="q2"><div class="person" id="question2" style="font-family: 'pirate'">1 sets of stairs</div></label>
+                  </div>
+                  <div class="custom-control custom-radio d-flex justify-content-center">
+                      <input id="q3" name="choice" type="radio" class="custom-control-input">
+                      <label class="custom-control-label" for="q3"><div class="person" id="question3" style="font-family: 'pirate'">5 sets of stairs</div></label>
+                  </div>
+
+                  <div class="d-flex justify-content-center text-center">
+                      <button type="submit" id="submitbtn" class="btn btn-dark mt-3" onclick="checkIfCorrect()" style="display: none; font-family: 'pirate'" >Submit</button>
+            <button type="submit" class="btn btn-dark mt-3" id="countdown" style="font-family: 'pirate'">Wait 30's</button>
+                  </div>
+              </div>
+              <hr/>
+
+              <!-- Extra info -->
+
+
+              <div id ="extra-info" class="jumbotron vertical-center text-center bg-transparent text-dark">
+                  <h1 class="h2" id="departmentName" style="font-family: 'pirate'">Harrison Building</h1>
+                  <p class="lead" id="extraInfo" style="font-family: 'pirate'">Did you know it was founded in 1932, before WW2!</p>
+
+              </div>
+
             </div>
-
-            <!-- alert correct -->
-
-            <div class="alert alert-success" role="alert" id="correct" style="display: none">
-                <strong>Correct!</strong>
-            </div>
-
-            <!-- Clue multiple choice questions -->
-
-            <h1 class="question h3 bg-light text-center h2 p-2" id="clue" style="font-family: 'pirate'">How many stairs does the Harrison Bulding have?</h1>
-
-            <div class="container text-align-center h4">
-                <hr/>
-                <div class="custom-control custom-radio d-flex justify-content-center">
-                    <input id="q1" name="choice" type="radio" class="custom-control-input">
-                    <label class="custom-control-label" for="q1"><div class="person" id="question1" style="font-family: 'pirate'">3 sets of stairs</div></label>
-                </div>
-                <div class="custom-control custom-radio d-flex justify-content-center">
-                    <input id="q2" name="choice" type="radio" class="custom-control-input">
-                    <label class="custom-control-label" for="q2"><div class="person" id="question2" style="font-family: 'pirate'">1 sets of stairs</div></label>
-                </div>
-                <div class="custom-control custom-radio d-flex justify-content-center">
-                    <input id="q3" name="choice" type="radio" class="custom-control-input">
-                    <label class="custom-control-label" for="q3"><div class="person" id="question3" style="font-family: 'pirate'">5 sets of stairs</div></label>
-                </div>
-
-                <div class="d-flex justify-content-center text-center">
-                   	<button type="submit" id="submitbtn" class="btn btn-dark mt-3" onclick="checkIfCorrect()" style="display: none; font-family: 'pirate'" >Submit</button>
-			    <button type="submit" class="btn btn-dark mt-3" id="countdown" style="font-family: 'pirate'">Wait 30's</button>
-                </div>
-            </div>
-            <hr/>
-
-            <!-- Extra info -->
-
-
-            <div id ="extra-info" class="jumbotron vertical-center text-center bg-transparent text-dark">
-                <h1 class="h2" id="departmentName" style="font-family: 'pirate'">Harrison Building</h1>
-                <p class="lead" id="extraInfo" style="font-family: 'pirate'">Did you know it was founded in 1932, before WW2!</p>
-
-            </div>
-
           </div>
         </div>
       </div>
@@ -924,7 +927,7 @@ $database->close();
         // to the map type control.
         var map = new google.maps.Map(document.getElementById('map'), {
           center: forum,
-          zoom: 15,
+          zoom: 10,
           mapTypeControlOptions: {
             mapTypeIds: [
                     'styled_map']

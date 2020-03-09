@@ -124,23 +124,7 @@ button {
 #content {
 
   transform: translateY(-10vh);
-
-  /* background-image: url("../img/parchment.png");
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-size:120vw;
-  width: 100vw;
-  z-index: 1;
-  position: relative;
-  top: 85vh; */
-  /*
-  background-image: url("../img/parchment.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  test
-  */
-  background-image: url("../img/parchment.png");
+  background-image: url("../img/testParchment.jpg");
   background-size: 100% 100%;
   display: inline-block;
 }
