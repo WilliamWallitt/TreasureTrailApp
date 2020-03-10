@@ -151,17 +151,16 @@ $database->close();
         if(muted == false){
             muted = true;
             Howler.mute(true);
-            document.getElementById('mutebutton').classList.add("fas fa-volume-up");
-            document.getElementById('mutebutton').classList.remove("fas fa-volume-mute");
+            $("#mutebutton").hide();
+            $("#notmutebutton").show();
 
 	    }
-        else {
+      else {
             muted = false;
             Howler.mute(false);
-            document.getElementById('mutebutton').classList.remove("fas fa-volume-up");
-            document.getElementById('mutebutton').classList.add("fas fa-volume-mute"); 
-            alert("onlick");   
-        }
+            $("#mutebutton").show();
+            $("#notmutebutton").hide();
+      }
     }
   </script>
 
@@ -177,14 +176,14 @@ $database->close();
 <nav class="navbar navbar-dark bg-light vertical-center">
   <div class="row">
     <div class="span4">
-      <img style="float: left; width: 8vw; height: 5vh" class="pb-2 pl-2" src="../public/img/coinImagePirate.png"/>
-      <a class="nav-link" id = "score" href="#"></a>
+      <!-- <img style="float: left; width: 8vw; height: 5vh" class="pb-2 pl-2" src="../public/img/coinImagePirate.png"/> -->
+      <a class="nav-link" id = "score" href="#">Score: </a>
     </div>
   </div>
   <a class="nav-link align-itmes" href="../views/faqPage.php">FAQ's</a>
-  <a class="nav-link text-dark"><i id="mutebutton" onclick="toggle_sound()" class="fas fa-volume-up"></i></a>
+  <a class="nav-link text-dark" style="display: none;" id="mutebutton"><i onclick="toggle_sound()" class="fas fa-volume-mute"></i></a>
+  <a class="nav-link text-dark" id="notmutebutton" ><i onclick="toggle_sound()" class="fas fa-volume-up"></i></a>
 </nav>
-
 
     <!-- popup code -->
 
