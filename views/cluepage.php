@@ -164,7 +164,7 @@ $database->close();
 ; Author: William Wallitt, Stephen Kubal, Bevan Roberts
 ; Date:   25 Feb 2020
 ;========================================== -->
-  <body style="background: url('../public/img/backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
+  <body style="background: url('../public/img/Backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
   
     <button class="btn btn-outline-dark m-1 p-1" style="position: absolute; left: 35vw; top: 0vh; z-index: 20;"><a style="font-family: 'pirate'; color: white" href="../views/faqPage.php">FAQ's</a></button>
 
