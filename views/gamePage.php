@@ -15,6 +15,8 @@
 </head>
 <body id="background" style="height:100vh">
 
+
+
 <!-- ;==========================================
 ; Title:  Front end Department Page - HTML
 ; Author: William Wallitt, Edward Soutar, Bevan Roberts
@@ -246,6 +248,7 @@ function myFunction() {
               e.preventDefault();
               reverseIntroButtons();
               timelineIntroScreen.eventCallback('onReverseComplete', function() {
+                // '../public/img/pirateShipBackground.jpg'
                 fadeToScreen('screen-game');
                 $("body").css({"background-image": 'url(' + "../public/img/treasure1.jpg" + ')', "background-position": "center", "background-repeat" : "no-repeat", "background-size" : "cover", "position" : "relative"});
                 // $("body").css("background-color", "black");

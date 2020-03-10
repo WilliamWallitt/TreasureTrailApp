@@ -232,26 +232,18 @@ $database->close();
       <!-- Map tab content -->
 			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-	      <div class="container p-2">
-	        <div class="row justify-content-center">
+	      <div class="container">
+	        <div class="row justify-content-center" style="width: 100vw">
 	          <div class="col-xs-12">
 	                <div class="table-responsive">
 	                <!-- map container -->
-<<<<<<< HEAD
-                  <div style="position:relative;">
-	                    <div id="map" class="border border-dark" style="width: 100vw; margin: 0 auto;"></div>
-	                    <div id="map-overlay"><img class="m-0 p-0" src="../public/img/compass.png" id="map-overlay-image"></div>
-	                    <div class="wood" id="destination-overlay"><p id="directions-title"></p></div>
-			            </div>
-=======
 	                <div class="container-fluid p-0 m-0">
-			  <div style="position:relative;">
+			              <div style="position:relative;">
 	                    <div id="map" class="border border-dark" style="width: 100vw; margin: 0 auto;"></div>
 	                    <div id="map-overlay"><img class="m-0 p-0" src="../public/img/compass.png" id="map-overlay-image"></div>
 	                    <div class="wood" id="destination-overlay"><p id="directions-title"></p></div>
-			  </div>
+			              </div>
 	                </div>
->>>>>>> dcfc3c3240ff42e35f81f97edef0c7ddc49c3af3
 
 	                <!-- arrow container -->
 	                <a class="wax-seal-wrap" href="#content" onclick=button_click_directions()>
