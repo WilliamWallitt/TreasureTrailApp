@@ -23,6 +23,10 @@ $database->close();
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="../public/stylesheets/main.css">
   <link rel="stylesheet" type="text/css" href="../public/stylesheets/departmentpage.css">
+  <script
+    src="https://use.fontawesome.com/releases/v5.12.1/js/all.js"
+    data-search-pseudo-elements>
+  </script>
 
   <script src="../jsQR.js"></script>
 	<script src = "../audio/howler.js"></script>
@@ -166,11 +170,9 @@ $database->close();
 ;========================================== -->
   <body style="background: url('../public/img/Backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
   
-    <button class="btn btn-outline-dark m-1 p-1" style="position: absolute; left: 35vw; top: 0vh; z-index: 20;"><a style="font-family: 'pirate'; color: white" href="../views/faqPage.php">FAQ's</a></button>
+    <!-- <button class="btn btn-outline-dark m-1 p-1" style="position: absolute; left: 35vw; top: 0vh; z-index: 20;"><a style="font-family: 'pirate'; color: white" href="../views/faqPage.php">FAQ's</a></button> -->
 
-
-
-    <div id="coins" class="container">
+    <!-- <div id="coins" class="container">
         <div class="row">
             <div class="column">
                 <h1 style= "font-family: 'Pirata One', cursive;" class="ml-3"><img id="coin-image"src="../public/img/Coins.png" height= 60px><span id = "score" class="ml-3" style="color: white">0</span></h1>
@@ -179,11 +181,17 @@ $database->close();
                 <image src="../public/img/audio.png" id="audio-image" class="mr-3 mt-1" onclick="toggle_sound()" style="width: 60px; height: 60px;">  
             </div>
         </div>
-    </div>
+    </div> -->
+
+    <!-- <i class="fas fa-volume-mute"></i> -->
+    <nav class="navbar navbar-light bg-dark" style="z-index: 1;">
+      <h1 style= "font-family: 'Pirata One', cursive;" class="ml-3"><span id = "score" style="color: white">0</span></h1>
+      <button class="btn btn-outline-dark"><a style="font-family: 'pirate'; color: white" href="../views/faqPage.php">FAQ's</a></button>
+      <p class="h4"><i class="fas fa-volume-up"></i></p>
+    </nav>
 
 
     <!-- popup code -->
-
 
   <div class="box" style="display: none;" style="z-index: 12">
     <a class="button" id="pirategif" href="#popup1">Let me Pop up</a>
@@ -237,21 +245,11 @@ $database->close();
 	          <div class="col-xs-12">
 	                <div class="table-responsive">
 	                <!-- map container -->
-<<<<<<< HEAD
-	                <div class="container-fluid p-0 m-0">
-			              <div style="position:relative;">
-	                    <div id="map" class="border border-dark" style="width: 100vw; margin: 0 auto;"></div>
-	                    <div id="map-overlay"><img class="m-0 p-0" src="../public/img/compass.png" id="map-overlay-image"></div>
-	                    <div class="wood" id="destination-overlay"><p id="directions-title"></p></div>
-			              </div>
-	                </div>
-=======
                   <div style="position:relative;">
 	                    <div id="map" class="border border-dark" style="width: 100vw; margin: 0 auto;"></div>
 	                    <div id="map-overlay"><img class="m-0 p-0" src="../public/img/compass.png" id="map-overlay-image"></div>
 	                    <div class="wood" id="destination-overlay"><p id="directions-title"></p></div>
 			            </div>
->>>>>>> f91616590d524bacfb29c47f90671e52b19a9b9f
 
 	                <!-- arrow container -->
 	                <a class="wax-seal-wrap" href="#content" onclick=button_click_directions()>
