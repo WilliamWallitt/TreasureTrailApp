@@ -206,6 +206,9 @@ if (!isset($_SESSION['username'])) {
             <div class="container m-1">
               <input type="text" class="form-control" id="extrainfo" aria-describedby="test" placeholder="Add Extra Info">
             </div>
+            <div class="container m-1">
+              <input type="text" class="form-control" id="narrative" aria-describedby="test" placeholder="Add Narrative">
+            </div>
 
             <div class="container mt-3">
               <button type="button" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;" onclick="addBuilding()">Submit</button>
@@ -221,6 +224,7 @@ if (!isset($_SESSION['username'])) {
                 <th>Longitude</th>
                 <th>Extra Info</th>
                 <th>QR Code</th>
+                <th>Narritive</th>
                 <th>Delete</th>
               </tr>
             </thead>

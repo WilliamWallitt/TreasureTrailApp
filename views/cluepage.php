@@ -152,13 +152,13 @@ $database->close();
             Howler.mute(true);
 						$("#mutebutton").hide();
 					  $("#notmutebutton").show();
-	    }
-        else {
+	      }
+        else if (muted == true) {
             muted = false;
             Howler.mute(false);
 						$("#mutebutton").show();
             $("#notmutebutton").hide();
-        }
+        } 
     }
   </script>
 
@@ -204,7 +204,7 @@ $database->close();
       </h2>
       <!-- <div class="content"> -->
       <div class="container-fluid" style="height: 50vh; overflow-y: scroll; position: absolute;">
-        <h1 class='text-white' style="height: 100%; font-size: 150%;">
+        <h1 class='text-white' id="narrativeText" style="height: 100%; font-size: 150%;">
           “Ay freshers, I need your help! I’ve lost me treasure all around the campus. I’ve got me treasure map marked out, but I need help getting it back. Been spotting scavengers around these parts recently and the longer I take, the more of me treasure they get. I’ve protected me treasure at each location behind some questions, but in me old age I've forgotten them! Help an old pirate out and help me answer these questions. Time is of the essence, let's get started!"
         </h1>
       </div>
@@ -335,13 +335,29 @@ $database->close();
 <script>
 
 
+    function getNarrativeData(building_id) {
 
-    // function delaySubmit() {
 
-    //     $('#countdown').delay(30000).hide(0);
-    //     $('#submitbtn').delay(30000).show(0);
+      fetch("../app/get_all_buildings.php").then(response => {
+            return response.json();
+        }).then(data => {
 
-    // }
+            for (let index = 0; index < data.length; index++) {
+              const element = array[index];
+              if (element.building_id == building_id) {
+                document.getElementById("narrativeText").innerText =  element.narrative;
+              }
+              
+            }
+
+        }).catch(err => {
+            // catch err
+            console.log(err);
+        });
+
+    }
+
+
 
 
 
@@ -349,13 +365,6 @@ $database->close();
     var time = 0;
     var attempts = 0;
 
-
-    // function delaySubmit() {
-
-    //     $('#countdown').delay(30000).hide(0);
-    //     $('#submitbtn').delay(30000).show(0);
-
-    // }
 
     function playPopUp() {
 
