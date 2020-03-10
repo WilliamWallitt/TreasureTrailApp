@@ -179,7 +179,7 @@ $database->close();
                 <image src="../public/img/audio.png" id="audio-image" class="mr-3 mt-1" onclick="toggle_sound()" style="width: 60px; height: 60px;">  
             </div>
         </div>
-
+    </div>
 
 
     <!-- popup code -->
@@ -238,8 +238,8 @@ $database->close();
 	                <div class="table-responsive">
 	                <!-- map container -->
 	                <div class="container-fluid p-0 m-0">
-	                  <div id="map" class="border border-dark" style="width: 100vw;"></div>
-	                  <div id="map-overlay"><img src="../public/img/compass.png" id="map-overlay-image"></div>
+	                  <div id="map" class="border border-dark" style="width: 100vw; margin: 0 auto;"></div>
+	                  <div id="map-overlay"><img class="m-0 p-0" src="../public/img/compass.png" id="map-overlay-image"></div>
 	                  <div class="wood" id="destination-overlay"><p id="directions-title"></p></div>
 	                </div>
 
