@@ -180,7 +180,7 @@ $database->close();
       <a class="nav-link" id = "score" href="#">Score: </a>
     </div>
   </div>
-  <a class="nav-link align-itmes" href="../views/faqPage.php">FAQ's</a>
+  <a class="nav-link align-items" href="../views/faqPage.php">FAQ's</a>
   <a class="nav-link text-dark" style="display: none;" id="mutebutton"><i onclick="toggle_sound()" class="fas fa-volume-mute"></i></a>
   <a class="nav-link text-dark" id="notmutebutton" ><i onclick="toggle_sound()" class="fas fa-volume-up"></i></a>
 </nav>
