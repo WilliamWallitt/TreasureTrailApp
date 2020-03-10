@@ -151,12 +151,16 @@ $database->close();
         if(muted == false){
             muted = true;
             Howler.mute(true);
-            document.getElementById('audio-image').src = '../public/img/audio-mute.png';
+            document.getElementById('mutebutton').classList.add("fas fa-volume-up");
+            document.getElementById('mutebutton').classList.remove("fas fa-volume-mute");
+
 	    }
         else {
             muted = false;
             Howler.mute(false);
-            document.getElementById('audio-image').src = '../public/img/audio.png';
+            document.getElementById('mutebutton').classList.remove("fas fa-volume-up");
+            document.getElementById('mutebutton').classList.add("fas fa-volume-mute"); 
+            alert("onlick");   
         }
     }
   </script>
@@ -170,25 +174,16 @@ $database->close();
 ;========================================== -->
   <body style="background: url('../public/img/Backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
   
-    <!-- <button class="btn btn-outline-dark m-1 p-1" style="position: absolute; left: 35vw; top: 0vh; z-index: 20;"><a style="font-family: 'pirate'; color: white" href="../views/faqPage.php">FAQ's</a></button> -->
-
-    <!-- <div id="coins" class="container">
-        <div class="row">
-            <div class="column">
-                <h1 style= "font-family: 'Pirata One', cursive;" class="ml-3"><img id="coin-image"src="../public/img/Coins.png" height= 60px><span id = "score" class="ml-3" style="color: white">0</span></h1>
-            </div>
-            <div class="column ml-auto">
-                <image src="../public/img/audio.png" id="audio-image" class="mr-3 mt-1" onclick="toggle_sound()" style="width: 60px; height: 60px;">  
-            </div>
-        </div>
-    </div> -->
-
-    <!-- <i class="fas fa-volume-mute"></i> -->
-    <nav class="navbar navbar-light bg-dark" style="z-index: 1;">
-      <h1 style= "font-family: 'Pirata One', cursive;" class="ml-3"><span id = "score" style="color: white">0</span></h1>
-      <button class="btn btn-outline-dark"><a style="font-family: 'pirate'; color: white" href="../views/faqPage.php">FAQ's</a></button>
-      <p class="h4"><i class="fas fa-volume-up"></i></p>
-    </nav>
+<nav class="navbar navbar-dark bg-light vertical-center">
+  <div class="row">
+    <div class="span4">
+      <img style="float: left; width: 8vw; height: 5vh" class="pb-2 pl-2" src="../public/img/coinImagePirate.png"/>
+      <a class="nav-link" id = "score" href="#"></a>
+    </div>
+  </div>
+  <a class="nav-link align-itmes" href="../views/faqPage.php">FAQ's</a>
+  <a class="nav-link text-dark"><i id="mutebutton" onclick="toggle_sound()" class="fas fa-volume-up"></i></a>
+</nav>
 
 
     <!-- popup code -->
