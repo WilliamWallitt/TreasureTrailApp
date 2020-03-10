@@ -16,7 +16,7 @@ CREATE TABLE `buildings` (
   `latitude` decimal(9,6) NOT NULL,
   `longitude` decimal(9,6) NOT NULL,
   `extra_info` varchar(255) NOT NULL,
-  `narrative` varchar(255) NOT NULL
+  `narrative` varchar(1024) NOT NULL
 );
 
 CREATE TABLE `routes` (
