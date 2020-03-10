@@ -62,8 +62,8 @@ body {
 }
 #map-overlay {
   position: absolute;
-  top:125px;
-  right:0;
+  top:0px;
+  right:0px;
   z-index: 1;
 }
 #map-overlay-image {
@@ -107,20 +107,6 @@ button {
  background: url(https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/pf-misctexture01-tong-06-beer-009_1_1.jpg?w=800&dpr=1&fit=default&crop=default&auto=format&fm=pjpg&q=75&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=e928c19d94add42264a58791661bf8a2);
 }
 
-#submit {
-  position: relative;
-  left: 12%;
-  top:-30px;
-}
-
-#answers{
-  margin-bottom: 200px;
-}
-
-#extra-info{
-  position:relative;
-}
-
 #content {
 
   transform: translateY(-10vh);
@@ -133,7 +119,8 @@ button {
 #directions-title {
   position: absolute;
   font-family: 'pirate',Fallback, sans-serif;
-  top:125px;
+  top:0px;
+  left:0px;
   font-size: 10vw;
 }
 
