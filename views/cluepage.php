@@ -292,26 +292,26 @@ $database->close();
 
               <!-- Clue multiple choice questions -->
 
-              <h1 class="question h3 bg-light text-center h2 p-2" id="clue" style="font-family: 'skull'">How many stairs does the Harrison Bulding have?</h1>
+              <h1 class="question h3 text-white text-center h2 p-2" id="clue" style="font-family: 'skull'">How many stairs does the Harrison Bulding have?</h1>
 
               <div class="container text-align-center h4">
                   <hr/>
                   <div class="custom-control custom-radio d-flex justify-content-center">
                       <input id="q1" name="choice" type="radio" class="custom-control-input">
-                      <label class="custom-control-label" for="q1"><div class="person" id="question1" style="font-family: 'skull'">3 sets of stairs</div></label>
+                      <label class="custom-control-label" for="q1"><div class="person" id="question1" style="font-family: 'skull';color:white;">3 sets of stairs</div></label>
                   </div>
                   <div class="custom-control custom-radio d-flex justify-content-center">
                       <input id="q2" name="choice" type="radio" class="custom-control-input">
-                      <label class="custom-control-label" for="q2"><div class="person" id="question2" style="font-family: 'skull'">1 sets of stairs</div></label>
+                      <label class="custom-control-label" for="q2"><div class="person" id="question2" style="font-family: 'skull';color:white;">1 sets of stairs</div></label>
                   </div>
                   <div class="custom-control custom-radio d-flex justify-content-center">
                       <input id="q3" name="choice" type="radio" class="custom-control-input">
-                      <label class="custom-control-label" for="q3"><div class="person" id="question3" style="font-family: 'skull'">5 sets of stairs</div></label>
+                      <label class="custom-control-label" for="q3"><div class="person" id="question3" style="font-family: 'skull';color:white;">5 sets of stairs</div></label>
                   </div>
 
                   <div class="d-flex justify-content-center text-center">
-                      <button type="submit" id="submitbtn" class="btn btn-dark mt-3" onclick="checkIfCorrect()" style="display: none; font-family: 'skull'" >Submit</button>
-            <button type="submit" class="btn btn-dark mt-3" id="countdown" style="font-family: 'skull'">Wait 30's</button>
+                      <button type="submit" id="submitbtn" class="btn btn-light mt-3" onclick="checkIfCorrect()" style="display: none; font-family: 'skull'" >Submit</button>
+            					<button type="submit" class="btn btn-light mt-3" id="countdown" style="font-family: 'skull'">Wait 30's</button>
                   </div>
               </div>
               <hr/>
@@ -319,7 +319,7 @@ $database->close();
               <!-- Extra info -->
 
 
-              <div id ="extra-info" class="jumbotron vertical-center text-center bg-transparent text-dark">
+              <div id ="extra-info" class="jumbotron vertical-center text-center bg-transparent text-white">
                   <h1 class="h2" id="departmentName" style="font-family: 'skull'">Harrison Building</h1>
                   <p class="lead" id="extraInfo" style="font-family: 'skull'">Did you know it was founded in 1932, before WW2!</p>
 
