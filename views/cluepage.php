@@ -233,7 +233,7 @@ $database->close();
 			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
 	      <div class="container">
-	        <div class="row justify-content-center" style="width: 100vw">
+	        <div class="row justify-content-center" style="margin:0;">
 	          <div class="col-xs-12">
 	                <div class="table-responsive">
 	                <!-- map container -->
