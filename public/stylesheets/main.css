@@ -120,7 +120,7 @@ button {
   font-family: 'pirate',Fallback, sans-serif;
   top:0px;
   left:0px;
-  font-size: 10vw;
+  /* font-size: 10vw; */
 }
 
 /* keyframe animations for entire body */
