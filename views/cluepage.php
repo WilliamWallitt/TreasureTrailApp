@@ -164,7 +164,7 @@ $database->close();
 ; Author: William Wallitt, Stephen Kubal, Bevan Roberts
 ; Date:   25 Feb 2020
 ;========================================== -->
-  <body style="background: url('../public/img/backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
+  <body style="background: url('../public/img/Backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
   
     <button class="btn btn-outline-dark m-1 p-1" style="position: absolute; left: 35vw; top: 0vh; z-index: 20;"><a style="font-family: 'pirate'; color: white" href="../views/faqPage.php">FAQ's</a></button>
 
@@ -237,6 +237,7 @@ $database->close();
 	          <div class="col-xs-12">
 	                <div class="table-responsive">
 	                <!-- map container -->
+<<<<<<< HEAD
 	                <div class="container-fluid p-0 m-0">
 			              <div style="position:relative;">
 	                    <div id="map" class="border border-dark" style="width: 100vw; margin: 0 auto;"></div>
@@ -244,6 +245,13 @@ $database->close();
 	                    <div class="wood" id="destination-overlay"><p id="directions-title"></p></div>
 			              </div>
 	                </div>
+=======
+                  <div style="position:relative;">
+	                    <div id="map" class="border border-dark" style="width: 100vw; margin: 0 auto;"></div>
+	                    <div id="map-overlay"><img class="m-0 p-0" src="../public/img/compass.png" id="map-overlay-image"></div>
+	                    <div class="wood" id="destination-overlay"><p id="directions-title"></p></div>
+			            </div>
+>>>>>>> f91616590d524bacfb29c47f90671e52b19a9b9f
 
 	                <!-- arrow container -->
 	                <a class="wax-seal-wrap" href="#content" onclick=button_click_directions()>
