@@ -56,9 +56,11 @@ body {
 
 #map {
   position: relative;
-  width: 80vw;
   height:70vh;
 }
+
+
+
 #map-overlay {
   position: absolute;
   top:5px;

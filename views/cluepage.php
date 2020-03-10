@@ -178,7 +178,7 @@ $database->close();
           <a class="nav-link lead" style="background-color: transparent;" id = "score" href="#">Score: </a>
     		</div>
   		</div>
-			<a class="nav-link lead align-items" style="background-color: transparent;" href="../views/faqPage.php">FAQ</a>
+			<a class="lead align-items text-white" style="background-color: transparent; text-decoration: none;" href="../views/faqPage.php">FAQ</a>
 			<a class="nav-link lead text-dark" style="display: none;background-color: transparent;" id="mutebutton" onclick="toggle_sound()"><i  class="fas text-white fa-volume-mute"></i></a>
   		<a class="nav-link lead text-dark" style="background-color: transparent;"id="notmutebutton" onclick="toggle_sound()"><i  class="fas text-white fa-volume-up"></i></a>
 		</nav>
@@ -198,7 +198,7 @@ $database->close();
 
   <div id="popup1" class="overlay" style="z-index: 12;">
     <div class="container-fluid; overflow-y: scroll;">
-      <a class="close" href="#" onclick="hidePopUp()" style="padding-top: 6vh; padding-right: 4vw;">&times;</a>
+      <a class="close" href="#" onclick="hidePopUp()" style="padding-top: 5vh; padding-right: 3vw">&times;</a>
       <h2 class="container p-0 m-0">
         <img id="pirate"src="../public/img/talking.gif" style="margin-left: 30%">
       </h2>
