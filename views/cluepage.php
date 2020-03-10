@@ -175,7 +175,7 @@ $database->close();
   		<div class="row">
     		<div class="span4">
 					<!-- <img style="float: left; width: 8vw; height: 5vh" class="pb-2 pl-2" src="../public/img/coinImagePirate.png"/> -->
-          <a class="nav-link lead" style="background-color: transparent;" id = "score" href="#">Score: </a>
+          <a class="nav-link lead text-white" style="background-color: transparent;" id = "score" href="#">Score: </a>
     		</div>
   		</div>
 			<a class="lead align-items text-white" style="background-color: transparent; text-decoration: none;" href="../views/faqPage.php">FAQ</a>
@@ -205,7 +205,6 @@ $database->close();
       <!-- <div class="content"> -->
       <div class="container-fluid" style="height: 50vh; overflow-y: scroll; position: absolute;">
         <h1 class='text-white' id="narrativeText" style="height: 100%; font-size: 150%;">
-          “Ay freshers, I need your help! I’ve lost me treasure all around the campus. I’ve got me treasure map marked out, but I need help getting it back. Been spotting scavengers around these parts recently and the longer I take, the more of me treasure they get. I’ve protected me treasure at each location behind some questions, but in me old age I've forgotten them! Help an old pirate out and help me answer these questions. Time is of the essence, let's get started!"
         </h1>
       </div>
     </div>
@@ -334,7 +333,6 @@ $database->close();
 
 <script>
 
-
     function getNarrativeData(building_id) {
 
 
@@ -343,11 +341,12 @@ $database->close();
         }).then(data => {
 
             for (let index = 0; index < data.length; index++) {
-              const element = array[index];
+              const element = data[index];
               if (element.building_id == building_id) {
-                document.getElementById("narrativeText").innerText =  element.narrative;
+                //alert("success");
+                document.getElementById("narrativeText").innerHTML =  element.narrative;
               }
-              
+              playPopUp();
             }
 
         }).catch(err => {
@@ -370,6 +369,7 @@ $database->close();
 
 
       $("#myVideo").show();
+      $("#popup1").show();
       $(".box").show();
       // $("#home").hide();
       document.getElementById("pirategif").click();
@@ -668,9 +668,9 @@ $database->close();
                 } else {
                     incorrect.style.display = "none";
                     success.style.display = "block";
-                }
-
-
+       
+                getNarrativeData(building_ids[indexStart]);
+         }
                 right_voice();
                 // disable the clue tab and move the user back to the Map page
                 var element = document.getElementById("clue-tab");
@@ -759,6 +759,7 @@ $database->close();
                 routeExtraInfo.push(data[i].extra_info);
                 buildingNames.push(data[i].building_name);
             }
+            getNarrativeData(building_ids[0]);
             geolocation();
         }).catch(err => {
             // catch err

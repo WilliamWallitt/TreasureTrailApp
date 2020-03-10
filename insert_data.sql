@@ -13,7 +13,7 @@ VALUES
 ('College of Social Sciences and International Studies'),
 ('College of Medicine and Health');
 
-INSERT INTO `buildings`(`building_name`, `latitude`, `longitude`, `extra_info`)
+INSERT INTO `buildings`(`building_name`, `latitude`, `longitude`, `extra_info`, `narrative`)
 VALUES
 ('The Forum', 50.735398, -3.533774, 'The Forum is a stunning 48 million pound centrepiece at the heart of the Streatham Campus', 'Some of me treasure was left in the forum. It''s the big building at the centre of campus. Ayy I remember the forum, used to go there back in the day. Plenty of places to eat and for an old pirate like me to sit down and study some treasure maps.'),
 ('Student Health Centre', 50.735916, -3.537931, 'The Student health centre accepts patients who are students of Exeter University, living on or adjacent to the main campus.', 'To the Student Health centre next! Ay, the student health centre has helped me out with scurvy more times than I care to admit. All you have to do is register with them and call whenever ya need an appointment!'),
