@@ -30,13 +30,13 @@ html {
 
   /* background-image: url("#"); */
 
-  background-color: black no-repeat center fixed;
-  background-size: cover;
+  /* background-color: black no-repeat center fixed; */
+  /* background-size: cover; */
 }
 
 .layer {
   /* background-color: rgba(156, 40, 20, 0.3); */
-  background-color: rgba(000, 000, 000, 0.3);
+  background-color: rgba(104, 78, 22, 0.6);
   position: absolute;
   top: 0;
   left: 0;
@@ -97,7 +97,7 @@ ul {
     background: transparent;
     font-weight: 300px;
     color: black;
-    background: rgba(104, 78, 22, 0.7);
+    background: rgba(104, 78, 22, 0.4);
     text-transform: uppercase;
     letter-spacing: 2px;
     /* padding: 25px 80px; */

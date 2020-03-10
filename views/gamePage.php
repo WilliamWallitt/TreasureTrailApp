@@ -16,7 +16,6 @@
 <body id="background" style="height:100vh">
 
 
-
 <!-- ;==========================================
 ; Title:  Front end Department Page - HTML
 ; Author: William Wallitt, Edward Soutar, Bevan Roberts
@@ -24,9 +23,7 @@
 ;========================================== -->
     
 <!-- Navigation -->
-<canvas id="canvas" style="width: 100vw; height:100vh;"></canvas>
-
-  <div class="layer">
+<canvas id="canvas1" style="width: 100vw; height:100vh;"></canvas>
 
   <video autoplay muted loop id="myVideo">
       <source src="../public/img/stormySeas.mp4" type="video/mp4">
@@ -34,6 +31,9 @@
 
 
   <section class="game">
+
+    <div class="layer">
+
 
     <section class="screen screen-intro active-screen" id="home"> 
 
@@ -47,10 +47,10 @@
     <section class="screen screen-game">
 
 
-        <div id="screen-map" style="width: 100vw; height: 100vh">
+        <div class="d-flex align-items-center" id="screen-map" style="width: 100vw; height: 100vh">
 
 
-            <div class="container list-group p-0 border border-dark rounded-lg" style="height: 90vh">
+            <div class="container list-group p-0 rounded-lg" style="height: 90vh">
                 <!-- search bar - want it as a form-group -->
                 <a class="list-group-item">
                     <form class="form-inline md-form form-sm mt-4">
@@ -248,11 +248,11 @@ function myFunction() {
               e.preventDefault();
               reverseIntroButtons();
               timelineIntroScreen.eventCallback('onReverseComplete', function() {
-                // '../public/img/pirateShipBackground.jpg'
                 fadeToScreen('screen-game');
+                $(".layer").css({"background-color": "transparent"});
                 $("body").css({"background-image": 'url(' + "../public/img/treasure1.jpg" + ')', "background-position": "center", "background-repeat" : "no-repeat", "background-size" : "cover", "position" : "relative"});
-                // $("body").css("background-color", "black");
                 $("#canvas").hide();
+                $("#myVideo").hide();
               });
             });
         }
@@ -293,6 +293,8 @@ function myFunction() {
       $("body").css({"background-image": 'url(' + "../public/img/treasure1.jpg" + ')', "background-position": "center", "background-repeat" : "no-repeat", "background-size" : "cover", "position" : "relative"});
       // $("body").css("background-color", "black");
       $("#canvas").hide();
+      $("#myVideo").hide();
+
     });
 
     });
