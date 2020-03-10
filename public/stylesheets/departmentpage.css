@@ -1,5 +1,6 @@
 body {
-  font-family: 'pirate', sans-serif;
+  font-family: 'treasure', sans-serif;
+  font-size:13px;
   /* background-color: black; */
 }
 
@@ -19,6 +20,13 @@ body {
           url('../../treasuremapdeadhand-yla3-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+}
+
+@font-face {
+    font-family: 'treasure';
+    src: url('../../booter.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 #textsize {
@@ -73,7 +81,7 @@ h2 {
   left: 0;
   right: 0;
   /* this is the overlay that covers the whole screen */
-  background: rgba(000, 000, 000, 0.4); 
+  background: rgba(104, 78, 22, 0.7);
   transition: opacity 500ms;
   visibility: hidden;
   opacity: 0;
