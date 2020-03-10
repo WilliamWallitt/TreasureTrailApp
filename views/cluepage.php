@@ -23,11 +23,10 @@ $database->close();
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="../public/stylesheets/main.css">
   <link rel="stylesheet" type="text/css" href="../public/stylesheets/departmentpage.css">
-  <script
-    src="https://use.fontawesome.com/releases/v5.12.1/js/all.js"
-    data-search-pseudo-elements>
-  </script>
-
+	<script
+	    src="https://use.fontawesome.com/releases/v5.12.1/js/all.js"
+	    data-search-pseudo-elements>
+	 </script>
   <script src="../jsQR.js"></script>
 	<script src = "../audio/howler.js"></script>
   <script>
@@ -151,16 +150,15 @@ $database->close();
         if(muted == false){
             muted = true;
             Howler.mute(true);
-            $("#mutebutton").hide();
-            $("#notmutebutton").show();
-
+						$("#mutebutton").hide();
+					  $("#notmutebutton").show();
 	    }
-      else {
+        else {
             muted = false;
             Howler.mute(false);
-            $("#mutebutton").show();
+						$("#mutebutton").show();
             $("#notmutebutton").hide();
-      }
+        }
     }
   </script>
 
@@ -172,18 +170,18 @@ $database->close();
 ; Date:   25 Feb 2020
 ;========================================== -->
   <body style="background: url('../public/img/Backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
-  
-<nav class="navbar navbar-dark bg-light vertical-center">
-  <div class="row">
-    <div class="span4">
-      <!-- <img style="float: left; width: 8vw; height: 5vh" class="pb-2 pl-2" src="../public/img/coinImagePirate.png"/> -->
-      <a class="nav-link" id = "score" href="#">Score: </a>
-    </div>
-  </div>
-  <a class="nav-link align-itmes" href="../views/faqPage.php">FAQ's</a>
-  <a class="nav-link text-dark" style="display: none;" id="mutebutton"><i onclick="toggle_sound()" class="fas fa-volume-mute"></i></a>
-  <a class="nav-link text-dark" id="notmutebutton" ><i onclick="toggle_sound()" class="fas fa-volume-up"></i></a>
-</nav>
+
+		<nav class="navbar navbar-dark vertical-center">
+  		<div class="row">
+    		<div class="span4">
+					<!-- <img style="float: left; width: 8vw; height: 5vh" class="pb-2 pl-2" src="../public/img/coinImagePirate.png"/> -->
+          <a class="nav-link lead" style="background-color: transparent;" id = "score" href="#">Score: </a>
+    		</div>
+  		</div>
+			<a class="nav-link lead align-items" style="background-color: transparent;" href="../views/faqPage.php">FAQ</a>
+			<a class="nav-link lead text-dark" style="display: none;background-color: transparent;" id="mutebutton" onclick="toggle_sound()"><i  class="fas text-white fa-volume-mute"></i></a>
+  		<a class="nav-link lead text-dark" style="background-color: transparent;"id="notmutebutton" onclick="toggle_sound()"><i  class="fas text-white fa-volume-up"></i></a>
+		</nav>
 
     <!-- popup code -->
 
@@ -214,7 +212,7 @@ $database->close();
   </div>
 
   <!-- end pop up code -->
-        
+
 
     <!-- Map/Verify Location/ Clue tabs -->
 
@@ -234,13 +232,13 @@ $database->close();
       <!-- Map tab content -->
 			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-	      <div class="container">
+	      <div class="container p-2">
 	        <div class="row justify-content-center" style="margin:0;">
 	          <div class="col-xs-12">
 	                <div class="table-responsive">
 	                <!-- map container -->
                   <div style="position:relative;">
-	                    <div id="map" class="border border-dark" style="width: 100vw; margin: 0 auto;"></div>
+	                    <div id="map" class="border border-dark"></div>
 	                    <div id="map-overlay"><img class="m-0 p-0" src="../public/img/compass.png" id="map-overlay-image"></div>
 	                    <div class="wood" id="destination-overlay"><p id="directions-title"></p></div>
 			            </div>
@@ -264,8 +262,8 @@ $database->close();
 
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
-        <h1 class="d-flex justify-content-center lead m-5" style="font-family: 'pirate'">Scan QR Code</h1>
-        <div id="loadingMessage" style="font-family: 'pirate'">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
+        <h1 class="d-flex justify-content-center lead m-5" style="font-family: 'skull'">Scan QR Code</h1>
+        <div id="loadingMessage" style="font-family: 'skull'">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
         <canvas id="canvas" hidden></canvas>
         <div id="output" hidden>
             <div hidden><b>Data:</b> <span id="outputData"></span></div>
@@ -294,26 +292,26 @@ $database->close();
 
               <!-- Clue multiple choice questions -->
 
-              <h1 class="question h3 bg-light text-center h2 p-2" id="clue" style="font-family: 'pirate'">How many stairs does the Harrison Bulding have?</h1>
+              <h1 class="question h3 bg-light text-center h2 p-2" id="clue" style="font-family: 'skull'">How many stairs does the Harrison Bulding have?</h1>
 
               <div class="container text-align-center h4">
                   <hr/>
                   <div class="custom-control custom-radio d-flex justify-content-center">
                       <input id="q1" name="choice" type="radio" class="custom-control-input">
-                      <label class="custom-control-label" for="q1"><div class="person" id="question1" style="font-family: 'pirate'">3 sets of stairs</div></label>
+                      <label class="custom-control-label" for="q1"><div class="person" id="question1" style="font-family: 'skull'">3 sets of stairs</div></label>
                   </div>
                   <div class="custom-control custom-radio d-flex justify-content-center">
                       <input id="q2" name="choice" type="radio" class="custom-control-input">
-                      <label class="custom-control-label" for="q2"><div class="person" id="question2" style="font-family: 'pirate'">1 sets of stairs</div></label>
+                      <label class="custom-control-label" for="q2"><div class="person" id="question2" style="font-family: 'skull'">1 sets of stairs</div></label>
                   </div>
                   <div class="custom-control custom-radio d-flex justify-content-center">
                       <input id="q3" name="choice" type="radio" class="custom-control-input">
-                      <label class="custom-control-label" for="q3"><div class="person" id="question3" style="font-family: 'pirate'">5 sets of stairs</div></label>
+                      <label class="custom-control-label" for="q3"><div class="person" id="question3" style="font-family: 'skull'">5 sets of stairs</div></label>
                   </div>
 
                   <div class="d-flex justify-content-center text-center">
-                      <button type="submit" id="submitbtn" class="btn btn-dark mt-3" onclick="checkIfCorrect()" style="display: none; font-family: 'pirate'" >Submit</button>
-            <button type="submit" class="btn btn-dark mt-3" id="countdown" style="font-family: 'pirate'">Wait 30's</button>
+                      <button type="submit" id="submitbtn" class="btn btn-dark mt-3" onclick="checkIfCorrect()" style="display: none; font-family: 'skull'" >Submit</button>
+            <button type="submit" class="btn btn-dark mt-3" id="countdown" style="font-family: 'skull'">Wait 30's</button>
                   </div>
               </div>
               <hr/>
@@ -322,8 +320,8 @@ $database->close();
 
 
               <div id ="extra-info" class="jumbotron vertical-center text-center bg-transparent text-dark">
-                  <h1 class="h2" id="departmentName" style="font-family: 'pirate'">Harrison Building</h1>
-                  <p class="lead" id="extraInfo" style="font-family: 'pirate'">Did you know it was founded in 1932, before WW2!</p>
+                  <h1 class="h2" id="departmentName" style="font-family: 'skull'">Harrison Building</h1>
+                  <p class="lead" id="extraInfo" style="font-family: 'skull'">Did you know it was founded in 1932, before WW2!</p>
 
               </div>
 
@@ -355,8 +353,8 @@ $database->close();
     // function delaySubmit() {
 
     //     $('#countdown').delay(30000).hide(0);
-    //     $('#submitbtn').delay(30000).show(0);  
- 
+    //     $('#submitbtn').delay(30000).show(0);
+
     // }
 
     function playPopUp() {
@@ -385,11 +383,11 @@ $database->close();
         fetch("../app/get_score.php?user_id=" + userid).then(response => {
             return response.json();
         }).then(data => {
-            
+
             let score = data.score;
 
             document.getElementById("score").innerText =  score + "";
-            
+
         }).catch(err => {
             // catch err
             console.log(err);
@@ -471,7 +469,7 @@ $database->close();
                 } else {
                     $('#countdown').hide();
 
-                    $('#submitbtn').show(); 
+                    $('#submitbtn').show();
 
                 }
                 });
@@ -692,7 +690,7 @@ $database->close();
                         return response.json();
                     }).then(data => {
                         getScore();
-                    });           
+                    });
 
                 attempts = 0;
             // display our alert fail if answer is incorrect
@@ -952,10 +950,10 @@ $database->close();
         //Associate the styled map with the MapTypeId and set it to display.
         map.mapTypes.set('styled_map', styledMapType);
         map.setMapTypeId('styled_map');
-        
+
         // set the map object -> load the map
         directionsRenderer.setMap(map);
-  
+
         // this is loading the directions (list of instructions how to get there)
         directionsRenderer.setPanel(document.getElementById('directionsPanel'));
 
