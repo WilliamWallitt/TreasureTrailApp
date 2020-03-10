@@ -238,9 +238,11 @@ $database->close();
 	                <div class="table-responsive">
 	                <!-- map container -->
 	                <div class="container-fluid p-0 m-0">
-	                  <div id="map" class="border border-dark" style="width: 100vw; margin: 0 auto;"></div>
-	                  <div id="map-overlay"><img class="m-0 p-0" src="../public/img/compass.png" id="map-overlay-image"></div>
-	                  <div class="wood" id="destination-overlay"><p id="directions-title"></p></div>
+			  <div style="position:relative;">
+	                    <div id="map" class="border border-dark" style="width: 100vw; margin: 0 auto;"></div>
+	                    <div id="map-overlay"><img class="m-0 p-0" src="../public/img/compass.png" id="map-overlay-image"></div>
+	                    <div class="wood" id="destination-overlay"><p id="directions-title"></p></div>
+			  </div>
 	                </div>
 
 	                <!-- arrow container -->
