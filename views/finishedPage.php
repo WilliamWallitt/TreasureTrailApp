@@ -16,7 +16,7 @@ if (!isset($_SESSION['department_id'])) {
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="../public/stylesheets/finishedpage.css">
 </head>
-<body style="background: url('../public/img/pirateShipBackground.jpg') no-repeat center fixed; background-size: cover;">
+<body class style="background: url('../public/img/pirateShipBackground.jpg') no-repeat center fixed; background-size: cover;">
 
 
 <!-- ;==========================================
@@ -27,11 +27,11 @@ if (!isset($_SESSION['department_id'])) {
 
     <!-- game menu -->
 
-  <section class="game">
-  <section class="screen screen-intro active-screen"> 
+  <section class="game ">
+  <section class="screen screen-intro active-screen">
     <div class="button button-leaderboard"><h1 class="display-5" id="finishedPosition">Whooooo You Finished </h1></div>
     <div class="button button-newgame"><h1 class="lead" id="backtodep" onclick="backtoDepartments()">New Game</h1></div>
-    <div class="button button-newgame"><h1 class="lead" id="leader">Leader Board</h1></div>
+    <div class="button button-newgame"><h1 class="lead" id="leader">Leaderboard</h1></div>
   </section>
 
   <!-- Leader board and Credit onlick content -->
@@ -56,11 +56,11 @@ if (!isset($_SESSION['department_id'])) {
             <tbody id="leaderboard">
             </tbody>
           </table>
-        </div>        
+        </div>
       </div>
     </section>
     <div class="text-center">
-      <a href="../views/finishedPage.php"><h1 class="btn btn-outline-dark" id="menubutton">Go to Game Menu</h1></a>
+      <a href="../views/finishedPage.php"><h1 class="btn btn-outline-light" id="menubutton">Go to Game Menu</h1></a>
     </div>
   </section>
 
@@ -75,13 +75,6 @@ if (!isset($_SESSION['department_id'])) {
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 <script>
-
-
-  if ($(window).height() <= 900) {
-
-    $("#leader").css("color", "white");
-    // set color to white of leaderboard
-  }
 
   fetch("../app/get_leaderboard.php?department_id=" + <?php echo $_SESSION['department_id']; ?>).then(response => {
       return response.json();
@@ -131,7 +124,7 @@ if (!isset($_SESSION['department_id'])) {
           $("#finishedPosition").text("Whoooo You Finished!");
           return;
         }
-        $("#finishedPosition").text("You Finished in " + position + getPlaceSuperscript(position) + " place!");
+        $("#finishedPosition").text("You Finished in " + position + getPlaceSuperscript(position) + " place");
 
     }).catch(err => {
         // catch err
@@ -182,19 +175,19 @@ if (!isset($_SESSION['department_id'])) {
 
     var $elementTarget = $('.' + _nameScreen);
     var $elementActiveScreen = $('.active-screen');
-    
+
     console.log('$elementTarget: ', $elementTarget);
     console.log('targetScreenClassName: ', targetScreenClassName);
-    console.log('$elementActiveScreen: ', $elementActiveScreen);    
-    
+    console.log('$elementActiveScreen: ', $elementActiveScreen);
+
     return TweenMax.to($elementActiveScreen, .4, {
       autoAlpha: 0,
       y: '+=10',
       onComplete: function() {
         console.log('onComplete: ', $elementTarget);
-        
+
         $elementActiveScreen.removeClass('active-screen');
-        
+
         TweenMax
         .to($elementTarget, .4, {
           y: '-=10',

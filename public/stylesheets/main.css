@@ -61,8 +61,8 @@ body {
 }
 #map-overlay {
   position: absolute;
-  top:0px;
-  right:0px;
+  top:5px;
+  right:5px;
   z-index: 1;
 }
 #map-overlay-image {
@@ -73,8 +73,8 @@ body {
 #directions-title {
   position: absolute;
   font-family: 'skull',Fallback, sans-serif;
-  top:0px;
-  left:0px;
+  top:5px;
+  left:5px;
   font-size: 10vw;
 }
 @media screen and (min-width: 600px) {
@@ -144,7 +144,7 @@ tbody {
 }
 
 tr {
-    walign: center;
+    align: center;
 }
 
 td {
@@ -158,7 +158,7 @@ td {
   padding: 10px;
 }
 
-.adp-summary, .adp-stepicon, .adp-maneuver, .adp-distance .warnbox-content,.adp-warnbox {
+.adp-summary, .adp-stepicon, .adp-maneuver, .adp-distance .warnbox-content,.adp-warnbox{
   display: none;
 }
 
