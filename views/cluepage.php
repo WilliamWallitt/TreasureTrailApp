@@ -164,7 +164,12 @@ $database->close();
 ; Author: William Wallitt, Stephen Kubal, Bevan Roberts
 ; Date:   25 Feb 2020
 ;========================================== -->
-	<body style="background: url('../public/img/backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
+  <body style="background: url('../public/img/backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
+  
+    <button class="btn btn-outline-dark m-1 p-1" style="position: absolute; left: 35vw; top: 0vh; z-index: 20;"><a style="font-family: 'pirate'; color: white" href="../views/faqPage.php">FAQ's</a></button>
+
+
+
     <div id="coins" class="container">
         <div class="row">
             <div class="column">
@@ -186,9 +191,12 @@ $database->close();
 
   <video autoplay muted loop id="myVideo" style="display:none; z-index: 9">
         <source src="../public/img/stormySeas.mp4" type="video/mp4">
-    </video>
+  </video>
 
-  <div id="popup1" class="overlay" style="z-index: 12">
+
+  <!-- background: url('../public/img/treasure1.jpg'); -->
+
+  <div id="popup1" class="overlay" style="z-index: 12;">
     <div class="container-fluid; overflow-y: scroll;">
       <a class="close" href="#" onclick="hidePopUp()" style="padding-top: 5vh; padding-right: 3vw">&times;</a>
       <h2 class="container p-0 m-0">
@@ -196,7 +204,7 @@ $database->close();
       </h2>
       <!-- <div class="content"> -->
       <div class="container-fluid" style="height: 50vh; overflow-y: scroll; position: absolute;">
-        <h1 class='text-white' style="height: 100%; font-size: 150%">
+        <h1 class='text-white' style="height: 100%; font-size: 150%;">
           “Ay freshers, I need your help! I’ve lost me treasure all around the campus. I’ve got me treasure map marked out, but I need help getting it back. Been spotting scavengers around these parts recently and the longer I take, the more of me treasure they get. I’ve protected me treasure at each location behind some questions, but in me old age I've forgotten them! Help an old pirate out and help me answer these questions. Time is of the essence, let's get started!"
         </h1>
       </div>
@@ -230,7 +238,7 @@ $database->close();
 	                <div class="table-responsive">
 	                <!-- map container -->
 	                <div class="container-fluid p-0 m-0">
-	                  <div id="map" class="border border-dark"></div>
+	                  <div id="map" class="border border-dark" style="width: 100vw;"></div>
 	                  <div id="map-overlay"><img src="../public/img/compass.png" id="map-overlay-image"></div>
 	                  <div class="wood" id="destination-overlay"><p id="directions-title"></p></div>
 	                </div>
@@ -926,8 +934,8 @@ $database->close();
         // Create a map object, and include the MapTypeId to add
         // to the map type control.
         var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
           center: forum,
-          zoom: 10,
           mapTypeControlOptions: {
             mapTypeIds: [
                     'styled_map']
@@ -935,17 +943,20 @@ $database->close();
           mapTypeControl: false,
           fullscreenControl: false,
           streetViewControl: false,
-          zoomControl: false
+          zoomControl: false,
         });
 
 
         //Associate the styled map with the MapTypeId and set it to display.
         map.mapTypes.set('styled_map', styledMapType);
         map.setMapTypeId('styled_map');
+        
         // set the map object -> load the map
         directionsRenderer.setMap(map);
+  
         // this is loading the directions (list of instructions how to get there)
         directionsRenderer.setPanel(document.getElementById('directionsPanel'));
+
         // calculate our route (first time its the users current location and the first building's location)
         //Creating icon for treasure chest
         var treasurechest = {
@@ -1036,7 +1047,8 @@ $database->close();
               offset: '0',
               repeat: '20px'
             }]
-          }
+          },
+          preserveViewport: true
         });
     }
 

@@ -59,7 +59,7 @@ h2 {
   color: #fff;
   border: 2px solid black;
   text-decoration: none;
-  cursor: pointer;
+  cursor: pointers;
   transition: all 0.3s ease-out;
 }
 .button:hover {
@@ -73,7 +73,7 @@ h2 {
   left: 0;
   right: 0;
   /* this is the overlay that covers the whole screen */
-  background: rgba(66, 51, 19, 0.66); 
+  background: rgba(000, 000, 000, 0.4); 
   transition: opacity 500ms;
   visibility: hidden;
   opacity: 0;

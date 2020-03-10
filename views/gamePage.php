@@ -26,6 +26,10 @@
 
   <div class="layer">
 
+  <!-- <video autoplay muted loop id="myVideo">
+      <source src="../public/img/stormySeas.mp4" type="video/mp4">
+  </video> -->
+
 
   <section class="game">
 
@@ -44,7 +48,7 @@
         <div id="screen-map" style="width: 100vw; height: 100vh">
 
 
-            <div class="container list-group p-0 border border-dark rounded-lg">
+            <div class="container list-group p-0 border border-dark rounded-lg" style="height: 90vh">
                 <!-- search bar - want it as a form-group -->
                 <a class="list-group-item">
                     <form class="form-inline md-form form-sm mt-4">
@@ -55,9 +59,7 @@
                 </a>
 
                 <!-- list of our departments -->
-                <ul class="list-group text-center" id="myUL">
-                
-                </ul>
+                <ul class="list-group text-center" id="myUL"></ul>
             </div>
 
         </div>
@@ -90,12 +92,10 @@ function onDepartmentClick(department_id) {
         return;
       }
       window.location.href = "../views/cluepage.php";
-      //window.location.href = "../views/cluepage.php?user_id=" + data.user_id + "&department_id=" + department_id;
     });
 }
 
 
-      // getting the departments from the DB -> setting them as <Li></Li> elements
 fetch("../app/get_departments.php").then(response => {
     return response.json();
 }).then(data => {

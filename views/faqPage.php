@@ -16,9 +16,8 @@
 ; Date:   25 Feb 2020
 ;========================================== -->
 
-
 <!-- setting the background -->
-<body style="background: url('../public/img/faqBackground.jpg') no-repeat center fixed; background-size: cover;">
+<body style="background: url('../public/img/treasure1.jpg') no-repeat center fixed; background-size: cover;">
 <h2>Frequently Asked Questions</h2>
 
 <!-- using svg-import -->
