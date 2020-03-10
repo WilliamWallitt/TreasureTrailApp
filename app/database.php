@@ -137,7 +137,8 @@ class database {
         $latitude_param = $connection->escape_string($building->latitude);
         $longitude_param = $connection->escape_string($building->longitude);
         $extra_info_param = $connection->escape_string($building->extra_info);
-        $sql = "INSERT INTO buildings (building_name, latitude, longitude, extra_info) VALUES ('$building_name_param', '$latitude_param', '$longitude_param', '$extra_info_param')";
+        $narrative_param = $connection->escape_string($building->narrative);
+        $sql = "INSERT INTO buildings (building_name, latitude, longitude, extra_info, narrative) VALUES ('$building_name_param', '$latitude_param', '$longitude_param', '$extra_info_param', '$narrative')";
 
         $result = $this->general_query($sql);
 
@@ -273,6 +274,7 @@ class database {
             $route_object->latitude = $building['latitude'];
             $route_object->longitude = $building['longitude'];
             $route_object->extra_info = $building['extra_info'];
+            $route_object->narrative = $building['narrative'];
 
             $buildings[] = $route_object;
         }
