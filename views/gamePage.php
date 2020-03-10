@@ -28,9 +28,9 @@
 
   <div class="layer">
 
-  <!-- <video autoplay muted loop id="myVideo">
+  <video autoplay muted loop id="myVideo">
       <source src="../public/img/stormySeas.mp4" type="video/mp4">
-  </video> -->
+  </video>
 
 
   <section class="game">
