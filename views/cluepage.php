@@ -200,9 +200,7 @@ $database->close();
       </h2>
       <!-- <div class="content"> -->
       <div class="container-fluid" style="position: absolute;">
-        <h1 class='text-white' style="height: 100%; font-size: 150%;">
-          “Ay freshers, I need your help! I’ve lost me treasure all around the campus. I’ve got me treasure map marked out, but I need help getting it back. Been spotting scavengers around these parts recently and the longer I take, the more of me treasure they get. I’ve protected me treasure at each location behind some questions, but in me old age I've forgotten them! Help an old pirate out and help me answer these questions. Time is of the essence, let's get started!"
-        </h1>
+        <h1 class='text-white' id="narrativeText" style="height: 100%; font-size: 150%;"></h1>
       </div>
     </div>
   </div>
@@ -330,7 +328,32 @@ $database->close();
 
 <script>
 
+	function getNarrativeData(building_id) {
 
+	// function delaySubmit() {
+
+	//     $('#countdown').delay(30000).hide(0);
+	//     $('#submitbtn').delay(30000).show(0);
+		fetch("../app/get_all_buildings.php").then(response => {
+					return response.json();
+			}).then(data => {
+
+	// }
+					for (let index = 0; index < data.length; index++) {
+						const element = data[index];
+						if (element.building_id == building_id) {
+							//alert("success");
+                document.getElementById("narrativeText").innerHTML =  element.narrative;
+						}
+						playPopUp();
+					}
+
+			}).catch(err => {
+					// catch err
+					console.log(err);
+			});
+
+	}
 
     // function delaySubmit() {
 
@@ -345,18 +368,11 @@ $database->close();
     var time = 0;
     var attempts = 0;
 
-
-    // function delaySubmit() {
-
-    //     $('#countdown').delay(30000).hide(0);
-    //     $('#submitbtn').delay(30000).show(0);
-
-    // }
-
     function playPopUp() {
 
 
       $("#myVideo").show();
+			$("#popup1").show();
       $(".box").show();
       // $("#home").hide();
       document.getElementById("pirategif").click();
@@ -655,7 +671,8 @@ $database->close();
                 } else {
                     incorrect.style.display = "none";
                     success.style.display = "block";
-                }
+										getNarrativeData(building_ids[indexStart]);
+								}
 
 
                 right_voice();
@@ -746,6 +763,7 @@ $database->close();
                 routeExtraInfo.push(data[i].extra_info);
                 buildingNames.push(data[i].building_name);
             }
+						getNarrativeData(building_ids[0]);
             geolocation();
         }).catch(err => {
             // catch err
@@ -979,7 +997,7 @@ $database->close();
     //Sets the last visited location to an open treasure chest
     function updateMarkers(){
       var treasurechest = {
-        url: '../public/img/treasurechest.pn', // url
+        url: '../public/img/treasurechest.png', // url
         scaledSize: new google.maps.Size(60, 50), // scaled size
         origin: new google.maps.Point(0,0), // origin
         anchor: new google.maps.Point(25, 30) // anchor
