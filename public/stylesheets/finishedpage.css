@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'skull';
+  src: url('../../skullsandcrossbones.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 $dark-blue: #2c3e50;
 $ligh-grey: #ecf0f1;
 
@@ -6,20 +13,39 @@ html, body {
   margin: 0;
 }
 
+table {
+  background-color: rgba(0,0,0, 0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 1) inset;
+}
+
+th {
+  font-size: 15px;
+  text-align: center;
+}
+
+tr {
+  color:white;
+  font-size:30px;
+  text-align: center;
+}
+
+h1 {
+  color:white;
+}
+
 body {
   display: flex;
   align-items: center;
   justify-content: center;
-  
   background-color: #ffffff;
-  color: $ligh-grey;
-  font-family: sans-serif;
+  color: white;
+  font-family: 'skull';
+  text-shadow: 2px 2px black;
   line-height: 1.4;
-  
-  a {
-    display: inline-block;
-    color: $ligh-grey;
-  }
+}
+
+a {
+  display: inline-block;
 }
 
 .button {
