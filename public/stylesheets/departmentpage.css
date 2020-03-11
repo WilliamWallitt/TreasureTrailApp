@@ -1,7 +1,7 @@
 body {
   font-family: 'treasure', sans-serif;
   font-size:13px;
-  /* background-color: black;// */
+  /* background-color: black; */
 }
 
 
@@ -103,6 +103,12 @@ h2 {
   transition: all 5s ease-in-out;
 }
 
+.close {
+  color: white;
+  font-size: 60px;
+
+}
+
 .popup h2 {
   margin-top: 0;
   color: #333;
@@ -113,7 +119,7 @@ h2 {
   top: 20px;
   right: 30px;
   transition: all 200ms;
-  font-size: 30px;
+  font-size: 30x;
   font-weight: bold;
   text-decoration: none;
   color: black;

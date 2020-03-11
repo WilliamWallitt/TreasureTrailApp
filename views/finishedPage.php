@@ -29,7 +29,7 @@ if (!isset($_SESSION['department_id'])) {
 
   <section class="game ">
   <section class="screen screen-intro active-screen">
-    <div class="button button-leaderboard"><h1 class="display-5" id="finishedPosition"></h1></div>
+    <div class="button button-leaderboard"><h1 class="display-5" id="finishedPosition">Whooooo You Finished </h1></div>
     <div class="button button-newgame"><h1 class="lead" id="backtodep" onclick="backtoDepartments()">New Game</h1></div>
     <div class="button button-newgame"><h1 class="lead" id="leader">Leaderboard</h1></div>
   </section>
@@ -42,10 +42,10 @@ if (!isset($_SESSION['department_id'])) {
 
       <div class="tab-pane" id="GroupTracking">
         <div class="container text-center">
-          <h1 class="lead" style="font-size:40px;">Leaderboard</h1>
+          <h1 class="lead">Leaderboard</h1>
         </div>
         <div class="table-responsive">
-          <table class="table table-sm">
+          <table class="table table-striped table-sm">
             <thead>
               <tr>
                 <th>Position</th>
