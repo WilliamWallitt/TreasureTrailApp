@@ -17,8 +17,13 @@
 ;========================================== -->
 
 <!-- setting the background -->
+<<<<<<< HEAD
+<body style="background: url('../public/img/treasure1.jpg') no-repeat center fixed; background-size: cover;">
+<h2>Frequently Asked Questions</h2>
+=======
 <body style="background: url('../public/img/Backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
 <h2 class="text-white">Frequently Asked Questions</h2>
+>>>>>>> master
 
 <!-- using svg-import -->
 <div style="visibility: hidden; position: absolute; width: 0px; height: 0px;">

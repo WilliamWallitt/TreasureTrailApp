@@ -1,7 +1,11 @@
 body {
   font-family: 'treasure', sans-serif;
   font-size:13px;
+<<<<<<< HEAD
+  /* background-color: black;// */
+=======
   /* background-color: black; */
+>>>>>>> master
 }
 
 
@@ -69,6 +73,40 @@ h2 {
   text-decoration: none;
   cursor: pointers;
   transition: all 0.3s ease-out;
+<<<<<<< HEAD
+}
+.button:hover {
+  background: white;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* this is the overlay that covers the whole screen */
+  background: rgba(104, 78, 22, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 0 auto;
+  /* padding: 20px; */
+  background: #fff;
+  border-radius: 5px;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-color: transparent;
+  transition: all 5s ease-in-out;
+=======
 }
 .button:hover {
   background: white;
@@ -107,6 +145,7 @@ h2 {
   color: white;
   font-size: 60px;
 
+>>>>>>> master
 }
 
 .popup h2 {
@@ -119,7 +158,11 @@ h2 {
   top: 20px;
   right: 30px;
   transition: all 200ms;
+<<<<<<< HEAD
+  font-size: 30px;
+=======
   font-size: 30x;
+>>>>>>> master
   font-weight: bold;
   text-decoration: none;
   color: black;
