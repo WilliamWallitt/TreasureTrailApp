@@ -52,7 +52,7 @@ $database->close();
 
     var right = new Howl({
       src: ['../audio/treasure-chest.mp3'],
-      volume: 0.3
+      volume: 0.2
     });
 
     var voice = new Howl({
@@ -71,7 +71,7 @@ $database->close();
         wrong_1: [40000, 4000],
         wrong_2: [44000, 4000],
         wrong_3: [48000, 4000],
-				volume:0.5
+				volume:0.3
       }
     });
 
