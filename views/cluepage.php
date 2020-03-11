@@ -149,13 +149,13 @@ $database->close();
     function toggle_sound(){
         if(muted == false){
             muted = true;
-            Howler.mute(true);
+            Howler.mute(false);
 						$("#mutebutton").hide();
 					  $("#notmutebutton").show();
 	      }
         else if (muted == true) {
             muted = false;
-            Howler.mute(false);
+            Howler.mute(true);
 						$("#mutebutton").show();
             $("#notmutebutton").hide();
         } 
