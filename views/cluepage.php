@@ -1,8 +1,14 @@
 <?php
-if (!isset($_GET['id'])){
-    header('Location: ../views/DepartmentPage.php');
-    exit();
+require '../app/database.php';
+
+session_start();
+if (!isset($_SESSION['user_id'], $_SESSION['department_id'])) {
+	header("Location: ../views/gamePage.php");
 }
+
+$database = new database();
+$response = $database->reset_user($_SESSION['user_id']);
+$database->close();
 ?>
 
 <!DOCTYPE html>
@@ -16,17 +22,31 @@ if (!isset($_GET['id'])){
   <!-- bootstrap cdn -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="../public/stylesheets/main.css">
+  <link rel="stylesheet" type="text/css" href="../public/stylesheets/departmentpage.css">
+	<script
+	    src="https://use.fontawesome.com/releases/v5.12.1/js/all.js"
+	    data-search-pseudo-elements>
+	 </script>
   <script src="../jsQR.js"></script>
-  <script src = "../audio/howler.js"></script>
+	<script src = "../audio/howler.js"></script>
   <script>
+    var muted = false;
     var waves = new Howl({
       src: ['../audio/waves.mp3'],
       loop: true,
       volume: 0.05
     }).play();
 
-    var click_sound = new Howl({
-      src: ['../audio/button-click.mp3']
+    var click_sound_wood = new Howl({
+      src: ['../audio/button-click-wood.mp3']
+    });
+
+    var click_sound_paper = new Howl({
+      src: ['../audio/button-click-paper.mp3']
+    });
+
+    var click_sound_directions = new Howl({
+      src: ['../audio/button-click-paper-1.mp3']
     });
 
     var right = new Howl({
@@ -55,9 +75,19 @@ if (!isset($_GET['id'])){
 
     voice.play('start');
 
-    function button_click()
+    function button_click_wood()
     {
-        click_sound.play();
+        click_sound_wood.play();
+    }
+
+    function button_click_directions()
+    {
+        click_sound_directions.play();
+    }
+
+    function button_click_paper()
+    {
+        click_sound_paper.play();
     }
 
     function map_voice()
@@ -116,8 +146,19 @@ if (!isset($_GET['id'])){
         voice.play('wrong_3');
       }
     }
+    function toggle_sound(){
+        if(muted == false){
+            muted = true;
+            Howler.mute(true);
+						document.getElementById("mutebutton").innerHTML = "<i class='fas text-white fa-volume-mute' style='width:30px;'></i>"
+	    }
+        else {
+            muted = false;
+            Howler.mute(false);
+						document.getElementById("mutebutton").innerHTML = "<i class='fas text-white fa-volume-up' style='width:30px;'></i>"
+        }
+    }
   </script>
-
 
 </head>
 
@@ -126,61 +167,99 @@ if (!isset($_GET['id'])){
 ; Author: William Wallitt, Stephen Kubal, Bevan Roberts
 ; Date:   25 Feb 2020
 ;========================================== -->
+  <body style="background: url('../public/img/Backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
 
-<body>
+		<nav class="navbar navbar-dark vertical-center">
+  		<div class="row">
+    		<div class="span4">
+          <a class="nav-link disabled d-flex justify-content-start lead" style="background-color: transparent; color:white; width:33vw;" id = "score" href="#">Score: </a>
+    		</div>
+			</div>
+				<a class="nav-link lead d-flex justify-content-center" style="background-color: transparent;" href="../views/faqPage.php">FAQ</a>
+  			<a class="nav-link lead d-flex justify-content-end" style="background-color: transparent;"id="mutebutton" onclick="toggle_sound()"><i class="fas text-white fa-volume-up" style="width:30px;"></i></a>
+		</nav>
 
-    <!-- floating FAQ button to FAQ page -->
-    <a style="position:fixed;bottom:5px;right:5px;margin:0;padding:5px 3px;" href="#">
-        <button class="btn btn-dark btn-sm m-1" type="button" onclick="window.location.href = '../views/faqPage.php'">FAQ's</button>
-    </a>
+    <!-- popup code -->
+
+  <div class="box" style="display: none;" style="z-index: 12">
+    <a class="button" id="pirategif" href="#popup1">Let me Pop up</a>
+  </div>
+
+  <video autoplay muted loop id="myVideo" style="display:none; z-index: 9">
+        <source src="../public/img/stormySeas.mp4" type="video/mp4">
+  </video>
+
+
+  <!-- background: url('../public/img/treasure1.jpg'); -->
+
+  <div id="popup1" class="overlay" style="z-index: 12;">
+    <div class="container-fluid;">
+      <a class="close" href="#" onclick="hidePopUp()" style="padding-top: 5vh; padding-right: 3vw; font-size:50px">&times;</a>
+      <h2 class="container p-0 m-0">
+        <img id="pirate"src="../public/img/talking.gif" style="margin-left: 30%">
+      </h2>
+      <!-- <div class="content"> -->
+      <div class="container-fluid" style="position: absolute;">
+        <h1 class='text-white' style="height: 100%; font-size: 150%;">
+          “Ay freshers, I need your help! I’ve lost me treasure all around the campus. I’ve got me treasure map marked out, but I need help getting it back. Been spotting scavengers around these parts recently and the longer I take, the more of me treasure they get. I’ve protected me treasure at each location behind some questions, but in me old age I've forgotten them! Help an old pirate out and help me answer these questions. Time is of the essence, let's get started!"
+        </h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- end pop up code -->
+
 
     <!-- Map/Verify Location/ Clue tabs -->
-    <ul class="nav nav-pills nav-fill pt-3" id="myTab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" onclick=button_click();map_voice()>Map</a>
+
+		<ul class="nav nav-pills nav-fill navbar-static-top mt-1" id="myTab" role="tablist">
+        <li class="nav-item border border-dark"  styles="background: black;">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" onclick=button_click_paper();map_voice()>Map</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" onclick=button_click();scan_voice()>Verify location</a>
+        <li class="nav-item border border-dark">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" onclick=button_click_paper();scan_voice()>Verify location</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" id="clue-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" onclick=button_click();"getClueData()">Clue</a>
+        <li class="nav-item border border-dark">
+            <a class="nav-link disabled" id="clue-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" onclick=button_click_paper();getClueData()>Clue</a>
         </li>
     </ul>
     <!-- Tab content -->
   <div class="tab-content" id="myTabContent">
       <!-- Map tab content -->
-    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-      <div class="container p-2">
-        <div class="row justify-content-center">
-          <div class="col-xs-12">
-                <div class="table-responsive">
-                <!-- map container -->
-                <div class="container-fluid p-0 m-0">
-                    <div id="map" class="border border-dark" style="width:100vw; height:80vh;"></div>
-                </div>
+	      <div class="container p-2">
+	        <div class="row justify-content-center" style="margin:0;">
+	          <div class="col-xs-12">
+	                <div class="table-responsive">
+	                <!-- map container -->
+                  <div style="position:relative;">
+	                    <div id="map" class="border border-dark"></div>
+	                    <div id="map-overlay"><img class="m-0 p-0" src="../public/img/compass.png" id="map-overlay-image"></div>
+	                    <div class="wood" id="destination-overlay"><p id="directions-title"></p></div>
+			            </div>
 
-                <!-- arrow container -->
-                <a class="arrow-wrap" href="#content" onclick=button_click()>
-                    <span class="arrow"></span>
-                </a>
+	                <!-- arrow container -->
+	                <a class="wax-seal-wrap" href="#content" onclick=button_click_directions()>
+	                    <img class="wax-seal" src="../public/img/wax-seal.png">
+	                </a>
 
-                <!-- directions container -->
-                <div class="container d-flex justify-content-center" id="content">
-                    <div id="directionsPanel"></div>
-                </div>
-                </div>
-          </div>
-        </div>
-      </div>
-    </div>
+	                <!-- directions container -->
+	                <div class="container d-flex justify-content-center" id="content">
+	                    <div id="directionsPanel"></div>
+	                </div>
+	              </div>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
 
     <!-- Verify Location tab content -->
 
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
-        <h1 class="d-flex justify-content-center lead">Scan QR Code</h1>
-        <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
+        <h1 class="d-flex justify-content-center lead m-5" style="font-size:30px;font-family:'skull';color:white;text-shadow: 2px 2px black;">Scan QR Code</h1>
+        <div class="d-flex justify-content-center lead m-5"id="loadingMessage" style="font-size:20px;font-family:'skull';color:white;text-shadow: 2px 2px black;text-align: center;'">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
         <canvas id="canvas" hidden></canvas>
         <div id="output" hidden>
             <div hidden><b>Data:</b> <span id="outputData"></span></div>
@@ -191,52 +270,58 @@ if (!isset($_GET['id'])){
 
     <!-- Clue tab content -->
     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-      <div class="row justify-content-center p-5">
-        <div class="col-xs-12">
-          <div class="table-responsive text-align-center">
+      <div class="container">
+        <div class="row justify-content-center p-5">
+          <div class="col-xs-12">
+            <div class="table-responsive text-align-center">
 
-            <!-- alert incorrect -->
-            <div class="alert alert-danger" role="alert" id="incorrect" style="display: none">
-                <strong>Incorrect!</strong>
+              <!-- alert incorrect -->
+              <div class="alert alert-danger" role="alert" id="incorrect" style="display: none">
+                  <strong>Incorrect!</strong>
+              </div>
+
+              <!-- alert correct -->
+
+              <div class="alert alert-success" role="alert" id="correct" style="display: none">
+                  <strong>Correct!</strong>
+              </div>
+
+              <!-- Clue multiple choice questions -->
+
+              <h1 class="question h3 text-white text-center h2 p-2" id="clue" style="font-family: 'skull'"></h1>
+
+              <div class="container text-align-center h4">
+                  <hr/>
+                  <div class="custom-control custom-radio d-flex justify-content-center">
+                      <input id="q1" name="choice" type="radio" class="custom-control-input">
+                      <label class="custom-control-label" for="q1"><div class="person" id="question1" style="font-family: 'skull';color:white;"></div></label>
+                  </div>
+                  <div class="custom-control custom-radio d-flex justify-content-center">
+                      <input id="q2" name="choice" type="radio" class="custom-control-input">
+                      <label class="custom-control-label" for="q2"><div class="person" id="question2" style="font-family: 'skull';color:white;"></div></label>
+                  </div>
+                  <div class="custom-control custom-radio d-flex justify-content-center">
+                      <input id="q3" name="choice" type="radio" class="custom-control-input">
+                      <label class="custom-control-label" for="q3"><div class="person" id="question3" style="font-family: 'skull';color:white;"></div></label>
+                  </div>
+
+                  <div class="d-flex justify-content-center text-center">
+                      <button type="submit" id="submitbtn" class="btn btn-light mt-3" onclick="checkIfCorrect()" style="display: none; font-family: 'skull'" >Submit</button>
+            					<button type="submit" class="btn btn-light mt-3" id="countdown" style="font-family: 'skull'">Wait 30's</button>
+                  </div>
+              </div>
+              <hr/>
+
+              <!-- Extra info -->
+
+
+              <div id ="extra-info" class="jumbotron vertical-center text-center bg-transparent text-white">
+                  <h1 class="h2" id="departmentName" style="font-family: 'skull'"></h1>
+                  <p class="lead" id="extraInfo" style="font-family: 'skull'"></p>
+
+              </div>
+
             </div>
-
-            <!-- alert correct -->
-
-            <div class="alert alert-success" role="alert" id="correct" style="display: none">
-                <strong>Correct!</strong>
-            </div>
-
-            <!-- Clue multiple choice questions -->
-
-            <h1 class="question h3 bg-light text-center h2 p-2" id="clue">How many stairs does the Harrison Bulding have?</h1>
-
-            <div class="container text-align-center h4">
-                <hr/>
-                <div class="custom-control custom-radio d-flex justify-content-center">
-                    <input id="q1" name="choice" type="radio" class="custom-control-input" onclick=button_click()>
-                    <label class="custom-control-label" for="q1"><div class="person" id="question1">3 sets of stairs</div></label>
-                </div>
-                <div class="custom-control custom-radio d-flex justify-content-center">
-                    <input id="q2" name="choice" type="radio" class="custom-control-input" onclick=button_click()>
-                    <label class="custom-control-label" for="q2"><div class="person" id="question2">1 sets of stairs</div></label>
-                </div>
-                <div class="custom-control custom-radio d-flex justify-content-center">
-                    <input id="q3" name="choice" type="radio" class="custom-control-input" onclick=button_click()>
-                    <label class="custom-control-label" for="q3"><div class="person" id="question3">5 sets of stairs</div></label>
-                </div>
-                <div class="d-flex justify-content-center text-center">
-                    <button type="submit" class="btn btn-success mt-3" onclick="button_click();checkIfCorrect();">Submit</button>
-                </div>
-            </div>
-            <hr/>
-
-            <!-- Extra info -->
-
-            <div class="jumbotron vertical-center text-center bg-dark text-light">
-                <h1 class="h2" id="departmentName">Harrison Building</h1>
-                <p class="lead" id="extraInfo">Did you know it was founded in 1932, before WW2!</p>
-            </div>
-
           </div>
         </div>
       </div>
@@ -245,6 +330,70 @@ if (!isset($_GET['id'])){
 
 <script>
 
+
+
+    // function delaySubmit() {
+
+    //     $('#countdown').delay(30000).hide(0);
+    //     $('#submitbtn').delay(30000).show(0);
+
+    // }
+
+
+
+    var timerEnabled = false;
+    var time = 0;
+    var attempts = 0;
+
+
+    // function delaySubmit() {
+
+    //     $('#countdown').delay(30000).hide(0);
+    //     $('#submitbtn').delay(30000).show(0);
+
+    // }
+
+    function playPopUp() {
+
+
+      $("#myVideo").show();
+      $(".box").show();
+      // $("#home").hide();
+      document.getElementById("pirategif").click();
+    }
+
+    function hidePopUp() {
+      // $("#home").show();
+      $("#myVideo").hide();
+      $(".box").hide();
+      $("#popup1").hide();
+    }
+
+
+    playPopUp();
+
+    function getScore() {
+
+        var userid = "<?php echo $_SESSION['user_id']; ?>";
+
+        fetch("../app/get_score.php?user_id=" + userid).then(response => {
+            return response.json();
+        }).then(data => {
+
+            let score = data.score;
+
+            document.getElementById("score").innerText =  "Score:" + score;
+
+        }).catch(err => {
+            // catch err
+            console.log(err);
+        });
+
+    }
+
+    var timerEnabled = false;
+    var time = 0;
+    var attempts = 0;
 
     // QR code scanner code - creating the video stream + decoding the image
 
@@ -281,8 +430,10 @@ if (!isset($_GET['id'])){
         loadingMessage.hidden = true;
         canvasElement.hidden = false;
         outputContainer.hidden = false;
+
         canvasElement.height = window.innerHeight / 2.2;
         canvasElement.width = window.innerWidth;
+
         canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
         var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
         var code = jsQR(imageData.data, imageData.width, imageData.height, {
@@ -298,10 +449,31 @@ if (!isset($_GET['id'])){
           console.log("code: " + code.data);
           console.log("building id: " + building_ids[indexStart-1])
 
-          // if the QR code is corret, make the clue tab clickable and move user to it
+          // if the QR code is correct, make the clue tab clickable and move user to it
           if (code.data == building_ids[indexStart-1]) {
             var element = document.getElementById("clue-tab");
             element.classList.remove("disabled");
+            // delaySubmit();
+            var count = 2;
+            // Function to update counters on all elements with class counter
+            var doUpdate = function() {
+                $('#countdown').each(function() {
+                if (count !== 0) {
+                    let countString = "Wait " + count + "'s"
+                    $(this).html(countString);
+                    count = count - 1;
+                } else {
+                    $('#countdown').hide();
+
+                    $('#submitbtn').show();
+
+                }
+                });
+            };
+
+            // Schedule the update to happen once every second
+            setInterval(doUpdate, 1000);
+
             document.getElementById("clue-tab").click();
             return;
           }
@@ -311,7 +483,7 @@ if (!isset($_GET['id'])){
     }
 
     // coordinates for the forum exeter
-    var myLatLng = {lat: 50.735371, lng: -3.533782};
+	var myLatLng = {lat: 50.735371, lng: -3.533782};
     // we have to declare these globally -> so we can call them during the onClick event + the calc route function
     var map;
     var directionsRenderer;
@@ -320,19 +492,20 @@ if (!isset($_GET['id'])){
     // current location and next location index's
     var indexStart = 0;
     var indexEnd = 1;
+    // var score = 500;
 
     // storing coordindates, building_id's, routeExtraInfo and building names in arrays.
     var array = [];
     var building_ids = [];
     var routeExtraInfo = [];
     var buildingNames = [];
-
+    var markers = [];
 
     // fetching the route from the database based on what department id the user has clicked on
     // in the department page
 
     function getRoute(){
-        var department_id = "<?php echo $_GET['id']; ?>";
+        var department_id = "<?php echo $_SESSION['department_id']; ?>";
         fetch("../app/get_route.php?department_id=" + department_id).then(response => {
             return response.json();
         }).then(data => {
@@ -394,10 +567,35 @@ if (!isset($_GET['id'])){
             console.log(err);
         });
 
+        fetch('../app/update_tracking.php', {
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+        method: 'POST',
+        body: JSON.stringify({
+            user_id: "<?php echo $_SESSION['user_id']; ?>",
+            building_id: building_ids[indexStart]
+        })
+        }).then(response => {
+            return response.json();
+        }).then(data => {
+        });
+
+        timerEnabled = true;
+        time = 0;
+        setTimeout(timer, 1000);
+    }
+
+    function timer() {
+        if (!timerEnabled) {
+            return;
+        }
+        time++;
+        setTimeout(timer, 1000);
     }
 
     // checking if the selected answer is the correct one
     function checkIfCorrect() {
+
+        attempts++;
 
         let element;
         let answer_id;
@@ -453,10 +651,13 @@ if (!isset($_GET['id'])){
                 if (success.style.display === "none") {
                     incorrect.style.display = "none";
                     success.style.display = "block";
+                    // add_to_score(score);
                 } else {
                     incorrect.style.display = "none";
-                    success.style.display = "none";
+                    success.style.display = "block";
                 }
+
+
                 right_voice();
                 // disable the clue tab and move the user back to the Map page
                 var element = document.getElementById("clue-tab");
@@ -464,20 +665,40 @@ if (!isset($_GET['id'])){
 
                 document.getElementById("home-tab").click();
 
+                // document.getElementById('coin-image').src='../public/img/Coins4.png';
                 // calculate the next route in the treasure trail
                 calcRoute();
+                updateMarkers();
 
                 requestAnimationFrame(tick);
 
+                timerEnabled = false;
+
+                fetch('../app/update_score.php', {
+                    headers: { "Content-Type": "application/json; charset=utf-8" },
+                    method: 'POST',
+                    body: JSON.stringify({
+                        user_id: "<?php echo $_SESSION['user_id']; ?>",
+                        seconds: time,
+                        attempts: attempts - 1,
+                    })
+                    }).then(response => {
+                        return response.json();
+                    }).then(data => {
+                        getScore();
+                    });
+
+                attempts = 0;
             // display our alert fail if answer is incorrect
 
             } else if (data == false) {
                 if (incorrect.style.display === "none") {
                     success.style.display = "none";
                     incorrect.style.display = "block";
+                    // score = score-100;
                 } else {
                     success.style.display = "none";
-                    incorrect.style.display = "none";
+                    incorrect.style.display = "block";
                 }
                 wrong_voice();
             }
@@ -487,6 +708,12 @@ if (!isset($_GET['id'])){
         });
 
     }
+
+    // function add_to_score(score){
+    //   var new_score = document.getElementById('score').innerHTML;
+    //   new_score = parseInt(new_score)+parseInt(score);
+    //   document.getElementById('score').innerHTML = new_score;
+    // }
 
     // option function: converts our coordinates to an address (not used yet)
     function coordsToAddress(lat, long) {
@@ -504,7 +731,7 @@ if (!isset($_GET['id'])){
     // this initalises our map, populates our arrays and finds the users current location
     // navigating them to the first department in the treasure trail
     function init_route(){
-        var department_id = "<?php echo $_GET['id']; ?>";
+        var department_id = "<?php echo $_SESSION['department_id']; ?>";
         fetch("../app/get_route.php?department_id=" + department_id).then(response => {
             return response.json();
         }).then(data => {
@@ -519,7 +746,6 @@ if (!isset($_GET['id'])){
                 routeExtraInfo.push(data[i].extra_info);
                 buildingNames.push(data[i].building_name);
             }
-
             geolocation();
         }).catch(err => {
             // catch err
@@ -550,7 +776,6 @@ if (!isset($_GET['id'])){
                 }
                 // all this does is add our current position at the front of the array
                 array.unshift(pos);
-
                 // now as we have the users current location and the building locations coordinates
                 // we can now display the map and directions the user can take to the first location
                 initMap();
@@ -580,42 +805,215 @@ if (!isset($_GET['id'])){
 
     // simple map application - all this does is get our current location and finds the path to the forum
     function initMap() {
-        // such as loading the google map and the direction service/renderer
-
-        // service to get generate the map with the route and the directions (renderer)
-        // initialising the direction service and "how to get there" service
-
         directionsService = new google.maps.DirectionsService();
         directionsRenderer = new google.maps.DirectionsRenderer();
         var forum = new google.maps.LatLng(myLatLng.lat, myLatLng.lng);
-        // setting how much we zoom into the map, and the initial centering of the map
-        var mapOptions = {
-            zoom:15,
-            center: forum
-        }
-        // create new map object
-        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        //styling the map
+        var styledMapType = new google.maps.StyledMapType(
+            [
+
+              {elementType: 'geometry', stylers: [{color: '#ebe3cd'}]},
+              {elementType: 'labels.text.fill', stylers: [{color: '#523735'}]},
+              {elementType: 'labels.text.stroke', stylers: [{color: '#f5f1e6'}]},
+              {
+                featureType: 'administrative',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#c9b2a6'}]
+              },
+              {
+                featureType: 'administrative.land_parcel',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#dcd2be'}]
+              },
+              {
+                featureType: 'administrative.land_parcel',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#ae9e90'}]
+              },
+              {
+                featureType: 'landscape.natural',
+                elementType: 'geometry',
+                stylers: [{color: '#dfd2ae'}]
+              },
+              {
+                featureType: 'poi',
+                elementType: 'geometry',
+                stylers: [{color: '#dfd2ae'}]
+              },
+              {
+                featureType: 'poi',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#93817c'}]
+              },
+              {
+                featureType: 'poi.park',
+                elementType: 'geometry.fill',
+                stylers: [{color: '#a5b076'}]
+              },
+              {
+                featureType: 'poi.park',
+                elementType: 'labels.text.fill',
+                stylers: [{
+                  color: '#447530',
+                }]
+              },
+              {
+                featureType: 'road',
+                elementType: 'geometry',
+                stylers: [{color: '#f5f1e6'}]
+              },
+
+              {
+                featureType: 'road.arterial',
+                elementType: 'geometry',
+                stylers: [{color: '#fdfcf8'}]
+              },
+              {
+                featureType: 'road.highway',
+                elementType: 'geometry',
+                stylers: [{color: '#f8c967'}]
+              },
+              {
+                featureType: 'road.highway',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#e9bc62'}]
+              },
+              {
+                featureType: 'road.highway.controlled_access',
+                elementType: 'geometry',
+                stylers: [{color: '#e98d58'}]
+              },
+              {
+                featureType: 'road.highway.controlled_access',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#db8555'}]
+              },
+              {
+                featureType: 'road.local',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#806b63'}]
+              },
+              {
+                featureType: 'transit.line',
+                elementType: 'geometry',
+                stylers: [{color: '#dfd2ae'}]
+              },
+              {
+                featureType: 'transit.line',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#8f7d77'}]
+              },
+              {
+                featureType: 'transit.line',
+                elementType: 'labels.text.stroke',
+                stylers: [{color: '#ebe3cd'}]
+              },
+              {
+                featureType: 'transit.station',
+                elementType: 'geometry',
+                stylers: [{color: '#dfd2ae'}]
+              },
+              {
+                featureType: 'water',
+                elementType: 'geometry.fill',
+                stylers: [{color: '#b9d3c2'}]
+              },
+              {
+                  featureType: 'water',
+                  elementType: 'labels.text.fill',
+                  stylers: [{color: '#92998d'}]
+                },
+
+              ],
+              {name: 'Styled Map'});
+
+        // Create a map object, and include the MapTypeId to add
+        // to the map type control.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 16,
+          center: forum,
+          mapTypeControlOptions: {
+            mapTypeIds: [
+                    'styled_map']
+          },
+          mapTypeControl: false,
+          fullscreenControl: false,
+          streetViewControl: false,
+          zoomControl: false,
+        });
+
+
+        //Associate the styled map with the MapTypeId and set it to display.
+        map.mapTypes.set('styled_map', styledMapType);
+        map.setMapTypeId('styled_map');
+
         // set the map object -> load the map
         directionsRenderer.setMap(map);
+
         // this is loading the directions (list of instructions how to get there)
         directionsRenderer.setPanel(document.getElementById('directionsPanel'));
+
         // calculate our route (first time its the users current location and the first building's location)
-        calcRoute();
+        //Creating icon for treasure chest
+        var treasurechest = {
+          url: '../public/img/treasurechest.png', // url
+          scaledSize: new google.maps.Size(60, 50), // scaled size
+          origin: new google.maps.Point(0,0), // origin
+          anchor: new google.maps.Point(30, 25) // anchor
+        };
+        //setting all the buildings to treasure chestsf
+        for (var i = indexStart+1; i < array.length; i++) {
+          var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(array[i].lat, array[i].lng),
+            map: map,
+            icon: treasurechest,
+            title: buildingNames[i-1]
+            });
+            marker.setVisible(false);
+            markers.push(marker);
+          }
+          markers[0].setVisible(true);
+          calcRoute();
+       }
+
+    //Sets the last visited location to an open treasure chest
+    function updateMarkers(){
+      var treasurechest = {
+        url: '../public/img/treasurechest.pn', // url
+        scaledSize: new google.maps.Size(60, 50), // scaled size
+        origin: new google.maps.Point(0,0), // origin
+        anchor: new google.maps.Point(25, 30) // anchor
+      };
+      var open_treasurechest = {
+        url: '../public/img/open_treasurechest.png',
+        scaledSize: new google.maps.Size(60, 50),
+        origin: new google.maps.Point(0,0),
+        anchor: new google.maps.Point(25, 30)
+      };
+      markers[indexStart-1].setIcon(open_treasurechest);
+      markers[indexStart].setVisible(true);
+      markers[indexStart].setIcon(treasurechest);
     }
 
     function calcRoute() {
+      //resetting max score
+    //   score = 500;
 
         // if we are at the last location - loop
         if (indexEnd > array.length - 1) {
-
+            <?php
+            $database = new database();
+            $response = $database->set_completed_user($_SESSION['user_id']);
+            $database->close();
+            ?>
             window.location.href = "../views/finishedPage.php";
 
         }
-
         var request = {
             origin: new google.maps.LatLng(array[indexStart].lat, array[indexStart].lng),
             destination: new google.maps.LatLng(array[indexEnd].lat, array[indexEnd].lng),
-            travelMode: 'WALKING'
+            travelMode: 'WALKING',
+
         };
         // directionservice is just allowing use to use google to calc route
         // when we make our request -> If it succeeds then we wanna update our index values + update our locations + find directions
@@ -623,10 +1021,30 @@ if (!isset($_GET['id'])){
             if (status == 'OK') {
                 // setting new directions based on the request
                 directionsRenderer.setDirections(result);
+                document.getElementById('directions-title').innerHTML = markers[indexStart].title
                 // basically we want every click to update the directions loaded - so we go through the list of coords
                 indexStart += 1;
                 indexEnd += 1;
             }
+        });
+        var lineSymbol = {
+          path: 'M 0,-1 0,1',
+          strokeOpacity: 1,
+          scale: 4
+        };
+
+        directionsRenderer.setOptions({
+          suppressMarkers: true,
+          polylineOptions: {
+            strokeColor: 'black',
+            strokeOpacity:0,
+            icons: [{
+              icon: lineSymbol,
+              offset: '0',
+              repeat: '20px'
+            }]
+          },
+          preserveViewport: true
         });
     }
 

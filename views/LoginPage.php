@@ -70,8 +70,8 @@ function checkLoginCredentials() {
     let password = document.getElementById("password").value;
 
     if (username.length == 0 || password.length == 0) {
-    alert("Please fill in the required fields");
-    return;
+        alert("Please fill in the required fields");
+        return;
     } 
     // Create a new user,
     fetch("../app/verify_account.php", {
@@ -88,9 +88,13 @@ function checkLoginCredentials() {
         if (data == false) {
             document.getElementById("login").value = "";
             document.getElementById("password").value = "";
+
+            alert("Error: Invalid Username or Password");
+
             return;
         }
         window.location.href = "../views/ModifyDataPage.php";
+
     });
     return false;
 }

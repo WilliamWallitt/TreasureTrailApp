@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['department_id'])) {
+	header("Location: ../views/gamePage.php");
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +16,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="../public/stylesheets/finishedpage.css">
 </head>
-<body>
+<body class style="background: url('../public/img/pirateShipBackground.jpg') no-repeat center fixed; background-size: cover;">
 
 
 <!-- ;==========================================
@@ -20,20 +27,41 @@
 
     <!-- game menu -->
 
-  <section class="game">
-  <section class="screen screen-intro active-screen"> 
-    <div class="button button-leaderboard"><h1 class="display-5">Whooooo You Finished!</h1></div>
+  <section class="game ">
+  <section class="screen screen-intro active-screen">
+    <div class="button button-leaderboard"><h1 class="display-5" id="finishedPosition"></h1></div>
     <div class="button button-newgame"><h1 class="lead" id="backtodep" onclick="backtoDepartments()">New Game</h1></div>
-    <div class="button button-newgame"><h1 class="lead">Leader Board</h1></div>
-    <div class="button button-newgame"><h1 class="lead">Credits</h1></div>
+    <div class="button button-newgame"><h1 class="lead" id="leader">Leaderboard</h1></div>
   </section>
 
   <!-- Leader board and Credit onlick content -->
-  <section class="screen screen-game">
-    <h3>
-      Leader Board and Credits coming soon!
-    </h3>
-    <a href="../views/finishedPage.php"><h1 class=lead>Go to Game Menu</h1></a>
+  <section class="screen screen-game" style="width: 75vw">
+    <section>
+
+    <!-- id="leaderboard" -->
+
+      <div class="tab-pane" id="GroupTracking">
+        <div class="container text-center">
+          <h1 class="lead" style="font-size:40px;">Leaderboard</h1>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th>Position</th>
+                <th>Solo/Group Name</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard">
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <div class="text-center">
+      <a href="../views/finishedPage.php"><h1 class="btn btn-outline-light" id="menubutton">Go to Game Menu</h1></a>
+    </div>
   </section>
 
 
@@ -47,6 +75,64 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 <script>
+
+  fetch("../app/get_leaderboard.php?department_id=" + <?php echo $_SESSION['department_id']; ?>).then(response => {
+      return response.json();
+  }).then(data => {
+    const leaderBoard = document.getElementById("leaderboard");
+    let leaderBoardHTML = "";
+    for (i = 0; i < data.length; i++) {
+      const team_name = data[i].team_name;
+      const score = data[i].score;
+      leaderBoardHTML += "<tr><td>" + (i + 1) + "</td><td>" + team_name + "</td><td>" + score + "</td></tr>";
+
+    }
+
+    getPosition();
+
+    leaderBoard.innerHTML = leaderBoardHTML;
+    test();
+  }).catch(err => {
+      // catch err
+      console.log(err);
+  });
+
+
+  function getPlaceSuperscript(number) {
+    let numString = number + "";
+    let lenString = numString.length;
+
+    if ((numString).charAt(lenString - 1) == "1") {
+      return "st";
+    } else if ((numString).charAt(lenString - 1) == "2") {
+      return "nd";
+    } else if ((numString).charAt(lenString - 1) == "3"){
+      return "rd";
+    } else {
+      return "th";
+    }
+  }
+
+
+  function getPosition() {
+
+    fetch("../app/get_leaderboard_position.php?user_id=" + <?php echo $_SESSION['user_id']; ?> +"&department_id=" + <?php echo $_SESSION['department_id']; ?>).then(response => {
+        return response.json();
+    }).then(data => {
+        const position = data.position;
+        if (data == false) {
+          $("#finishedPosition").text("Whoooo You Finished!");
+          return;
+        }
+        $("#finishedPosition").text("You Finished in " + position + getPlaceSuperscript(position) + " place");
+
+    }).catch(err => {
+        // catch err
+        console.log(err);
+    });
+
+  }
+
 
     // animations
 (function() {
@@ -89,19 +175,19 @@
 
     var $elementTarget = $('.' + _nameScreen);
     var $elementActiveScreen = $('.active-screen');
-    
+
     console.log('$elementTarget: ', $elementTarget);
     console.log('targetScreenClassName: ', targetScreenClassName);
-    console.log('$elementActiveScreen: ', $elementActiveScreen);    
-    
+    console.log('$elementActiveScreen: ', $elementActiveScreen);
+
     return TweenMax.to($elementActiveScreen, .4, {
       autoAlpha: 0,
       y: '+=10',
       onComplete: function() {
         console.log('onComplete: ', $elementTarget);
-        
+
         $elementActiveScreen.removeClass('active-screen');
-        
+
         TweenMax
         .to($elementTarget, .4, {
           y: '-=10',
@@ -148,7 +234,7 @@
 // redirect user back to department page when clicked
 function backtoDepartments() {
 
-    window.location.href = "../views/DepartmentPage.php";
+    window.location.href = "../views/gamePage.php";
 
 }
 </script>
