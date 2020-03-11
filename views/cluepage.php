@@ -175,7 +175,7 @@ $database->close();
   		<div class="row">
     		<div class="span4">
 					<!-- <img style="float: left; width: 8vw; height: 5vh" class="pb-2 pl-2" src="../public/img/coinImagePirate.png"/> -->
-          <a class="nav-link lead text-white" style="background-color: transparent;" id = "score" href="#">Score: </a>
+          <a class="nav-link lead text-white" style="background-color: transparent;" id = "score">Score: </a>
     		</div>
   		</div>
 			<a class="lead align-items text-white" style="background-color: transparent; text-decoration: none;" href="../views/faqPage.php">FAQ</a>
