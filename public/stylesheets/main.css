@@ -66,7 +66,12 @@ h1 {
   left:5px;
   font-size: 10vw;
 }
-@media screen and (min-width: 600px) {
+
+@media screen and (min-width: 600px and orientation:landscape) {
+  body {
+    height: 100vw;
+    transform: rotate(-90deg);
+  }
   #directions-title {
     font-size: 60px;
   }
@@ -108,7 +113,6 @@ button {
 }
 
 #content {
-
   transform: translateY(-10vh);
   background-image: url("../img/testParchment.jpg");
   background-size: 100% 100%;
@@ -203,6 +207,7 @@ hr {
 }
 .question-item {
     display: inline-block;
+    margin:0 auto;
 }
 
 .person {
