@@ -38,27 +38,38 @@ if (!isset($_SESSION['department_id'])) {
   <section class="screen screen-game" style="width: 100vw">
     <section>
 
-    <!-- id="leaderboard" -->
+      <div class="col">
 
-      <!-- <div class="tab-pane" id="GroupTracking"> -->
-      <div class="container text-center">
-        <h1 class="mb-5">Leaderboard</h1>
+
+        <div class="row">
+          <div class="container text-center">
+            <h1 class="pb-3">Leaderboard</h1>
+          </div>
+        </div>
+        <div class="row">
+          <table class="table-striped" style="width: 90vw; margin: 0 auto;">
+            <thead>
+              <tr>
+                <th scope="col" class="lead">Position</th>
+                <th scope="col" class="lead">Name</th>
+                <th scope="col" class="lead">Score</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard"></tbody>
+          </table>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="container text-center">
+            <a href="../views/finishedPage.php"><h1 class="btn btn-outline-light" id="menubutton">Go to Game Menu</h1></a>
+          </div>
+        </div>
+
+
       </div>
-      <table class="table-striped" style="width: 90vw; margin: 0 auto;">
-        <thead>
-          <tr>
-            <th scope="col" class="lead">Position</th>
-            <th scope="col" class="lead">Name</th>
-            <th scope="col" class="lead">Score</th>
-          </tr>
-        </thead>
-        <tbody id="leaderboard"></tbody>
-      </table>
       <!-- </div> -->
     </section>
-    <div class="text-center">
-      <a href="../views/finishedPage.php"><h1 class="btn btn-outline-light mt-5" id="menubutton">Go to Game Menu</h1></a>
-    </div>
+
   </section>
 
 
