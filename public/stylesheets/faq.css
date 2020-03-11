@@ -96,7 +96,7 @@ summary::-webkit-details-marker {
 
 /* setting icon (arrow down and cross to purple + transition animation */
 .control-icon {
-    fill: rebeccapurple;
+    fill: white;
     transition: .3s ease;
     pointer-events: none;
 }
