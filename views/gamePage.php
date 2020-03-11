@@ -56,7 +56,7 @@
             <!-- style="height: 90vh" -->
             <div class="container list-group p-0 rounded-lg" style="height: 90vh">
                 <!-- search bar - want it as a form-group -->
-                <a class="list-group-item">
+                <a class="list-group-item list-group-flush">
                     <form class="form-inline md-form form-sm mt-4">
                       <!-- <i class="fas fa-search text-light" aria-hidden="true"></i> -->
                       <input class="form-control form-control-sm w-100" id="myInput" onkeyup="myFunction()" type="text" placeholder="Search for department"

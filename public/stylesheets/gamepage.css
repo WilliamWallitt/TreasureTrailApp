@@ -78,14 +78,14 @@ ul {
 
 #btn {
     outline: none;
-    border-top: 2px solid black;
+    border: 2px solid black;
     cursor: pointer;
     display: block;
     position: relative;
     font-family: 'skull';
     background: transparent;
     font-weight: lighter;
-    color: white;
+    text-decoration: none;
     background-color: rgba(255, 255, 255, 0.3);
     text-transform: uppercase;
     letter-spacing: 2px;
