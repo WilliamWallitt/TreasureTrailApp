@@ -13,8 +13,20 @@ html, body {
   margin: 0;
 }
 
+table {
+  background-color: rgba(0,0,0, 0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 1) inset;
+}
+
+th {
+  font-size: 15px;
+  text-align: center;
+}
+
 tr {
   color:white;
+  font-size:30px;
+  text-align: center;
 }
 
 h1 {
