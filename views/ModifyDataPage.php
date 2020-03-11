@@ -206,6 +206,9 @@ if (!isset($_SESSION['username'])) {
             <div class="container m-1">
               <input type="text" class="form-control" id="extrainfo" aria-describedby="test" placeholder="Add Extra Info">
             </div>
+            <div class="container m-1">
+              <input type="text" class="form-control" id="narrative" aria-describedby="test" placeholder="Add Narrative">
+            </div>
 
             <div class="container mt-3">
               <button type="button" class="btn btn-sm btn-outline-dark mb-2" style="margin: 0 auto; display: block;" onclick="addBuilding()">Submit</button>
@@ -221,6 +224,7 @@ if (!isset($_SESSION['username'])) {
                 <th>Longitude</th>
                 <th>Extra Info</th>
                 <th>QR Code</th>
+                <th>Narritive</th>
                 <th>Delete</th>
               </tr>
             </thead>
@@ -433,9 +437,9 @@ function addBuilding() {
   let lat = document.getElementById("latcoord").value;
   let lng = document.getElementById("lngcoord").value;
   let extraInfo = document.getElementById("extrainfo").value;
+  let narrative = document.getElementById("narrative").value;
 
-
-  if (buildingName.length == 0 || lat.length == 0 || lng.length == 0 || extraInfo.length == 0) {
+  if (buildingName.length == 0 || lat.length == 0 || lng.length == 0 || extraInfo.length == 0 || narrative.length == 0) {
     alert("Please fill in the required fields - ");
     return;
   } 
@@ -448,6 +452,7 @@ function addBuilding() {
         latitude: lat,
         longitude: lng,
         extra_info: extraInfo,
+        narrative: narrative,
         clues: []
       })
     }).then(response => {
@@ -457,7 +462,7 @@ function addBuilding() {
       document.getElementById("latcoord").value = ""; 
       document.getElementById("lngcoord").value = ""; 
       document.getElementById("extrainfo").value = ""; 
-
+      document.getElementById("narrative").value = "";
       fetchBuildings();
 
     });
@@ -710,7 +715,8 @@ function fetchGroupTracking() {
         const lat = data[index].latitude;
         const lng = data[index].longitude;
         const extraInfo = data[index].extra_info;
-        departmentTableHTML += "<tr><td>" + buildingName + "</td><td>" + lat + "</td><td>" + lng + "</td><td>" + extraInfo + "</td><td><img src=\"https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=" +  building_id + "\"></img></td><td><button class=\"btn btn-sm btn-outline-danger\" onclick=\"deleteBuilding("+ data[index].building_id + ")\">Delete</button></td></tr>";
+        const narrative = data[index].narrative;
+        departmentTableHTML += "<tr><td>" + buildingName + "</td><td>" + lat + "</td><td>" + lng + "</td><td>" + extraInfo + "</td><td><img src=\"https://api.qrserver.com/v1/create-qr-code/?size=50x50&data=" +  building_id + "\"></img></td><td>" + narrative +"</td><td><button class=\"btn btn-sm btn-outline-danger\" onclick=\"deleteBuilding("+ data[index].building_id + ")\">Delete</button></td></tr>";
         
       }
 
