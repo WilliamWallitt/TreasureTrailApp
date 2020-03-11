@@ -16,7 +16,7 @@ if (!isset($_SESSION['department_id'])) {
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="../public/stylesheets/finishedpage.css">
 </head>
-<body class style="background: url('../public/img/pirateShipBackground.jpg') no-repeat center fixed; background-size: cover;">
+<body style="background: url('../public/img/pirateShipBackground.jpg') no-repeat center fixed; background-size: cover;">
 
 
 <!-- ;==========================================
@@ -40,27 +40,24 @@ if (!isset($_SESSION['department_id'])) {
 
     <!-- id="leaderboard" -->
 
-      <div class="tab-pane" id="GroupTracking">
-        <div class="container text-center">
-          <h1 class="lead">Leaderboard</h1>
-        </div>
-        <div class="table">
-          <table class="table table-striped" style="margin: 0 auto;">
-            <thead>
-              <tr>
-                <th class="lead">Position</th>
-                <th class="lead">Solo/Group Name</th>
-                <th class="lead">Score</th>
-              </tr>
-            </thead>
-            <tbody id="leaderboard">
-            </tbody>
-          </table>
-        </div>
+      <!-- <div class="tab-pane" id="GroupTracking"> -->
+      <div class="container text-center">
+        <h1 class="mb-5">Leaderboard</h1>
       </div>
+      <table class="table-striped" style="width: 90vw; margin: 0 auto;">
+        <thead>
+          <tr>
+            <th scope="col" class="lead">Position</th>
+            <th scope="col" class="lead">Name</th>
+            <th scope="col" class="lead">Score</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboard"></tbody>
+      </table>
+      <!-- </div> -->
     </section>
     <div class="text-center">
-      <a href="../views/finishedPage.php"><h1 class="btn btn-outline-light" id="menubutton">Go to Game Menu</h1></a>
+      <a href="../views/finishedPage.php"><h1 class="btn btn-outline-light mt-5" id="menubutton">Go to Game Menu</h1></a>
     </div>
   </section>
 
@@ -84,7 +81,7 @@ if (!isset($_SESSION['department_id'])) {
     for (i = 0; i < data.length; i++) {
       const team_name = data[i].team_name;
       const score = data[i].score;
-      leaderBoardHTML += "<tr class=\"lead\"><td><p class=\"text-wrap\">" + (i + 1) + "</p</td><td>" + team_name + "</p></td><td>" + score + "</td></tr>";
+      leaderBoardHTML += "<tr><td class=\"h6\">" + (i + 1) + "</td><td class=\"h6\">" + team_name + "</td><td class=\"h6\">" + score + "</td></tr>";
 
     }
 
