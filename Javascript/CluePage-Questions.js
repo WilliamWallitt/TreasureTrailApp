@@ -67,18 +67,6 @@ function getClueData(){
         console.log(err);
     });
 
-    fetch('../app/update_tracking.php', {
-    headers: { "Content-Type": "application/json; charset=utf-8" },
-    method: 'POST',
-    body: JSON.stringify({
-        user_id: "<?php echo $_SESSION['user_id']; ?>",
-        building_id: building_ids[indexStart]
-    })
-    }).then(response => {
-        return response.json();
-    }).then(data => {
-    });
-
     timerEnabled = true;
     time = 0;
     setTimeout(timer, 1000);

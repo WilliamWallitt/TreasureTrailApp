@@ -18,8 +18,8 @@ class database {
         global $connection;
 
         // database connection information
-        //$connection = new mysqli("localhost", "treayiaz_admin", "TY4KM1997", "treayiaz_admin");
-        $connection = new mysqli("localhost", "root", "root", "project");
+        $connection = new mysqli("localhost", "treayiaz_admin", "TY4KM1997", "treayiaz_admin");
+        //$connection = new mysqli("localhost", "root", "root", "project");
         if ($connection->connect_error) {
             die("Failed to create database connection: $connection->connect_error");
         }
@@ -658,6 +658,13 @@ class database {
 
     public function update_tracking($tracking) {
         global $connection;
+
+        $route = $this->get_route($tracking->department_id);
+        $last_building = end($route);
+
+        if ($last_building->building_id == $tracking->building_id) {
+            $this->set_completed_user($tracking->user_id);
+        }
 
         $user_id_param = $connection->escape_string($tracking->user_id);
         $building_id_param = $connection->escape_string($tracking->building_id);
