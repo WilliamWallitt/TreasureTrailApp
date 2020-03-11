@@ -253,7 +253,7 @@ $database->close();
 
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
-        <h1 class="d-flex justify-content-center lead m-5" style="font-size:30px;font-family:'skull';color:white;text-shadow: 2px 2px black;">Scan QR Code</h1>
+        <h1 class="d-flex justify-content-center lead m-5">Scan QR Code</h1>
         <div id="loadingMessage" style="font-size:20px;font-family:'skull';color:white;text-shadow: 2px 2px black;text-align: center;'">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
         <canvas id="canvas" hidden></canvas>
         <div id="output" hidden>
@@ -271,51 +271,44 @@ $database->close();
             <div class="table-responsive text-align-center">
 
               <!-- alert incorrect -->
-              <div class="alert alert-danger" role="alert" id="incorrect" style="display: none">
-                  <strong>Incorrect!</strong>
+              <div class="alert alert-danger lead text-center" role="alert" id="incorrect" style="display: none">
+                <strong>Incorrect!</strong>
               </div>
 
               <!-- alert correct -->
 
-              <div class="alert alert-success" role="alert" id="correct" style="display: none">
-                  <strong>Correct!</strong>
+              <div class="alert alert-success lead text-center" role="alert" id="correct" style="display: none">
+                <strong>Correct!</strong>
               </div>
 
               <!-- Clue multiple choice questions -->
 
-              <h1 class="question h3 text-white text-center h2 p-2" id="clue" style="font-family: 'skull'"></h1>
-
-              <div class="container text-align-center h4">
-                  <hr/>
-                  <div class="custom-control custom-radio d-flex justify-content-center">
-                      <input id="q1" name="choice" type="radio" class="custom-control-input">
-                      <label class="custom-control-label" for="q1"><div class="person" id="question1" style="font-family: 'skull';color:white;"></div></label>
-                  </div>
-                  <div class="custom-control custom-radio d-flex justify-content-center">
-                      <input id="q2" name="choice" type="radio" class="custom-control-input">
-                      <label class="custom-control-label" for="q2"><div class="person" id="question2" style="font-family: 'skull';color:white;"></div></label>
-                  </div>
-                  <div class="custom-control custom-radio d-flex justify-content-center">
-                      <input id="q3" name="choice" type="radio" class="custom-control-input">
-                      <label class="custom-control-label" for="q3"><div class="person" id="question3" style="font-family: 'skull';color:white;"></div></label>
-                  </div>
-
-                  <div class="d-flex justify-content-center text-center">
-                      <button type="submit" id="submitbtn" class="btn btn-light mt-3" onclick="checkIfCorrect()" style="display: none; font-family: 'skull'" >Submit</button>
-            					<button type="submit" class="btn btn-light mt-3" id="countdown" style="font-family: 'skull'">Wait 30's</button>
-                  </div>
-              </div>
-              <hr/>
+              <h1 class="question h3 text-white text-center h2 p-2" id="clue"></h1>
+	      <ul class="question-list justify-content-center">
+    		<li class="question-item lead">
+		  <input id="q1" name="choice" type="radio" style="display:none;">
+		  <label for="q1"><div class="person text-center" id="question1"></div></label>
+    		</li>
+    		<li class="question-item lead">
+		  <input id="q2" name="choice" type="radio" style="display:none;">
+		  <label for="q2"><div class="person text-center" id="question2"></div></label>
+    		</li>
+    		<li class="question-item lead">
+        	  <input id="q3" name="choice" type="radio" style="display:none;">
+		  <label for="q3"><div class="person text-center" id="question3"></div></label>
+    		</li>
+		<li class="text-center">
+		  <button type="submit" id="submitbtn" class="btn btn-light mt-3" onclick="checkIfCorrect()" style="display: none; font-family: 'skull'" >Submit</button>
+		  <button type="submit" class="btn btn-light mt-3" id="countdown" style="font-family: 'skull'">Wait 30's</button>
+    	        </li>
+	      </ul>
 
               <!-- Extra info -->
 
-
-              <div id ="extra-info" class="jumbotron vertical-center text-center bg-transparent text-white">
-                  <h1 class="h2" id="departmentName" style="font-family: 'skull'"></h1>
-                  <p class="lead" id="extraInfo" style="font-family: 'skull'"></p>
-
+              <div id ="extra-info" class="jumbotron vertical-center text-center text-white" style="font-family: 'skull';text-shadow: 2px 2px black;  background-color: rgba(0,0,0, 0.3); box-shadow: 0 0 10px rgba(0, 0, 0, 1) inset;">
+                  <h1 class="h2" id="departmentName"></h1>
+                  <p class="lead" id="extraInfo"></p>
               </div>
-
             </div>
           </div>
         </div>
