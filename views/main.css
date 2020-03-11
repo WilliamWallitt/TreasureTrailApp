@@ -1,0 +1,244 @@
+@import "bourbon";
+
+@import url('//fonts.googleapis.com/css?family=Raleway:400,800');
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
+
+@font-face {
+    font-family: 'skull';
+    src: url('../../skullsandcrossbones.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: carved;
+    src: url("../../stormblade.otf") format("opentype");
+}
+
+body {
+    animation-name: test;
+    animation-duration: 2s;
+}
+
+.nav-item > .active {
+  color: White!important;
+  background-color: rgba(42, 48, 48, 0.3)!important;
+}
+
+/* made sure blue color not shown on hover */
+.nav-item > :hover {
+  color: White!important;
+}
+
+.nav-link{
+  color:White;
+  background-color: rgba(255, 255, 255, 0.3);
+  font-family: 'skull',Fallback, sans-serif;
+  font-size: 20px;
+}
+
+#map {
+  position: relative;
+  height:70vh;
+  width:100vw;
+}
+#map-overlay {
+  position: absolute;
+  top:5px;
+  right:5px;
+  z-index: 1;
+}
+#map-overlay-image {
+  height: 50px;
+  width: 50px;
+}
+
+#directions-title {
+  position: absolute;
+  font-family: 'skull',Fallback, sans-serif;
+  top:5px;
+  left:5px;
+  font-size: 10vw;
+}
+@media screen and (min-width: 600px) {
+  #directions-title {
+    font-size: 60px;
+  }
+}
+
+button {
+ font-family: carved;
+ color: #332b23;
+ text-shadow: 0px 1px 0px rgba(255, 255, 255, .5);
+ border: none;
+ box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.2),
+       inset 0px -5px 0px 0px rgba(0,0,0,0.3),
+    inset 0px 2px 0px 0px rgba(255,255,255,0.5);
+ -webkit-border-radius: 5px;
+ -moz-border-radius: 5px;
+ border-radius: 5px;
+ overflow: hidden;
+ cursor: pointer;
+ margin: 36px;
+ height: 50px;
+ width: 100px;
+}
+.button:active {
+ box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.2),
+       inset 0px -2px 0px 0px rgba(0,0,0,0.3),
+    inset 0px 2px 0px 0px rgba(255,255,255,0.5);
+ top: 3px;
+}
+.button div {
+ padding: 10px 20px 12px 20px;
+ color: white;
+
+}
+.button:active div {
+ padding-bottom: 9px;
+}
+.wood {
+ background: url(https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/pf-misctexture01-tong-06-beer-009_1_1.jpg?w=800&dpr=1&fit=default&crop=default&auto=format&fm=pjpg&q=75&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=e928c19d94add42264a58791661bf8a2);
+}
+
+#content {
+
+  transform: translateY(-10vh);
+  background-image: url("../img/testParchment.jpg");
+  background-size: 100% 100%;
+  display: inline-block;
+}
+
+/* keyframe animations for entire body */
+@keyframes test {
+
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+tbody {
+    text-align: center;
+    font-family: 'skull',Fallback, sans-serif;
+    font-size: 20px;
+}
+
+tr {
+    align: center;
+}
+
+td {
+    text-align: center;
+}
+
+/* two classes same style (.class1, .class2) */
+.adp-directions{
+  text-align: center;
+  margin: auto;
+  padding: 10px;
+}
+
+.adp-summary, .adp-stepicon, .adp-maneuver, .adp-distance .warnbox-content,.adp-warnbox{
+  display: none;
+}
+
+.adp-placemark {
+  visibility:hidden;
+}
+
+.wax-seal {
+  height: 15vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index:3;
+  margin:0;
+}
+
+.wax-seal-wrap {
+    position: relative;
+    z-index:3;
+    /* horizontal centering */
+    left: 50%;
+    transform: translateX(-50%);
+    /* so its not fully in the first div */
+    top:-7.5vh;
+    margin:0;
+}
+
+/* moz support */
+@-webkit-keyframes arrows {
+    0% { top:0; }
+    10% { top:15%; }
+    20% { top:0; }
+    30% { top:15%; }
+    40% { top:0%; }
+    50% { top:15%; }
+    60% { top:0; }
+    70% { top:15%; }
+    80% { top:0%; }
+    90% { top:15%; }
+    100% { top:0; }
+}
+
+/* for the clue tab */
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 3px solid rgba(0, 0, 0, 0.5);
+}
+
+.person {
+    margin: 10px;
+    display: inline-block;
+    border: 1px solid black;
+    width: 200px;
+    padding: 10px;
+    box-shadow: 4px 4px grey;
+
+/* ;==========================================
+; Title:  Front end Main Page (clue page) - CSS
+; Author: William Wallitt
+; Date:   25 Feb 2020
+;==========================================  */
+
+.person:hover {
+    transform: translateY(5px);
+    box-shadow: 2px 2px grey;
+}
+
+
+#loadingMessage {
+    text-align: center;
+    padding: 40px;
+    background-color: #eee;
+}
+
+#canvas {
+    width: 100%;
+}
+
+#output {
+    margin-top: 20px;
+    background: #eee;
+    padding: 10px;
+    padding-bottom: 0;
+}
+
+#output div {
+    padding-bottom: 10px;
+    word-wrap: break-word;
+}
+
+#noQRFound {
+    text-align: center;
+}
+
+
+#float {
+    position: fixed; bottom: 20px; right: 20px;
+}
