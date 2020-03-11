@@ -16,7 +16,10 @@ if (!isset($_SESSION['department_id'])) {
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="../public/stylesheets/finishedpage.css">
 </head>
-<body style="background: url('../public/img/pirateShipBackground.jpg') no-repeat center fixed; background-size: cover;">
+<body style="background-image: url('../public/img/pirateShipBackground.jpg'); height: 100vh; width: 100vw; background-position: center; background-repeat: no-repeat; background-size: cover">
+
+<!-- <div ></div> -->
+
 
 
 <!-- ;==========================================
@@ -67,14 +70,9 @@ if (!isset($_SESSION['department_id'])) {
 
 
       </div>
-      <!-- </div> -->
     </section>
-
   </section>
-
-
-</section>
-
+  </section>
 
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
