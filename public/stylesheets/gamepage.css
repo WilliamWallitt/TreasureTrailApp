@@ -57,8 +57,7 @@ ul {
 
 #myInput {
   /* background-color: white; */
-  border-top: 3px solid black;
-  border-bottom: 3px solid black;
+  border: 2px solid black;
   background-color: rgba(999, 999, 999, 0.7);
 }
 
