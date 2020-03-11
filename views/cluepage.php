@@ -283,25 +283,25 @@ $database->close();
 
               <!-- Clue multiple choice questions -->
 
-              <h1 class="question h3 text-white text-center h2 p-2" id="clue"></h1>
-	      <ul class="question-list justify-content-center">
-    		<li class="question-item lead">
-		  <input id="q1" name="choice" type="radio" style="display:none;">
-		  <label for="q1"><div class="person text-center" id="question1"></div></label>
-    		</li>
-    		<li class="question-item lead">
-		  <input id="q2" name="choice" type="radio" style="display:none;">
-		  <label for="q2"><div class="person text-center" id="question2"></div></label>
-    		</li>
-    		<li class="question-item lead">
-        	  <input id="q3" name="choice" type="radio" style="display:none;">
-		  <label for="q3"><div class="person text-center" id="question3"></div></label>
-    		</li>
-		<li class="text-center">
-		  <button type="submit" id="submitbtn" class="btn btn-light mt-3" onclick="checkIfCorrect()" style="display: none; font-family: 'skull'" >Submit</button>
-		  <button type="submit" class="btn btn-light mt-3" id="countdown" style="font-family: 'skull'">Wait 30's</button>
-    	        </li>
-	      </ul>
+            <h1 class="question h3 text-white text-center h2 p-2" id="clue"></h1>
+	        <ul class="question-list text-center">
+                <li class="question-item lead">
+                    <input id="q1" name="choice" type="radio" style="display:none;">
+                    <label for="q1"><div class="person text-center" id="question1"></div></label>
+                </li>
+                <li class="question-item lead">
+                    <input id="q2" name="choice" type="radio" style="display:none;">
+                    <label for="q2"><div class="person text-center" id="question2"></div></label>
+                </li>
+                <li class="question-item lead">
+                    <input id="q3" name="choice" type="radio" style="display:none;">
+                    <label for="q3"><div class="person text-center" id="question3"></div></label>
+                </li>
+                <li class="text-center">
+                    <button type="submit" id="submitbtn" class="btn btn-light mt-3" onclick="checkIfCorrect()" style="display: none; font-family: 'skull'" >Submit</button>
+                    <button type="submit" class="btn btn-light mt-3" id="countdown" style="font-family: 'skull'">Wait 30's</button>
+                </li>
+	        </ul>
 
               <!-- Extra info -->
 

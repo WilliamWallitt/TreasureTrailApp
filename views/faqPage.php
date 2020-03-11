@@ -17,8 +17,11 @@
 ;========================================== -->
 
 <!-- setting the background -->
-<body style="background: url('../public/img/treasure1.jpg') no-repeat center fixed; background-size: cover;">
-<h2>Frequently Asked Questions</h2>
+<body style="background: url('../public/img/Backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
+
+<button class="btn btn-outline-light" style="margin: 0 auto; width: 100vw">Back to game</button> 
+
+<h2 class="text-white">Frequently Asked Questions</h2>
 
 <!-- using svg-import -->
 <div style="visibility: hidden; position: absolute; width: 0px; height: 0px;">
@@ -32,9 +35,9 @@
   </svg>
 </div>
 
-<div class="container-fluid" id="faq"></div>
+<div class="container-fluid text-center" id="faq"></div>
 
-<div class="container-fluid bg-transparent text-center ml-3">
+<div class="container-fluid bg-transparent text-center">
   <section class="mt-lg-9 py-7">
     <div class="container-xl px-3 px-md-6">
       <div class="gutter gutter-xl-spacious d-md-flex">
@@ -50,36 +53,8 @@
 
 </body>
 
-
-<script>
-
-  fetch("../app/get_faqs.php").then(response => {
-      return response.json();
-  }).then(data => {
-
-    let details = document.getElementById("faq");
-    let html = "";
-    for (i = 0; i < data.length; i++) {
-
-      let question = data[i].question;
-      let answer = data[i].answer;
-
-      html += "<div class=\"container m-3\"><details><summary open>"+ question +"<svg class=\"control-icon control-icon-expand\" width=\"24\" height=\"24\" role=\"presentation\"><use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#expand-more\" /></svg><svg class=\"control-icon control-icon-close\" width=\"24\" height=\"24\" role=\"presentation\"><use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#close\" /></svg></summary><p>"+ answer +"</p></details></div>"
-
-  }
-
-  details.innerHTML = html;
-
-
-  }).catch(err => {
-      // catch err
-      console.log(err);
-  });
-
-
-</script>
-
-
+<!-- front end javascript code -->
+<script src="../Javascript/faqPage.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
