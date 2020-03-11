@@ -1,9 +1,3 @@
-// function delaySubmit() {
-
-//     $('#countdown').delay(30000).hide(0);
-//     $('#submitbtn').delay(30000).show(0);
-
-// }
 
 var timerEnabled = false;
 var time = 0;
