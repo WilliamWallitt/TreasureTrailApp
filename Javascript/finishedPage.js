@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> bc3af19f8426c27ef99b98597e1aabede16b012c
 function getPlaceSuperscript(number) {
   let numString = number + "";
   let lenString = numString.length;
@@ -19,12 +13,7 @@ function getPlaceSuperscript(number) {
   }
 }
 
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> bc3af19f8426c27ef99b98597e1aabede16b012c
 // redirect user back to department page when clicked
 function backtoDepartments() {
 
