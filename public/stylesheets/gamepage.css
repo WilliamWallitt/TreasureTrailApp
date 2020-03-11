@@ -1,23 +1,62 @@
+<<<<<<< HEAD
+=======
+$dark-blue: #2c3e50;
+$ligh-grey: #ecf0f1;
+>>>>>>> master
 
 
 
 @font-face {
+<<<<<<< HEAD
   font-family: 'skull';
   src: url('../../skullsandcrossbones.ttf') format('truetype');
+=======
+  font-family: 'pirate';
+  src: url('/treasuremapdeadhand-yla3-webfont.woff2') format('woff2'),
+       url('/treasuremapdeadhand-yla3-webfont.woff') format('woff');
+>>>>>>> master
   font-weight: normal;
   font-style: normal;
+}
+
+<<<<<<< HEAD
+html {
+  width: 100%;
+  height: 100%;
+  font-family: 'skull';
+=======
+@font-face {
+    font-family: 'skull';
+    src: url('../../skullsandcrossbones.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 html {
   width: 100%;
   height: 100%;
-  font-family: 'skull';
+  font-family: pirate, Arial, sans-serif;
+
+  /* background-image: -webkit-radial-gradient(ellipse farthest-corner at center top, #9ab1c7 0%, #1a242f 100%);
+  background-image: radial-gradient(ellipse farthest-corner at center top, #9ab1c7 0%, #1a242f 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed; */
+
+  /* background-image: url("#"); */
+
+  /* background-color: black no-repeat center fixed; */
+  /* background-size: cover; */
+>>>>>>> master
 }
 
 .layer {
   /* background-color: rgba(156, 40, 20, 0.3); */
   background-color: rgba(104, 78, 22, 0.6);
+<<<<<<< HEAD
   position: fixed;
+=======
+  position: absolute;
+>>>>>>> master
   top: 0;
   left: 0;
   width: 100vw;
@@ -28,11 +67,15 @@ html {
 
 .list-group-item {
   background: transparent;
+<<<<<<< HEAD
   padding:0;
+=======
+>>>>>>> master
 }
 
 ul {
   background: transparent;
+<<<<<<< HEAD
   padding-top: 50px;
   border-bottom: 2px solid black
 }
@@ -43,6 +86,8 @@ ul {
   text-shadow: 2px 2px black;
   padding-top:50px;
   margin:0;
+=======
+>>>>>>> master
 }
 
 #teamname:focus {
@@ -57,9 +102,15 @@ ul {
 
 #myInput {
   /* background-color: white; */
+<<<<<<< HEAD
   border-top: 3px solid black;
   border-bottom: 3px solid black;
   background-color: rgba(999, 999, 999, 0.7);
+=======
+  border: 3px solid black;
+  border-radius: 20px;
+  background-color: rgba(999, 999, 999, 0.4);
+>>>>>>> master
 }
 
 #myInput::placeholder {
@@ -78,7 +129,11 @@ ul {
 
 #btn {
     outline: none;
+<<<<<<< HEAD
     border-top: 2px solid black;
+=======
+    border: none;
+>>>>>>> master
     cursor: pointer;
     display: block;
     position: relative;
@@ -87,13 +142,19 @@ ul {
     /* background: #ffffff; */
     background: transparent;
     font-weight: 300px;
+<<<<<<< HEAD
     color: white;
     background-color: rgba(255, 255, 255, 0.3);
+=======
+    color: black;
+    background: rgba(104, 78, 22, 0.4);
+>>>>>>> master
     text-transform: uppercase;
     letter-spacing: 2px;
     /* padding: 25px 80px; */
     padding: 10px 30px;
     margin: 0 auto;
+<<<<<<< HEAD
 }
 
 #btn:hover {
@@ -102,6 +163,21 @@ ul {
 
 #btn:active {
     box-shadow: 0 0 5px rgba(0, 0, 0, 1) inset;
+=======
+    border-radius: 20px;
+    box-shadow: 0 6px #000000;
+}
+
+#btn:hover {
+    box-shadow: 0 4px #000000;
+    top: 2px;
+    text-decoration: none;
+}
+
+#btn:active {
+    box-shadow: none;
+    top: 6px;
+>>>>>>> master
 }
 
 .screen {
