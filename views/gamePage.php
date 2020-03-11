@@ -86,7 +86,7 @@
 
 
 
-<script src="../Javascript/gamepage.js"></script>
+<script src="../Javascript/gamePage.js"></script>
 <script src="../Javascript/gamePageAnimations.js"></script>
 
 <script>
