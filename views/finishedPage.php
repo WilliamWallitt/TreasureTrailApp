@@ -30,7 +30,7 @@ if (!isset($_SESSION['department_id'])) {
 
     <!-- game menu -->
 
-  <section class="game ">
+  <section class="game">
   <section class="screen screen-intro active-screen">
     <div class="button button-leaderboard"><h1 class="display-5" id="finishedPosition">Whooooo You Finished </h1></div>
     <div class="button button-newgame"><h1 class="lead" id="backtodep" onclick="backtoDepartments()">New Game</h1></div>

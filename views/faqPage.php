@@ -19,38 +19,41 @@
 <!-- setting the background -->
 <body style="background: url('../public/img/Backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
 
-<button class="btn btn-outline-light" style="margin: 0 auto; width: 100vw">Back to game</button> 
 
-<h2 class="text-white">Frequently Asked Questions</h2>
 
-<!-- using svg-import -->
-<div style="visibility: hidden; position: absolute; width: 0px; height: 0px;">
-  <svg xmlns="http://www.w3.org/2000/svg">
-    <symbol viewBox="0 0 24 24" id="expand-more">
-      <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/><path d="M0 0h24v24H0z" fill="none"/>
-    </symbol>
-    <symbol viewBox="0 0 24 24" id="close">
-      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/><path d="M0 0h24v24H0z" fill="none"/>
-    </symbol>
-  </svg>
-</div>
+    <button class="btn btn-outline-light" style="margin: 0 auto; width: 100vw">Back to game</button> 
 
-<div class="container-fluid text-center" id="faq"></div>
+    <h2 class="text-white">Frequently Asked Questions</h2>
 
-<div class="container-fluid bg-transparent text-center">
-  <section class="mt-lg-9 py-7">
-    <div class="container-xl px-3 px-md-6">
-      <div class="gutter gutter-xl-spacious d-md-flex">
-        <div class="col-12 col-md-5 text-white">
-          <h4 class="h2">Can't find what you're looking for?</h4>
-          <!-- gamekeeper email? -->
-          <a class="btn btn-outline-dark m-2 text-white border-light" href="mailto:willcdswallitt@gmail.com?Subject=User%20Help%20Request">Contact a GameKeeper</a>
-        </div>
-      </div>
+    <!-- using svg-import -->
+    <div style="visibility: hidden; position: absolute; width: 0px; height: 0px;">
+      <svg xmlns="http://www.w3.org/2000/svg">
+        <symbol viewBox="0 0 24 24" id="expand-more">
+          <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/><path d="M0 0h24v24H0z" fill="none"/>
+        </symbol>
+        <symbol viewBox="0 0 24 24" id="close">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/><path d="M0 0h24v24H0z" fill="none"/>
+        </symbol>
+      </svg>
     </div>
-  </section>
-</div>
 
+
+    <div class="container-fluid text-center" id="faq"></div>
+
+
+    <div class="container-fluid bg-transparent text-center">
+      <section class="mt-lg-9 py-7">
+        <div class="container-xl px-3 px-md-6">
+          <div class="gutter gutter-xl-spacious d-md-flex">
+            <div class="col-12 col-md-5 text-white">
+              <h4 class="h2">Can't find what you're looking for?</h4>
+              <!-- gamekeeper email? -->
+              <a class="btn btn-outline-dark m-2 text-white border-light" href="mailto:willcdswallitt@gmail.com?Subject=User%20Help%20Request">Contact a GameKeeper</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
 </body>
 
 <!-- front end javascript code -->
