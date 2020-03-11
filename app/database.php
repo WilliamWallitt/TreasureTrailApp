@@ -138,7 +138,7 @@ class database {
         $longitude_param = $connection->escape_string($building->longitude);
         $extra_info_param = $connection->escape_string($building->extra_info);
         $narrative_param = $connection->escape_string($building->narrative);
-        $sql = "INSERT INTO buildings (building_name, latitude, longitude, extra_info, narrative) VALUES ('$building_name_param', '$latitude_param', '$longitude_param', '$extra_info_param', '$narrative')";
+        $sql = "INSERT INTO buildings (building_name, latitude, longitude, extra_info, narrative) VALUES ('$building_name_param', '$latitude_param', '$longitude_param', '$extra_info_param', '$narrative_param')";
 
         $result = $this->general_query($sql);
 
@@ -184,7 +184,7 @@ class database {
      * @param   string  $department_id An id that represents a department
      * @return  array
      */
-    private function get_routes_by_department($department_id) {
+    public function get_routes_by_department($department_id) {
         global $connection;
 
         $department_id_param = $connection->escape_string($department_id);
@@ -208,7 +208,7 @@ class database {
      * @param   string  $building_id An id that represents a building
      * @return  array
      */
-    private function get_routes_by_building($building_id) {
+    public function get_routes_by_building($building_id) {
         global $connection;
 
         $building_id_param = $connection->escape_string($building_id);
@@ -287,7 +287,7 @@ class database {
      * @param   string  $department_id An id that represents a department
      * @return  string
      */
-    private function get_last_order_id($department_id) {
+    public function get_last_order_id($department_id) {
         global $connection;
 
         $department_id_param = $connection->escape_string($department_id);
@@ -344,7 +344,7 @@ class database {
      * @param   string  $clue_id An id that represents a clue
      * @return  array
      */
-    private function get_answers_correct($clue_id) {
+    public function get_answers_correct($clue_id) {
         global $connection;
 
         $clue_id_param = $connection->escape_string($clue_id);
@@ -664,6 +664,7 @@ class database {
         $sql = "UPDATE `users` SET `current_building_id`='$building_id_param' WHERE `user_id`='$user_id_param'";
 
         $result = $this->general_query($sql);
+        return $result;
     }
 
     public function get_score($user_id) {
