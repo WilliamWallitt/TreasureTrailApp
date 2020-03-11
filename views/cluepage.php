@@ -6,8 +6,15 @@ if (!isset($_SESSION['user_id'], $_SESSION['department_id'])) {
 	header("Location: ../views/gamePage.php");
 }
 
+$user_id = $_SESSION['user_id'];
+$department_id = $_SESSION['department_id'];
+
 $database = new database();
-$response = $database->reset_user($_SESSION['user_id']);
+$position = $database->get_leaderboard_position($user_id, $department_id);
+
+if ($position !== FALSE) {
+  $response = $database->reset_user($user_id);
+}
 $database->close();
 ?>
 
@@ -508,6 +515,19 @@ function getScore() {
 	      // if the QR code is correct, make the clue tab clickable and move user to it
 	      if (code.data == building_ids[indexStart-1]) {
           getClueData();
+
+          fetch('../app/update_tracking.php', {
+            headers: { "Content-Type": "application/json; charset=utf-8" },
+            method: 'POST',
+            body: JSON.stringify({
+                user_id: "<?php echo $_SESSION['user_id']; ?>",
+                department_id: "<?php echo $_SESSION['department_id']; ?>",
+                building_id: building_ids[indexStart-1]
+            })
+            }).then(response => {
+                return response.json();
+            }).then(data => {
+            });
 	        return;
 	      }
 	    }
@@ -902,10 +922,6 @@ function calcRoute() {
 
 // if we are at the last location - loop
 if (indexEnd > array.length - 1) {
-<?php
-$database = new database();
-$response = $database -> set_completed_user($_SESSION['user_id']);
-$database -> close(); ?>
 window.location.href = "../views/finishedPage.php";
 
 			}
