@@ -74,6 +74,48 @@ if (!isset($_SESSION['department_id'])) {
   </section>
   </section>
 
+<script>
+fetch("../app/get_leaderboard.php?department_id=" + <?php echo $_SESSION['department_id']; ?>).then(response => {
+		return response.json();
+}).then(data => {
+	const leaderBoard = document.getElementById("leaderboard");
+	let leaderBoardHTML = "";
+	for (i = 0; i < data.length; i++) {
+		const team_name = data[i].team_name;
+		const score = data[i].score;
+		leaderBoardHTML += "<tr><td class=\"h6\">" + (i + 1) + "</td><td class=\"h6\">" + team_name + "</td><td class=\"h6\">" + score + "</td></tr>";
+
+	}
+
+	getPosition();
+
+	leaderBoard.innerHTML = leaderBoardHTML;
+	test();
+}).catch(err => {
+		// catch err
+		console.log(err);
+});
+
+function getPosition() {
+
+  fetch("../app/get_leaderboard_position.php?user_id=" + <?php echo $_SESSION['user_id']; ?> +"&department_id=" + <?php echo $_SESSION['department_id']; ?>).then(response => {
+      return response.json();
+  }).then(data => {
+      const position = data.position;
+      if (data == false) {
+        $("#finishedPosition").text("Whoooo You Finished!");
+        return;
+      }
+      $("#finishedPosition").text("You Finished in " + position + getPlaceSuperscript(position) + " place");
+
+  }).catch(err => {
+      // catch err
+      console.log(err);
+  });
+
+}
+</script>
+	
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
