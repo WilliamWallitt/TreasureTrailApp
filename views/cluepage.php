@@ -176,7 +176,7 @@ $database->close();
           <a class="nav-link disabled d-flex justify-content-start lead" style="background-color: transparent; color:white; width:33vw;" id = "score" href="#">Score: </a>
     		</div>
 			</div>
-				<a class="nav-link lead d-flex justify-content-center" style="background-color: transparent;" href="../views/faqPage.php">FAQ</a>
+				<a class="nav-link lead d-flex justify-content-center text-white" style="background-color: transparent;" href="../views/faqPage.php">FAQ</a>
   			<a class="nav-link lead d-flex justify-content-end" style="background-color: transparent;"id="mutebutton" onclick="toggle_sound()"><i class="fas text-white fa-volume-up" style="width:30px;"></i></a>
 		</nav>
 
@@ -501,7 +501,7 @@ $database->close();
     }
 
     // coordinates for the forum exeter
-	var myLatLng = {lat: 50.735371, lng: -3.533782};
+	  var myLatLng = {lat: 50.735371, lng: -3.533782};
     // we have to declare these globally -> so we can call them during the onClick event + the calc route function
     var map;
     var directionsRenderer;
@@ -949,7 +949,7 @@ $database->close();
 
         // Create a map object, and include the MapTypeId to add
         // to the map type control.
-        var map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById('map'), {
           zoom: 16,
           center: forum,
           mapTypeControlOptions: {
@@ -1035,6 +1035,9 @@ $database->close();
             travelMode: 'WALKING',
 
         };
+
+        map.setCenter(new google.maps.LatLng(array[indexEnd].lat, array[indexEnd].lng));
+
         // directionservice is just allowing use to use google to calc route
         // when we make our request -> If it succeeds then we wanna update our index values + update our locations + find directions
         directionsService.route(request, function(result, status) {

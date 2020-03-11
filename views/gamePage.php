@@ -13,7 +13,7 @@
   </script>
   <link rel="stylesheet" type="text/css" href='../public/stylesheets/gamepage.css'>
 </head>
-<body id="background" style="height:100vh">
+<body id="background" style="background: url('../public/img/Backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
 
 
 <!-- ;==========================================
@@ -32,7 +32,8 @@
 
   <section class="game">
 
-    <div class="layer">
+    <div class="layer"></div>
+
 
 
     <section class="screen screen-intro active-screen" id="home">
@@ -48,9 +49,11 @@
     <section class="screen screen-game">
 
 
-        <div class="d-flex flex-column align-items-center" id="screen-map" style="width: 100vw; height: 100vh">
+        <div class="d-flex flex-column align-items-center" id="screen-map" style="width: 100vw; height: 100vh;">
+          <!-- <div class="container-fluid" id="screen-map"> -->
 
             <h1 id="title">Department</h1>
+            <!-- style="height: 90vh" -->
             <div class="container list-group p-0 rounded-lg" style="height: 90vh">
                 <!-- search bar - want it as a form-group -->
                 <a class="list-group-item">
@@ -251,7 +254,7 @@ function myFunction() {
               timelineIntroScreen.eventCallback('onReverseComplete', function() {
                 fadeToScreen('screen-game');
                 $(".layer").css({"background-color": "transparent"});
-                $("body").css({"background-image": 'url(' + "../public/img/Backgroundnew.jpeg" + ')', "background-position": "center", "background-repeat" : "no-repeat", "background-size" : "cover", "position" : "relative"});
+                // $("body").css({"background-image": 'url(' + "../public/img/Backgroundnew.jpeg" + ')', "background-position": "center", "background-repeat" : "no-repeat", "background-size" : "cover", "position" : "relative"});
                 $("#canvas").hide();
                 $("#myVideo").hide();
               });
@@ -291,7 +294,7 @@ function myFunction() {
       fadeToScreen('screen-game');
       $(".layer").css({"background-color": "transparent"});
       //   $('body').css('background-image', 'url(' + "../public/img/treasure1.jpg" + ')');
-      $("body").css({"background-image": 'url(' + "../public/img/Backgroundnew.jpeg" + ')', "background-position": "center", "background-repeat" : "no-repeat", "background-size" : "cover", "position" : "relative"});
+      // $("body").css({"background-image": 'url(' + "../public/img/Backgroundnew.jpeg" + ')', "background-position": "center", "background-repeat" : "no-repeat", "background-size" : "cover", "position" : "relative"});
       // $("body").css("background-color", "black");
       $("#canvas").hide();
       $("#myVideo").hide();

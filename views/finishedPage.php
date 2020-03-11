@@ -35,7 +35,7 @@ if (!isset($_SESSION['department_id'])) {
   </section>
 
   <!-- Leader board and Credit onlick content -->
-  <section class="screen screen-game" style="width: 75vw">
+  <section class="screen screen-game" style="width: 100vw">
     <section>
 
     <!-- id="leaderboard" -->
@@ -44,13 +44,13 @@ if (!isset($_SESSION['department_id'])) {
         <div class="container text-center">
           <h1 class="lead">Leaderboard</h1>
         </div>
-        <div class="table-responsive">
-          <table class="table table-striped table-sm">
+        <div class="table">
+          <table class="table table-striped" style="margin: 0 auto;">
             <thead>
               <tr>
-                <th>Position</th>
-                <th>Solo/Group Name</th>
-                <th>Score</th>
+                <th class="lead">Position</th>
+                <th class="lead">Solo/Group Name</th>
+                <th class="lead">Score</th>
               </tr>
             </thead>
             <tbody id="leaderboard">
@@ -84,7 +84,7 @@ if (!isset($_SESSION['department_id'])) {
     for (i = 0; i < data.length; i++) {
       const team_name = data[i].team_name;
       const score = data[i].score;
-      leaderBoardHTML += "<tr><td>" + (i + 1) + "</td><td>" + team_name + "</td><td>" + score + "</td></tr>";
+      leaderBoardHTML += "<tr class=\"lead\"><td><p class=\"text-wrap\">" + (i + 1) + "</p</td><td>" + team_name + "</p></td><td>" + score + "</td></tr>";
 
     }
 
