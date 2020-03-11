@@ -21,7 +21,7 @@
 ; Author: William Wallitt, Edward Soutar, Bevan Roberts
 ; Date:   25 Feb 2020
 ;========================================== -->
-    
+
 <!-- Navigation -->
 <canvas id="canvas1" style="width: 100vw; height:100vh;"></canvas>
 
@@ -35,27 +35,28 @@
     <div class="layer">
 
 
-    <section class="screen screen-intro active-screen" id="home"> 
+    <section class="screen screen-intro active-screen" id="home">
 
         <div class="box-shadow"></div>
 
         <div class="button button-newgame pt-4" style="margin-top: 180px;"><h1 class="h3 text-white text-center" id="h1font"><input type="text" class="form-control text-center" id="teamname" placeholder="Group Name"><i class="far fa-arrow-alt-circle-right mt-4" id="button-newgame"></i></h1></div>
 
-                    
+
     </section>
 
+    
     <section class="screen screen-game">
 
 
-        <div class="d-flex align-items-center" id="screen-map" style="width: 100vw; height: 100vh">
+        <div class="d-flex flex-column align-items-center" id="screen-map" style="width: 100vw; height: 100vh">
 
-
+            <h1 id="title">Department</h1>
             <div class="container list-group p-0 rounded-lg" style="height: 90vh">
                 <!-- search bar - want it as a form-group -->
                 <a class="list-group-item">
                     <form class="form-inline md-form form-sm mt-4">
                       <!-- <i class="fas fa-search text-light" aria-hidden="true"></i> -->
-                      <input class="form-control form-control-sm w-100" id="myInput" style="background: rgba(999, 999, 999, 1);" onkeyup="myFunction()" type="text" placeholder="Search for department"
+                      <input class="form-control form-control-sm w-100" id="myInput" onkeyup="myFunction()" type="text" placeholder="Search for department"
                       aria-label="Search">
                     </form>
                 </a>
@@ -102,7 +103,7 @@ fetch("../app/get_departments.php").then(response => {
     return response.json();
 }).then(data => {
   for (i = 0; i < data.length; i++) {
-    $("#myUL").append("<li class=\"list-group-item\"><a style=\"font-family: 'pirate' \" id=\"btn\" onclick=\"onDepartmentClick(" + data[i].department_id + ")\">" + data[i].department_name + "</a></li>");
+    $("#myUL").append("<li class=\"list-group-item\"><a id=\"btn\" onclick=\"onDepartmentClick(" + data[i].department_id + ")\">" + data[i].department_name + "</a></li>");
   }
 }).catch(err => {
     // catch err
@@ -111,7 +112,7 @@ fetch("../app/get_departments.php").then(response => {
 function myFunction() {
   // Declare variables
   var input, filter, ul, li, a, i, txtValue;
-  // get input field   
+  // get input field
   input = document.getElementById('myInput');
   // get input value
   filter = input.value.toUpperCase();
@@ -121,7 +122,7 @@ function myFunction() {
   li = ul.getElementsByTagName('li');
   // Loop through all list items, and hide those who don't match the search query
   for (i = 0; i < li.length; i++) {
-    // get first tag's contents  
+    // get first tag's contents
     a = li[i].getElementsByTagName("a")[0];
     txtValue = a.textContent || a.innerText;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -185,19 +186,19 @@ function myFunction() {
     _nameScreen = targetScreenClassName;
     var $elementTarget = $('.' + _nameScreen);
     var $elementActiveScreen = $('.active-screen');
-    
+
     console.log('$elementTarget: ', $elementTarget);
     console.log('targetScreenClassName: ', targetScreenClassName);
-    console.log('$elementActiveScreen: ', $elementActiveScreen);    
-    
+    console.log('$elementActiveScreen: ', $elementActiveScreen);
+
     return TweenMax.to($elementActiveScreen, .4, {
       autoAlpha: 0,
       y: '+=10',
       onComplete: function() {
         console.log('onComplete: ', $elementTarget);
-        
+
         $elementActiveScreen.removeClass('active-screen');
-        
+
         TweenMax
         .to($elementTarget, .4, {
           y: '-=10',
@@ -250,7 +251,7 @@ function myFunction() {
               timelineIntroScreen.eventCallback('onReverseComplete', function() {
                 fadeToScreen('screen-game');
                 $(".layer").css({"background-color": "transparent"});
-                $("body").css({"background-image": 'url(' + "../public/img/treasure1.jpg" + ')', "background-position": "center", "background-repeat" : "no-repeat", "background-size" : "cover", "position" : "relative"});
+                $("body").css({"background-image": 'url(' + "../public/img/Backgroundnew.jpeg" + ')', "background-position": "center", "background-repeat" : "no-repeat", "background-size" : "cover", "position" : "relative"});
                 $("#canvas").hide();
                 $("#myVideo").hide();
               });
@@ -290,7 +291,7 @@ function myFunction() {
       fadeToScreen('screen-game');
       $(".layer").css({"background-color": "transparent"});
       //   $('body').css('background-image', 'url(' + "../public/img/treasure1.jpg" + ')');
-      $("body").css({"background-image": 'url(' + "../public/img/treasure1.jpg" + ')', "background-position": "center", "background-repeat" : "no-repeat", "background-size" : "cover", "position" : "relative"});
+      $("body").css({"background-image": 'url(' + "../public/img/Backgroundnew.jpeg" + ')', "background-position": "center", "background-repeat" : "no-repeat", "background-size" : "cover", "position" : "relative"});
       // $("body").css("background-color", "black");
       $("#canvas").hide();
       $("#myVideo").hide();
