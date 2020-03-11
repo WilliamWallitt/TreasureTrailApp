@@ -150,15 +150,6 @@ $database->close();
         if(muted == false){
             muted = true;
             Howler.mute(true);
-<<<<<<< HEAD
-						document.getElementById("mutebutton").innerHTML = "<i class='fas text-white fa-volume-mute' style='width:30px;'></i>"
-	    }
-        else {
-            muted = false;
-            Howler.mute(false);
-						document.getElementById("mutebutton").innerHTML = "<i class='fas text-white fa-volume-up' style='width:30px;'></i>"
-        }
-=======
 						$("#mutebutton").hide();
 					  $("#notmutebutton").show();
 	      }
@@ -168,7 +159,6 @@ $database->close();
 						$("#mutebutton").show();
             $("#notmutebutton").hide();
         } 
->>>>>>> master
     }
   </script>
 
@@ -184,13 +174,6 @@ $database->close();
 		<nav class="navbar navbar-dark vertical-center">
   		<div class="row">
     		<div class="span4">
-<<<<<<< HEAD
-          <a class="nav-link disabled d-flex justify-content-start lead" style="background-color: transparent; color:white; width:33vw;" id = "score" href="#">Score: </a>
-    		</div>
-			</div>
-				<a class="nav-link lead d-flex justify-content-center" style="background-color: transparent;" href="../views/faqPage.php">FAQ</a>
-  			<a class="nav-link lead d-flex justify-content-end" style="background-color: transparent;"id="mutebutton" onclick="toggle_sound()"><i class="fas text-white fa-volume-up" style="width:30px;"></i></a>
-=======
 					<!-- <img style="float: left; width: 8vw; height: 5vh" class="pb-2 pl-2" src="../public/img/coinImagePirate.png"/> -->
           <a class="nav-link lead text-white" style="background-color: transparent;" id = "score">Score: </a>
     		</div>
@@ -198,7 +181,6 @@ $database->close();
 			<a class="lead align-items text-white" style="background-color: transparent; text-decoration: none;" href="../views/faqPage.php">FAQ</a>
 			<a class="nav-link lead text-dark" style="display: none;background-color: transparent;" id="mutebutton" onclick="toggle_sound()"><i  class="fas text-white fa-volume-mute"></i></a>
   		<a class="nav-link lead text-dark" style="background-color: transparent;"id="notmutebutton" onclick="toggle_sound()"><i  class="fas text-white fa-volume-up"></i></a>
->>>>>>> master
 		</nav>
 
     <!-- popup code -->
@@ -206,31 +188,6 @@ $database->close();
   <div class="box" style="display: none;" style="z-index: 12">
     <a class="button" id="pirategif" href="#popup1">Let me Pop up</a>
   </div>
-<<<<<<< HEAD
-
-  <video autoplay muted loop id="myVideo" style="display:none; z-index: 9">
-        <source src="../public/img/stormySeas.mp4" type="video/mp4">
-  </video>
-
-
-  <!-- background: url('../public/img/treasure1.jpg'); -->
-
-  <div id="popup1" class="overlay" style="z-index: 12;">
-    <div class="container-fluid;">
-      <a class="close" href="#" onclick="hidePopUp()" style="padding-top: 5vh; padding-right: 3vw; font-size:50px">&times;</a>
-      <h2 class="container p-0 m-0">
-        <img id="pirate"src="../public/img/talking.gif" style="margin-left: 30%">
-      </h2>
-      <!-- <div class="content"> -->
-      <div class="container-fluid" style="position: absolute;">
-        <h1 class='text-white' id="narrativeText" style="height: 100%; font-size: 150%;"></h1>
-      </div>
-    </div>
-  </div>
-
-  <!-- end pop up code -->
-
-=======
 
   <video autoplay muted loop id="myVideo" style="display:none; z-index: 9">
         <source src="../public/img/stormySeas.mp4" type="video/mp4">
@@ -255,7 +212,6 @@ $database->close();
 
   <!-- end pop up code -->
 
->>>>>>> master
 
     <!-- Map/Verify Location/ Clue tabs -->
 
@@ -305,13 +261,8 @@ $database->close();
 
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
-<<<<<<< HEAD
-        <h1 class="d-flex justify-content-center lead m-5" style="font-size:30px;font-family:'skull';color:white;text-shadow: 2px 2px black;">Scan QR Code</h1>
-        <div class="d-flex justify-content-center lead m-5"id="loadingMessage" style="font-size:20px;font-family:'skull';color:white;text-shadow: 2px 2px black;text-align: center;'">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
-=======
         <h1 class="d-flex justify-content-center lead m-5" style="font-family: 'skull'">Scan QR Code</h1>
         <div id="loadingMessage" style="font-family: 'skull'">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
->>>>>>> master
         <canvas id="canvas" hidden></canvas>
         <div id="output" hidden>
             <div hidden><b>Data:</b> <span id="outputData"></span></div>
@@ -340,27 +291,12 @@ $database->close();
 
               <!-- Clue multiple choice questions -->
 
-<<<<<<< HEAD
-              <h1 class="question h3 text-white text-center h2 p-2" id="clue" style="font-family: 'skull'"></h1>
-=======
               <h1 class="question h3 text-white text-center h2 p-2" id="clue" style="font-family: 'skull'">How many stairs does the Harrison Bulding have?</h1>
->>>>>>> master
 
               <div class="container text-align-center h4">
                   <hr/>
                   <div class="custom-control custom-radio d-flex justify-content-center">
                       <input id="q1" name="choice" type="radio" class="custom-control-input">
-<<<<<<< HEAD
-                      <label class="custom-control-label" for="q1"><div class="person" id="question1" style="font-family: 'skull';color:white;"></div></label>
-                  </div>
-                  <div class="custom-control custom-radio d-flex justify-content-center">
-                      <input id="q2" name="choice" type="radio" class="custom-control-input">
-                      <label class="custom-control-label" for="q2"><div class="person" id="question2" style="font-family: 'skull';color:white;"></div></label>
-                  </div>
-                  <div class="custom-control custom-radio d-flex justify-content-center">
-                      <input id="q3" name="choice" type="radio" class="custom-control-input">
-                      <label class="custom-control-label" for="q3"><div class="person" id="question3" style="font-family: 'skull';color:white;"></div></label>
-=======
                       <label class="custom-control-label" for="q1"><div class="person" id="question1" style="font-family: 'skull';color:white;">3 sets of stairs</div></label>
                   </div>
                   <div class="custom-control custom-radio d-flex justify-content-center">
@@ -370,7 +306,6 @@ $database->close();
                   <div class="custom-control custom-radio d-flex justify-content-center">
                       <input id="q3" name="choice" type="radio" class="custom-control-input">
                       <label class="custom-control-label" for="q3"><div class="person" id="question3" style="font-family: 'skull';color:white;">5 sets of stairs</div></label>
->>>>>>> master
                   </div>
 
                   <div class="d-flex justify-content-center text-center">
@@ -381,21 +316,12 @@ $database->close();
               <hr/>
 
               <!-- Extra info -->
-<<<<<<< HEAD
-
-
-              <div id ="extra-info" class="jumbotron vertical-center text-center bg-transparent text-white">
-                  <h1 class="h2" id="departmentName" style="font-family: 'skull'"></h1>
-                  <p class="lead" id="extraInfo" style="font-family: 'skull'"></p>
-
-=======
 
 
               <div id ="extra-info" class="jumbotron vertical-center text-center bg-transparent text-white">
                   <h1 class="h2" id="departmentName" style="font-family: 'skull'">Harrison Building</h1>
                   <p class="lead" id="extraInfo" style="font-family: 'skull'">Did you know it was founded in 1932, before WW2!</p>
 
->>>>>>> master
               </div>
 
             </div>
@@ -407,41 +333,6 @@ $database->close();
 
 <script>
 
-<<<<<<< HEAD
-	function getNarrativeData(building_id) {
-
-	// function delaySubmit() {
-
-	//     $('#countdown').delay(30000).hide(0);
-	//     $('#submitbtn').delay(30000).show(0);
-		fetch("../app/get_all_buildings.php").then(response => {
-					return response.json();
-			}).then(data => {
-
-	// }
-					for (let index = 0; index < data.length; index++) {
-						const element = data[index];
-						if (element.building_id == building_id) {
-							//alert("success");
-                document.getElementById("narrativeText").innerHTML =  element.narrative;
-						}
-						playPopUp();
-					}
-
-			}).catch(err => {
-					// catch err
-					console.log(err);
-			});
-
-	}
-
-    // function delaySubmit() {
-
-    //     $('#countdown').delay(30000).hide(0);
-    //     $('#submitbtn').delay(30000).show(0);
-
-    // }
-=======
     function getNarrativeData(building_id) {
 
 
@@ -466,7 +357,6 @@ $database->close();
     }
 
 
->>>>>>> master
 
 
 
@@ -474,22 +364,12 @@ $database->close();
     var time = 0;
     var attempts = 0;
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-
->>>>>>> master
->>>>>>> edwardsoutar-patch-1
     function playPopUp() {
 
 
       $("#myVideo").show();
-<<<<<<< HEAD
 			$("#popup1").show();
-=======
       $("#popup1").show();
->>>>>>> master
       $(".box").show();
       // $("#home").hide();
       document.getElementById("pirategif").click();
@@ -515,11 +395,8 @@ $database->close();
 
             let score = data.score;
 
-<<<<<<< HEAD
             document.getElementById("score").innerText =  "Score:" + score;
-=======
             document.getElementById("score").innerText =  score + "";
->>>>>>> master
 
         }).catch(err => {
             // catch err
@@ -620,11 +497,8 @@ $database->close();
     }
 
     // coordinates for the forum exeter
-<<<<<<< HEAD
 	var myLatLng = {lat: 50.735371, lng: -3.533782};
-=======
 	  var myLatLng = {lat: 50.735371, lng: -3.533782};
->>>>>>> master
     // we have to declare these globally -> so we can call them during the onClick event + the calc route function
     var map;
     var directionsRenderer;
@@ -796,16 +670,13 @@ $database->close();
                 } else {
                     incorrect.style.display = "none";
                     success.style.display = "block";
-<<<<<<< HEAD
 										getNarrativeData(building_ids[indexStart]);
 								}
 
 
-=======
        
                 getNarrativeData(building_ids[indexStart]);
-         }
->>>>>>> master
+
                 right_voice();
                 // disable the clue tab and move the user back to the Map page
                 var element = document.getElementById("clue-tab");
@@ -894,11 +765,8 @@ $database->close();
                 routeExtraInfo.push(data[i].extra_info);
                 buildingNames.push(data[i].building_name);
             }
-<<<<<<< HEAD
 						getNarrativeData(building_ids[0]);
-=======
             getNarrativeData(building_ids[0]);
->>>>>>> master
             geolocation();
         }).catch(err => {
             // catch err
@@ -1083,11 +951,8 @@ $database->close();
         // Create a map object, and include the MapTypeId to add
         // to the map type control.
         var map = new google.maps.Map(document.getElementById('map'), {
-<<<<<<< HEAD
           zoom: 16,
-=======
           zoom: 15,
->>>>>>> master
           center: forum,
           mapTypeControlOptions: {
             mapTypeIds: [
