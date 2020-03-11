@@ -496,7 +496,7 @@ $database->close();
     }
 
     // coordinates for the forum exeter
-	var myLatLng = {lat: 50.735371, lng: -3.533782};
+	  var myLatLng = {lat: 50.735371, lng: -3.533782};
     // we have to declare these globally -> so we can call them during the onClick event + the calc route function
     var map;
     var directionsRenderer;
@@ -993,7 +993,7 @@ $database->close();
     //Sets the last visited location to an open treasure chest
     function updateMarkers(){
       var treasurechest = {
-        url: '../public/img/treasurechest.pn', // url
+        url: '../public/img/treasurechest.png', // url
         scaledSize: new google.maps.Size(60, 50), // scaled size
         origin: new google.maps.Point(0,0), // origin
         anchor: new google.maps.Point(25, 30) // anchor
