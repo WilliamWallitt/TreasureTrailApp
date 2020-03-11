@@ -200,7 +200,7 @@ $database->close();
       </h2>
       <!-- <div class="content"> -->
       <div class="container-fluid" style="position: absolute;">
-        <h1 class='text-white' id="narrativeText" style="height: 100%; font-size: 150%;"></h1>
+        <h1 class='text-white' id="narrativeText" style="height: 100vw; font-size: 150%;"></h1>
       </div>
     </div>
   </div>
@@ -257,7 +257,7 @@ $database->close();
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
         <h1 class="d-flex justify-content-center lead m-5" style="font-size:30px;font-family:'skull';color:white;text-shadow: 2px 2px black;">Scan QR Code</h1>
-        <div class="d-flex justify-content-center lead m-5"id="loadingMessage" style="font-size:20px;font-family:'skull';color:white;text-shadow: 2px 2px black;text-align: center;'">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
+        <div id="loadingMessage" style="font-size:20px;font-family:'skull';color:white;text-shadow: 2px 2px black;text-align: center;'">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
         <canvas id="canvas" hidden></canvas>
         <div id="output" hidden>
             <div hidden><b>Data:</b> <span id="outputData"></span></div>
