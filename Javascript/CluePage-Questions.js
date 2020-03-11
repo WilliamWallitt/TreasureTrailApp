@@ -151,7 +151,6 @@ function isAnswerTrue(answer_id) {
             } else {
                 incorrect.style.display = "none";
                 success.style.display = "block";
-                getNarrativeData(building_ids[indexStart]);
             }
 
 
@@ -187,6 +186,8 @@ function isAnswerTrue(answer_id) {
 
             attempts = 0;
         // display our alert fail if answer is incorrect
+
+            getNarrativeData(building_ids[indexStart]);
 
         } else if (data == false) {
             if (incorrect.style.display === "none") {
