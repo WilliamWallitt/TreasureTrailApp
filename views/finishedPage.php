@@ -84,6 +84,47 @@ if (!isset($_SESSION['department_id'])) {
 <script src="../Javascript/finishedPage.js"></script>
 <script src="../Javascript/finishedPageAnimatons.js"></script>
 
+<script>
 
+fetch("../app/get_leaderboard.php?department_id=" + <?php echo $_SESSION['department_id']; ?>).then(response => {
+    return response.json();
+}).then(data => {
+  const leaderBoard = document.getElementById("leaderboard");
+  let leaderBoardHTML = "";
+  for (i = 0; i < data.length; i++) {
+    const team_name = data[i].team_name;
+    const score = data[i].score;
+    leaderBoardHTML += "<tr><td class=\"h6\">" + (i + 1) + "</td><td class=\"h6\">" + team_name + "</td><td class=\"h6\">" + score + "</td></tr>";
+
+  }
+
+  getPosition();
+
+  leaderBoard.innerHTML = leaderBoardHTML;
+  test();
+}).catch(err => {
+    // catch err
+    console.log(err);
+});
+
+function getPosition() {
+
+fetch("../app/get_leaderboard_position.php?user_id=" + <?php echo $_SESSION['user_id']; ?> +"&department_id=" + <?php echo $_SESSION['department_id']; ?>).then(response => {
+    return response.json();
+}).then(data => {
+    const position = data.position;
+    if (data == false) {
+      $("#finishedPosition").text("Whoooo You Finished!");
+      return;
+    }
+    $("#finishedPosition").text("You Finished in " + position + getPlaceSuperscript(position) + " place");
+
+}).catch(err => {
+    // catch err
+    console.log(err);
+});
+
+}
+</script>
 </body>
 </html>

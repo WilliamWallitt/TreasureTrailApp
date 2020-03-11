@@ -37,6 +37,30 @@ function getClueData(){
         question3.innerHTML = data[0].answers[2].answer;
         question3.setAttribute("answer_id", data[0].answers[2].answer_id);
 
+        var element = document.getElementById("clue-tab");
+        element.classList.remove("disabled");
+        // delaySubmit();
+        var count = 2;
+        // Function to update counters on all elements with class counter
+        var doUpdate = function() {
+            $('#countdown').each(function() {
+            if (count !== 0) {
+                let countString = "Wait " + count + "'s"
+                $(this).html(countString);
+                count = count - 1;
+            } else {
+                $('#countdown').hide();
+
+                $('#submitbtn').show();
+
+            }
+            });
+        };
+
+        // Schedule the update to happen once every second
+        setInterval(doUpdate, 1000);
+
+        document.getElementById("clue-tab").click();
 
     }).catch(err => {
         // catch err

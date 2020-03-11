@@ -187,9 +187,6 @@ $database->close();
         <source src="../public/img/stormySeas.mp4" type="video/mp4">
   </video>
 
-
-  <!-- background: url('../public/img/treasure1.jpg'); -->
-
   <div id="popup1" class="overlay" style="z-index: 12;">
     <div class="container-fluid;">
       <a class="close" href="#" onclick="hidePopUp()" style="padding-top: 5vh; padding-right: 3vw; font-size:50px">&times;</a>
@@ -215,7 +212,7 @@ $database->close();
             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" onclick=button_click_paper();scan_voice()>Verify location</a>
         </li>
         <li class="nav-item border border-dark">
-            <a class="nav-link disabled" id="clue-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" onclick=button_click_paper();getClueData()>Clue</a>
+            <a class="nav-link disabled" id="clue-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" onclick=button_click_paper();>Clue</a>
         </li>
     </ul>
     <!-- Tab content -->
@@ -435,30 +432,7 @@ function getScore() {
 
 	      // if the QR code is correct, make the clue tab clickable and move user to it
 	      if (code.data == building_ids[indexStart-1]) {
-	        var element = document.getElementById("clue-tab");
-	        element.classList.remove("disabled");
-	        // delaySubmit();
-	        var count = 2;
-	        // Function to update counters on all elements with class counter
-	        var doUpdate = function() {
-	            $('#countdown').each(function() {
-	            if (count !== 0) {
-	                let countString = "Wait " + count + "'s"
-	                $(this).html(countString);
-	                count = count - 1;
-	            } else {
-	                $('#countdown').hide();
-
-	                $('#submitbtn').show();
-
-	            }
-	            });
-	        };
-
-	        // Schedule the update to happen once every second
-	        setInterval(doUpdate, 1000);
-
-	        document.getElementById("clue-tab").click();
+          getClueData();
 	        return;
 	      }
 	    }
