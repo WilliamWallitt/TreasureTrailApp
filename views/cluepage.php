@@ -364,7 +364,6 @@ $database->close();
     var time = 0;
     var attempts = 0;
 
-
     function playPopUp() {
 
 
@@ -944,7 +943,11 @@ $database->close();
         // Create a map object, and include the MapTypeId to add
         // to the map type control.
         var map = new google.maps.Map(document.getElementById('map'), {
+<<<<<<< HEAD
+          zoom: 16,
+=======
           zoom: 15,
+>>>>>>> master
           center: forum,
           mapTypeControlOptions: {
             mapTypeIds: [

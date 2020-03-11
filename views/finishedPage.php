@@ -42,10 +42,17 @@ if (!isset($_SESSION['department_id'])) {
 
       <div class="tab-pane" id="GroupTracking">
         <div class="container text-center">
+<<<<<<< HEAD
+          <h1 class="lead" style="font-size:40px;">Leaderboard</h1>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-sm">
+=======
           <h1 class="lead">Leaderboard</h1>
         </div>
         <div class="table-responsive">
           <table class="table table-striped table-sm">
+>>>>>>> master
             <thead>
               <tr>
                 <th>Position</th>
