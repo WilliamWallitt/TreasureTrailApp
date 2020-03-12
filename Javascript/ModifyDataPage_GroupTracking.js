@@ -1,3 +1,9 @@
+// ;==========================================
+// ; Title:  Front end Javascript request's (Modify Data Page - Group Tracking)
+// ; Author: William Wallitt, Justin Van Daalen, Stephan Kubal, Oliver Fawcett
+// ; Date:   25 Feb 2020
+// ;==========================================
+
 function fetchGroupTracking() {
 
 fetch("../app/get_all_tracking.php").then(response => {
