@@ -10,10 +10,18 @@ $user_id = $_SESSION['user_id'];
 $department_id = $_SESSION['department_id'];
 
 $database = new database();
-$position = $database->get_leaderboard_position($user_id, $department_id);
+$user = $database->get_user($user_id);
+if ($user === FALSE) {
+  header("Location: ../views/gamePage.php");
+}
 
-if ($position !== FALSE) {
-  $response = $database->reset_user($user_id);
+if ($user->completed == 1) {
+  $database->reset_user($user_id);
+  $_SESSION['current_building_id'] = 0;
+  $_SESSION['score'] = 0;
+} else {
+  $_SESSION['current_building_id'] = $user->current_building_id;
+  $_SESSION['score'] = $user->score;
 }
 $database->close();
 ?>
@@ -179,7 +187,7 @@ $database->close();
   <body style="background: url('../public/img/Backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
 
 		<nav class="navbar navbar-dark vertical-center">
-            <a class="nav-link disabled lead mr-auto p-2" style="background-color: transparent; color:white;" id = "score" href="#">Score: </a>
+            <a class="nav-link disabled lead mr-auto p-2" style="background-color: transparent; color:white;" id = "score" href="#">Score:0</a>
             <a class="nav-link lead text-white lead" style="background-color: transparent;" href="../views/faqPage.php">FAQ</a>
             <a class="nav-link lead d-flex ml-auto pb-3" style="background-color: transparent;"id="mutebutton" onclick="toggle_sound()"><i class="fas text-white fa-volume-up"></i></a>
     </nav>
@@ -603,6 +611,11 @@ function init_route(){
 		fetch("../app/get_route.php?department_id=" + department_id).then(response => {
 				return response.json();
 		}).then(data => {
+        var current_building_id = "<?php echo $_SESSION['current_building_id']; ?>";
+
+        var score = "<?php echo $_SESSION['score']; ?>";
+        document.getElementById("score").innerText =  "Score:" + score;
+
 				// creating an array of coordinate objects - each is the coordinates for a building
 				for (i = 0; i < data.length; i++) {
 						let latlng = {
@@ -612,10 +625,21 @@ function init_route(){
 						array.push(latlng);
 						building_ids.push(data[i].building_id);
 						routeExtraInfo.push(data[i].extra_info);
-						buildingNames.push(data[i].building_name);
-				}
-				getNarrativeData(building_ids[0]);
-				geolocation();
+            buildingNames.push(data[i].building_name);
+            
+            console.log(data[i].building_id);
+
+            if (data[i].building_id == current_building_id) {
+              indexStart = i;
+              console.log("TARGET BUILDING");
+            }
+        }
+      
+        if (indexStart == 0){
+          getNarrativeData(building_ids[0]);
+        }
+
+        geolocation();
 		}).catch(err => {
 				// catch err
 				console.log(err);

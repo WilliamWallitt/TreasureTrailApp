@@ -711,6 +711,25 @@ class database {
         return $result;
     }
 
+    public function get_user($user_id) {
+        global $connection;
+
+        $user_id_param = $connection->escape_string($user_id);
+        $sql = "SELECT * FROM `users` WHERE `user_id`='$user_id_param' LIMIT 1";
+
+        $result = $this->query($sql);
+ 
+        foreach ($result as $user) {
+            $user_object = new stdClass();
+            $user_object->current_building_id = $user['current_building_id'];
+            $user_object->score = $user['score'];
+            $user_object->completed = $user['completed'];
+
+            return $user_object;
+        }
+        return FALSE; 
+    }
+
     public function reset_user($user_id) {
         global $connection;
 
