@@ -1,3 +1,8 @@
+// ;==========================================
+// ; Title:  Front end Javascript request's (Clue Page - Questions)
+// ; Author: William Wallitt, Justin Van Daalen, Stephan Kubal, Oliver Fawcett
+// ; Date:   12 Mar 2020
+// ;==========================================
 
 var timerEnabled = false;
 var time = 0;
@@ -117,79 +122,4 @@ function checkIfCorrect() {
     } else {
         alert("Please select an answer!");
     }
-}
-
-// we send the answer_id to the database to check if the answer is correct or not
-function isAnswerTrue(answer_id) {
-
-    fetch("../app/verify_answer.php?answer_id=" + answer_id).then(response => {
-        return response.json();
-    }).then(data => {
-        //alert(data);
-
-        var incorrect = document.getElementById("incorrect");
-        var success = document.getElementById("correct");
-
-        // display our alert success if answer is correct
-        if (data == true){
-            if (success.style.display === "none") {
-                incorrect.style.display = "none";
-                success.style.display = "block";
-                // add_to_score(score);
-            } else {
-                incorrect.style.display = "none";
-                success.style.display = "block";
-            }
-
-
-            right_voice();
-            // disable the clue tab and move the user back to the Map page
-            var element = document.getElementById("clue-tab");
-            element.classList.add("disabled");
-
-            document.getElementById("home-tab").click();
-
-            // document.getElementById('coin-image').src='../public/img/Coins4.png';
-            // calculate the next route in the treasure trail
-            calcRoute();
-            updateMarkers();
-
-            requestAnimationFrame(tick);
-
-            timerEnabled = false;
-
-            fetch('../app/update_score.php', {
-                headers: { "Content-Type": "application/json; charset=utf-8" },
-                method: 'POST',
-                body: JSON.stringify({
-                    user_id: "<?php echo $_SESSION['user_id']; ?>",
-                    seconds: time,
-                    attempts: attempts - 1,
-                })
-                }).then(response => {
-                    return response.json();
-                }).then(data => {
-                    getScore();
-                });
-
-            attempts = 0;
-        // display our alert fail if answer is incorrect
-
-            getNarrativeData(building_ids[indexStart]);
-
-        } else if (data == false) {
-            if (incorrect.style.display === "none") {
-                success.style.display = "none";
-                incorrect.style.display = "block";
-                // score = score-100;
-            } else {
-                success.style.display = "none";
-                incorrect.style.display = "block";
-            }
-            wrong_voice();
-        }
-    }).catch(err => {
-        // catch err
-        console.log(err);
-    });
 }

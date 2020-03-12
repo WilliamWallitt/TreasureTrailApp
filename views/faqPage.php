@@ -58,15 +58,15 @@
 
 <script>
 
+ // ;==========================================
+// ; Title:  Front end Javascript request's (FAQ Page)
+// ; Author: William Wallitt, Justin Van Daalen, Stephan Kubal, Oliver Fawcett
+// ; Date:   12 Mar 2020
+// ;==========================================
+  
 function emailGamekeeper() {
-
   let emailaddress = $("#emailAddress").text();
   let message = $("#message").text();
-
-
-
-
-
 }
 
 

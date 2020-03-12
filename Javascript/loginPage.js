@@ -1,3 +1,9 @@
+// ;==========================================
+// ; Title:  Front end Javascript request's (Login Page)
+// ; Author: William Wallitt, Justin Van Daalen, Stephan Kubal, Oliver Fawcett
+// ; Date:   12 Mar 2020
+// ;==========================================
+
 $("#login").focus(function(){
     $(this).removeAttr('placeholder');
  });

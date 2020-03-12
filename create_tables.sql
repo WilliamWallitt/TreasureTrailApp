@@ -2,7 +2,7 @@
 -- ;==========================================
 -- Title:  Create Tables - MySQL
 -- Author: William Wallitt, Justin Van Daalen, Edward Soutar
--- Date:   25 Feb 2020
+-- Date:   12 Mar 2020
 -- ========================================== -->
 
 CREATE TABLE `departments` (

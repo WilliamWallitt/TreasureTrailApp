@@ -334,7 +334,12 @@ $database->close();
     </div>
   </div>
 <script>
-
+// ;==========================================
+// ; Title:  Front end Javascript request's (Clue Page)
+// ; Author: William Wallitt, Justin Van Daalen, Stephan Kubal, Oliver Fawcett
+// ; Date:   12 Mar 2020
+// ;==========================================
+	
 // we send the answer_id to the database to check if the answer is correct or not
 function isAnswerTrue(answer_id) {
 
@@ -355,10 +360,9 @@ function isAnswerTrue(answer_id) {
             } else {
                 incorrect.style.display = "none";
                 success.style.display = "block";
-                getNarrativeData(building_ids[indexStart]);
             }
 
-
+	    getNarrativeData(building_ids[indexStart]);
             right_voice();
             // disable the clue tab and move the user back to the Map page
             var element = document.getElementById("clue-tab");

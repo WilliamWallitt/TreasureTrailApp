@@ -1,7 +1,7 @@
 -- ;==========================================
 -- Title:  Insert Data - MySQL
 -- Author: Justin Van Daalen, Edward Soutar, Stefan Kubal
--- Date:   25 Feb 2020
+-- Date:   12 Mar 2020
 -- ========================================== -->
 
 INSERT INTO `departments`(`department_name`)

@@ -1,3 +1,9 @@
+/* ;==========================================
+; Title:  Front end Clue Page - CSS
+; Author: William Wallitt
+; Date:   12 Mar 2020
+;==========================================  */
+
 @import "bourbon";
 
 @import url('//fonts.googleapis.com/css?family=Raleway:400,800');
@@ -221,12 +227,6 @@ hr {
     text-shadow: 2px 2px black;
     background-color: rgba(255, 255, 255, 0.3);
   }
-
-/* ;==========================================
-; Title:  Front end Main Page (clue page) - CSS
-; Author: William Wallitt
-; Date:   25 Feb 2020
-;==========================================  */
 
 .person:hover {
     transform: translateY(5px);

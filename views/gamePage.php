@@ -91,6 +91,12 @@
 
 <script>
 
+// ;==========================================
+// ; Title:  Front end Javascript request's (Game Page)
+// ; Author: William Wallitt, Justin Van Daalen, Stephan Kubal, Oliver Fawcett
+// ; Date:   12 Mar 2020
+// ;==========================================
+  
 function playPopUp() {
     $("#popup1").show();
     $(".box").show();

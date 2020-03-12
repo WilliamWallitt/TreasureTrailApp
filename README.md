@@ -51,6 +51,42 @@ Local Installation: Apache and MySQL services
 ```
 Navigate to your local http://localhost/
 ```
+
+A successful deployment will look like this
+
+![An example test](https://i.gyazo.com/281530ef50f89f55c0460419ebe8f2dc.png)
+
+
+## Unit Testing
+1. Download Composer, for Windows you can download and run the Composer-Setup.exe for the latest version:
+```https://getcomposer.org/download/```
+2. Install PHPUnit through Composer using the following instructions:
+```https://phpunit.de/getting-started/phpunit-9.html```
+3. Create a composer.json file the project’s root directory with the following format:
+```
+  {
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    }
+} 
+```
+4. Create test classes in the ‘/tests’ directory, using the suffix ‘Test’ for each php file and class name.
+5. Use the following command to execute the unit tests, specifying your file path to the ‘/tests’ directory:
+```phpunit C:\filepath\tests```
+
+Alternatively, you can execute the unit tests through composer.
+
+### An example test
+
+![An example test](https://i.gyazo.com/7e1b881eef730ec4a7defcaa1ab80258.png)
+
+
+
 ## Built With
 
 * [HTML]

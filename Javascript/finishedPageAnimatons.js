@@ -1,4 +1,10 @@
-    // animations
+// ;==========================================
+// ; Title:  Front end Javascript request's (Finished Page - Animations)
+// ; Author: William Wallitt, Justin Van Daalen, Stephan Kubal, Oliver Fawcett
+// ; Date:   12 Mar 2020
+// ;==========================================
+
+// animations
 (function() {
     var SELECTOR_REPLAY_INTRO_BUTTONS = '#button-replay';
     var SELECTOR_BUTTON_NEWGAME = '.button-newgame';

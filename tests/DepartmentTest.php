@@ -1,3 +1,9 @@
+/* ;==========================================
+; Title:  Back End Department Test
+; Author: Justin Van Daalen
+; Date:   12 Mar 2020
+;==========================================  */
+
 <?php
 require 'D:\xampp\htdocs\project\app\database.php';
 use PHPUnit\Framework\TestCase;
