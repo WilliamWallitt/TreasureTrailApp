@@ -128,6 +128,12 @@ function getPosition() {
 
 <script>
 
+// ;==========================================
+// ; Title:  Front end Javascript request's (Finished Page)
+// ; Author: William Wallitt, Justin Van Daalen, Stephan Kubal, Oliver Fawcett
+// ; Date:   12 Mar 2020
+// ;==========================================
+	
 fetch("../app/get_leaderboard.php?department_id=" + <?php echo $_SESSION['department_id']; ?>).then(response => {
     return response.json();
 }).then(data => {
