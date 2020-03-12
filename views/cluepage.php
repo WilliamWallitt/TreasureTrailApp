@@ -360,10 +360,9 @@ function isAnswerTrue(answer_id) {
             } else {
                 incorrect.style.display = "none";
                 success.style.display = "block";
-                getNarrativeData(building_ids[indexStart]);
             }
 
-
+	    getNarrativeData(building_ids[indexStart]);
             right_voice();
             // disable the clue tab and move the user back to the Map page
             var element = document.getElementById("clue-tab");
