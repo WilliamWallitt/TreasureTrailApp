@@ -39,6 +39,12 @@ class database {
         return $result;
     }
 
+    /**
+     * Gets a department, given its department id
+     * 
+     * @param   int $department_id  An int representing the id of a department
+     * @return  array
+     */
     public function get_department($department_id) {
         global $connection;
 
@@ -607,6 +613,12 @@ class database {
         return count($result) == 1;
     }
 
+    /**
+     * Checks to see if a user exists, where a user represents an individual or team playing the game.
+     * 
+     * @param   object  $user   A class that holds a user object, required properties are team_name
+     * @return  bool
+     */
     public function exists_user($user) {
         global $connection;
 
@@ -617,6 +629,12 @@ class database {
         return count($result) == 1;
     }
 
+    /**
+     * Creates a user (individual/team) if they do not already exist
+     * 
+     * @param   object  $user   A class representing a user, with properties team_name, department_id and building_id
+     * @return  object
+     */
     public function create_user($user) {
         global $connection;
 
@@ -636,6 +654,11 @@ class database {
         return $user_object;
     }
 
+    /**
+     * Gets all the users that are currently in the game, so that they can be tracked by the game keeper
+     * 
+     * @return  array
+     */
     public function get_all_tracking() {
         global $connection;
 
@@ -656,6 +679,12 @@ class database {
         return $users;
     }
 
+    /**
+     * Updates a user's current location
+     * 
+     * @param   object  $tracking   A intermediatary class that provides all tracking info through properties user_id, department_id and building_id
+     * @return  bool
+     */
     public function update_tracking($tracking) {
         global $connection;
 
@@ -674,6 +703,12 @@ class database {
         return $result;
     }
 
+    /**
+     * Gets a user's score
+     * 
+     * @param   int $user_id    Represents the id of a user
+     * @return  object/bool
+     */
     public function get_score($user_id) {
         global $connection;
 
@@ -690,6 +725,12 @@ class database {
         return FALSE;
     }
 
+    /**
+     * Updates a user's score based on how long they took to submit an answer as well as how many attempts
+     * 
+     * @param   object  $user   An object that represents a user with properties user_id, seconds and attempts
+     * @return  bool
+     */
     public function update_score($user) {
         global $connection;
 
@@ -711,6 +752,12 @@ class database {
         return $result;
     }
 
+    /**
+     * Gets a user given their user id
+     * 
+     * @param   int $user_id    An id that represents a user
+     * @return  object/bool
+     */
     public function get_user($user_id) {
         global $connection;
 
@@ -730,6 +777,12 @@ class database {
         return FALSE; 
     }
 
+    /**
+     * Resets a user's (individual/team) game settings
+     * 
+     * @param   object  $user_id    An id that represents a user
+     * @return  bool
+     */
     public function reset_user($user_id) {
         global $connection;
 
@@ -740,6 +793,12 @@ class database {
         return $result;
     }
 
+    /**
+     * Marks a user as completed, meaning that they have finished the game
+     * 
+     * @param   int $user_id    An id that represents a user
+     * @return  bool
+     */
     public function set_completed_user($user_id) {
         global $connection;
 
@@ -750,6 +809,12 @@ class database {
         return $result;
     }
 
+    /**
+     * Gets all users on the leaderboard (top 25), ordered by highest score -> lowest score
+     * 
+     * @param   int $department_id  An id that represents a department object
+     * @return  array
+     */
     public function get_leaderboard($department_id) {
         global $connection;
 
@@ -769,6 +834,13 @@ class database {
         return $users;
     }
 
+    /**
+     * Gets the position of a user on the leaderboard (provided a department id)
+     * 
+     * @param   int $user_id    An id that represents a user
+     * @param   int $department_id  An id that represents a department
+     * @return  object/bool
+     */
     public function get_leaderboard_position($user_id, $department_id) {
         global $connection;
 
