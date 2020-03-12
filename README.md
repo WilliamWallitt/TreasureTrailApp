@@ -72,7 +72,13 @@ Navigate to your local http://localhost/
 4. Create test classes in the ‘/tests’ directory, using the suffix ‘Test’ for each php file and class name.
 5. Use the following command to execute the unit tests, specifying your file path to the ‘/tests’ directory:
 ```phpunit C:\filepath\tests```
-* Alternatively, you can execute the unit tests through composer.
+
+Alternatively, you can execute the unit tests through composer.
+
+### An example test
+
+![An example test](https://i.gyazo.com/7e1b881eef730ec4a7defcaa1ab80258.png)
+
 
 
 ## Built With
