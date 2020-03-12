@@ -39,25 +39,17 @@
     <div class="container-fluid text-center" id="faq"></div>
 
 
-    <div class="container-fluid bg-transparent text-center">
-      <section class="mt-lg-9 py-7">
-        <div class="container-xl px-3 px-md-6">
-          <div class="gutter gutter-xl-spacious d-md-flex">
-            <div class="col-12 col-md-5 text-white">
-              <h4 class="h2">Need help? Contact a GameKeeper!</h4>
+    <div class="container-fluid bg-transparent text-center text-white">
+      <h4 class="h2">Need help? Contact a GameKeeper!</h4>
               <!-- gamekeeper email? -->
-              <form>
-                <div class="form-group">
-                  <a class="btn btn-outline-dark m-2 text-white border-light" href="mailto:willcdswallitt@gmail.com?Subject=Help">Contact a GameKeeper</a> 
-                </div>
-              </form>
-
-              <h1 class="lead">In the event of an emergency, where you or a member of your group requires urgent medical assistance you must call 999.</h1>
-            </div>
-          </div>
+      <form>
+        <div class="form-group">
+          <a class="btn btn-outline-dark m-2 text-white border-light" href="mailto:willcdswallitt@gmail.com?Subject=Help">Contact a GameKeeper</a> 
         </div>
-      </section>
-    </div>
+      </form>
+
+      <h1 class="lead">In the event of an emergency, where you or a member of your group requires urgent medical assistance you must call 999.</h1>
+  </div>
 </body>
 
 <!-- front end javascript code -->
