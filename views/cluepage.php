@@ -334,7 +334,12 @@ $database->close();
     </div>
   </div>
 <script>
-
+// ;==========================================
+// ; Title:  Front end Javascript request's (Clue Page)
+// ; Author: William Wallitt, Justin Van Daalen, Stephan Kubal, Oliver Fawcett
+// ; Date:   12 Mar 2020
+// ;==========================================
+	
 // we send the answer_id to the database to check if the answer is correct or not
 function isAnswerTrue(answer_id) {
 
