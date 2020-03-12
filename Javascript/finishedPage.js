@@ -1,3 +1,9 @@
+// ;==========================================
+// ; Title:  Front end Javascript request's (Finished Page)
+// ; Author: William Wallitt, Justin Van Daalen, Stephan Kubal, Oliver Fawcett
+// ; Date:   25 Feb 2020
+// ;==========================================
+
 function getPlaceSuperscript(number) {
   let numString = number + "";
   let lenString = numString.length;
