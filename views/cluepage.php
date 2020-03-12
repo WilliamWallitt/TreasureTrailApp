@@ -187,7 +187,7 @@ $database->close();
   <body style="background: url('../public/img/Backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
 
 		<nav class="navbar navbar-dark vertical-center">
-            <a class="nav-link disabled lead mr-auto p-2" style="background-color: transparent; color:white;" id = "score" href="#">Score: </a>
+            <a class="nav-link disabled lead mr-auto p-2" style="background-color: transparent; color:white;" id = "score" href="#">Score:0</a>
             <a class="nav-link lead text-white lead" style="background-color: transparent;" href="../views/faqPage.php">FAQ</a>
             <a class="nav-link lead d-flex ml-auto pb-3" style="background-color: transparent;"id="mutebutton" onclick="toggle_sound()"><i class="fas text-white fa-volume-up"></i></a>
     </nav>
