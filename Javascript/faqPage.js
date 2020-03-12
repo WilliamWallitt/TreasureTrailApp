@@ -1,3 +1,9 @@
+// ;==========================================
+// ; Title:  Front end Javascript request's (FAQ Page)
+// ; Author: William Wallitt, Justin Van Daalen, Stephan Kubal, Oliver Fawcett
+// ; Date:   25 Feb 2020
+// ;==========================================
+
 fetch("../app/get_faqs.php").then(response => {
     return response.json();
 }).then(data => {
