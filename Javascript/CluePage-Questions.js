@@ -1,3 +1,8 @@
+// ;==========================================
+// ; Title:  Front end Javascript request's (Clue Page - Questions)
+// ; Author: William Wallitt, Justin Van Daalen, Stephan Kubal, Oliver Fawcett
+// ; Date:   25 Feb 2020
+// ;==========================================
 
 var timerEnabled = false;
 var time = 0;
