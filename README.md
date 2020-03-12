@@ -51,6 +51,12 @@ Local Installation: Apache and MySQL services
 ```
 Navigate to your local http://localhost/
 ```
+
+A successful deployment will look like this
+
+![An example test](https://i.gyazo.com/281530ef50f89f55c0460419ebe8f2dc.png)
+
+
 ## Unit Testing
 1. Download Composer, for Windows you can download and run the Composer-Setup.exe for the latest version:
 ```https://getcomposer.org/download/```
