@@ -1,7 +1,7 @@
 // ;==========================================
 // ; Title:  Front end Javascript request's (Finished Page - Animations)
 // ; Author: William Wallitt, Justin Van Daalen, Stephan Kubal, Oliver Fawcett
-// ; Date:   25 Feb 2020
+// ; Date:   12 Mar 2020
 // ;==========================================
 
 // animations
