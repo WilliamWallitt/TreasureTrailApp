@@ -39,7 +39,7 @@
     <div class="container-fluid text-center" id="faq"></div>
 
 
-    <div class="container-fluid bg-transparent text-center text-white">
+    <div class="container bg-transparent text-center text-white">
       <h4 class="h2">Need help? Contact a GameKeeper!</h4>
               <!-- gamekeeper email? -->
       <form>
