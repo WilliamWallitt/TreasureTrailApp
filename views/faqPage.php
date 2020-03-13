@@ -19,7 +19,7 @@
 <!-- setting the background -->
 <body style="background: url('../public/img/Backgroundnew.jpeg') no-repeat center fixed; background-size: cover;">
 
-    <button class="btn btn-outline-light mt-2 p-2" onclick="window.location='../views/cluePage.php';" style="margin: 0 auto; width: 100vw";>Back to game</button> 
+    <button class="btn btn-outline-light mt-2 p-2" onclick="window.location='../views/cluepage.php';" style="margin: 0 auto; width: 100vw";>Back to game</button> 
 
     <h2 class="text-white">Frequently Asked Questions</h2>
 
